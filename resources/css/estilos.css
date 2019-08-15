@@ -1,0 +1,13 @@
+a:focus {
+  @apply outline-none;
+}
+
+button {
+  @apply border-0;
+}
+
+button:focus {
+  @apply outline-none;
+}
+
+@tailwind utilities;
