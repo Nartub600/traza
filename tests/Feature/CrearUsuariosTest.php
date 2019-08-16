@@ -24,21 +24,24 @@ class CrearUsuariosTest extends TestCase
         $roles = Role::all()->map->id->random(2)->toArray();
         $groups = factory(Group::class, 3)->create()->map->id->random(2)->toArray();
 
+        $password = $this->faker->password;
+
         $data = [
-            'name'     => $this->faker->name,
-            'email'    => $this->faker->email,
-            'username' => $this->faker->userName,
-            'password' => $this->faker->password,
-            'active'   => $this->faker->boolean,
-            'roles'    => $roles,
-            'groups'   => $groups,
+            'name'                  => $this->faker->name,
+            'email'                 => $this->faker->email,
+            'username'              => $this->faker->userName,
+            'password'              => $password,
+            'password_confirmation' => $password,
+            'active'                => $this->faker->boolean,
+            'roles'                 => $roles,
+            'groups'                => $groups,
         ];
 
         $response = $this
             ->actingAs($administrador)
-            ->post('/user', $data);
+            ->json('post', '/usuarios', $data);
 
-        $response->assertSuccessful();
+        $response->assertStatus(302);
 
         $user = User::where('email', $data['email'])->first();
 

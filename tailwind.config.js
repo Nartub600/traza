@@ -1,6 +1,9 @@
 module.exports = {
   theme: {
     extend: {
+      spacing: {
+        11: '2.75rem'
+      },
       colors: {
         gris: {
           default: '#707070',

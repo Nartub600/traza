@@ -12,8 +12,16 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-        factory(User::class, [
-            'username' => 'admin'
-        ])->state('administrador')->create();
+        factory(User::class)->state('administrador')->create([
+            'username' => 'administrador'
+        ]);
+
+        factory(User::class)->state('certificador')->create([
+            'username' => 'certificador'
+        ]);
+
+        factory(User::class)->state('fabricante')->create([
+            'username' => 'fabricante'
+        ]);
     }
 }

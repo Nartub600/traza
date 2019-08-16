@@ -8,6 +8,8 @@
 
     <script src="{{ asset('js/estilos.js') }}"></script>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/estilos.css') }}">
+
+    <script src="{{ asset('js/scripts.js') }}"></script>
   </head>
   <body>
     <div class="flex flex-col min-h-screen">

@@ -3,12 +3,42 @@
     <div class="container">
       <div>
         <div class="navbar-header">
-          <a class="navbar-brand" href="#" aria-label="Argentina.gob.ar Presidencia de la Nación">
+          <a class="navbar-brand" href="{{ route('home') }}" aria-label="Argentina.gob.ar Presidencia de la Nación">
             <img alt="Argentina.gob.ar" src="{{ asset('images/argentinagob.svg') }}" height="50">
           </a>
-          <a href="https://mi.argentina.gob.ar/" class="btn btn-login btn-link visible-xs" aria-label="Ingresar a Mi Argentina"><i class="icono-arg-mi-argentina"></i></a>
+          @guest
+          <a href="{{ route('login') }}" class="btn btn-login btn-link visible-xs">Login</a>
+          @endguest
+          @auth
+          <a
+            class="btn btn-login btn-link visible-xs"
+            href="{{ route('logout') }}"
+            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+          >
+              Logout
+          </a>
+
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+              @csrf
+          </form>
+          @endauth
         </div>
-        <a href="https://mi.argentina.gob.ar/" class="btn btn-login btn-link hidden-xs" aria-label="Ingresar a Mi Argentina"><i class="icono-arg-mi-argentina"></i>Mi Argentina</a>
+        @guest
+        <a href="{{ route('login') }}" class="btn btn-login btn-link hidden-xs">Login</a>
+        @endguest
+        @auth
+        <a
+          class="btn btn-login btn-link hidden-xs"
+          href="{{ route('logout') }}"
+          onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+        >
+            Logout
+        </a>
+
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
+        @endauth
       </div>
     </div>
   </nav>

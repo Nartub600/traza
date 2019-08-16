@@ -2,14 +2,16 @@
 
 Auth::routes();
 
-Route::get('/', 'AppController@index');
+Route::get('/', 'AppController@index')->name('home');
 
 Route::group([
     'middleware' => ['auth', 'role:administrador']
 ], function () {
-    Route::post('/user', 'UserController@store');
-    Route::post('/group', 'GroupController@store');
-    Route::post('/role', 'RoleController@store');
+    Route::resources([
+        'usuarios' => 'UserController',
+        'grupos' => 'GroupController',
+        'perfiles' => 'RoleController'
+    ]);
 });
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');

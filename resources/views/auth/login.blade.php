@@ -19,18 +19,18 @@
 
       <hr class="m-0 w-full">
 
-      <form method="POST" action="{{ route('login') }}" class="w-full">
+      <form method="post" action="{{ route('login') }}" class="w-full">
           @csrf
 
           @if ($errors->any())
-            <div class="alert alert-danger mx-3 mt-8">
-              <h5>Se han producido los siguientes errores:</h5>
-              <ol>
-                  @foreach ($errors->all() as $error)
-                      <li>{{ $error }}</li>
-                  @endforeach
-              </ol>
-            </div>
+          <div class="alert alert-danger mx-3 mt-8">
+            <h5>Se han producido los siguientes errores:</h5>
+            <ol>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ol>
+          </div>
           @endif
 
           <div class="w-2/3 mx-auto mt-8 form-group item-form @error('username') has-error @enderror">
