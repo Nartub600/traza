@@ -25,7 +25,8 @@ class CreateGroupRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'active' => 'required'
+            'active' => 'required',
+            'users' => 'array'
         ];
     }
 }

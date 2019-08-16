@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid">
   <h1>
-    Ver usuario <em>{{ $user->username }}</em>
+    Editar usuario <em>{{ $user->username }}</em>
   </h1>
 
   <hr class="my-4">
@@ -54,9 +54,9 @@
 
         <div class="w-1/2 form-group item-form px-4">
           <label for="name" class="mb-4">Estado <sup>*</sup></label>
-          <select name="active" class="form-control" value="{{ $user->active }}">
-            <option value="1">Activo</option>
-            <option value="0">Inactivo</option>
+          <select name="active" class="form-control">
+            <option value="1" @if ($user->active === true) selected @endif>Activo</option>
+            <option value="0" @if ($user->active === false) selected @endif>Inactivo</option>
           </select>
         </div>
 

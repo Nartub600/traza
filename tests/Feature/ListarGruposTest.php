@@ -2,30 +2,33 @@
 
 namespace Tests\Feature;
 
+use App\Group;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class VerUsuariosTest extends TestCase
+class ListarGruposTest extends TestCase
 {
     use RefreshDatabase;
 
     /** @test */
-    public function administradorPuedeVerUsuarios()
+    public function administradorPuedeListarGrupos()
     {
         $this->withoutExceptionHandling();
 
         $administrador = factory(User::class)->state('administrador')->create();
 
-        $user = factory(User::class)->create();
+        factory(Group::class, 3)->create([]);
 
         $response = $this
             ->actingAs($administrador)
-            ->get('/usuarios/' . $user->id);
+            ->get('/grupos');
+
+        $groups = Group::withCount('users')->get();
 
         $response
             ->assertSuccessful()
-            ->assertViewHas('user', $user);
+            ->assertViewHas('groups', $groups);
     }
 }

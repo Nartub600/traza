@@ -26,8 +26,10 @@ class ListarUsuariosTest extends TestCase
             ->actingAs($administrador)
             ->get('/usuarios');
 
+        $users = User::with(['groups', 'roles'])->get();
+
         $response
             ->assertSuccessful()
-            ->assertViewHas('users');
+            ->assertViewHas('users', $users);
     }
 }
