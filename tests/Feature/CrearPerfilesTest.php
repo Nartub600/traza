@@ -29,11 +29,11 @@ class CrearPerfilesTest extends TestCase
 
         $response = $this
             ->actingAs($administrador)
-            ->post('/role', $data);
+            ->post('/perfiles', $data);
 
-        $response->assertSuccessful();
+        $response->assertStatus(302);
 
-        $role = Role::where('name', $data['name'])->first();
+        $role = Role::findByName($data['name']);
 
         $this->assertNotNull($role);
 

@@ -2,7 +2,7 @@
 
 Auth::routes();
 
-Route::get('/', 'AppController@index')->name('home');
+Route::get('/', 'AppController@index')->name('home')->middleware('auth');
 
 Route::group([
     'middleware' => ['auth', 'role:administrador']
@@ -13,5 +13,3 @@ Route::group([
         'perfiles' => 'RoleController'
     ]);
 });
-
-// Route::get('/home', 'HomeController@index')->name('home');
