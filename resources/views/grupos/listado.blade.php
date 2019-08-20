@@ -4,9 +4,11 @@
 <div class="container-fluid">
   <h1 class="flex justify-between">
     Administrador de Grupo de Usuarios
+    @can('crear grupos')
     <a href="{{ route('grupos.create') }}" class="uppercase btn btn-success">
       Nuevo grupo de usuarios
     </a>
+    @endcan
   </h1>
 
   <hr class="my-4">

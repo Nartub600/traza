@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Group;
 use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -52,6 +53,21 @@ class UserController extends Controller
 
         $user->groups()->attach($request->groups);
         $user->assignRole($request->roles);
+
+        return redirect()->route('usuarios.index');
+    }
+
+    public function update(UpdateUserRequest $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        $user->fill($request->validated());
+        $user->password = Hash::make($request->password);
+
+        $user->save();
+
+        $user->groups()->sync($request->groups);
+        $user->syncRoles($request->roles);
 
         return redirect()->route('usuarios.index');
     }

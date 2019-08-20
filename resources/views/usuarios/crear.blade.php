@@ -37,18 +37,6 @@
         </div>
 
         <div class="w-1/2 form-group item-form px-4">
-          <label for="password" class="mb-4">Contraseña <sup>*</sup></label>
-          <input type="password" name="password" class="form-control" required aria-required>
-          <p class="help-block error hidden">Ingrese la contraseña</p>
-        </div>
-
-        <div class="w-1/2 form-group item-form px-4">
-          <label for="password_confirmation" class="mb-4">Confirmar contraseña <sup>*</sup></label>
-          <input type="password" name="password_confirmation" class="form-control" required aria-required>
-          <p class="help-block error hidden">Confirme la contraseña</p>
-        </div>
-
-        <div class="w-1/2 form-group item-form px-4">
           <label for="email" class="mb-4">Correo Electrónico <sup>*</sup></label>
           <input type="text" name="email" class="form-control" required aria-required value="{{ old('email') }}">
           <p class="help-block error hidden">Ingrese el correo electrónico</p>
@@ -61,6 +49,18 @@
             <option value="1">Activo</option>
             <option value="0">Inactivo</option>
           </select>
+        </div>
+
+        <div class="w-1/2 form-group item-form px-4">
+          <label for="password" class="mb-4">Contraseña <sup>*</sup></label>
+          <input type="password" name="password" class="form-control" required aria-required>
+          <p class="help-block error hidden">Ingrese la contraseña</p>
+        </div>
+
+        <div class="w-1/2 form-group item-form px-4">
+          <label for="password_confirmation" class="mb-4">Confirmar contraseña <sup>*</sup></label>
+          <input type="password" name="password_confirmation" class="form-control" required aria-required>
+          <p class="help-block error hidden">Confirme la contraseña</p>
         </div>
 
         <div class="w-1/2 form-group item-form px-4">

@@ -8,16 +8,18 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class CrearGruposTest extends TestCase
+class EditarGruposTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
     /** @test */
-    public function administradorPuedeCrearGrupos()
+    public function administradorPuedeEditarGrupos()
     {
         $this->withoutExceptionHandling();
 
         $administrador = factory(User::class)->state('administrador')->create();
+
+        $group = factory(Group::class)->create();
 
         $users = factory(User::class, 3)->create()->map->id->toArray();
 
@@ -29,14 +31,13 @@ class CrearGruposTest extends TestCase
 
         $response = $this
             ->actingAs($administrador)
-            ->post('/grupos', $data);
+            ->put('/grupos/' . $group->id, $data);
 
         $response->assertStatus(302);
 
-        $group = Group::where('name', $data['name'])->first();
+        $group = Group::find($group->id);
 
-        $this->assertNotNull($group);
-
+        $this->assertEquals($group->name, $data['name']);
         $this->assertEquals($group->active, $data['active']);
 
         $this->assertNotNull($group->users()->find($data['users'][0]));

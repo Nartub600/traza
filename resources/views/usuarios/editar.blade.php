@@ -10,6 +10,7 @@
 
   <div class="bg-white p-4 mb-4">
     <form action="{{ route('usuarios.update', $user->id) }}" method="post">
+      @method('put')
       @csrf
 
       @if ($errors->any())
@@ -43,16 +44,6 @@
         </div>
 
         <div class="w-1/2 form-group item-form px-4">
-          <label for="name" class="mb-4">Perfil (Permite seleccionar varios)</label>
-          <select multiple name="roles" class="form-control">
-            @foreach ($roles as $role)
-            <option value="{{ $role->id }}" @if ($user->roles->contains($role)) selected @endif>{{ $role->name }}</option>
-            @endforeach
-          </select>
-          <p class="help-block error hidden">Seleccione al menos un perfil</p>
-        </div>
-
-        <div class="w-1/2 form-group item-form px-4">
           <label for="name" class="mb-4">Estado <sup>*</sup></label>
           <select name="active" class="form-control">
             <option value="1" @if ($user->active === true) selected @endif>Activo</option>
@@ -61,8 +52,30 @@
         </div>
 
         <div class="w-1/2 form-group item-form px-4">
+          <label for="password" class="mb-4">Contraseña <sup>*</sup></label>
+          <input type="password" name="password" class="form-control">
+          <p class="help-block error hidden">Ingrese la contraseña</p>
+        </div>
+
+        <div class="w-1/2 form-group item-form px-4">
+          <label for="password_confirmation" class="mb-4">Confirmar contraseña <sup>*</sup></label>
+          <input type="password" name="password_confirmation" class="form-control">
+          <p class="help-block error hidden">Confirme la contraseña</p>
+        </div>
+
+        <div class="w-1/2 form-group item-form px-4">
+          <label for="name" class="mb-4">Perfil (Permite seleccionar varios)</label>
+          <select multiple name="roles[]" class="form-control">
+            @foreach ($roles as $role)
+            <option value="{{ $role->id }}" @if ($user->roles->contains($role)) selected @endif>{{ $role->name }}</option>
+            @endforeach
+          </select>
+          <p class="help-block error hidden">Seleccione al menos un perfil</p>
+        </div>
+
+        <div class="w-1/2 form-group item-form px-4">
           <label for="name" class="mb-4">Grupo de usuarios (Permite seleccionar varios)</label>
-          <select multiple name="groups" class="form-control">
+          <select multiple name="groups[]" class="form-control">
             @foreach ($groups as $group)
             <option value="{{ $group->id }}" @if ($user->groups->contains($group)) selected @endif>{{ $group->name }}</option>
             @endforeach

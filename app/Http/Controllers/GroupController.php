@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Group;
 use App\Http\Requests\CreateGroupRequest;
+use App\Http\Requests\UpdateGroupRequest;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -46,6 +47,18 @@ class GroupController extends Controller
         $group->save();
 
         $group->users()->attach($request->users);
+
+        return redirect()->route('grupos.index');
+    }
+
+    public function update(UpdateGroupRequest $request, $id)
+    {
+        $group = Group::findOrFail($id);
+
+        $group->fill($request->validated());
+        $group->save();
+
+        $group->users()->sync($request->users);
 
         return redirect()->route('grupos.index');
     }

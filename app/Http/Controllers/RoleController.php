@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateRoleRequest;
+use App\Http\Requests\UpdateRoleRequest;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -44,6 +45,20 @@ class RoleController extends Controller
     public function store(CreateRoleRequest $request)
     {
         $role = Role::create([ 'name' => $request->name ]);
+
+        $permissions = Permission::whereIn('id', $request->permissions)->get();
+
+        $role->syncPermissions($permissions);
+
+        return redirect()->route('perfiles.index');
+    }
+
+    public function update(UpdateRoleRequest $request, $id)
+    {
+        $role = Role::findById($id);
+
+        $role->name = $request->name;
+        $role->save();
 
         $permissions = Permission::whereIn('id', $request->permissions)->get();
 

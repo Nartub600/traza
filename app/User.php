@@ -5,11 +5,15 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasRoles, Notifiable;
+    use HasRoles, LogsActivity, Notifiable;
+
+    protected static $logOnlyDirty = true;
+    protected static $logAttributes = ['*'];
 
     /**
      * The attributes that are mass assignable.

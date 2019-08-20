@@ -9,7 +9,8 @@
   <hr class="my-4">
 
   <div class="bg-white p-4 mb-4">
-    <form action="{{ route('perfiles.store') }}" method="post">
+    <form action="{{ route('perfiles.update', $role->id) }}" method="post">
+      @method('put')
       @csrf
 
       @if ($errors->any())
@@ -25,7 +26,7 @@
 
       <div class="form-group item-form px-4">
         <label for="name" class="mb-4">Nombre del perfil <sup>*</sup></label>
-        <input type="text" name="name" class="form-control" required aria-required>
+        <input type="text" name="name" class="form-control" required aria-required value="{{ $role->name }}">
         <p class="help-block error hidden">Ingrese el nombre del perfil</p>
       </div>
 

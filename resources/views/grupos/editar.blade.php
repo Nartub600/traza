@@ -10,6 +10,7 @@
 
   <div class="bg-white p-4 mb-4">
     <form action="{{ route('grupos.update', $group->id) }}" method="post">
+      @method('put')
       @csrf
 
       @if ($errors->any())

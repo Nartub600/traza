@@ -10,16 +10,18 @@ use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 
-class CrearUsuariosTest extends TestCase
+class EditarUsuariosTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
     /** @test */
-    public function administradorPuedeCrearUsuarios()
+    public function administradorPuedeEditarUsuarios()
     {
         $this->withoutExceptionHandling();
 
         $administrador = factory(User::class)->state('administrador')->create();
+
+        $user = factory(User::class)->create();
 
         $roles = Role::all()->map->id->random(2)->toArray();
         $groups = factory(Group::class, 3)->create()->map->id->random(2)->toArray();
@@ -38,7 +40,7 @@ class CrearUsuariosTest extends TestCase
 
         $response = $this
             ->actingAs($administrador)
-            ->json('post', '/usuarios', $data);
+            ->json('put', '/usuarios/' . $user->id, $data);
 
         $response->assertStatus(302);
 
