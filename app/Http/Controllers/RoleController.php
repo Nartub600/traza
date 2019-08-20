@@ -46,8 +46,7 @@ class RoleController extends Controller
     {
         $role = Role::create([ 'name' => $request->name ]);
 
-        $permissions = Permission::whereIn('id', $request->permissions)->get();
-
+        $permissions = Permission::whereIn('id', $request->input('permissions', []))->get();
         $role->syncPermissions($permissions);
 
         return redirect()->route('perfiles.index');
@@ -60,8 +59,7 @@ class RoleController extends Controller
         $role->name = $request->name;
         $role->save();
 
-        $permissions = Permission::whereIn('id', $request->permissions)->get();
-
+        $permissions = Permission::whereIn('id', $request->input('permissions', []))->get();
         $role->syncPermissions($permissions);
 
         return redirect()->route('perfiles.index');
