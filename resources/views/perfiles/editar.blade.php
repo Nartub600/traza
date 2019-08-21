@@ -39,26 +39,26 @@
       <hr class="my-4">
 
       @foreach ($permissions->map->grupo->unique()->values() as $grupo)
-      <div class="px-4 grupo">
+      <div class="px-4" grupo="{{ $grupo }}">
         <div class="checkbox my-1">
           <label class="capitalize">
-            <input type="checkbox">{{ $grupo }}
+            <input type="checkbox" onclick="toggleGrupo(this, '{{ $grupo }}')">{{ $grupo }}
           </label>
         </div>
         <div class="flex">
           @if ($permissions->where('grupo', $grupo)->map->subgrupo->unique()->filter()->count())
             @foreach ($permissions->where('grupo', $grupo)->map->subgrupo->unique()->values() as $subgrupo)
-              <div class="w-1/3 subgrupo">
+              <div class="w-1/3" subgrupo="{{ $subgrupo }}">
                 <div class="checkbox my-1 ml-3">
                   <label class="capitalize">
-                    <input type="checkbox">{{ $subgrupo }}
+                    <input type="checkbox" onclick="toggleSubgrupo(this, '{{ $subgrupo }}')">{{ $subgrupo }}
                   </label>
                 </div>
                 <div>
                   @foreach ($permissions->where('grupo', $grupo)->where('subgrupo', $subgrupo) as $permission)
                   <div class="checkbox my-2 ml-6">
                     <label class="capitalize">
-                      <input name="permissions[]" type="checkbox" value="{{ $permission->id }}" @if ($role->permissions->contains($permission)) checked @endif)>{{ $permission->name }}
+                      <input name="permissions[]" type="checkbox" value="{{ $permission->id }}" @if ($role->permissions->contains($permission)) checked @endif>{{ $permission->name }}
                     </label>
                   </div>
                   @endforeach
@@ -95,3 +95,15 @@
   </div>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+function toggleSubgrupo (e, subgrupo) {
+  document.querySelector(`[subgrupo="${subgrupo}"]`).querySelectorAll('[type="checkbox"]').forEach(i => i.checked = e.checked)
+}
+
+function toggleGrupo (e, grupo) {
+  document.querySelector(`[grupo="${grupo}"]`).querySelectorAll('[type="checkbox"]').forEach(i => i.checked = e.checked)
+}
+</script>
+@endpush
