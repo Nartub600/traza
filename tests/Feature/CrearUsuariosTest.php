@@ -40,7 +40,7 @@ class CrearUsuariosTest extends TestCase
             ->actingAs($administrador)
             ->json('post', '/usuarios', $data);
 
-        $response->assertStatus(302);
+        $response->assertRedirect('/usuarios');
 
         $user = User::where('email', $data['email'])->first();
 

@@ -2,6 +2,12 @@
 
 @section('content')
 <div class="container-fluid">
+  <ol class="breadcrumb">
+    <li><a href="{{ route('home') }}">Inicio</a></li>
+    <li><a href="{{ route('grupos.index') }}">Grupos de Usuarios</a></li>
+    <li class="active">Nuevo</li>
+  </ol>
+
   <h1>
     Nuevo Grupo de Usuarios
   </h1>

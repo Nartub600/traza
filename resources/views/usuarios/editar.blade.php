@@ -2,6 +2,12 @@
 
 @section('content')
 <div class="container-fluid">
+  <ol class="breadcrumb">
+    <li><a href="{{ route('home') }}">Inicio</a></li>
+    <li><a href="{{ route('usuarios.index') }}">Usuarios</a></li>
+    <li class="active">Editar</li>
+  </ol>
+
   <h1>
     Editar usuario <em>{{ $user->username }}</em>
   </h1>

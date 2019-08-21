@@ -2,6 +2,11 @@
 
 @section('content')
 <div class="container-fluid">
+  <ol class="breadcrumb">
+    <li><a href="{{ route('home') }}">Inicio</a></li>
+    <li class="active">Perfiles</li>
+  </ol>
+
   <h1 class="flex justify-between">
     Administrador de Perfiles
     <a href="{{ route('perfiles.create') }}" class="uppercase btn btn-success">
@@ -19,7 +24,7 @@
         <td>CANTIDAD DE USUARIOS</td>
         <td>ACTUALIZADO</td>
         <td>ESTADO</td>
-        <th><i class="fa fa-cog"></i></th>
+        <th class="text-center"><i class="fa fa-cog"></i></th>
       </tr>
     </thead>
 
@@ -31,22 +36,31 @@
         <td>{{ $role->users_count }}</td>
         <td>{{ $role->updated_at }}</td>
         <td>{{ $role->active ? 'Activo' : 'Inactivo' }}</td>
-        <td>
-          <a href="{{ route(auth()->user()->can('editar perfiles') ? 'perfiles.edit' : 'perfiles.show', $role->id) }}" class="btn m-0 p-0">
+        <td class="text-center">
+          @can('ver perfiles')
+          <a href="{{ route('perfiles.show', $role->id) }}" class="btn m-0 p-0">
+            <i class="fa fa-eye"></i>
+          </a>
+          @endcan
+          @can('editar perfiles')
+          <a href="{{ route('perfiles.edit', $role->id) }}" class="btn m-0 p-0">
             <i class="fa fa-edit"></i>
           </a>
+          @endcan
         </td>
       </tr>
       @endforeach
     </tbody>
   </table>
-
-  <script>
-    $('#tabla').DataTable({
-      language: {
-        url: 'https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json'
-      }
-    })
-  </script>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+  $('#tabla').DataTable({
+    language: {
+      url: 'https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json'
+    }
+  })
+</script>
+@endpush

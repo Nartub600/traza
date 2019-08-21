@@ -4,13 +4,13 @@
 <div class="container-fluid">
   <ol class="breadcrumb">
     <li><a href="{{ route('home') }}">Inicio</a></li>
-    <li class="active">Usuarios</li>
+    <li class="active">Productos</li>
   </ol>
 
   <h1 class="flex justify-between">
-    Administrador de Usuarios
-    <a href="{{ route('usuarios.create') }}" class="uppercase btn btn-success">
-      Nuevo usuario
+    Administrador de productos
+    <a href="{{ route('productos.create') }}" class="uppercase btn btn-success">
+      Nuevo producto
     </a>
   </h1>
 
@@ -20,37 +20,33 @@
     <thead>
       <tr>
         <th>ID</th>
-        <th>NOMBRE COMPLETO</th>
-        <th>CORREO ELECTRÓNICO</th>
-        <th>PERFILES</th>
-        <th>GRUPOS</th>
+        <th>NOMBRE</th>
+        <th>FAMILIA</th>
         <th>USUARIO</th>
-        <th>ACTUALIZADO</th>
+        <th>ACTUALIZACIÓN</th>
         <th>ESTADO</th>
         <th class="text-center"><i class="fa fa-cog"></i></th>
       </tr>
     </thead>
 
     <tbody>
-      @foreach ($users as $user)
+      @foreach ($products as $product)
       <tr>
-        <td>{{ $user->id }}</td>
-        <td>{{ $user->name }}</td>
-        <td>{{ $user->email }}</td>
-        <td>{{ $user->roles->map->name->implode(', ') }}</td>
-        <td>{{ $user->groups->map->name->implode(', ') }}</td>
-        <td>{{ $user->username }}</td>
-        <td>{{ $user->updated_at }}</td>
-        <td>{{ $user->active ? 'Activo' : 'Inactivo' }}</td>
+        <td>{{ $product->id }}</td>
+        <td>{{ $product->name }}</td>
+        <td>{{ $product->family }}</td>
+        <td>{{ optional($product->user)->username }}</td>
+        <td>{{ $product->updated_at }}</td>
+        <td>{{ $product->active ? 'Activo' : 'Inactivo' }}</td>
         <td>
           <div class="flex items-center">
-            @can('ver usuarios')
-            <a href="{{ route('usuarios.show', $user->id) }}" class="mx-2 my-0 p-0">
+            @can('ver productos')
+            <a href="{{ route('productos.show', $product->id) }}" class="mx-2 my-0 p-0">
               <i class="fa fa-eye"></i>
             </a>
             @endcan
-            @can('editar usuarios')
-            <a href="{{ route('usuarios.edit', $user->id) }}" class="mx-2 my-0 p-0">
+            @can('editar productos')
+            <a href="{{ route('productos.edit', $product->id) }}" class="mx-2 my-0 p-0">
               <i class="fa fa-edit"></i>
             </a>
             @endcan

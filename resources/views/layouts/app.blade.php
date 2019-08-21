@@ -8,11 +8,15 @@
 
     <script src="{{ asset('js/estilos.js') }}"></script>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/estilos.css') }}">
+
+    {{-- <script src="{{ asset('js/scripts.js') }}"></script> --}}
   </head>
   <body>
-    <main class="flex min-h-screen">
-      @yield('content')
-    </main>
+    <div id="traza">
+      <main class="flex min-h-screen">
+        @yield('content')
+      </main>
+    </div>
   </body>
 </html>
 

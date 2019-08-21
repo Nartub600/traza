@@ -2,6 +2,11 @@
 
 @section('content')
 <div class="container-fluid">
+  <ol class="breadcrumb">
+    <li><a href="{{ route('home') }}">Inicio</a></li>
+    <li class="active">Grupos de Usuarios</li>
+  </ol>
+
   <h1 class="flex justify-between">
     Administrador de Grupo de Usuarios
     @can('crear grupos')
@@ -13,19 +18,6 @@
 
   <hr class="my-4">
 
-  {{-- <div class="flex justify-end">
-    <div class="form-group item-form w-1/2">
-      <div class="input-group">
-        <input class="form-control" type="text" placeholder="Buscar por todos los datos">
-        <span class="input-group-addon p-0 border-0">
-          <button class="p-0 btn-info w-11 h-11 rounded-r">
-            <i class="icono-arg-lupa btn-info"></i>
-          </button>
-        </span>
-      </div>
-    </div>
-  </div> --}}
-
   <table class="table" id="tabla">
     <thead>
       <tr>
@@ -34,7 +26,7 @@
         <td>USUARIOS</td>
         <td>ACTUALIZADO</td>
         <td>ESTADO</td>
-        <th><i class="fa fa-cog"></i></th>
+        <th class="text-center"><i class="fa fa-cog"></i></th>
       </tr>
     </thead>
 
@@ -46,23 +38,32 @@
         <td>{{ $group->users_count }}</td>
         <td>{{ $group->updated_at }}</td>
         <td>{{ $group->active ? 'Activo' : 'Inactivo' }}</td>
-        <td>
-          <a href="{{ route(auth()->user()->can('editar grupos') ? 'grupos.edit' : 'grupos.show', $group->id) }}" class="btn m-0 p-0">
+        <td class="text-center">
+          @can('ver grupos')
+          <a href="{{ route('grupos.show', $group->id) }}" class="btn m-0 p-0">
+            <i class="fa fa-eye"></i>
+          </a>
+          @endcan
+          @can('editar grupos')
+          <a href="{{ route('grupos.edit', $group->id) }}" class="btn m-0 p-0">
             <i class="fa fa-edit"></i>
           </a>
+          @endcan
         </td>
       </tr>
       @endforeach
     </tbody>
   </table>
-
-  <script>
-    $('#tabla').DataTable({
-      language: {
-        url: 'https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json'
-      }
-    })
-  </script>
 </div>
 
 @endsection
+
+@push('scripts')
+<script>
+  $('#tabla').DataTable({
+    language: {
+      url: 'https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json'
+    }
+  })
+</script>
+@endpush

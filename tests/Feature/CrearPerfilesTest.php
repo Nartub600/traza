@@ -31,7 +31,7 @@ class CrearPerfilesTest extends TestCase
             ->actingAs($administrador)
             ->post('/perfiles', $data);
 
-        $response->assertStatus(302);
+        $response->assertRedirect('/perfiles');
 
         $role = Role::findByName($data['name']);
 

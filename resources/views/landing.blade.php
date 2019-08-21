@@ -1,21 +1,9 @@
 @extends('layouts.default')
 
 @section('content')
-<p>
-  <a href="{{ route('usuarios.index') }}">
-    Usuarios
-  </a>
-</p>
-
-<p>
-  <a href="{{ route('grupos.index') }}">
-    Grupos
-  </a>
-</p>
-
-<p>
-  <a href="{{ route('perfiles.index') }}">
-    Perfiles
-  </a>
-</p>
+<div>
+  <h1 class="text-center text-celeste bg-center">
+    Traza - Autopartes de Seguridad
+  </h1>
+</div>
 @endsection

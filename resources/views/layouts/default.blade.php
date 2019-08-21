@@ -8,11 +8,9 @@
 
     <script src="{{ asset('js/estilos.js') }}"></script>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/estilos.css') }}">
-
-    <script src="{{ asset('js/scripts.js') }}"></script>
   </head>
   <body>
-    <div class="flex flex-col min-h-screen">
+    <div class="flex flex-col min-h-screen" id="traza">
       @include('layouts.header')
 
       <main class="flex-1">
@@ -21,6 +19,9 @@
 
       @include('layouts.footer')
     </div>
+
+    <script src="{{ asset('js/scripts.js') }}"></script>
+    @stack('scripts')
   </body>
 </html>
 

@@ -31,7 +31,7 @@ class CrearGruposTest extends TestCase
             ->actingAs($administrador)
             ->post('/grupos', $data);
 
-        $response->assertStatus(302);
+        $response->assertRedirect('/grupos');
 
         $group = Group::where('name', $data['name'])->first();
 
