@@ -17,5 +17,6 @@ Route::group([
         'productos'    => 'ProductController',
         'autopartes'   => 'AutopartController',
         'certificados' => 'CertificateController',
+        'uploads'      => 'UploadController'
     ]);
 });

@@ -1,23 +1,24 @@
 @extends('layouts.default')
 
 @section('content')
-<autopartes inline-template :old-autopartes="{{ collect(old('autoparts', [])) }}">
+<autopartes inline-template :old-autopartes="{{ collect(old('autoparts', [])) }}" :certificate="{{ $certificate }}">
   <div class="container-fluid">
     <ol class="breadcrumb">
       <li><a href="{{ route('home') }}">Inicio</a></li>
       <li><a href="{{ route('certificados.index') }}">Certificados</a></li>
-      <li class="active">Nuevo</li>
+      <li class="active">Editar</li>
     </ol>
 
     <h1>
-      Nuevo Certificado
+      Editar Certificado <em>{{ $certificate->number }}</em>
     </h1>
 
     <hr class="my-4">
 
     <div class="bg-white p-4 mb-4" v-cloak>
-      <form action="{{ route('certificados.store') }}" method="post">
+      <form action="{{ route('certificados.update', $certificate->id) }}" method="post">
         @csrf
+        @method('put')
 
         <input
           type="hidden"
@@ -41,13 +42,13 @@
         <div class="flex flex-wrap -mx-4">
           <div class="w-1/2 form-group item-form px-4">
             <label for="number" class="mb-4">Número de certificado <sup>*</sup></label>
-            <input type="text" name="number" class="form-control" required aria-required value="{{ old('number') }}">
+            <input type="text" name="number" class="form-control" required aria-required value="{{ old('number', $certificate->number) }}">
             <p class="help-block error hidden">Ingrese el número del certificado</p>
           </div>
 
           <div class="w-1/2 form-group item-form px-4">
             <label for="cuit" class="mb-4">CUIT <sup>*</sup></label>
-            <input type="text" name="cuit" class="form-control" required aria-required value="{{ old('cuit') }}">
+            <input type="text" name="cuit" class="form-control" required aria-required value="{{ old('cuit', $certificate->cuit) }}">
             <p class="help-block error hidden">Ingrese la CUIT</p>
           </div>
         </div>

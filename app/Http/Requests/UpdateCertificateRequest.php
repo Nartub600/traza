@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateProductRequest extends FormRequest
+class UpdateCertificateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,17 +24,27 @@ class CreateProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'    => 'required',
-            'family'  => 'required',
-            'active'  => 'required',
-            'picture' => 'required|url',
+            'number' => 'required|numeric',
+            'cuit' => [
+                'required',
+                'regex:/[0-9]{2}-[0-9]{6,8}-[0-9]/'
+            ],
+            'autoparts' => 'required|array',
         ];
     }
 
     public function attributes()
     {
         return [
-            'picture' => 'foto'
+            'cuit' => 'CUIT',
+            'number' => 'número'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'autoparts.required' => 'Debe cargar al menos una autoparte'
         ];
     }
 }

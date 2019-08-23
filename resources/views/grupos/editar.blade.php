@@ -33,7 +33,7 @@
       <div class="flex flex-wrap -mx-4">
         <div class="w-1/2 form-group item-form px-4">
           <label for="name" class="mb-4">Nombre Completo <sup>*</sup></label>
-          <input type="text" name="name" class="form-control" required aria-required value="{{ $group->name }}">
+          <input type="text" name="name" class="form-control" required aria-required value="{{ old('name', $group->name) }}">
           <p class="help-block error hidden">Ingrese el nombre completo</p>
         </div>
 
@@ -41,8 +41,8 @@
           <label for="name" class="mb-4">Estado <sup>*</sup></label>
           <select name="active" class="form-control">
             <option value="">---</option>
-            <option value="1" @if ($group->active === true) selected @endif>Activo</option>
-            <option value="0" @if ($group->active === false) selected @endif>Inactivo</option>
+            <option value="1" @if (old('active', $group->active) === true) selected @endif>Activo</option>
+            <option value="0" @if (old('active', $group->active) === false) selected @endif>Inactivo</option>
           </select>
         </div>
 
@@ -50,7 +50,7 @@
           <label for="name" class="mb-4">Usuarios (Permite seleccionar varios)</label>
           <select multiple name="users[]" class="form-control">
             @foreach ($users as $user)
-            <option value="{{ $user->id }}" @if ($group->users->contains($user)) selected @endif>{{ $user->username }}</option>
+            <option value="{{ $user->id }}" @if (old('users', $group->users)->contains($user)) selected @endif>{{ $user->username }}</option>
             @endforeach
           </select>
           {{-- <p class="help-block error hidden">Seleccione al menos un perfil</p> --}}

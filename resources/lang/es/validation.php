@@ -92,7 +92,7 @@ return [
     ],
     'not_in' => 'The selected :attribute is invalid.',
     'not_regex' => 'The :attribute format is invalid.',
-    'numeric' => 'The :attribute must be a number.',
+    'numeric' => 'El :attribute debe ser un número',
     'present' => 'The :attribute field must be present.',
     'regex' => ':attribute no tiene el formato correcto',
     'required' => 'El campo :attribute es obligatorio',

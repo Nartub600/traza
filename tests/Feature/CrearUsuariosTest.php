@@ -38,7 +38,7 @@ class CrearUsuariosTest extends TestCase
 
         $response = $this
             ->actingAs($administrador)
-            ->json('post', '/usuarios', $data);
+            ->post('/usuarios', $data);
 
         $response->assertRedirect('/usuarios');
 

@@ -36,7 +36,8 @@ class CreateCertificateRequest extends FormRequest
     public function attributes()
     {
         return [
-            'cuit' => 'CUIT'
+            'cuit' => 'CUIT',
+            'number' => 'número'
         ];
     }
 

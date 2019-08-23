@@ -2,31 +2,31 @@
 
 namespace Tests\Feature;
 
-use App\Product;
+use App\Certificate;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class ListarProductosTest extends TestCase
+class VerCertificadosTest extends TestCase
 {
     use RefreshDatabase;
 
     /** @test */
-    public function administradorPuedeListarProductos()
+    public function administradorPuedeVerCertificados()
     {
         $this->withoutExceptionHandling();
 
         $administrador = factory(User::class)->state('administrador')->create();
 
+        $certificate = factory(Certificate::class)->create();
+
         $response = $this
             ->actingAs($administrador)
-            ->get('/productos');
-
-        // $products = Product::all();
+            ->get('/certificados/' . $certificate->id);
 
         $response
             ->assertSuccessful()
-            ->assertViewHas('products');
+            ->assertViewHas('certificate', $certificate);
     }
 }

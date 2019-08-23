@@ -8,25 +8,23 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class ListarProductosTest extends TestCase
+class VerProductosTest extends TestCase
 {
     use RefreshDatabase;
 
     /** @test */
-    public function administradorPuedeListarProductos()
+    public function administradorPudeVerProductos()
     {
-        $this->withoutExceptionHandling();
-
         $administrador = factory(User::class)->state('administrador')->create();
+
+        $product = factory(Product::class)->create();
 
         $response = $this
             ->actingAs($administrador)
-            ->get('/productos');
-
-        // $products = Product::all();
+            ->get('/productos/' . $product->id);
 
         $response
             ->assertSuccessful()
-            ->assertViewHas('products');
+            ->assertViewHas('product', $product);
     }
 }

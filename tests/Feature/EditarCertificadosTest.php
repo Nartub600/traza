@@ -9,18 +9,21 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class CrearCertificadosTest extends TestCase
+class EditarCertificadosTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
     /** @test */
-    public function administradorPuedeCrearCertificados()
+    public function administradorPuedeEditarCertificados()
     {
         $this->withoutExceptionHandling();
 
         $administrador = factory(User::class)->state('administrador')->create();
 
-        $autoparts = factory(Autopart::class, 5)->make()->map(function ($autoparte) { return json_encode($autoparte); })->toArray();
+        $certificate = factory(Certificate::class)->create();
+        $certificate->autoparts()->saveMany(factory(Autopart::class, 5));
+
+        $autoparts = factory(Autopart::class, 3)->make()->map(function ($autoparte) { return json_encode($autoparte); })->toArray();
 
         $data = [
             'number'    => $this->faker->randomNumber,
@@ -30,7 +33,7 @@ class CrearCertificadosTest extends TestCase
 
         $response = $this
             ->actingAs($administrador)
-            ->post('/certificados', $data);
+            ->put('/certificados/' . $certificate->id, $data);
 
         $response->assertRedirect('/certificados');
 
@@ -40,6 +43,6 @@ class CrearCertificadosTest extends TestCase
 
         $this->assertEquals($certificate->number, $data['number']);
         $this->assertEquals($certificate->cuit, $data['cuit']);
-        $this->assertCount(5, $certificate->autoparts);
+        $this->assertCount(3, $certificate->autoparts);
     }
 }

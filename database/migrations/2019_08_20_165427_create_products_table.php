@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->string('family')->nullable();
             $table->boolean('active')->default(true);
+            $table->string('picture')->nullable();
             $table->timestamps();
         });
     }

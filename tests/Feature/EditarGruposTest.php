@@ -33,7 +33,7 @@ class EditarGruposTest extends TestCase
             ->actingAs($administrador)
             ->put('/grupos/' . $group->id, $data);
 
-        $response->assertStatus(302);
+        $response->assertRedirect('/grupos');
 
         $group = Group::find($group->id);
 

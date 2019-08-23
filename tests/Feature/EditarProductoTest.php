@@ -6,36 +6,37 @@ use App\Product;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
-class CrearProductosTest extends TestCase
+class EditarProductoTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
     /** @test */
-    public function administradorPuedeCrearProductos()
+    public function administradorPuedeEditarProductos()
     {
         $this->withoutExceptionHandling();
 
         $administrador = factory(User::class)->state('administrador')->create();
 
+        $product = factory(Product::class)->create();
+
         $data = [
-            'name'    => $this->faker->name,
-            'family'  => $this->faker->word,
-            'active'  => $this->faker->boolean,
+            'name' => $this->faker->word,
+            'family' => $this->faker->word,
+            'active' => $this->faker->boolean,
             'picture' => $this->faker->imageUrl
         ];
 
         $response = $this
             ->actingAs($administrador)
-            ->post('/productos', $data);
+            ->put('/productos/' . $product->id, $data);
 
-        $product = Product::where('name', $data['name'])->first();
+        $response->assertRedirect('/productos');
 
-        $this->assertNotNull($product);
+        $product = Product::find($product->id);
 
+        $this->assertEquals($product->name, $data['name']);
         $this->assertEquals($product->family, $data['family']);
         $this->assertEquals($product->active, $data['active']);
         $this->assertEquals($product->picture, $data['picture']);
