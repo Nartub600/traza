@@ -107,7 +107,7 @@
           </tbody>
         </table>
 
-        <div class="flex justify-end">
+        <div class="flex justify-end mt-3">
           <a class="btn btn-success uppercase mr-4" href="{{ route('certificados.index') }}">
             Volver
           </a>
