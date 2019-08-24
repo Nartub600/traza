@@ -8,6 +8,7 @@ use App\Http\Requests\CreateCertificateRequest;
 use App\Http\Requests\UpdateCertificateRequest;
 use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CertificateController extends Controller
 {
@@ -44,15 +45,16 @@ class CertificateController extends Controller
     public function store(CreateCertificateRequest $request)
     {
         $certificate = new Certificate($request->validated());
-
         $certificate->user()->associate($request->user());
-        $certificate->save();
 
         $autoparts = collect($request->autoparts)
             ->map(function ($autopart) { return json_decode($autopart, true); })
             ->mapInto(Autopart::class);
 
-        $certificate->autoparts()->saveMany($autoparts);
+        DB::transaction(function () use ($certificate, $autoparts) {
+            $certificate->save();
+            $certificate->autoparts()->saveMany($autoparts);
+        });
 
         return redirect()->route('certificados.index');
     }
@@ -60,16 +62,17 @@ class CertificateController extends Controller
     public function update(UpdateCertificateRequest $request, $id)
     {
         $certificate = Certificate::findOrFail($id);
-
         $certificate->fill($request->validated());
-        $certificate->save();
 
         $autoparts = collect($request->autoparts)
             ->map(function ($autopart) { return json_decode($autopart, true); })
             ->mapInto(Autopart::class);
 
-        $certificate->autoparts()->delete();
-        $certificate->autoparts()->saveMany($autoparts);
+        DB::transaction(function () use ($certificate, $autoparts) {
+            $certificate->save();
+            $certificate->autoparts()->delete();
+            $certificate->autoparts()->saveMany($autoparts);
+        });
 
         return redirect()->route('certificados.index');
     }

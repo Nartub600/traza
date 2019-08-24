@@ -20,7 +20,10 @@ class CrearCertificadosTest extends TestCase
 
         $administrador = factory(User::class)->state('administrador')->create();
 
-        $autoparts = factory(Autopart::class, 5)->make()->map(function ($autoparte) { return json_encode($autoparte); })->toArray();
+        $autoparts = factory(Autopart::class, 5)
+            ->make()
+            ->map(function ($autoparte) { return json_encode($autoparte); })
+            ->toArray();
 
         $data = [
             'number'    => $this->faker->randomNumber,

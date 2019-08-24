@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
@@ -44,10 +45,13 @@ class RoleController extends Controller
 
     public function store(CreateRoleRequest $request)
     {
-        $role = Role::create([ 'name' => $request->name ]);
-
+        $role = new Role($request->except('permissions'));
         $permissions = Permission::find($request->input('permissions', []));
-        $role->syncPermissions($permissions);
+
+        DB::transaction(function () use ($role, $permissions) {
+            $role->save();
+            $role->syncPermissions($permissions);
+        });
 
         return redirect()->route('perfiles.index');
     }
@@ -55,12 +59,14 @@ class RoleController extends Controller
     public function update(UpdateRoleRequest $request, $id)
     {
         $role = Role::findById($id);
-
-        $role->name = $request->name;
-        $role->save();
+        $role->fill($request->except('permissions'));
 
         $permissions = Permission::find($request->input('permissions', []));
-        $role->syncPermissions($permissions);
+
+        DB::transaction(function () use ($role, $permissions) {
+            $role->save();
+            $role->syncPermissions($permissions);
+        });
 
         return redirect()->route('perfiles.index');
     }

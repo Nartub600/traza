@@ -23,7 +23,10 @@ class EditarCertificadosTest extends TestCase
         $certificate = factory(Certificate::class)->create();
         $certificate->autoparts()->saveMany(factory(Autopart::class, 5));
 
-        $autoparts = factory(Autopart::class, 3)->make()->map(function ($autoparte) { return json_encode($autoparte); })->toArray();
+        $autoparts = factory(Autopart::class, 3)
+            ->make()
+            ->map(function ($autoparte) { return json_encode($autoparte); })
+            ->toArray();
 
         $data = [
             'number'    => $this->faker->randomNumber,

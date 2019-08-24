@@ -7,6 +7,7 @@ use App\Http\Requests\CreateGroupRequest;
 use App\Http\Requests\UpdateGroupRequest;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class GroupController extends Controller
 {
@@ -44,9 +45,10 @@ class GroupController extends Controller
     {
         $group = new Group($request->validated());
 
-        $group->save();
-
-        $group->users()->attach($request->users);
+        DB::transaction(function () use ($group) {
+            $group->save();
+            $group->users()->attach(request()->users);
+        });
 
         return redirect()->route('grupos.index');
     }
@@ -54,11 +56,12 @@ class GroupController extends Controller
     public function update(UpdateGroupRequest $request, $id)
     {
         $group = Group::findOrFail($id);
-
         $group->fill($request->validated());
-        $group->save();
 
-        $group->users()->sync($request->users);
+        DB::transaction(function () use ($group) {
+            $group->save();
+            $group->users()->sync(request()->users);
+        });
 
         return redirect()->route('grupos.index');
     }

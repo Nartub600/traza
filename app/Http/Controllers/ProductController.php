@@ -48,7 +48,6 @@ class ProductController extends Controller
     public function update(UpdateProductRequest $request, $id)
     {
         $product = Product::findOrFail($id);
-
         $product->fill($request->validated());
         $product->save();
 
