@@ -27,6 +27,18 @@ export default {
   },
 
   methods: {
+    add () {
+      this.editing = -1
+      this.autoparte = {}
+      this.openModal()
+    },
+
+    edit (autoparte, index) {
+      this.editing = index
+      this.autoparte = { ...autoparte }
+      this.openModal()
+    },
+
     addToIndex () {
       this.destroyTable()
       if (this.editing === -1) {
@@ -41,20 +53,12 @@ export default {
       })
     },
 
-    add () {
-      this.editing = -1
-      this.autoparte = {}
-      this.openModal()
-    },
-
-    edit (autoparte, index) {
-      this.editing = index
-      this.autoparte = { ...autoparte }
-      this.openModal()
-    },
-
     removeFromIndex (index) {
+      this.destroyTable()
       this.autopartes.splice(index, 1)
+      this.$nextTick(() => {
+        this.initTable()
+      })
     },
 
     clear () {
