@@ -15,6 +15,8 @@ class UserController extends Controller
 {
     public function index()
     {
+        $this->authorize('listar', User::class);
+
         $users = User::with(['groups', 'roles'])->get();
 
         return view('usuarios.listado', compact('users'));
@@ -22,6 +24,8 @@ class UserController extends Controller
 
     public function create()
     {
+        $this->authorize('crear', User::class);
+
         $groups = Group::all();
         $roles = Role::all();
 
@@ -30,6 +34,8 @@ class UserController extends Controller
 
     public function show($id)
     {
+        $this->authorize('ver', User::class);
+
         $user = User::with(['groups', 'roles'])->findOrFail($id);
 
         return view('usuarios.ver', compact('user'));
@@ -37,6 +43,8 @@ class UserController extends Controller
 
     public function edit($id)
     {
+        $this->authorize('editar', User::class);
+
         $user = User::with(['groups', 'roles'])->findOrFail($id);
 
         $groups = Group::all();
@@ -47,6 +55,8 @@ class UserController extends Controller
 
     public function store(CreateUserRequest $request)
     {
+        $this->authorize('crear', User::class);
+
         $user = new User($request->validated());
         $user->password = Hash::make($request->password);
 
@@ -61,6 +71,8 @@ class UserController extends Controller
 
     public function update(UpdateUserRequest $request, $id)
     {
+        $this->authorize('editar', User::class);
+
         $user = User::findOrFail($id);
         $user->fill($request->validated());
         $user->password = Hash::make($request->password);

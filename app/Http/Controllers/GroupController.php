@@ -13,6 +13,8 @@ class GroupController extends Controller
 {
     public function index()
     {
+        $this->authorize('listar', Group::class);
+
         $groups = Group::withCount('users')->get();
 
         return view('grupos.listado', compact('groups'));
@@ -20,6 +22,8 @@ class GroupController extends Controller
 
     public function create()
     {
+        $this->authorize('crear', Group::class);
+
         $users = User::all();
 
         return view('grupos.crear', compact('users'));
@@ -27,6 +31,8 @@ class GroupController extends Controller
 
     public function show($id)
     {
+        $this->authorize('ver', Group::class);
+
         $group = Group::with('users')->findOrFail($id);
 
         return view('grupos.ver', compact('group'));
@@ -34,6 +40,8 @@ class GroupController extends Controller
 
     public function edit($id)
     {
+        $this->authorize('editar', Group::class);
+
         $group = Group::with('users')->findOrFail($id);
 
         $users = User::all();
@@ -43,6 +51,8 @@ class GroupController extends Controller
 
     public function store(CreateGroupRequest $request)
     {
+        $this->authorize('crear', Group::class);
+
         $group = new Group($request->validated());
 
         DB::transaction(function () use ($group) {
@@ -55,6 +65,8 @@ class GroupController extends Controller
 
     public function update(UpdateGroupRequest $request, $id)
     {
+        $this->authorize('editar', Group::class);
+
         $group = Group::findOrFail($id);
         $group->fill($request->validated());
 

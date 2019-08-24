@@ -14,6 +14,8 @@ class CertificateController extends Controller
 {
     public function index()
     {
+        $this->authorize('listar', Certificate::class);
+
         $certificates = Certificate::withCount('autoparts')->get();
 
         return view('certificados.listado', compact('certificates'));
@@ -21,6 +23,8 @@ class CertificateController extends Controller
 
     public function create()
     {
+        $this->authorize('crear', Certificate::class);
+
         $products = Product::all();
 
         return view('certificados.crear', compact('products'));
@@ -28,6 +32,8 @@ class CertificateController extends Controller
 
     public function show($id)
     {
+        $this->authorize('ver', Certificate::class);
+
         $certificate = Certificate::with('autoparts', 'autoparts.product')->findOrFail($id);
 
         return view('certificados.ver', compact('certificate'));
@@ -35,6 +41,8 @@ class CertificateController extends Controller
 
     public function edit($id)
     {
+        $this->authorize('editar', Certificate::class);
+
         $certificate = Certificate::with('autoparts', 'autoparts.product')->findOrFail($id);
 
         $products = Product::all();
@@ -44,6 +52,8 @@ class CertificateController extends Controller
 
     public function store(CreateCertificateRequest $request)
     {
+        $this->authorize('crear', Certificate::class);
+
         $certificate = new Certificate($request->validated());
         $certificate->user()->associate($request->user());
 
@@ -61,6 +71,8 @@ class CertificateController extends Controller
 
     public function update(UpdateCertificateRequest $request, $id)
     {
+        $this->authorize('editar', Certificate::class);
+
         $certificate = Certificate::findOrFail($id);
         $certificate->fill($request->validated());
 

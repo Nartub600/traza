@@ -11,6 +11,8 @@ class ProductController extends Controller
 {
     public function index()
     {
+        $this->authorize('listar', Product::class);
+
         $products = Product::all();
 
         return view('productos.listado', compact('products'));
@@ -18,11 +20,15 @@ class ProductController extends Controller
 
     public function create()
     {
+        $this->authorize('crear', Product::class);
+
         return view('productos.crear');
     }
 
     public function show($id)
     {
+        $this->authorize('ver', Product::class);
+
         $product = Product::findOrFail($id);
 
         return view('productos.ver', compact('product'));
@@ -30,6 +36,8 @@ class ProductController extends Controller
 
     public function edit($id)
     {
+        $this->authorize('editar', Product::class);
+
         $product = Product::findOrFail($id);
 
         return view('productos.editar', compact('product'));
@@ -37,6 +45,8 @@ class ProductController extends Controller
 
     public function store(CreateProductRequest $request)
     {
+        $this->authorize('crear', Product::class);
+
         $product = new Product($request->validated());
         $product->user()->associate($request->user());
 
@@ -47,6 +57,8 @@ class ProductController extends Controller
 
     public function update(UpdateProductRequest $request, $id)
     {
+        $this->authorize('editar', Product::class);
+
         $product = Product::findOrFail($id);
         $product->fill($request->validated());
         $product->save();
