@@ -2,18 +2,18 @@
 
 namespace Tests\Feature;
 
+use App\Role;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use App\Role;
 use Tests\TestCase;
 
-class VerPerfilesTest extends TestCase
+class EliminarPerfilesTest extends TestCase
 {
     use RefreshDatabase;
 
     /** @test */
-    public function administradorPuedeVerPerfiles()
+    public function administradorPuedeEliminarPerfiles()
     {
         $this->withoutExceptionHandling();
 
@@ -23,10 +23,12 @@ class VerPerfilesTest extends TestCase
 
         $response = $this
             ->actingAs($administrador)
-            ->get('/perfiles/' . $role->id);
+            ->delete('/perfiles/' . $role->id);
 
-        $response
-            ->assertSuccessful()
-            ->assertViewHas('role', $role);
+        $response->assertRedirect('/perfiles');
+
+        $role = Role::onlyTrashed()->find($role->id);
+
+        $this->assertNotNull($role);
     }
 }

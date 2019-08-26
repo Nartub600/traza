@@ -56,6 +56,19 @@
             <i class="fa fa-edit"></i>
           </a>
           @endcan
+          @can('eliminar certificados')
+            <a
+              class="mx-2 my-0 p-0"
+              href="{{ route('certificados.destroy', $certificate->id) }}"
+              onclick="event.preventDefault(); document.getElementById('delete-form-{{ $certificate->id }}').submit();"
+            >
+                <i class="fa fa-times"></i>
+            </a>
+            <form id="delete-form-{{ $certificate->id }}" action="{{ route('certificados.destroy', $certificate->id) }}" method="POST" style="display: none;">
+                @csrf
+                @method('delete')
+            </form>
+            @endcan
         </td>
       </tr>
       @endforeach

@@ -19,6 +19,7 @@ class CreateCertificatesTable extends Migration
             $table->bigInteger('number');
             $table->string('cuit');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

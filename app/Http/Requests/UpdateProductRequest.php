@@ -25,16 +25,7 @@ class UpdateProductRequest extends FormRequest
     {
         return [
             'name'    => 'required',
-            'family'  => 'required',
             'active'  => 'required',
-            'picture' => 'required|url',
-        ];
-    }
-
-    public function attributes()
-    {
-        return [
-            'picture' => 'foto'
         ];
     }
 }

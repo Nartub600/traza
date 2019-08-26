@@ -47,6 +47,19 @@
             <i class="fa fa-edit"></i>
           </a>
           @endcan
+          @can('eliminar perfiles')
+            <a
+              class="mx-2 my-0 p-0"
+              href="{{ route('perfiles.destroy', $role->id) }}"
+              onclick="event.preventDefault(); document.getElementById('delete-form-{{ $role->id }}').submit();"
+            >
+                <i class="fa fa-times"></i>
+            </a>
+            <form id="delete-form-{{ $role->id }}" action="{{ route('perfiles.destroy', $role->id) }}" method="POST" style="display: none;">
+                @csrf
+                @method('delete')
+            </form>
+            @endcan
         </td>
       </tr>
       @endforeach

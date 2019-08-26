@@ -77,4 +77,15 @@ class GroupController extends Controller
 
         return redirect()->route('grupos.index');
     }
+
+    public function destroy($id)
+    {
+        $this->authorize('eliminar', Group::class);
+
+        $group = Group::findOrFail($id);
+
+        $group->delete();
+
+        return redirect()->route('grupos.index');
+    }
 }

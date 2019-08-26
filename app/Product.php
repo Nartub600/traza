@@ -3,10 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    protected $fillable = ['name', 'family', 'active', 'picture'];
+    use SoftDeletes;
+
+    protected $fillable = ['name', 'active'];
 
     protected $casts = [
         'active' => 'boolean'
@@ -15,5 +18,10 @@ class Product extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function family()
+    {
+        return $this->belongsTo(Product::class, 'product_id');
     }
 }

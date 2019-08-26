@@ -21,11 +21,12 @@ class EditarProductoTest extends TestCase
 
         $product = factory(Product::class)->create();
 
+        $family = factory(Product::class)->create();
+
         $data = [
             'name' => $this->faker->word,
-            'family' => $this->faker->word,
             'active' => $this->faker->boolean,
-            'picture' => $this->faker->imageUrl
+            'family_id' => $family->id,
         ];
 
         $response = $this
@@ -37,8 +38,7 @@ class EditarProductoTest extends TestCase
         $product = Product::find($product->id);
 
         $this->assertEquals($product->name, $data['name']);
-        $this->assertEquals($product->family, $data['family']);
         $this->assertEquals($product->active, $data['active']);
-        $this->assertEquals($product->picture, $data['picture']);
+        $this->assertEquals($product->family->id, $family->id);
     }
 }

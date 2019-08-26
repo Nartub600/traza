@@ -38,7 +38,12 @@
 
         <div class="w-1/2 form-group item-form px-4">
           <label for="family" class="mb-4">Familia <sup>*</sup></label>
-          <input type="text" name="family" class="form-control" required aria-required>
+          <select name="family_id">
+            <option>---</option>
+            @foreach ($products as $p)
+            <option value="{{ $p->id }}" >{{ $p->name }}</option>
+            @endforeach
+          </select>
           <p class="help-block error hidden">Ingrese la familia</p>
         </div>
 
@@ -49,26 +54,6 @@
             <option value="1">Activo</option>
             <option value="0">Inactivo</option>
           </select>
-        </div>
-
-        <div class="w-1/2 form-group item-form px-4">
-          <label for="picture" class="mb-4">Foto <sup>*</sup></label>
-          <file-pond
-            name="picture"
-            ref="pond"
-            :accepted-file-types="['image/*']"
-            label-file-type-not-allowed="Debe elegir una imagen"
-            file-validate-type-label-expected-types="Archivos JPG, PNG"
-            :label-idle="'Arrastre un archivo aquí o <span class=\'filepond--label-action\'>elija uno</span>'"
-            label-file-processing="Subiendo"
-            label-tap-to-cancel="click para cancelar"
-            label-tap-to-undo="click para deshacer"
-            label-file-processing-complete="Subida completa"
-            server="/uploads"
-            @addfile="() => uploading = true"
-            @processfile="() => uploading = false"
-          >
-          </file-pond>
         </div>
       </div>
 

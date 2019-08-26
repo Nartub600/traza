@@ -88,4 +88,15 @@ class CertificateController extends Controller
 
         return redirect()->route('certificados.index');
     }
+
+    public function destroy($id)
+    {
+        $this->authorize('eliminar', Certificate::class);
+
+        $certificate = Certificate::findOrFail($id);
+
+        $certificate->delete();
+
+        return redirect()->route('certificados.index');
+    }
 }

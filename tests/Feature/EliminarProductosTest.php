@@ -2,31 +2,33 @@
 
 namespace Tests\Feature;
 
+use App\Product;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use App\Role;
 use Tests\TestCase;
 
-class VerPerfilesTest extends TestCase
+class EliminarProductosTest extends TestCase
 {
     use RefreshDatabase;
 
     /** @test */
-    public function administradorPuedeVerPerfiles()
+    public function administradorPuedeEliminarProductos()
     {
         $this->withoutExceptionHandling();
 
         $administrador = factory(User::class)->state('administrador')->create();
 
-        $role = Role::inRandomOrder()->first();
+        $product = factory(Product::class)->create();
 
         $response = $this
             ->actingAs($administrador)
-            ->get('/perfiles/' . $role->id);
+            ->delete('/productos/' . $product->id);
 
-        $response
-            ->assertSuccessful()
-            ->assertViewHas('role', $role);
+        $response->assertRedirect('/productos');
+
+        $product = Product::onlyTrashed()->find($product->id);
+
+        $this->assertNotNull($product);
     }
 }

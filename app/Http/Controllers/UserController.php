@@ -9,7 +9,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Spatie\Permission\Models\Role;
+use App\Role;
 
 class UserController extends Controller
 {
@@ -75,13 +75,26 @@ class UserController extends Controller
 
         $user = User::findOrFail($id);
         $user->fill($request->validated());
-        $user->password = Hash::make($request->password);
+        if ($request->has('password')) {
+            $user->password = Hash::make($request->password);
+        }
 
         DB::transaction(function () use ($user) {
             $user->save();
             $user->groups()->sync(request('groups'));
             $user->syncRoles(request('roles'));
         });
+
+        return redirect()->route('usuarios.index');
+    }
+
+    public function destroy($id)
+    {
+        $this->authorize('eliminar', User::class);
+
+        $user = User::findOrFail($id);
+
+        $user->delete();
 
         return redirect()->route('usuarios.index');
     }

@@ -22,7 +22,9 @@ class ProductController extends Controller
     {
         $this->authorize('crear', Product::class);
 
-        return view('productos.crear');
+        $products = Product::all();
+
+        return view('productos.crear', compact('products'));
     }
 
     public function show($id)
@@ -40,7 +42,9 @@ class ProductController extends Controller
 
         $product = Product::findOrFail($id);
 
-        return view('productos.editar', compact('product'));
+        $products = Product::all();
+
+        return view('productos.editar', compact('product', 'products'));
     }
 
     public function store(CreateProductRequest $request)
@@ -49,6 +53,9 @@ class ProductController extends Controller
 
         $product = new Product($request->validated());
         $product->user()->associate($request->user());
+
+        $family = Product::findOrFail($request->family_id);
+        $product->family()->associate($family);
 
         $product->save();
 
@@ -61,7 +68,22 @@ class ProductController extends Controller
 
         $product = Product::findOrFail($id);
         $product->fill($request->validated());
+
+        $family = Product::findOrFail($request->family_id);
+        $product->family()->associate($family);
+
         $product->save();
+
+        return redirect()->route('productos.index');
+    }
+
+    public function destroy($id)
+    {
+        $this->authorize('eliminar', Product::class);
+
+        $product = Product::findOrFail($id);
+
+        $product->delete();
 
         return redirect()->route('productos.index');
     }

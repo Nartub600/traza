@@ -54,6 +54,19 @@
               <i class="fa fa-edit"></i>
             </a>
             @endcan
+            @can('eliminar usuarios')
+            <a
+              class="mx-2 my-0 p-0"
+              href="{{ route('usuarios.destroy', $user->id) }}"
+              onclick="event.preventDefault(); document.getElementById('delete-form-{{ $user->id }}').submit();"
+            >
+                <i class="fa fa-times"></i>
+            </a>
+            <form id="delete-form-{{ $user->id }}" action="{{ route('usuarios.destroy', $user->id) }}" method="POST" style="display: none;">
+                @csrf
+                @method('delete')
+            </form>
+            @endcan
           </div>
         </td>
       </tr>

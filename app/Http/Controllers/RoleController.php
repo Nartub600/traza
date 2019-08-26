@@ -7,7 +7,7 @@ use App\Http\Requests\UpdateRoleRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
+use App\Role;
 
 class RoleController extends Controller
 {
@@ -79,6 +79,17 @@ class RoleController extends Controller
             $role->save();
             $role->syncPermissions($permissions);
         });
+
+        return redirect()->route('perfiles.index');
+    }
+
+    public function destroy($id)
+    {
+        $this->authorize('eliminar', Role::class);
+
+        $role = Role::findById($id);
+
+        $role->delete();
 
         return redirect()->route('perfiles.index');
     }

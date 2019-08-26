@@ -3,11 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class Group extends Model
 {
-    use LogsActivity;
+    use LogsActivity, SoftDeletes;
 
     protected static $logOnlyDirty = true;
     protected static $logAttributes = ['*'];
