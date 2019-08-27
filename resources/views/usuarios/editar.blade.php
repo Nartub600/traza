@@ -52,6 +52,7 @@
         <div class="w-1/2 form-group item-form px-4">
           <label for="name" class="mb-4">Estado <sup>*</sup></label>
           <select name="active" class="form-control">
+            <option disabled value="">---</option>
             <option value="1" @if ($user->active === true) selected @endif>Activo</option>
             <option value="0" @if ($user->active === false) selected @endif>Inactivo</option>
           </select>

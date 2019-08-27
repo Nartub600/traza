@@ -49,7 +49,7 @@
           @endcan
           @can('eliminar perfiles')
             <a
-              class="mx-2 my-0 p-0"
+              class="btn m-0 p-0"
               href="{{ route('perfiles.destroy', $role->id) }}"
               onclick="event.preventDefault(); document.getElementById('delete-form-{{ $role->id }}').submit();"
             >

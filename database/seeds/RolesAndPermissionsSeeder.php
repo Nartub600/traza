@@ -65,8 +65,8 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::create(['name' => 'crear trazas', 'grupo' => 'trazas']);
         Permission::create(['name' => 'exportar trazas', 'grupo' => 'trazas']);
 
-        Role::create(['name' => 'administrador'])->syncPermissions(Permission::all());
-        Role::create(['name' => 'certificador']);
-        Role::create(['name' => 'fabricante']);
+        Role::create(['name' => 'administrador', 'active' => true])->syncPermissions(Permission::all());
+        Role::create(['name' => 'certificador', 'active' => true]);
+        Role::create(['name' => 'fabricante', 'active' => true]);
     }
 }

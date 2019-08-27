@@ -51,7 +51,7 @@
         <div class="w-1/2 form-group item-form px-4">
           <label for="name" class="mb-4">Estado <sup>*</sup></label>
           <select name="active" class="form-control" value="{{ old('active') }}">
-            <option value="">---</option>
+            <option disabled value="">---</option>
             <option value="1">Activo</option>
             <option value="0">Inactivo</option>
           </select>

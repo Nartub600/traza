@@ -24,4 +24,9 @@ class Product extends Model
     {
         return $this->belongsTo(Product::class, 'product_id');
     }
+
+    public function scopeActive($query)
+    {
+        return $query->where('active', true);
+    }
 }

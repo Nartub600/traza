@@ -16,7 +16,7 @@
                   class="form-control"
                   v-model="value.product"
                 >
-                  <option value="">---</option>
+                  <option disabled value="">---</option>
                   <option
                     v-for="product in products"
                     :key="`product-${product.id}`"

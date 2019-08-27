@@ -25,7 +25,15 @@ class CreateRoleRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'permissions' => 'array'
+            'permissions' => 'array',
+            'active' => 'required',
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'active' => 'estado'
         ];
     }
 }

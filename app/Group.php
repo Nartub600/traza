@@ -19,13 +19,13 @@ class Group extends Model
         'active' => 'boolean'
     ];
 
-    public function scopeActive($query)
-    {
-        return $query->where('active', true);
-    }
-
     public function users()
     {
         return $this->belongsToMany(User::class);
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->where('active', true);
     }
 }

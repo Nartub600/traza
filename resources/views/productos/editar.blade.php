@@ -40,7 +40,7 @@
         <div class="w-1/2 form-group item-form px-4">
           <label for="family" class="mb-4">Familia <sup>*</sup></label>
           <select name="family_id">
-            <option>---</option>
+            <option disabled value="">---</option>
             @foreach ($products as $p)
             <option value="{{ $p->id }}" @if (old('family_id', $product->family_id) === $p->id) selected @endif>{{ $p->name }}</option>
             @endforeach
@@ -51,7 +51,7 @@
         <div class="w-1/2 form-group item-form px-4">
           <label for="active" class="mb-4">Estado <sup>*</sup></label>
           <select name="active" class="form-control">
-            <option value="">---</option>
+            <option disabled value="">---</option>
             <option value="1" @if (old('active', $product->active) === true) selected @endif>Activo</option>
             <option value="0" @if (old('active', $product->active) === true) selected @endif>Inactivo</option>
           </select>

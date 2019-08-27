@@ -25,18 +25,21 @@ class EditarPerfilesTest extends TestCase
 
         $data = [
             'name' => $this->faker->name,
-            'permissions' => $permissions
+            'permissions' => $permissions,
+            'active' => $this->faker->boolean,
         ];
 
         $response = $this
             ->actingAs($administrador)
             ->put('/perfiles/' . $role->id, $data);
 
-        $response->assertStatus(302);
+        $response->assertRedirect('/perfiles');
 
         $role = Role::findByName($data['name']);
 
         $this->assertNotNull($role);
+
+        $this->assertEquals($role->active, $data['active']);
 
         $this->assertNotNull($role->permissions()->find($data['permissions'][0]));
         $this->assertNotNull($role->permissions()->find($data['permissions'][1]));

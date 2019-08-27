@@ -24,7 +24,8 @@ class CrearPerfilesTest extends TestCase
 
         $data = [
             'name' => $this->faker->name,
-            'permissions' => $permissions
+            'permissions' => $permissions,
+            'active' => $this->faker->boolean,
         ];
 
         $response = $this
@@ -36,6 +37,8 @@ class CrearPerfilesTest extends TestCase
         $role = Role::findByName($data['name']);
 
         $this->assertNotNull($role);
+
+        $this->assertEquals($role->active, $data['active']);
 
         $this->assertNotNull($role->permissions()->find($data['permissions'][0]));
         $this->assertNotNull($role->permissions()->find($data['permissions'][1]));

@@ -20,7 +20,11 @@ class Role extends Model implements RoleContract
     use RefreshesPermissionCache;
     use SoftDeletes;
 
-    protected $guarded = ['id'];
+    protected $fillable = ['name', 'guard_name', 'active'];
+
+    protected $casts = [
+        'active' => 'boolean'
+    ];
 
     public function __construct(array $attributes = [])
     {
@@ -156,5 +160,10 @@ class Role extends Model implements RoleContract
         }
 
         return $this->permissions->contains('id', $permission->id);
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->where('active', true);
     }
 }

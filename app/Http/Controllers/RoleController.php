@@ -55,7 +55,7 @@ class RoleController extends Controller
     {
         $this->authorize('crear', Role::class);
 
-        $role = new Role($request->except('permissions'));
+        $role = new Role($request->validated());
         $permissions = Permission::find($request->input('permissions', []));
 
         DB::transaction(function () use ($role, $permissions) {
@@ -71,7 +71,7 @@ class RoleController extends Controller
         $this->authorize('editar', Role::class);
 
         $role = Role::findById($id);
-        $role->fill($request->except('permissions'));
+        $role->fill($request->validated());
 
         $permissions = Permission::find($request->input('permissions', []));
 
