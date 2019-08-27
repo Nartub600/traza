@@ -54,12 +54,14 @@
         <hr class="my-4">
 
         <template v-for="(grupo, grupoKey) in groupBy(permissions, 'grupo')">
-          <div class="px-4" :grupo="grupoKey" :key="grupoKey">
+          <div class="px-4" :key="grupoKey">
             <div class="my-1 flex items-center">
               <button
                 type="button"
+                class="p-0 mx-2 transition"
+                :class="{ 'rotate-180': collapse[camelCase(grupoKey)] === true }"
                 data-toggle="collapse"
-                :data-target="`#${grupoKey.split(' ')[0]}`"
+                :data-target="`#${camelCase(grupoKey)}`"
               >
                 <i class="fa fa-chevron-down"></i>
               </button>
@@ -86,7 +88,7 @@
                 <span class="font-normal">@{{ grupoKey }}</span>
               </label>
             </div>
-            <div class="collapse" :id="grupoKey.split(' ')[0]">
+            <div class="collapse" :id="camelCase(grupoKey)">
               <div class="flex">
                 <div
                   v-if="permissions.filter(p => p.grupo === grupoKey).some(p => p.subgrupo)"

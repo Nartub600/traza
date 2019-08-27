@@ -1,5 +1,5 @@
 <script>
-import { groupBy, filter, xor } from 'lodash'
+import { groupBy, filter, xor, camelCase } from 'lodash'
 
 export default {
   name: 'Permisos',
@@ -8,12 +8,15 @@ export default {
 
   data () {
     return {
-      selectedPermissions: []
+      selectedPermissions: [],
+      collapse: {}
     }
   },
 
   methods: {
     groupBy,
+
+    camelCase,
 
     toggle (id) {
       this.selectedPermissions = xor(this.selectedPermissions, [id])
@@ -50,6 +53,17 @@ export default {
     if (this.oldPermissions.length > 0) {
       this.selectedPermissions = this.oldPermissions.map(p => parseInt(p))
     }
+
+    Object.keys(groupBy(this.permissions, 'grupo')).forEach(key => {
+      const safeKey = camelCase(key)
+      this.$set(this.collapse, safeKey, false)
+      $(`#${safeKey}`).on('show.bs.collapse', () => {
+        this.$set(this.collapse, safeKey, true)
+      })
+      $(`#${safeKey}`).on('hide.bs.collapse', () => {
+        this.$set(this.collapse, safeKey, false)
+      })
+    })
   }
 }
 </script>

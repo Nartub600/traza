@@ -15,3 +15,11 @@ button:focus {
 }
 
 @tailwind utilities;
+
+.rotate-180 {
+    transform: rotate(-180deg);
+}
+
+.transition {
+    transition: all .5s ease;
+}
