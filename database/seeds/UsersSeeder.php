@@ -13,15 +13,18 @@ class UsersSeeder extends Seeder
     public function run()
     {
         factory(User::class)->state('administrador')->create([
-            'username' => 'administrador'
+            'username' => 'administrador',
+            'active' => true
         ]);
 
         factory(User::class)->state('certificador')->create([
-            'username' => 'certificador'
+            'username' => 'certificador',
+            'active' => true
         ]);
 
         factory(User::class)->state('fabricante')->create([
-            'username' => 'fabricante'
+            'username' => 'fabricante',
+            'active' => true
         ]);
     }
 }
