@@ -23,7 +23,7 @@
           @csrf
 
           @if ($errors->any())
-          <div class="alert alert-danger mx-0 mt-8 mb-0">
+          <div class="alert alert-danger mx-8 mt-8 mb-0">
             <h5>Se han producido los siguientes errores:</h5>
             <ol>
                 @foreach ($errors->all() as $error)
