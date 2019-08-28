@@ -1,5 +1,6 @@
 window.Vue = require('vue')
 window.$ = require('jquery')
+window.Swal = require('sweetalert2')
 window.jQuery = window.$
 require('bootstrap/dist/js/bootstrap.min.js')
 require('datatables.net-dt')

@@ -60,7 +60,7 @@
             <a
               class="mx-2 my-0 p-0"
               href="{{ route('certificados.destroy', $certificate->id) }}"
-              onclick="event.preventDefault(); document.getElementById('delete-form-{{ $certificate->id }}').submit();"
+              onclick="confirmDelete(event, {{ $certificate }})"
             >
                 <i class="fa fa-times"></i>
             </a>
@@ -85,5 +85,25 @@
       url: 'https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json'
     }
   })
+
+  function confirmDelete(event, certificate)
+  {
+    event.preventDefault()
+    Swal.fire({
+      title: 'Confirmar eliminación',
+      html: `Desea eliminar <em>${certificate.number}</em>?`,
+      type: 'question',
+      showConfirmButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Cancelar',
+      reverseButtons: true,
+      confirmButtonColor: '#0072BB'
+    }).then(result => {
+      if (result.value) {
+        document.getElementById(`delete-form-${certificate.id}`).submit()
+      }
+    })
+  }
 </script>
 @endpush

@@ -9,7 +9,7 @@
     <script src="{{ asset('js/estilos.js') }}"></script>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/estilos.css') }}">
   </head>
-  <body>
+  <body class="antialiased">
     <div class="flex flex-col min-h-screen" id="traza">
       @include('layouts.header')
 

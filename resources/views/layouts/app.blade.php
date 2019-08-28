@@ -11,7 +11,7 @@
 
     {{-- <script src="{{ asset('js/scripts.js') }}"></script> --}}
   </head>
-  <body>
+  <body class="antialiased">
     <div id="traza">
       <main class="flex min-h-screen">
         @yield('content')

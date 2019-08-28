@@ -51,7 +51,7 @@
             <a
               class="btn m-0 p-0"
               href="{{ route('perfiles.destroy', $role->id) }}"
-              onclick="event.preventDefault(); document.getElementById('delete-form-{{ $role->id }}').submit();"
+              onclick="confirmDelete(event, {{ $role }})"
             >
                 <i class="fa fa-times"></i>
             </a>
@@ -75,5 +75,25 @@
       url: 'https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json'
     }
   })
+
+  function confirmDelete(event, role)
+  {
+    event.preventDefault()
+    Swal.fire({
+      title: 'Confirmar eliminación',
+      html: `Desea eliminar <em>${role.name}</em>?`,
+      type: 'question',
+      showConfirmButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Cancelar',
+      reverseButtons: true,
+      confirmButtonColor: '#0072BB'
+    }).then(result => {
+      if (result.value) {
+        document.getElementById(`delete-form-${role.id}`).submit()
+      }
+    })
+  }
 </script>
 @endpush

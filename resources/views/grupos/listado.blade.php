@@ -53,7 +53,7 @@
             <a
               class="mx-2 my-0 p-0"
               href="{{ route('grupos.destroy', $group->id) }}"
-              onclick="event.preventDefault(); document.getElementById('delete-form-{{ $group->id }}').submit();"
+              onclick="confirmDelete(event, {{ $group }})"
             >
                 <i class="fa fa-times"></i>
             </a>
@@ -78,5 +78,25 @@
       url: 'https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json'
     }
   })
+
+  function confirmDelete(event, grupo)
+  {
+    event.preventDefault()
+    Swal.fire({
+      title: 'Confirmar eliminación',
+      html: `Desea eliminar <em>${grupo.name}</em>?`,
+      type: 'question',
+      showConfirmButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Cancelar',
+      reverseButtons: true,
+      confirmButtonColor: '#0072BB'
+    }).then(result => {
+      if (result.value) {
+        document.getElementById(`delete-form-${grupo.id}`).submit()
+      }
+    })
+  }
 </script>
 @endpush

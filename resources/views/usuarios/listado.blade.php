@@ -58,7 +58,7 @@
             <a
               class="mx-2 my-0 p-0"
               href="{{ route('usuarios.destroy', $user->id) }}"
-              onclick="event.preventDefault(); document.getElementById('delete-form-{{ $user->id }}').submit();"
+              onclick="confirmDelete(event, {{ $user }})"
             >
                 <i class="fa fa-times"></i>
             </a>
@@ -84,5 +84,25 @@
       url: 'https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json'
     }
   })
+
+  function confirmDelete(event, user)
+  {
+    event.preventDefault()
+    Swal.fire({
+      title: 'Confirmar eliminación',
+      html: `Desea eliminar <em>${user.username}</em>?`,
+      type: 'question',
+      showConfirmButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Cancelar',
+      reverseButtons: true,
+      confirmButtonColor: '#0072BB'
+    }).then(result => {
+      if (result.value) {
+        document.getElementById(`delete-form-${user.id}`).submit()
+      }
+    })
+  }
 </script>
 @endpush
