@@ -2195,16 +2195,16 @@
         },
         {
             "name": "spatie/image",
-            "version": "1.7.3",
+            "version": "1.7.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/image.git",
-                "reference": "8aac77a3ee18d7e0e5cb51cd67eb9558f1f491ef"
+                "reference": "19ed0a6322e3f700d40d5b84b05c76b58323385c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/image/zipball/8aac77a3ee18d7e0e5cb51cd67eb9558f1f491ef",
-                "reference": "8aac77a3ee18d7e0e5cb51cd67eb9558f1f491ef",
+                "url": "https://api.github.com/repos/spatie/image/zipball/19ed0a6322e3f700d40d5b84b05c76b58323385c",
+                "reference": "19ed0a6322e3f700d40d5b84b05c76b58323385c",
                 "shasum": ""
             },
             "require": {
@@ -2244,20 +2244,20 @@
                 "image",
                 "spatie"
             ],
-            "time": "2019-08-02T23:57:44+00:00"
+            "time": "2019-08-28T12:40:25+00:00"
         },
         {
             "name": "spatie/image-optimizer",
-            "version": "1.1.5",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/image-optimizer.git",
-                "reference": "e62f8b459bee0a880c8976c316e82638a74510b5"
+                "reference": "e7527edc984c98ab61db092742856fb15cf71e68"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/image-optimizer/zipball/e62f8b459bee0a880c8976c316e82638a74510b5",
-                "reference": "e62f8b459bee0a880c8976c316e82638a74510b5",
+                "url": "https://api.github.com/repos/spatie/image-optimizer/zipball/e7527edc984c98ab61db092742856fb15cf71e68",
+                "reference": "e7527edc984c98ab61db092742856fb15cf71e68",
                 "shasum": ""
             },
             "require": {
@@ -2294,20 +2294,20 @@
                 "image-optimizer",
                 "spatie"
             ],
-            "time": "2019-02-15T12:11:38+00:00"
+            "time": "2019-08-28T14:33:06+00:00"
         },
         {
             "name": "spatie/laravel-activitylog",
-            "version": "3.7.1",
+            "version": "3.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-activitylog.git",
-                "reference": "84072ceb7406913aaf783dcebe173ce1681d25ed"
+                "reference": "171454362805d6b50b95dbc79136172abfc3c732"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-activitylog/zipball/84072ceb7406913aaf783dcebe173ce1681d25ed",
-                "reference": "84072ceb7406913aaf783dcebe173ce1681d25ed",
+                "url": "https://api.github.com/repos/spatie/laravel-activitylog/zipball/171454362805d6b50b95dbc79136172abfc3c732",
+                "reference": "171454362805d6b50b95dbc79136172abfc3c732",
                 "shasum": ""
             },
             "require": {
@@ -2346,15 +2346,15 @@
             "authors": [
                 {
                     "name": "Freek Van der Herten",
-                    "role": "Developer",
                     "email": "freek@spatie.be",
-                    "homepage": "https://spatie.be"
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
                 },
                 {
                     "name": "Sebastian De Deyne",
-                    "role": "Developer",
                     "email": "sebastian@spatie.be",
-                    "homepage": "https://spatie.be"
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
                 }
             ],
             "description": "A very simple activity logger to monitor the users of your website or application",
@@ -2366,7 +2366,7 @@
                 "spatie",
                 "user"
             ],
-            "time": "2019-07-24T07:41:20+00:00"
+            "time": "2019-08-28T13:00:32+00:00"
         },
         {
             "name": "spatie/laravel-medialibrary",
@@ -2621,16 +2621,16 @@
         },
         {
             "name": "spatie/temporary-directory",
-            "version": "1.2.0",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/temporary-directory.git",
-                "reference": "8a23b99619babb782d6e99796efb4f3d4949a0d8"
+                "reference": "3e51af9a8361f85cffc1fb2c52135f3e064758cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/temporary-directory/zipball/8a23b99619babb782d6e99796efb4f3d4949a0d8",
-                "reference": "8a23b99619babb782d6e99796efb4f3d4949a0d8",
+                "url": "https://api.github.com/repos/spatie/temporary-directory/zipball/3e51af9a8361f85cffc1fb2c52135f3e064758cc",
+                "reference": "3e51af9a8361f85cffc1fb2c52135f3e064758cc",
                 "shasum": ""
             },
             "require": {
@@ -2663,7 +2663,7 @@
                 "spatie",
                 "temporary-directory"
             ],
-            "time": "2019-07-16T20:42:32+00:00"
+            "time": "2019-08-28T06:53:51+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

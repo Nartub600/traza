@@ -87,7 +87,7 @@
                   label-file-processing-complete="Subida completa"
                   :server="{
                     process: {
-                      url: '/uploads',
+                      url: '/subir/imagenes',
                       method: 'post',
                       onload: response => value.picture = response,
                     }

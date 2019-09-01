@@ -61,8 +61,9 @@
             Agregar autoparte
           </button>
 
-          <button type="button" class="btn btn-success uppercase mx-2">
+          <button type="button" class="btn btn-success uppercase mx-2" @click="$refs.excel.click()">
             Cargar Excel
+            <input action="{{ route('import.autoparts') }}" class="hidden" type="file" ref="excel" @change="handleExcel">
           </button>
 
           <button @click="clearIndex" type="button" class="btn btn-success uppercase mx-2">

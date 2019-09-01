@@ -24,6 +24,9 @@ Route::group([
         'productos'    => 'ProductController',
         'autopartes'   => 'AutopartController',
         'certificados' => 'CertificateController',
-        'uploads'      => 'UploadController'
     ]);
+
+    Route::post('/subir/imagenes', 'UploadController@store');
+    Route::post('/importar/certificados', 'ImportController@certificates')->name('import.certificates');
+    Route::post('/importar/autopartes', 'ImportController@autoparts')->name('import.autoparts');
 });

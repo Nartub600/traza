@@ -98,11 +98,23 @@ export default {
 
     closeModal () {
       $('#crear-autoparte').modal('hide')
+    },
+
+    handleExcel () {
+      const formData = new FormData()
+      formData.append('excel', this.$refs.excel.files[0]);
+      fetch(this.$refs.excel.getAttribute('action'), {
+        method: 'post',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => console.log(JSON.stringify(data)))
+      .catch(error => console.error(error))
     }
   },
 
   created () {
-    if (this.oldAutopartes.length > 0) {
+    if (this.oldAutopartes.length) {
       this.autopartes = this.oldAutopartes.map(a => JSON.parse(a))
     } else if (this.certificate) {
       this.autopartes = this.certificate.autoparts
