@@ -13,7 +13,7 @@
       <div>
         <button type="button" class="btn btn-success uppercase mx-2" @click="($refs.excel.value = null, $refs.excel.click())">
           Cargar Desde Excel
-          <input action="{{ route('import.certificates') }}" class="hidden" type="file" ref="excel" @input="handleExcel">
+          <input action="{{ route('import.certificates') }}" class="hidden" type="file" ref="excel" @input="handleCertificatesExcel">
         </button>
         @can('crear certificados')
         <a href="{{ route('certificados.create') }}" class="uppercase btn btn-success">

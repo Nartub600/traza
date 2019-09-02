@@ -3,6 +3,16 @@ export default {
   name: 'Autopartes',
 
   props: ['oldAutopartes', 'certificate'],
+  props: {
+    oldAutopartes: {
+      type: Array,
+      default: () => []
+    },
+    certificate: {
+      type: Object,
+      default: () => null
+    }
+  },
 
   data () {
     return {
@@ -49,7 +59,6 @@ export default {
       this.$nextTick(() => {
         this.initTable()
         this.closeModal()
-        this.clear()
       })
     },
 
@@ -100,15 +109,144 @@ export default {
       $('#crear-autoparte').modal('hide')
     },
 
-    handleExcel () {
+    parseCertificatesFeedback (response) {
+      const certificatesMessage = response.certificates.length
+      ? `${response.certificates.length} ${response.certificates.length > 1 ? 'certificados válidos' : 'certificado válido'}`
+      : 'No se detectaron certificados para importar'
+
+      const invalidRowsMessage = response.invalid.rows.length
+      ? `${response.invalid.rows.length} ${response.invalid.rows.length > 1 ? 'filas inválidas' : 'fila inválida'}`
+      : ''
+
+      const invalidCertificatesMessage = response.invalid.rows.length
+      ? `${response.invalid.certificates.length} ${response.invalid.certificates.length > 1 ? 'certificados inválidos' : 'certificado inválido'}`
+      : ''
+
+      const invalidRowsDetail = response.invalid.rows.length
+      ? '<div class="text-left"><h3 class="text-sm">Filas con errores</h3>' + response.invalid.rows.map(r => {
+        return `<p class="text-xs my-0">Fila ${r.index}: ${Object.values(r.errors).join(' ')}</p>`
+      }).join('') + '</div>'
+      : ''
+
+      const invalidCertificatesDetail = response.invalid.certificates.length
+      ? '<div class="text-left"><h3 class="text-sm">Certificados con errores</h3>' + response.invalid.certificates.map(c => {
+        return `<p class="text-xs my-0">Certificado ${c[0].number}: no coinciden los CUIT</p>`
+      }).join('') + '</div>'
+      : ''
+
+      const certificatesDetail = response.certificates.length
+      ? '<div class="text-left"><h3 class="text-sm">Certificados a Importar</h3>' + response.certificates.map(c => {
+        return `<p class="text-xs my-0">
+          Número: ${c.number}<br>
+          CUIT: ${c.cuit}<br>
+          Autopartes:
+          <ul class="text-xs">
+            ${c.autoparts.map(a => {
+              return `<li>
+                Producto: ${a.product.name}<br>
+                Autoparte: ${a.name}<br>
+                Descripción: ${a.description}<br>
+                Marca: ${a.brand}<br>
+                Modelo: ${a.model}<br>
+                Origen: ${a.origin}<br>
+              </li>`
+            }).join('')}
+          </ul>
+        </p>`
+      }).join('') + '</div>'
+      : ''
+
+      return `<p>${[certificatesMessage, invalidRowsMessage, invalidCertificatesMessage].filter(Boolean).join(', ')}</p>` + invalidRowsDetail + invalidCertificatesDetail + certificatesDetail
+    },
+
+    parseAutopartsFeedback (response) {
+      const autopartsMessage = response.autoparts.length
+      ? `${response.autoparts.length} ${response.autoparts.length > 1 ? 'autopartes fueron agregadas' : 'autoparte fue agregada'} al listado`
+      : 'No se importaron autopartes'
+
+      const invalidRowsMessage = response.invalid.length
+      ? `${response.invalid.length} ${response.invalid.length > 1 ? 'filas inválidas' : 'fila inválida'}`
+      : ''
+
+      const invalidRowsDetail = response.invalid.length
+      ? '<div class="text-left"><h3 class="text-sm">Filas con errores</h3>' + response.invalid.map(r => {
+        return `<p class="text-xs my-0">Fila ${r.index}: ${Object.values(r.errors).join(', ')}</p>`
+      }).join('') + '</div>'
+      : ''
+
+      return [autopartsMessage, invalidRowsMessage].filter(Boolean).join(', ') + invalidRowsDetail
+    },
+
+    handleCertificatesExcel () {
+      const importData = new FormData()
+      importData.append('excel', this.$refs.excel.files[0]);
+      fetch('/importar/certificados', {
+        method: 'post',
+        body: importData
+      })
+      .then(response => response.json())
+      .then(data => {
+        Swal.fire({
+          title: 'Confirmar importación',
+          html: this.parseCertificatesFeedback(data),
+          type: 'question',
+          showConfirmButton: true,
+          showCancelButton: true,
+          confirmButtonText: 'Importar',
+          cancelButtonText: 'Cancelar',
+          reverseButtons: true,
+          confirmButtonColor: '#0072BB',
+          showLoaderOnConfirm: true,
+          preConfirm: () => {
+            return fetch('/certificados', {
+              method: 'post',
+              body: JSON.stringify({
+                'certificates': data.certificates
+              }),
+              headers: {
+                'X-CSRF-TOKEN': Laravel.csrfToken,
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+              }
+            })
+            // .then(response => {
+            //   console.log(response)
+            //   return response.json()
+            // })
+            // .catch(error => {
+            //   console.log(error)
+            // })
+          }
+        }).then(result => {
+          if (result.value) {
+            location.reload()
+          }
+        })
+      })
+      .catch(error => console.error(error))
+    },
+
+    handleAutopartsExcel () {
       const formData = new FormData()
       formData.append('excel', this.$refs.excel.files[0]);
-      fetch(this.$refs.excel.getAttribute('action'), {
+      fetch('/importar/autopartes', {
         method: 'post',
         body: formData
       })
       .then(response => response.json())
-      .then(data => console.log(JSON.stringify(data)))
+      .then(data => {
+        this.destroyTable()
+        this.autopartes = data.autoparts
+        this.$nextTick(() => {
+          this.initTable()
+        })
+
+        Swal.fire({
+          type: data.autoparts.length && !data.invalid.length ? 'success' : (data.autoparts.length && data.invalid.length ? 'warning' : 'error'),
+          title: 'Operación finalizada',
+          html: this.parseAutopartsFeedback(data)
+        })
+      })
       .catch(error => console.error(error))
     }
   },

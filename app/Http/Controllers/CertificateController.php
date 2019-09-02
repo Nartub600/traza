@@ -54,19 +54,34 @@ class CertificateController extends Controller
     {
         $this->authorize('crear', Certificate::class);
 
-        $certificate = new Certificate($request->validated());
-        $certificate->user()->associate($request->user());
+        if ($request->has('certificates')) {
+            collect($request->certificates)->each(function ($certificate) {
+                $autoparts = collect($certificate['autoparts'])
+                    ->mapInto(Autopart::class);
 
-        $autoparts = collect($request->autoparts)
-            ->map(function ($autopart) { return json_decode($autopart, true); })
-            ->mapInto(Autopart::class);
+                $certificate = new Certificate($certificate);
+                $certificate->user()->associate(request()->user());
 
-        DB::transaction(function () use ($certificate, $autoparts) {
-            $certificate->save();
-            $certificate->autoparts()->saveMany($autoparts);
-        });
+                DB::transaction(function () use ($certificate, $autoparts) {
+                    $certificate->save();
+                    $certificate->autoparts()->saveMany($autoparts);
+                });
+            });
+        } else {
+            $certificate = new Certificate($request->validated());
+            $certificate->user()->associate($request->user());
 
-        return redirect()->route('certificados.index');
+            $autoparts = collect($request->autoparts)
+                ->map(function ($autopart) { return json_decode($autopart, true); })
+                ->mapInto(Autopart::class);
+
+            DB::transaction(function () use ($certificate, $autoparts) {
+                $certificate->save();
+                $certificate->autoparts()->saveMany($autoparts);
+            });
+
+            return redirect()->route('certificados.index');
+        }
     }
 
     public function update(UpdateCertificateRequest $request, $id)

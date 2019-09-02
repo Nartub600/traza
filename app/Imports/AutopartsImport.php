@@ -6,7 +6,7 @@ use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithStartRow;
 
-class AutopartsImport implements WithMapping, WithStartRow, WithValidation
+class AutopartsImport implements WithMapping, WithStartRow
 {
     use Importable;
 

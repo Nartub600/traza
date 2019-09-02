@@ -31,7 +31,7 @@ class ImportController extends Controller
         // chequear que cada certificado tenga un solo cuit
         [$loadable, $unloadable] = $this->validateCertificates($certificates);
 
-        $certificates = $this->saveCertificates($loadable);
+        $certificates = $this->prepareCertificates($loadable);
 
         return response()->json([
             'invalid' => [
@@ -50,7 +50,9 @@ class ImportController extends Controller
         // validación de filas
         [$valid, $invalid] = $this->validateAutopartRows($rows);
 
-        return response()->json(compact('valid', 'invalid'));
+        $autoparts = $this->prepareAutoparts($valid);
+
+        return response()->json(compact('autoparts', 'invalid'));
     }
 
     private function validateCertificateRows($rows)
@@ -58,7 +60,7 @@ class ImportController extends Controller
         $valid = collect([]);
         $invalid = collect([]);
 
-        $rows->each(function ($row) use ($valid, $invalid) {
+        $rows->each(function ($row, $index) use ($valid, $invalid) {
             $validator = Validator::make($row->toArray(), [
                 'number'      => ['required', 'numeric', new IsNotCertificate],
                 'cuit'        => ['required', 'regex:/[0-9]{2}-[0-9]{6,8}-[0-9]/'],
@@ -72,7 +74,7 @@ class ImportController extends Controller
 
             $validator->passes()
             ? $valid->push($row)
-            : $invalid->push([ 'row' => $row, 'errors' => $validator->errors() ]);
+            : $invalid->push([ 'row' => $row, 'errors' => $validator->errors(), 'index' => $index + 2 ]);
         });
 
         return [$valid, $invalid];
@@ -83,7 +85,7 @@ class ImportController extends Controller
         $valid = collect([]);
         $invalid = collect([]);
 
-        $rows->each(function ($row) use ($valid, $invalid) {
+        $rows->each(function ($row, $index) use ($valid, $invalid) {
             $validator = Validator::make($row->toArray(), [
                 'product'     => ['required', new IsProduct],
                 'name'        => 'required',
@@ -95,7 +97,7 @@ class ImportController extends Controller
 
             $validator->passes()
             ? $valid->push($row)
-            : $invalid->push([ 'row' => $row, 'errors' => $validator->errors() ]);
+            : $invalid->push([ 'row' => $row, 'errors' => $validator->errors(), 'index' => $index + 2 ]);
         });
 
         return [$valid, $invalid];
@@ -118,6 +120,7 @@ class ImportController extends Controller
         $certificates->each(function ($autoparts) use ($loadable, $unloadable) {
             $cuit = $autoparts[0]['cuit'];
 
+            // ver si se puede implementar Validator
             $sameNumber = $autoparts->every(function ($autopart) use ($cuit) {
                 return $autopart['cuit'] === $cuit;
             });
@@ -130,40 +133,37 @@ class ImportController extends Controller
         return [$loadable, $unloadable];
     }
 
-    private function saveCertificates($groups)
+    private function prepareCertificates($groups)
     {
         $certificates = collect([]);
 
         $groups->each(function ($rows) use ($certificates) {
-            $certificate = new Certificate([
+            $certificate = [
                 'number' => $rows[0]['number'],
-                'cuit' => $rows[0]['cuit']
+                'cuit' => $rows[0]['cuit'],
+            ];
+
+            $autoparts = $this->prepareAutoparts($rows);
+
+            $certificates->push([
+                'number' => $certificate['number'],
+                'cuit' => $certificate['cuit'],
+                'autoparts' => $autoparts,
             ]);
-
-            auth()->user()->certificates()->save($certificate);
-
-            $autoparts = $rows->map(function ($row) {
-                $product = Product::where('id', $row['product'])->orWhere('name', $row['product'])->first();
-                $row = $row->toArray();
-                $row['product_id'] = $product->id;
-
-                return $row;
-            })->mapInto(Autopart::class);
-
-            $certificate->autoparts()->saveMany($autoparts);
-
-            $certificate->refresh();
-            $certificate->load('autoparts');
-
-            // $certificates->push([
-            //     'number' => $certificate->number,
-            //     'cuit' => $certificate->cuit,
-            //     'autoparts' => $autoparts
-            // ]);
-
-            $certificates->push($certificate);
         });
 
         return $certificates;
+    }
+
+    private function prepareAutoparts($rows)
+    {
+        return $rows->map(function ($row) {
+            $product = Product::where('id', $row['product'])->orWhere('name', $row['product'])->first();
+            $row = $row->toArray();
+            $row['product_id'] = $product->id;
+            $row['product'] = $product;
+
+            return $row;
+        });
     }
 }

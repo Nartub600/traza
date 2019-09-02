@@ -26,7 +26,7 @@ class SubirArchivoTest extends TestCase
 
         $response = $this
             ->actingAs($administrador)
-            ->json('POST', '/uploads', [
+            ->json('POST', '/subir/imagenes', [
                 'picture' => $file,
             ]);
 

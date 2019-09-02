@@ -24,12 +24,18 @@ class CreateCertificateRequest extends FormRequest
     public function rules()
     {
         return [
-            'number' => 'required|numeric',
+            'number' => 'required_without:certificates|numeric',
             'cuit' => [
-                'required',
+                'required_without:certificates',
                 'regex:/[0-9]{2}-[0-9]{6,8}-[0-9]/'
             ],
-            'autoparts' => 'required|array',
+            'autoparts' => 'required_without:certificates|array',
+            'certificates.*.number' => 'required_without:number|numeric',
+            'certificates.*.cuit' => [
+                'required_without:cuit',
+                'regex:/[0-9]{2}-[0-9]{6,8}-[0-9]/'
+            ],
+            'certificates.*.autoparts' => 'required_without:autoparts|array'
         ];
     }
 
