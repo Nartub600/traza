@@ -2,7 +2,6 @@
 export default {
   name: 'Autopartes',
 
-  props: ['oldAutopartes', 'certificate'],
   props: {
     oldAutopartes: {
       type: Array,
@@ -174,7 +173,7 @@ export default {
       }).join('') + '</div>'
       : ''
 
-      return [autopartsMessage, invalidRowsMessage].filter(Boolean).join(', ') + invalidRowsDetail
+      return `<p>${[autopartsMessage, invalidRowsMessage].filter(Boolean).join(', ')}</p>` + invalidRowsDetail
     },
 
     handleCertificatesExcel () {
