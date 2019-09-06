@@ -50,8 +50,8 @@
 
         <div class="w-1/2 form-group item-form px-4">
           <label for="name" class="mb-4">Estado <sup>*</sup></label>
-          <select name="active" class="form-control" value="{{ old('active') }}">
-            <option disabled value="">---</option>
+          <select name="active" class="form-control" value="{{ old('active') }}" id="select-active">
+            <option data-placeholder="true"></option>
             <option value="1">Activo</option>
             <option value="0">Inactivo</option>
           </select>
@@ -71,7 +71,7 @@
 
         <div class="w-1/2 form-group item-form px-4">
           <label for="name" class="mb-4">Perfil (Permite seleccionar varios)</label>
-          <select multiple name="roles[]" class="form-control">
+          <select multiple name="roles[]" class="form-control" id="select-roles">
             @foreach ($roles as $role)
             <option value="{{ $role->id }}">{{ $role->name }}</option>
             @endforeach
@@ -81,7 +81,7 @@
 
         <div class="w-1/2 form-group item-form px-4">
           <label for="name" class="mb-4">Grupo de usuarios (Permite seleccionar varios)</label>
-          <select multiple name="groups[]" class="form-control">
+          <select multiple name="groups[]" class="form-control" id="select-groups">
             @foreach ($groups as $group)
             <option value="{{ $group->id }}">{{ $group->name }}</option>
             @endforeach
@@ -103,3 +103,25 @@
   </div>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+new SlimSelect({
+  select: '#select-roles',
+  placeholder: 'Seleccione los perfiles',
+  searchPlaceholder: 'Buscar',
+})
+
+new SlimSelect({
+  select: '#select-groups',
+  placeholder: 'Seleccione los grupos',
+  searchPlaceholder: 'Buscar',
+})
+
+new SlimSelect({
+  select: '#select-active',
+  placeholder: 'Seleccione el estado',
+  showSearch: false,
+})
+</script>
+@endpush

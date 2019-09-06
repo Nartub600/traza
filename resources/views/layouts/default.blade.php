@@ -16,7 +16,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/estilos.css') }}">
   </head>
   <body class="antialiased">
-    <div class="flex flex-col min-h-screen" id="traza">
+    <div class="flex flex-col min-h-screen" id="traza" v-cloak>
       @include('layouts.header')
 
       <main class="flex-1">

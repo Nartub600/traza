@@ -3,10 +3,16 @@ export default {
   name: 'Autopartes',
 
   props: {
+    products: {
+      type: Array,
+      default: () => []
+    },
+
     oldAutopartes: {
       type: Array,
       default: () => []
     },
+
     certificate: {
       type: Object,
       default: () => null
@@ -23,14 +29,10 @@ export default {
   },
 
   computed: {
-    autopartesJSON () {
-      return this.autopartes.map(autoparte => JSON.stringify(autoparte))
-    },
-
     computedAutoparte () {
       return {
         ...this.autoparte,
-        product_id: this.autoparte.product.id
+        ...(this.autoparte.product_id && { product_name: this.products.find(p => p.id === this.autoparte.product_id).name })
       }
     }
   },
@@ -90,6 +92,14 @@ export default {
         language: {
           url: 'https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json'
         }
+      })
+      this.autopartes.forEach((a, i) => {
+        new Swiper.default(this.$refs[`swiper${i}`], {
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        })
       })
     },
 
@@ -252,7 +262,7 @@ export default {
 
   created () {
     if (this.oldAutopartes.length) {
-      this.autopartes = this.oldAutopartes.map(a => JSON.parse(a))
+      this.autopartes = this.oldAutopartes
     } else if (this.certificate) {
       this.autopartes = this.certificate.autoparts
     }

@@ -39,8 +39,8 @@
 
         <div class="w-1/2 form-group item-form px-4">
           <label for="family" class="mb-4">Familia <sup>*</sup></label>
-          <select name="family_id">
-            <option disabled value="">---</option>
+          <select name="family_id" class="form-control" id="select-family">
+            <option data-placeholder="true"></option>
             @foreach ($products as $p)
             <option value="{{ $p->id }}" @if (old('family_id', $product->family_id) === $p->id) selected @endif>{{ $p->name }}</option>
             @endforeach
@@ -50,8 +50,8 @@
 
         <div class="w-1/2 form-group item-form px-4">
           <label for="active" class="mb-4">Estado <sup>*</sup></label>
-          <select name="active" class="form-control">
-            <option disabled value="">---</option>
+          <select name="active" class="form-control" id="select-active">
+            <option data-placeholder="true"></option>
             <option value="1" @if (old('active', $product->active) === true) selected @endif>Activo</option>
             <option value="0" @if (old('active', $product->active) === true) selected @endif>Inactivo</option>
           </select>
@@ -71,3 +71,19 @@
   </div>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+new SlimSelect({
+  select: '#select-family',
+  placeholder: 'Seleccione la familia',
+  searchPlaceholder: 'Buscar',
+})
+
+new SlimSelect({
+  select: '#select-active',
+  placeholder: 'Seleccione el estado',
+  showSearch: false,
+})
+</script>
+@endpush

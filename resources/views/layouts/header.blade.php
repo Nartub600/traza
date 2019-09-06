@@ -32,18 +32,20 @@
             Certificados
           </a>
 
+          @canany(['listar usuarios', 'listar perfiles', 'listar grupos', 'listar productos', 'listar lcm'])
           <div class="dropdown">
             <button class="text-celeste mr-8 p-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fa fa-cog fa-2x"></i>
             </button>
             <ul class="dropdown-menu p-1 right-0" style="left: unset;">
-              <li class="uppercase mb-1"><a href="{{ route('usuarios.index') }}">Usuarios</a></li>
-              <li class="uppercase my-1"><a href="{{ route('perfiles.index') }}">Perfiles</a></li>
-              <li class="uppercase my-1"><a href="{{ route('grupos.index') }}">Grupos de usuarios</a></li>
-              <li class="uppercase my-1"><a href="{{ route('productos.index') }}">Productos (Categorías)</a></li>
-              <li class="uppercase mt-1"><a href="#">LCM</a></li>
+              @can('listar usuarios')<li class="uppercase mb-1"><a href="{{ route('usuarios.index') }}">Usuarios</a></li>@endcan
+              @can('listar perfiles')<li class="uppercase my-1"><a href="{{ route('perfiles.index') }}">Perfiles</a></li>@endcan
+              @can('listar grupos')<li class="uppercase my-1"><a href="{{ route('grupos.index') }}">Grupos de usuarios</a></li>@endcan
+              @can('listar productos')<li class="uppercase my-1"><a href="{{ route('productos.index') }}">Productos (Categorías)</a></li>@endcan
+              @can('listar lcm')<li class="uppercase mt-1"><a href="#">LCM</a></li>@endcan
             </ul>
           </div>
+          @endcanany
 
           <div class="dropdown">
             <button class="text-celeste p-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

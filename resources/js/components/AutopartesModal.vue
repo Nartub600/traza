@@ -7,20 +7,23 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title">{{ editing === -1 ? 'Agregar' : 'Editar' }} producto</h4>
           </div>
-          <div class="modal-body">
+          <div class="modal-body pb-0">
             <div class="flex flex-wrap -mx-4">
               <div class="w-1/2 form-group item-form px-4">
                 <label class="mb-4">Producto <sup>*</sup></label>
                 <select
+                  required
+                  aria-required
                   name="product"
                   class="form-control"
-                  v-model="value.product"
+                  v-model="$attrs.value.product_id"
+                  ref="selectProduct"
                 >
-                  <option disabled value="">---</option>
+                  <option data-placeholder="true"></option>
                   <option
                     v-for="product in products"
                     :key="`product-${product.id}`"
-                    :value="product"
+                    :value="product.id"
                   >
                     {{ product.name }}
                   </option>
@@ -36,7 +39,7 @@
                   class="form-control"
                   required
                   aria-required
-                  v-model="value.name"
+                  v-model="$attrs.value.name"
                 >
                 <p class="help-block error hidden">Ingrese la autoparte</p>
               </div>
@@ -49,48 +52,66 @@
                   class="form-control"
                   required
                   aria-required
-                  v-model="value.description"
+                  v-model="$attrs.value.description"
                 >
                 <p class="help-block error hidden">Ingrese la descripción</p>
               </div>
 
               <div class="w-1/2 form-group item-form px-4">
                 <label class="mb-4">Marca <sup>*</sup></label>
-                <input name="brand" type="text" class="form-control" required aria-required v-model="value.brand">
+                <input name="brand" type="text" class="form-control" required aria-required v-model="$attrs.value.brand">
                 <p class="help-block error hidden">Ingrese la marca</p>
               </div>
 
               <div class="w-1/2 form-group item-form px-4">
                 <label class="mb-4">Modelo <sup>*</sup></label>
-                <input name="model" type="text" class="form-control" required aria-required v-model="value.model">
+                <input name="model" type="text" class="form-control" required aria-required v-model="$attrs.value.model">
                 <p class="help-block error hidden">Ingrese el modelo</p>
               </div>
 
               <div class="w-1/2 form-group item-form px-4">
                 <label class="mb-4">Origen <sup>*</sup></label>
-                <input name="origin" type="text" class="form-control" required aria-required v-model="value.origin">
+                <input name="origin" type="text" class="form-control" required aria-required v-model="$attrs.value.origin">
                 <p class="help-block error hidden">Ingrese el origen</p>
               </div>
 
-              <div class="w-full form-group item-form px-4">
-                <label class="mb-4">Foto <sup>*</sup></label>
+              <div class="w-full item-form px-4">
+                <label class="mb-4">Fotos <sup>*</sup></label>
+                <div class="swiper-container mb-4" ref="swiper" v-show="editing !== -1">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide" v-for="picture in $attrs.value.pictures">
+                      <img class="w-64" :src="picture">
+                      <button
+                        type="button"
+                        @click="removePicture(picture)"
+                        class="absolute top-0 right-0 z-10 w-6 h-6 rounded-full p-0 mt-1 mr-1 shadow bg-rojo text-white"
+                      >
+                        <i class="fa fa-times"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="swiper-button-prev"></div>
+                  <div class="swiper-button-next"></div>
+                </div>
                 <file-pond
+                  allow-multiple
                   name="picture"
                   ref="pond"
                   :accepted-file-types="['image/*']"
                   label-file-type-not-allowed="Debe elegir una imagen"
                   file-validate-type-label-expected-types="Archivos JPG, PNG"
-                  :label-idle="'Arrastre un archivo aquí o <span class=\'filepond--label-action\'>elija uno</span>'"
+                  :label-idle="'Arrastre los archivos aquí o <span class=\'filepond--label-action\'>búsquelos</span>'"
                   label-file-processing="Subiendo"
-                  label-tap-to-cancel="click para cancelar"
-                  label-tap-to-undo="click para deshacer"
+                  label-tap-to-cancel="toque para cancelar"
+                  label-tap-to-undo="toque para deshacer"
                   label-file-processing-complete="Subida completa"
                   :server="{
                     process: {
                       url: '/subir/imagenes',
                       method: 'post',
-                      onload: response => value.picture = response,
-                    }
+                      onload: response => $attrs.value.pictures = [...($attrs.value.pictures || []), response],
+                    },
+                    revert: (uniqueFileId, load) => ($delete($attrs.value.pictures, $attrs.value.pictures.indexOf(uniqueFileId[0])), load())
                   }"
                   @addfile="() => uploading = true"
                   @processfile="() => uploading = false"
@@ -139,7 +160,7 @@ export default {
     FilePond
   },
 
-  props: ['value', 'products', 'editing'],
+  props: ['products', 'editing'],
 
   data () {
     return {
@@ -148,13 +169,37 @@ export default {
   },
 
   methods: {
-    update (key, value) {
-      this.$emit('input', tap(cloneDeep(this.value), v => set(v, key, value)))
+    initSwiper () {
+      new Swiper.default(this.$refs.swiper, {
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+      })
+    },
+
+    removePicture (picture) {
+      this.$delete(this.$attrs.value.pictures, this.$attrs.value.pictures.indexOf(picture))
+      this.$nextTick(() => {
+        this.initSwiper()
+      })
     },
 
     done () {
       this.$emit('done')
     },
+  },
+
+  mounted () {
+    new SlimSelect({
+      select: this.$refs.selectProduct,
+      placeholder: 'Seleccione la familia',
+      searchPlaceholder: 'Buscar',
+    })
+
+    $('#crear-autoparte').on('shown.bs.modal', e => {
+      this.initSwiper()
+    })
   }
 }
 </script>

@@ -38,8 +38,8 @@
 
         <div class="w-1/2 form-group item-form px-4">
           <label for="name" class="mb-4">Estado <sup>*</sup></label>
-          <select name="active" class="form-control">
-            <option disabled value="">---</option>
+          <select name="active" class="form-control" id="select-active">
+            <option data-placeholder="true"></option>
             <option value="1">Activo</option>
             <option value="0">Inactivo</option>
           </select>
@@ -47,7 +47,7 @@
 
         <div class="w-1/2 form-group item-form px-4">
           <label for="name" class="mb-4">Usuarios (Permite seleccionar varios)</label>
-          <select multiple name="users[]" class="form-control">
+          <select multiple name="users[]" class="form-control" id="select-users">
             @foreach ($users as $user)
             <option value="{{ $user->id }}">{{ $user->username }}</option>
             @endforeach
@@ -69,3 +69,19 @@
   </div>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+new SlimSelect({
+  select: '#select-active',
+  placeholder: 'Seleccione el estado',
+  showSearch: false,
+})
+
+new SlimSelect({
+  select: '#select-users',
+  placeholder: 'Seleccione los usuarios',
+  searchPlaceholder: 'Buscar',
+})
+</script>
+@endpush

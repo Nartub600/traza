@@ -24,18 +24,33 @@ class CreateCertificateRequest extends FormRequest
     public function rules()
     {
         return [
-            'number' => 'required_without:certificates|numeric',
+            // single
+            'number' => 'required_without:certificates',
             'cuit' => [
                 'required_without:certificates',
                 'regex:/[0-9]{2}-[0-9]{6,8}-[0-9]/'
             ],
             'autoparts' => 'required_without:certificates|array',
-            'certificates.*.number' => 'required_without:number|numeric',
+            'autoparts.*.product_id'  => 'required_without:certificates',
+            'autoparts.*.name'        => 'required_without:certificates|string|max:255',
+            'autoparts.*.description' => 'required_without:certificates|string|max:1000',
+            'autoparts.*.brand'       => 'required_without:certificates|string|max:255',
+            'autoparts.*.model'       => 'required_without:certificates|string|max:255',
+            'autoparts.*.origin'      => 'required_without:certificates|string|max:255',
+
+            // bulk
+            'certificates.*.number' => 'required_without:number',
             'certificates.*.cuit' => [
                 'required_without:cuit',
                 'regex:/[0-9]{2}-[0-9]{6,8}-[0-9]/'
             ],
-            'certificates.*.autoparts' => 'required_without:autoparts|array'
+            'certificates.*.autoparts' => 'required_without:autoparts|array',
+            'certificates.*.autoparts.*.product_id'  => 'required_with:certificates',
+            'certificates.*.autoparts.*.name'        => 'required_with:certificates|string|max:255',
+            'certificates.*.autoparts.*.description' => 'required_with:certificates|string|max:1000',
+            'certificates.*.autoparts.*.brand'       => 'required_with:certificates|string|max:255',
+            'certificates.*.autoparts.*.model'       => 'required_with:certificates|string|max:255',
+            'certificates.*.autoparts.*.origin'      => 'required_with:certificates|string|max:255',
         ];
     }
 

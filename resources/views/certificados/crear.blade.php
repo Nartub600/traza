@@ -1,7 +1,11 @@
 @extends('layouts.default')
 
 @section('content')
-<autopartes inline-template :old-autopartes="{{ collect(old('autoparts', [])) }}">
+<autopartes
+  inline-template
+  :old-autopartes="{{ collect(old('autoparts', [])) }}"
+  :products="{{ $products }}"
+>
   <div class="container-fluid">
     <ol class="breadcrumb">
       <li><a href="{{ route('home') }}">Inicio</a></li>
@@ -19,21 +23,24 @@
       <form action="{{ route('certificados.store') }}" method="post">
         @csrf
 
-        <input
-          type="hidden"
-          name="autoparts[]"
-          v-for="(autoparte, index) in autopartesJSON"
-          :value="autoparte"
-          :key="`autoparte-${index}`"
-        >
+        <template v-for="(autoparte, index) in autopartes">
+          <input :key="`${index}-product_id`" type="hidden" :name="`autoparts[${index}][product_id]`" :value="autoparte.product_id">
+          <input :key="`${index}-product_name`" type="hidden" :name="`autoparts[${index}][product_name]`" :value="autoparte.product_name">
+          <input :key="`${index}-name`" type="hidden" :name="`autoparts[${index}][name]`" :value="autoparte.name">
+          <input :key="`${index}-description`" type="hidden" :name="`autoparts[${index}][description]`" :value="autoparte.description">
+          <input :key="`${index}-brand`" type="hidden" :name="`autoparts[${index}][brand]`" :value="autoparte.brand">
+          <input :key="`${index}-model`" type="hidden" :name="`autoparts[${index}][model]`" :value="autoparte.model">
+          <input :key="`${index}-origin`" type="hidden" :name="`autoparts[${index}][origin]`" :value="autoparte.origin">
+          <input v-for="picture in autoparte.pictures" :key="picture" type="hidden" :name="`autoparts[${index}][pictures][]`" :value="picture">
+        </template>
 
         @if ($errors->any())
         <div class="alert alert-danger mx-3 mt-8">
           <h5>Se han producido los siguientes errores:</h5>
           <ol>
-              @foreach ($errors->all() as $error)
-                  <li>{{ $error }}</li>
-              @endforeach
+            @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+            @endforeach
           </ol>
         </div>
         @endif
@@ -80,7 +87,7 @@
               <th>DESCRIPCIÓN</th>
               <th>MARCA</th>
               <th>MODELO</th>
-              <th>FOTO</th>
+              <th>FOTOS</th>
               <th>ORIGEN</th>
               <th><i class="fa fa-cog"></i></th>
             </tr>
@@ -89,12 +96,22 @@
           <tbody>
             <tr v-for="(autoparte, index) in autopartes">
               <td class="align-middle">@{{ index }}</td>
-              <td class="align-middle">@{{ autoparte.product.name }}</td>
+              <td class="align-middle">@{{ autoparte.product_name }}</td>
               <td class="align-middle">@{{ autoparte.name }}</td>
               <td class="align-middle">@{{ autoparte.description }}</td>
               <td class="align-middle">@{{ autoparte.brand }}</td>
               <td class="align-middle">@{{ autoparte.model }}</td>
-              <td class="align-middle"><img class="w-64" :src="autoparte.picture"></td>
+              <td class="align-middle">
+                <div class="swiper-container" :ref="`swiper${index}`">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide" v-for="picture in autoparte.pictures">
+                      <img class="w-64" :src="picture">
+                    </div>
+                  </div>
+                  <div class="swiper-button-prev"></div>
+                  <div class="swiper-button-next"></div>
+                </div>
+              </td>
               <td class="align-middle">@{{ autoparte.origin }}</td>
               <td class="align-middle">
                 <button type="button" @click="edit(autoparte, index)" class="btn text-azul m-0 p-0">

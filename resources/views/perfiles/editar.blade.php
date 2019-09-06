@@ -45,8 +45,8 @@
 
           <div class="w-1/2 form-group item-form px-4">
             <label for="name" class="mb-4">Estado <sup>*</sup></label>
-            <select name="active" class="form-control" value="{{ old('active', $role->active) }}">
-              <option disabled value="">---</option>
+            <select name="active" class="form-control" value="{{ old('active', $role->active) }}" id="select-active">
+              <option data-placeholder="true"></option>
               <option @if (old('active', $role->active) === true) selected @endif value="1">Activo</option>
               <option @if (old('active', $role->active) === false) selected @endif value="0">Inactivo</option>
             </select>
@@ -204,3 +204,13 @@
   </div>
 </permisos>
 @endsection
+
+@push('scripts')
+<script>
+new SlimSelect({
+  select: '#select-active',
+  placeholder: 'Seleccione el estado',
+  showSearch: false,
+})
+</script>
+@endpush

@@ -16,7 +16,14 @@ class CertificateController extends Controller
     {
         $this->authorize('listar', Certificate::class);
 
-        $certificates = Certificate::withCount('autoparts')->get();
+        $user = request()->user();
+
+        $certificates = Certificate::withCount('autoparts')
+            ->when(!request()->user()->hasRole('administrador'), function ($query) {
+                $user_ids = request()->user()->groups->flatMap->users->pluck('id');
+                return $query->whereIn('user_id', $user_ids);
+            })
+            ->get();
 
         return view('certificados.listado', compact('certificates'));
     }
@@ -34,7 +41,7 @@ class CertificateController extends Controller
     {
         $this->authorize('ver', Certificate::class);
 
-        $certificate = Certificate::with('autoparts', 'autoparts.product')->findOrFail($id);
+        $certificate = Certificate::with('autoparts')->findOrFail($id);
 
         return view('certificados.ver', compact('certificate'));
     }
@@ -43,7 +50,7 @@ class CertificateController extends Controller
     {
         $this->authorize('editar', Certificate::class);
 
-        $certificate = Certificate::with('autoparts', 'autoparts.product')->findOrFail($id);
+        $certificate = Certificate::with('autoparts')->findOrFail($id);
 
         $products = Product::all();
 
@@ -55,6 +62,7 @@ class CertificateController extends Controller
         $this->authorize('crear', Certificate::class);
 
         if ($request->has('certificates')) {
+            // bulk import
             collect($request->certificates)->each(function ($certificate) {
                 $autoparts = collect($certificate['autoparts'])
                     ->mapInto(Autopart::class);
@@ -68,11 +76,11 @@ class CertificateController extends Controller
                 });
             });
         } else {
+            // single
             $certificate = new Certificate($request->validated());
             $certificate->user()->associate($request->user());
 
             $autoparts = collect($request->autoparts)
-                ->map(function ($autopart) { return json_decode($autopart, true); })
                 ->mapInto(Autopart::class);
 
             DB::transaction(function () use ($certificate, $autoparts) {
@@ -92,7 +100,6 @@ class CertificateController extends Controller
         $certificate->fill($request->validated());
 
         $autoparts = collect($request->autoparts)
-            ->map(function ($autopart) { return json_decode($autopart, true); })
             ->mapInto(Autopart::class);
 
         DB::transaction(function () use ($certificate, $autoparts) {

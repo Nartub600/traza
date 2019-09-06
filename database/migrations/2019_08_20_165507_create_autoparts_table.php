@@ -22,7 +22,7 @@ class CreateAutopartsTable extends Migration
             $table->string('brand');
             $table->string('model');
             $table->string('origin');
-            $table->string('picture')->nullable();
+            $table->json('pictures')->nullable();
             $table->timestamps();
         });
     }

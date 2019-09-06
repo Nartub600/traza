@@ -25,7 +25,6 @@ class EditarCertificadosTest extends TestCase
 
         $autoparts = factory(Autopart::class, 3)
             ->make()
-            ->map(function ($autoparte) { return json_encode($autoparte); })
             ->toArray();
 
         $data = [
