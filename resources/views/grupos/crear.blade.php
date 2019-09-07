@@ -31,9 +31,9 @@
 
       <div class="flex flex-wrap -mx-4">
         <div class="w-1/2 form-group item-form px-4">
-          <label for="name" class="mb-4">Nombre Completo <sup>*</sup></label>
+          <label for="name" class="mb-4">Nombre <sup>*</sup></label>
           <input type="text" name="name" class="form-control" required aria-required>
-          <p class="help-block error hidden">Ingrese el nombre completo</p>
+          <p class="help-block error hidden">Ingrese el nombre</p>
         </div>
 
         <div class="w-1/2 form-group item-form px-4">

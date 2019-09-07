@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateUserRequest extends FormRequest
 {
@@ -25,7 +26,11 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             'name'     => 'required',
-            'email'    => 'required|email|unique:users',
+            'email'    => [
+                'required',
+                'email',
+                Rule::unique('users')->ignore(request()->route()->parameters['usuario'])->whereNull('deleted_at')
+            ],
             'username' => 'required',
             'password' => 'nullable|confirmed',
             'active'   => 'required',

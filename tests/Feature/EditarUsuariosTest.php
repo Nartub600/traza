@@ -29,7 +29,7 @@ class EditarUsuariosTest extends TestCase
 
         $data = [
             'name'                  => $this->faker->name,
-            'email'                 => $this->faker->email,
+            'email'                 => $user->email,
             'username'              => $this->faker->userName,
             'password'              => $password,
             'password_confirmation' => $password,
@@ -42,7 +42,7 @@ class EditarUsuariosTest extends TestCase
             ->actingAs($administrador)
             ->json('put', '/usuarios/' . $user->id, $data);
 
-        $response->assertStatus(302);
+        $response->assertRedirect('/usuarios');
 
         $user = User::where('email', $data['email'])->first();
 
