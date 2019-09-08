@@ -29,4 +29,24 @@ class ListarProductosTest extends TestCase
             ->assertSuccessful()
             ->assertViewHas('products');
     }
+
+    /** @test */
+    public function noAdministradorNoPuedeListarProductos()
+    {
+        $certificador = factory(User::class)->state('certificador')->create();
+
+        $response = $this
+            ->actingAs($certificador)
+            ->get('/productos');
+
+        $response->assertStatus(403);
+
+        $fabricante = factory(User::class)->state('fabricante')->create();
+
+        $response = $this
+            ->actingAs($fabricante)
+            ->get('/productos');
+
+        $response->assertStatus(403);
+    }
 }

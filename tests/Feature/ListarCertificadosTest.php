@@ -62,4 +62,16 @@ class ListarCertificadosTest extends TestCase
         $this->assertContains($own[3]->id, $certificates);
         $this->assertContains($own[4]->id, $certificates);
     }
+
+    /** @test */
+    public function fabricanteNoPuedeListarCertificados()
+    {
+        $fabricante = factory(User::class)->state('fabricante')->create();
+
+        $response = $this
+            ->actingAs($fabricante)
+            ->get('/certificados');
+
+        $response->assertStatus(403);
+    }
 }

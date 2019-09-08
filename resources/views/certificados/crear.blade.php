@@ -68,10 +68,10 @@
             Agregar autoparte
           </button>
 
-          <button type="button" class="btn btn-success uppercase mx-2" @click="($refs.excel.value = null, $refs.excel.click())">
+          <button type="button" class="btn btn-success uppercase mx-2" @click="beginAutopartsImport">
             Cargar Excel
-            <input action="{{ route('import.autoparts') }}" class="hidden" type="file" ref="excel" @change="handleAutopartsExcel">
           </button>
+          <input action="{{ route('import.autoparts') }}" class="hidden" type="file" ref="excel" @change="handleAutopartsExcel">
 
           <button @click="clearIndex" type="button" class="btn btn-success uppercase mx-2">
             Vaciar listado

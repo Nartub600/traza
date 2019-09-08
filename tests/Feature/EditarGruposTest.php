@@ -51,4 +51,26 @@ class EditarGruposTest extends TestCase
         $this->assertNotNull($group->users()->find($data['users'][2]));
         $this->assertCount(3, $group->users);
     }
+
+    /** @test */
+    public function noAdministradorNoPuedeEditarGrupos()
+    {
+        $group = factory(Group::class)->create();
+
+        $certificador = factory(User::class)->state('certificador')->create();
+
+        $response = $this
+            ->actingAs($certificador)
+            ->get('/grupos/' . $group->id . '/editar');
+
+        $response->assertStatus(403);
+
+        $fabricante = factory(User::class)->state('fabricante')->create();
+
+        $response = $this
+            ->actingAs($fabricante)
+            ->get('/grupos/' . $group->id . '/editar');
+
+        $response->assertStatus(403);
+    }
 }

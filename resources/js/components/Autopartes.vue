@@ -38,6 +38,58 @@ export default {
   },
 
   methods: {
+    beginCertificatesImport () {
+      Swal.fire({
+        type: 'info',
+        title: 'Importación masiva de certificados',
+        html: `
+          <p>Se debe seleccionar un archivo Excel con un máximo de 100 filas y el siguiente formato:</p>
+          <table class="table table-bordered">
+            <tr class="text-xs">
+              <td>Número</td>
+              <td>CUIT</td>
+              <td>Producto</td>
+              <td>Autoparte</td>
+              <td>Descripción</td>
+              <td>Marca</td>
+              <td>Modelo</td>
+              <td>Origen</td>
+            </tr>
+          </table>
+        `
+      }).then(result => {
+        if (result.value) {
+          this.$refs.excel.value = null
+          this.$refs.excel.click()
+        }
+      })
+    },
+
+    beginAutopartsImport () {
+      Swal.fire({
+        type: 'info',
+        title: 'Importación masiva de autopartes',
+        html: `
+          <p>Se debe seleccionar un archivo Excel con un máximo de 100 filas y el siguiente formato:</p>
+          <table class="table table-bordered">
+            <tr class="text-xs">
+              <td>Producto</td>
+              <td>Autoparte</td>
+              <td>Descripción</td>
+              <td>Marca</td>
+              <td>Modelo</td>
+              <td>Origen</td>
+            </tr>
+          </table>
+        `
+      }).then(result => {
+        if (result.value) {
+          this.$refs.excel.value = null
+          this.$refs.excel.click()
+        }
+      })
+    },
+
     add () {
       this.editing = -1
       this.autoparte = {}

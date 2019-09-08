@@ -65,4 +65,24 @@ class CrearUsuariosTest extends TestCase
         $this->assertTrue($user->hasRole($data['roles'][1]));
         $this->assertCount(2, $user->roles);
     }
+
+    /** @test */
+    public function noAdministradorNoPuedeCrearUsuarios()
+    {
+        $certificador = factory(User::class)->state('certificador')->create();
+
+        $response = $this
+            ->actingAs($certificador)
+            ->get('/usuarios/crear');
+
+        $response->assertStatus(403);
+
+        $fabricante = factory(User::class)->state('fabricante')->create();
+
+        $response = $this
+            ->actingAs($fabricante)
+            ->get('/usuarios/crear');
+
+        $response->assertStatus(403);
+    }
 }

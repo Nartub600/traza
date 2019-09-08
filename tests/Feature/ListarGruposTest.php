@@ -31,4 +31,24 @@ class ListarGruposTest extends TestCase
             ->assertSuccessful()
             ->assertViewHas('groups', $groups);
     }
+
+    /** @test */
+    public function noAdministradorNoPuedeListarGrupos()
+    {
+        $certificador = factory(User::class)->state('certificador')->create();
+
+        $response = $this
+            ->actingAs($certificador)
+            ->get('/grupos');
+
+        $response->assertStatus(403);
+
+        $fabricante = factory(User::class)->state('fabricante')->create();
+
+        $response = $this
+            ->actingAs($fabricante)
+            ->get('/grupos');
+
+        $response->assertStatus(403);
+    }
 }

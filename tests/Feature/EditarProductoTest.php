@@ -47,4 +47,26 @@ class EditarProductoTest extends TestCase
         $this->assertEquals($product->active, $data['active']);
         $this->assertEquals($product->family->id, $family->id);
     }
+
+    /** @test */
+    public function noAdministradorNoPuedeEditarProductos()
+    {
+        $product = factory(Product::class)->create();
+
+        $certificador = factory(User::class)->state('certificador')->create();
+
+        $response = $this
+            ->actingAs($certificador)
+            ->get('/productos/' . $product->id . '/editar');
+
+        $response->assertStatus(403);
+
+        $fabricante = factory(User::class)->state('fabricante')->create();
+
+        $response = $this
+            ->actingAs($fabricante)
+            ->get('/productos/' . $product->id . '/editar');
+
+        $response->assertStatus(403);
+    }
 }

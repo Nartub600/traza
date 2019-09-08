@@ -52,4 +52,26 @@ class EditarPerfilesTest extends TestCase
         $this->assertNotNull($role->permissions()->find($data['permissions'][2]));
         $this->assertCount(3, $role->permissions);
     }
+
+    /** @test */
+    public function noAdministradorNoPuedeEditarGrupos()
+    {
+        $role = Role::inRandomOrder()->first();
+
+        $certificador = factory(User::class)->state('certificador')->create();
+
+        $response = $this
+            ->actingAs($certificador)
+            ->get('/perfiles/' . $role->id . '/editar');
+
+        $response->assertStatus(403);
+
+        $fabricante = factory(User::class)->state('fabricante')->create();
+
+        $response = $this
+            ->actingAs($fabricante)
+            ->get('/perfiles/' . $role->id . '/editar');
+
+        $response->assertStatus(403);
+    }
 }

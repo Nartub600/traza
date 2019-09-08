@@ -50,4 +50,16 @@ class CrearCertificadosTest extends TestCase
         $this->assertEquals($certificate->cuit, $data['cuit']);
         $this->assertCount(5, $certificate->autoparts);
     }
+
+    /** @test */
+    public function fabricanteNoPuedeCrearCertificados()
+    {
+        $fabricante = factory(User::class)->state('fabricante')->create();
+
+        $response = $this
+            ->actingAs($fabricante)
+            ->get('/certificados/crear');
+
+        $response->assertStatus(403);
+    }
 }

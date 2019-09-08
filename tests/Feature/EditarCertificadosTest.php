@@ -53,4 +53,18 @@ class EditarCertificadosTest extends TestCase
         $this->assertEquals($certificate->cuit, $data['cuit']);
         $this->assertCount(3, $certificate->autoparts);
     }
+
+    /** @test */
+    public function fabricanteNoPuedeEditarCertificados()
+    {
+        $fabricante = factory(User::class)->state('fabricante')->create();
+
+        $certificate = factory(Certificate::class)->create();
+
+        $response = $this
+            ->actingAs($fabricante)
+            ->get('/certificados/' . $certificate->id . '/editar');
+
+        $response->assertStatus(403);
+    }
 }
