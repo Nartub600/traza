@@ -31,6 +31,12 @@ class EditarPerfilesTest extends TestCase
 
         $response = $this
             ->actingAs($administrador)
+            ->get('/perfiles/' . $role->id . '/editar');
+
+        $response->assertSuccessful();
+
+        $response = $this
+            ->actingAs($administrador)
             ->put('/perfiles/' . $role->id, $data);
 
         $response->assertRedirect('/perfiles');

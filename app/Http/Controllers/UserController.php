@@ -26,8 +26,8 @@ class UserController extends Controller
     {
         $this->authorize('crear', User::class);
 
-        $groups = Group::all();
-        $roles = Role::all();
+        $groups = Group::active()->get();
+        $roles = Role::active()->get();
 
         return view('usuarios.crear', compact('groups', 'roles'));
     }
@@ -47,8 +47,8 @@ class UserController extends Controller
 
         $user = User::with(['groups', 'roles'])->findOrFail($id);
 
-        $groups = Group::all();
-        $roles = Role::all();
+        $groups = Group::active()->get();
+        $roles = Role::active()->get();
 
         return view('usuarios.editar', compact('user', 'groups', 'roles'));
     }

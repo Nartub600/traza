@@ -50,7 +50,7 @@ export default {
       this.selectedPermissions = this.role.permissions.map(p => p.id).map(p => parseInt(p))
     }
 
-    if (this.oldPermissions.length > 0) {
+    if (this.oldPermissions.length) {
       this.selectedPermissions = this.oldPermissions.map(p => parseInt(p))
     }
 

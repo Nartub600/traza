@@ -30,6 +30,12 @@ class CrearPerfilesTest extends TestCase
 
         $response = $this
             ->actingAs($administrador)
+            ->get('/perfiles/crear');
+
+        $response->assertSuccessful();
+
+        $response = $this
+            ->actingAs($administrador)
             ->post('/perfiles', $data);
 
         $response->assertRedirect('/perfiles');

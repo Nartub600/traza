@@ -35,6 +35,12 @@ class EditarCertificadosTest extends TestCase
 
         $response = $this
             ->actingAs($administrador)
+            ->get('/certificados/' . $certificate->id . '/editar');
+
+        $response->assertSuccessful();
+
+        $response = $this
+            ->actingAs($administrador)
             ->put('/certificados/' . $certificate->id, $data);
 
         $response->assertRedirect('/certificados');

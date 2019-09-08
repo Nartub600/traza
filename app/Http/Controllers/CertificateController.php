@@ -20,8 +20,7 @@ class CertificateController extends Controller
 
         $certificates = Certificate::withCount('autoparts')
             ->when(!request()->user()->hasRole('administrador'), function ($query) {
-                $user_ids = request()->user()->groups->flatMap->users->pluck('id');
-                return $query->whereIn('user_id', $user_ids);
+                return $query->fromUserGroups(request()->user());
             })
             ->get();
 
@@ -32,7 +31,7 @@ class CertificateController extends Controller
     {
         $this->authorize('crear', Certificate::class);
 
-        $products = Product::all();
+        $products = Product::active()->get();
 
         return view('certificados.crear', compact('products'));
     }
@@ -52,7 +51,7 @@ class CertificateController extends Controller
 
         $certificate = Certificate::with('autoparts')->findOrFail($id);
 
-        $products = Product::all();
+        $products = Product::active()->get();
 
         return view('certificados.editar', compact('certificate', 'products'));
     }

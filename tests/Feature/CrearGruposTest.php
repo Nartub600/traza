@@ -29,6 +29,12 @@ class CrearGruposTest extends TestCase
 
         $response = $this
             ->actingAs($administrador)
+            ->get('/grupos/crear');
+
+        $response->assertSuccessful();
+
+        $response = $this
+            ->actingAs($administrador)
             ->post('/grupos', $data);
 
         $response->assertRedirect('/grupos');

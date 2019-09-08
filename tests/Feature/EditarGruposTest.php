@@ -31,6 +31,12 @@ class EditarGruposTest extends TestCase
 
         $response = $this
             ->actingAs($administrador)
+            ->get('/grupos/' . $group->id . '/editar');
+
+        $response->assertSuccessful();
+
+        $response = $this
+            ->actingAs($administrador)
             ->put('/grupos/' . $group->id, $data);
 
         $response->assertRedirect('/grupos');

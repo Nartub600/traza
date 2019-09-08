@@ -38,6 +38,12 @@ class CrearUsuariosTest extends TestCase
 
         $response = $this
             ->actingAs($administrador)
+            ->get('/usuarios/crear');
+
+        $response->assertSuccessful();
+
+        $response = $this
+            ->actingAs($administrador)
             ->post('/usuarios', $data);
 
         $response->assertRedirect('/usuarios');

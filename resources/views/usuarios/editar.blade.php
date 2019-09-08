@@ -74,7 +74,7 @@
           <label for="name" class="mb-4">Perfil (Permite seleccionar varios)</label>
           <select multiple name="roles[]" class="form-control" id="select-roles">
             @foreach ($roles as $role)
-            <option value="{{ $role->id }}" @if ($user->roles->contains($role)) selected @endif>{{ $role->name }}</option>
+            <option class="capitalize" value="{{ $role->id }}" @if ($user->roles->contains($role)) selected @endif>{{ $role->name }}</option>
             @endforeach
           </select>
           <p class="help-block error hidden">Seleccione al menos un perfil</p>

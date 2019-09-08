@@ -32,6 +32,12 @@ class CrearCertificadosTest extends TestCase
 
         $response = $this
             ->actingAs($administrador)
+            ->get('/certificados/crear');
+
+        $response->assertSuccessful();
+
+        $response = $this
+            ->actingAs($administrador)
             ->post('/certificados', $data);
 
         $response->assertRedirect('/certificados');

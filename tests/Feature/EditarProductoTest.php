@@ -31,6 +31,12 @@ class EditarProductoTest extends TestCase
 
         $response = $this
             ->actingAs($administrador)
+            ->get('/productos/' . $product->id . '/editar');
+
+        $response->assertSuccessful();
+
+        $response = $this
+            ->actingAs($administrador)
             ->put('/productos/' . $product->id, $data);
 
         $response->assertRedirect('/productos');

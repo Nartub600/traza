@@ -40,6 +40,12 @@ class EditarUsuariosTest extends TestCase
 
         $response = $this
             ->actingAs($administrador)
+            ->get('/usuarios/' . $user->id . '/editar');
+
+        $response->assertSuccessful();
+
+        $response = $this
+            ->actingAs($administrador)
             ->json('put', '/usuarios/' . $user->id, $data);
 
         $response->assertRedirect('/usuarios');

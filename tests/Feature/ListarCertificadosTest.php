@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Certificate;
+use App\Group;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -28,5 +29,37 @@ class ListarCertificadosTest extends TestCase
         $response
             ->assertSuccessful()
             ->assertViewHas('certificates', $certificates);
+    }
+
+    /** @test */
+    public function certificadorPuedeListarCertificadosDeSusGruposSolamente()
+    {
+        $this->withoutExceptionHandling();
+
+        $certificador = factory(User::class)->state('certificador')->create();
+        $group = factory(Group::class)->create();
+        $certificador->groups()->attach($group);
+
+        factory(Certificate::class, 10)->create();
+        $own = factory(Certificate::class, 5)->create([
+            'user_id' => $certificador->id
+        ]);
+
+        $response = $this
+            ->actingAs($certificador)
+            ->get('/certificados');
+
+        $certificates = Certificate::fromUserGroups($certificador)->pluck('id');
+
+        $response
+            ->assertSuccessful()
+            ->assertViewHas('certificates');
+
+        $this->assertCount(5, $certificates);
+        $this->assertContains($own[0]->id, $certificates);
+        $this->assertContains($own[1]->id, $certificates);
+        $this->assertContains($own[2]->id, $certificates);
+        $this->assertContains($own[3]->id, $certificates);
+        $this->assertContains($own[4]->id, $certificates);
     }
 }

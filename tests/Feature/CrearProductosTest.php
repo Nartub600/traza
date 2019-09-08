@@ -31,6 +31,12 @@ class CrearProductosTest extends TestCase
 
         $response = $this
             ->actingAs($administrador)
+            ->get('/productos/crear');
+
+        $response->assertSuccessful();
+
+        $response = $this
+            ->actingAs($administrador)
             ->post('/productos', $data);
 
         $product = Product::where('name', $data['name'])->first();
