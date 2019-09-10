@@ -42,8 +42,9 @@ export default {
       Swal.fire({
         type: 'info',
         title: 'Importación masiva de certificados',
+        confirmButtonText: 'Seleccionar archivo',
         html: `
-          <p>Se debe seleccionar un archivo Excel con un máximo de 100 filas y el siguiente formato:</p>
+          <p>Se debe seleccionar un archivo Excel con un máximo de 100 autopartes y el siguiente formato:</p>
           <table class="table table-bordered">
             <tr class="text-xs">
               <td>Número</td>
@@ -56,6 +57,7 @@ export default {
               <td>Origen</td>
             </tr>
           </table>
+          <p>Se ignorará la primera fila</p>
         `
       }).then(result => {
         if (result.value) {
@@ -69,8 +71,9 @@ export default {
       Swal.fire({
         type: 'info',
         title: 'Importación masiva de autopartes',
+        confirmButtonText: 'Seleccionar archivo',
         html: `
-          <p>Se debe seleccionar un archivo Excel con un máximo de 100 filas y el siguiente formato:</p>
+          <p>Se debe seleccionar un archivo Excel con un máximo de 100 autopartes y el siguiente formato:</p>
           <table class="table table-bordered">
             <tr class="text-xs">
               <td>Producto</td>
@@ -81,6 +84,7 @@ export default {
               <td>Origen</td>
             </tr>
           </table>
+          <p>Se ignorará la primera fila</p>
         `
       }).then(result => {
         if (result.value) {
@@ -245,46 +249,49 @@ export default {
         method: 'post',
         body: importData
       })
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          throw response
+        }
+        return response.json()
+      })
       .then(data => {
         Swal.fire({
           title: 'Confirmar importación',
           html: this.parseCertificatesFeedback(data),
           type: 'question',
-          showConfirmButton: true,
+          showConfirmButton: data.certificates.length > 0,
           showCancelButton: true,
           confirmButtonText: 'Importar',
-          cancelButtonText: 'Cancelar',
+          cancelButtonText: 'Volver',
           reverseButtons: true,
           confirmButtonColor: '#0072BB',
           showLoaderOnConfirm: true,
-          preConfirm: () => {
-            return fetch('/certificados', {
-              method: 'post',
-              body: JSON.stringify({
-                'certificates': data.certificates
-              }),
-              headers: {
-                'X-CSRF-TOKEN': Laravel.csrfToken,
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-              }
-            })
-            // .then(response => {
-            //   console.log(response)
-            //   return response.json()
-            // })
-            // .catch(error => {
-            //   console.log(error)
-            // })
-          }
+          preConfirm: () => fetch('/certificados', {
+            method: 'post',
+            body: JSON.stringify({
+              'certificates': data.certificates
+            }),
+            headers: {
+              'X-CSRF-TOKEN': Laravel.csrfToken,
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+            }
+          })
         }).then(result => {
           if (result.value) {
             location.reload()
           }
         })
       })
-      .catch(error => console.error(error))
+      .catch(error => {
+        error.json().then(data => {
+          Swal.fire({
+            type: 'warning',
+            text: data.rows
+          })
+        })
+      })
     },
 
     handleAutopartsExcel () {
@@ -294,7 +301,12 @@ export default {
         method: 'post',
         body: formData
       })
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          throw response
+        }
+        return response.json()
+      })
       .then(data => {
         this.destroyTable()
         this.autopartes = data.autoparts
@@ -308,7 +320,14 @@ export default {
           html: this.parseAutopartsFeedback(data)
         })
       })
-      .catch(error => console.error(error))
+      .catch(error => {
+        error.json().then(data => {
+          Swal.fire({
+            type: 'warning',
+            text: data.rows
+          })
+        })
+      })
     }
   },
 

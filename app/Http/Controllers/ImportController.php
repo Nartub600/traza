@@ -22,6 +22,12 @@ class ImportController extends Controller
         // sólo la primera hoja
         $rows = (new CertificatesImport)->toCollection($request->excel)[0];
 
+        if ($rows->count() > 100) {
+            return response()->json([
+                'rows' => 'Se admiten 100 autopartes como máximo'
+            ], 422);
+        }
+
         // validación de filas
         [$valid, $invalid] = $this->validateCertificateRows($rows);
 
@@ -46,6 +52,12 @@ class ImportController extends Controller
     {
         // sólo la primera hoja
         $rows = (new AutopartsImport)->toCollection($request->excel)[0];
+
+        if ($rows->count() > 100) {
+            return response()->json([
+                'rows' => 'Se admiten 100 autopartes como máximo'
+            ], 422);
+        }
 
         // validación de filas
         [$valid, $invalid] = $this->validateAutopartRows($rows);

@@ -49,7 +49,8 @@ class ListarCertificadosTest extends TestCase
             ->actingAs($certificador)
             ->get('/certificados');
 
-        $certificates = Certificate::fromUserGroups($certificador)->pluck('id');
+        $user_ids = $certificador->groups->flatMap->users->pluck('id');
+        $certificates = Certificate::whereIn('user_id', $user_ids)->pluck('id');
 
         $response
             ->assertSuccessful()

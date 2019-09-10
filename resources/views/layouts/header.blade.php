@@ -52,7 +52,7 @@
               <i class="fa fa-user-circle fa-2x"></i>
             </button>
             <ul class="dropdown-menu p-1 right-0" style="left: unset;">
-              <li class="uppercase mb-1"><a href="#">Perfil</a></li>
+              <li class="uppercase mb-1"><a href="{{ route('perfil') }}">Perfil</a></li>
               <li class="uppercase my-1"><a href="#">Cambiar contraseña</a></li>
               <li class="uppercase mt-1">
                 <a

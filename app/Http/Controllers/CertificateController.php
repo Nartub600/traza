@@ -18,11 +18,7 @@ class CertificateController extends Controller
 
         $user = request()->user();
 
-        $certificates = Certificate::withCount('autoparts')
-            ->when(!request()->user()->hasRole('administrador'), function ($query) {
-                return $query->fromUserGroups(request()->user());
-            })
-            ->get();
+        $certificates = Certificate::withCount('autoparts')->get();
 
         return view('certificados.listado', compact('certificates'));
     }

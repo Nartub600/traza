@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use App\Group;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Role;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use App\Role;
+use Illuminate\Validation\ValidationException;
 
 class UserController extends Controller
 {
@@ -93,6 +94,12 @@ class UserController extends Controller
         $this->authorize('eliminar', User::class);
 
         $user = User::findOrFail($id);
+
+        if ($user->hasRole('administrador') && User::role('administrador')->count() === 1) {
+            throw ValidationException::withMessages(['last_admin' => [
+                'No se puede eliminar el último administrador'
+            ]]);
+        }
 
         $user->delete();
 

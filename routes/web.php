@@ -26,6 +26,8 @@ Route::group([
         'certificados' => 'CertificateController',
     ]);
 
+    Route::get('/perfil', 'AccountController@index')->name('perfil');
+    Route::put('/perfil/{id}', 'AccountController@update')->name('perfil.update');
     Route::post('/subir/imagenes', 'UploadController@store');
     Route::post('/importar/certificados', 'ImportController@certificates')->name('import.certificates');
     Route::post('/importar/autopartes', 'ImportController@autoparts')->name('import.autoparts');
