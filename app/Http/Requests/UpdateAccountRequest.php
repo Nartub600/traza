@@ -27,7 +27,6 @@ class UpdateAccountRequest extends FormRequest
             'name' => 'required',
             'username' => 'required',
             'email' => 'required|email',
-            'password' => 'nullable|confirmed'
         ];
     }
 }

@@ -22,12 +22,15 @@ Route::group([
         'grupos'       => 'GroupController',
         'perfiles'     => 'RoleController',
         'productos'    => 'ProductController',
-        'autopartes'   => 'AutopartController',
         'certificados' => 'CertificateController',
     ]);
 
-    Route::get('/perfil', 'AccountController@index')->name('perfil');
-    Route::put('/perfil/{id}', 'AccountController@update')->name('perfil.update');
+    Route::get('/perfil', 'AccountController@index')->name('perfil.index');
+    Route::put('/perfil/{usuario}', 'AccountController@update')->name('perfil.update');
+
+    Route::get('/contrasenia/cambiar', 'PasswordController@index')->name('password.index');
+    Route::put('/contrasenia/cambiar/{usuario}', 'PasswordController@update')->name('password.update');
+
     Route::post('/subir/imagenes', 'UploadController@store');
     Route::post('/importar/certificados', 'ImportController@certificates')->name('import.certificates');
     Route::post('/importar/autopartes', 'ImportController@autoparts')->name('import.autoparts');

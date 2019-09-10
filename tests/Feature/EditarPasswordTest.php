@@ -8,12 +8,12 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
-class EditarPerfilTest extends TestCase
+class EditarPasswordTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
     /** @test */
-    public function usuarioPuedeEditarSuPerfil()
+    public function usuarioPuedeEditarSuPassword()
     {
         $this->withoutExceptionHandling();
 
@@ -21,7 +21,7 @@ class EditarPerfilTest extends TestCase
 
         $response = $this
             ->actingAs($user)
-            ->get('/perfil');
+            ->get('/contrasenia/cambiar');
 
         $response->assertSuccessful();
         $response->assertViewHas('user');
@@ -29,20 +29,18 @@ class EditarPerfilTest extends TestCase
         $password = Hash::make('password');
 
         $data = [
-            'name' => $this->faker->name,
-            'username' => $this->faker->userName,
-            'email' => $this->faker->safeEmail,
+            'old_password'          => 'password',
+            'password'              => $password,
+            'password_confirmation' => $password
         ];
 
         $response = $this
             ->actingAs($user)
-            ->put('/perfil/' . $user->id, $data);
+            ->put('/contrasenia/cambiar/' . $user->id, $data);
 
         $response->assertRedirect('/');
 
         $user = User::find($user->id);
-        $this->assertEquals($user->name, $data['name']);
-        $this->assertEquals($user->username, $data['username']);
-        $this->assertEquals($user->email, $data['email']);
+        $this->assertTrue(Hash::check($password, $user->password));
     }
 }

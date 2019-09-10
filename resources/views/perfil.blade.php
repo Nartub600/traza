@@ -49,18 +49,6 @@
         </div>
 
         <div class="w-1/2 form-group item-form px-4">
-          <label for="password" class="mb-4">Contraseña <sup>*</sup></label>
-          <input type="password" name="password" class="form-control">
-          <p class="help-block error hidden">Ingrese la contraseña</p>
-        </div>
-
-        <div class="w-1/2 form-group item-form px-4">
-          <label for="password_confirmation" class="mb-4">Confirmar contraseña <sup>*</sup></label>
-          <input type="password" name="password_confirmation" class="form-control">
-          <p class="help-block error hidden">Confirme la contraseña</p>
-        </div>
-
-        <div class="w-1/2 form-group item-form px-4">
           <label for="name" class="mb-4">Perfiles</label>
           <input readonly type="text" class="form-control" value="{{ $user->roles->map->name->implode(', ') }}">
         </div>
