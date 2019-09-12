@@ -33,14 +33,6 @@ class UpdateCertificateRequest extends FormRequest
         ];
     }
 
-    public function attributes()
-    {
-        return [
-            'cuit' => 'CUIT',
-            'number' => 'número'
-        ];
-    }
-
     public function messages()
     {
         return [

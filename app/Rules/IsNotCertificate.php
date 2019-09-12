@@ -36,6 +36,6 @@ class IsNotCertificate implements Rule
      */
     public function message()
     {
-        return 'Existe un certificado con ese número.';
+        return 'Existe un certificado con ese número';
     }
 }

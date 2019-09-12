@@ -29,11 +29,4 @@ class UpdateRoleRequest extends FormRequest
             'active' => 'required'
         ];
     }
-
-    public function attributes()
-    {
-        return [
-            'active' => 'estado'
-        ];
-    }
 }

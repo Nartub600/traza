@@ -175,31 +175,35 @@ export default {
     },
 
     parseCertificatesFeedback (response) {
-      const certificatesMessage = response.certificates.length
-      ? `${response.certificates.length} ${response.certificates.length > 1 ? 'certificados válidos' : 'certificado válido'}`
+      const certificatesMessage = response.certificates.valid.length
+      ? `${response.certificates.valid.length} ${response.certificates.valid.length > 1 ? 'certificados válidos' : 'certificado válido'}`
       : 'No se detectaron certificados para importar'
 
-      const invalidRowsMessage = response.invalid.rows.length
-      ? `${response.invalid.rows.length} ${response.invalid.rows.length > 1 ? 'filas inválidas' : 'fila inválida'}`
+      const duplicatedRowsMessage = response.rows.valid.length - response.rows.unique.length > 0
+      ? `${response.rows.valid.length - response.rows.unique.length} ${response.rows.valid.length - response.rows.unique.length > 1 ? 'filas se ignoraron' : 'fila se ignoró'} por tener información duplicada`
       : ''
 
-      const invalidCertificatesMessage = response.invalid.rows.length
-      ? `${response.invalid.certificates.length} ${response.invalid.certificates.length > 1 ? 'certificados inválidos' : 'certificado inválido'}`
+      const invalidRowsMessage = response.rows.invalid.length
+      ? `${response.rows.invalid.length} ${response.rows.invalid.length > 1 ? 'filas inválidas' : 'fila inválida'}`
       : ''
 
-      const invalidRowsDetail = response.invalid.rows.length
-      ? '<div class="text-left"><h3 class="text-sm">Filas con errores</h3>' + response.invalid.rows.map(r => {
-        return `<p class="text-xs my-0">Fila ${r.index}: ${Object.values(r.errors).join(' ')}</p>`
+      const invalidCertificatesMessage = response.certificates.invalid.length
+      ? `${response.certificates.invalid.length} ${response.certificates.invalid.length > 1 ? 'certificados inválidos' : 'certificado inválido'}`
+      : ''
+
+      const invalidRowsDetail = response.rows.invalid.length
+      ? '<div class="text-left"><h3 class="text-sm">Filas con errores</h3>' + response.rows.invalid.map(r => {
+        return `<p class="text-xs my-0">Fila ${r.index}: ${Object.values(r.errors).join(', ')}</p>`
       }).join('') + '</div>'
       : ''
 
-      const invalidCertificatesDetail = response.invalid.certificates.length
-      ? '<div class="text-left"><h3 class="text-sm">Certificados con errores</h3>' + response.invalid.certificates.map(c => {
+      const invalidCertificatesDetail = response.certificates.invalid.length
+      ? '<div class="text-left"><h3 class="text-sm">Certificados con errores</h3>' + response.certificates.invalid.map(c => {
         return `<p class="text-xs my-0">Certificado ${c[0].number}: no coinciden los CUIT</p>`
       }).join('') + '</div>'
       : ''
 
-      const certificatesDetail = response.certificates.length
+      const certificatesDetail = response.certificates.valid.length
       ? '<div class="text-left"><h3 class="text-sm">Certificados a Importar</h3>' + response.certificates.map(c => {
         return `<p class="text-xs my-0">
           Número: ${c.number}<br>
@@ -229,6 +233,10 @@ export default {
       ? `${response.autoparts.length} ${response.autoparts.length > 1 ? 'autopartes fueron agregadas' : 'autoparte fue agregada'} al listado`
       : 'No se importaron autopartes'
 
+      const duplicatedRowsMessage = response.valid.length - response.autoparts.length > 0
+      ? `${response.valid.length - response.autoparts.length} ${response.valid.length - response.autoparts.length > 1 ? 'filas se ignoraron' : 'fila se ignoró'} por tener información duplicada`
+      : ''
+
       const invalidRowsMessage = response.invalid.length
       ? `${response.invalid.length} ${response.invalid.length > 1 ? 'filas inválidas' : 'fila inválida'}`
       : ''
@@ -239,7 +247,7 @@ export default {
       }).join('') + '</div>'
       : ''
 
-      return `<p>${[autopartsMessage, invalidRowsMessage].filter(Boolean).join(', ')}</p>` + invalidRowsDetail
+      return `<p>${[duplicatedRowsMessage, autopartsMessage, invalidRowsMessage].filter(Boolean).join(', ')}</p>` + invalidRowsDetail
     },
 
     handleCertificatesExcel () {
@@ -288,7 +296,7 @@ export default {
         error.json().then(data => {
           Swal.fire({
             type: 'warning',
-            text: data.rows
+            text: data
           })
         })
       })
@@ -324,7 +332,7 @@ export default {
         error.json().then(data => {
           Swal.fire({
             type: 'warning',
-            text: data.rows
+            text: data
           })
         })
       })

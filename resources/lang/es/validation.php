@@ -145,6 +145,14 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'cuit' => 'CUIT',
+        'number' => 'número',
+        'active' => 'estado',
+        'brand' => 'marca',
+        'model' => 'modelo',
+        'origin' => 'origen',
+        'product' => 'producto',
+    ],
 
 ];

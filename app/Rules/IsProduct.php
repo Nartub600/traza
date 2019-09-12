@@ -36,6 +36,6 @@ class IsProduct implements Rule
      */
     public function message()
     {
-        return 'No se reconoce el producto.';
+        return 'No se reconoce el producto';
     }
 }

@@ -22,6 +22,7 @@ class ImportController extends Controller
         // sólo la primera hoja
         $rows = (new CertificatesImport)->toCollection($request->excel)[0];
 
+        // terminar si hay más de 100 filas
         if ($rows->count() > 100) {
             return response()->json([
                 'rows' => 'Se admiten 100 autopartes como máximo'
@@ -29,10 +30,10 @@ class ImportController extends Controller
         }
 
         // validación de filas
-        [$valid, $invalid] = $this->validateCertificateRows($rows);
+        [$valid, $invalid, $unique] = $this->validateCertificateRows($rows);
 
         // agrupar por número de certificado
-        $certificates = $this->groupRowsByNumber($valid);
+        $certificates = $this->groupRowsByNumber($unique);
 
         // chequear que cada certificado tenga un solo cuit
         [$loadable, $unloadable] = $this->validateCertificates($certificates);
@@ -40,11 +41,15 @@ class ImportController extends Controller
         $certificates = $this->prepareCertificates($loadable);
 
         return response()->json([
-            'invalid' => [
-                'rows' => $invalid,
-                'certificates' => $unloadable
+            'rows' => [
+                'valid' => $valid,
+                'invalid' => $invalid,
+                'unique' => $unique
             ],
-            'certificates' => $certificates
+            'certificates' => [
+                'valid' => $loadable,
+                'invalid' => $unloadable
+            ]
         ]);
     }
 
@@ -60,11 +65,11 @@ class ImportController extends Controller
         }
 
         // validación de filas
-        [$valid, $invalid] = $this->validateAutopartRows($rows);
+        [$valid, $invalid, $unique] = $this->validateAutopartRows($rows);
 
-        $autoparts = $this->prepareAutoparts($valid);
+        $autoparts = $this->prepareAutoparts($unique);
 
-        return response()->json(compact('autoparts', 'invalid'));
+        return response()->json(compact('autoparts', 'valid', 'invalid'));
     }
 
     private function validateCertificateRows($rows)
@@ -89,7 +94,11 @@ class ImportController extends Controller
             : $invalid->push([ 'row' => $row, 'errors' => $validator->errors(), 'index' => $index + 2 ]);
         });
 
-        return [$valid, $invalid];
+        $unique = $valid->unique(function ($row) {
+            return $row['product'] . $row['name'] . $row['description'] . $row['brand'] . $row['model'] . $row['origin'];
+        });
+
+        return [$valid, $invalid, $unique];
     }
 
     private function validateAutopartRows($rows)
@@ -112,7 +121,11 @@ class ImportController extends Controller
             : $invalid->push([ 'row' => $row, 'errors' => $validator->errors(), 'index' => $index + 2 ]);
         });
 
-        return [$valid, $invalid];
+        $unique = $valid->unique(function ($row) {
+            return $row['product'] . $row['name'] . $row['description'] . $row['brand'] . $row['model'] . $row['origin'];
+        });
+
+        return [$valid, $invalid, $unique];
     }
 
     private function groupRowsByNumber($rows)
@@ -173,7 +186,7 @@ class ImportController extends Controller
             $product = Product::where('id', $row['product'])->orWhere('name', $row['product'])->first();
             $row = $row->toArray();
             $row['product_id'] = $product->id;
-            $row['product'] = $product;
+            $row['product_name'] = $product->name;
 
             return $row;
         });

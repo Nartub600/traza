@@ -29,11 +29,4 @@ class CreateRoleRequest extends FormRequest
             'active' => 'required',
         ];
     }
-
-    public function attributes()
-    {
-        return [
-            'active' => 'estado'
-        ];
-    }
 }
