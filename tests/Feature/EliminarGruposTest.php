@@ -20,6 +20,17 @@ class EliminarGruposTest extends TestCase
         $administrador = factory(User::class)->state('administrador')->create();
 
         $group = factory(Group::class)->create();
+        $users = factory(User::class, 5)->create();
+
+        $users->each(function ($user) use ($group) {
+            $user->groups()->attach($group->id);
+        });
+
+        $this->assertCount(1, $users[0]->groups()->get());
+        $this->assertCount(1, $users[1]->groups()->get());
+        $this->assertCount(1, $users[2]->groups()->get());
+        $this->assertCount(1, $users[3]->groups()->get());
+        $this->assertCount(1, $users[4]->groups()->get());
 
         $response = $this
             ->actingAs($administrador)
@@ -30,5 +41,10 @@ class EliminarGruposTest extends TestCase
         $group = Group::onlyTrashed()->find($group->id);
 
         $this->assertNotNull($group);
+        $this->assertCount(0, $users[0]->groups()->get());
+        $this->assertCount(0, $users[1]->groups()->get());
+        $this->assertCount(0, $users[2]->groups()->get());
+        $this->assertCount(0, $users[3]->groups()->get());
+        $this->assertCount(0, $users[4]->groups()->get());
     }
 }

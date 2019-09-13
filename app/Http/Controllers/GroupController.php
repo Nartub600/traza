@@ -84,7 +84,10 @@ class GroupController extends Controller
 
         $group = Group::findOrFail($id);
 
-        $group->delete();
+        DB::transaction(function () use ($group) {
+            $group->users()->detach();
+            $group->delete();
+        });
 
         return redirect()->route('grupos.index');
     }

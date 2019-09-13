@@ -51,7 +51,7 @@
           @endcan
           @can('eliminar grupos')
             <a
-              class="mx-2 my-0 p-0"
+              class="btn m-0 p-0"
               href="{{ route('grupos.destroy', $group->id) }}"
               onclick="confirmDelete(event, {{ $group }})"
             >
