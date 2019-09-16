@@ -28,8 +28,8 @@ Route::group([
     Route::get('/perfil', 'AccountController@index')->name('perfil.index');
     Route::put('/perfil/{usuario}', 'AccountController@update')->name('perfil.update');
 
-    Route::get('/contrasenia/cambiar', 'PasswordController@index')->name('password.index');
-    Route::put('/contrasenia/cambiar/{usuario}', 'PasswordController@update')->name('password.update');
+    Route::get('/contrasenia/cambiar', 'PasswordController@index')->name('cambiarpassword.index');
+    Route::put('/contrasenia/cambiar/{usuario}', 'PasswordController@update')->name('cambiarpassword.update');
 
     Route::post('/subir/imagenes', 'UploadController@store');
     Route::post('/importar/certificados', 'ImportController@certificates')->name('import.certificates');

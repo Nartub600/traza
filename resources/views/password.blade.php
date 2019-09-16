@@ -14,7 +14,7 @@
   <hr class="my-4">
 
   <div class="bg-white p-4 mb-4">
-    <form action="{{ route('password.update', $user->id) }}" method="post">
+    <form action="{{ route('cambiarpassword.update', $user->id) }}" method="post">
       @method('put')
       @csrf
 
