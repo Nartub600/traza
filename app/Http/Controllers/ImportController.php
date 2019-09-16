@@ -22,10 +22,10 @@ class ImportController extends Controller
         // sólo la primera hoja
         $rows = (new CertificatesImport)->toCollection($request->excel)[0];
 
-        // terminar si hay más de 100 filas
-        if ($rows->count() > 100) {
+        // terminar si hay más de 1000 filas
+        if ($rows->count() > 1000) {
             return response()->json([
-                'rows' => 'Se admiten 100 autopartes como máximo'
+                'rows' => 'Se admiten 1000 autopartes como máximo'
             ], 422);
         }
 
