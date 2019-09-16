@@ -204,7 +204,7 @@ export default {
       : ''
 
       const certificatesDetail = response.certificates.valid.length
-      ? '<div class="text-left"><h3 class="text-sm">Certificados a Importar</h3>' + response.certificates.map(c => {
+      ? '<div class="text-left"><h3 class="text-sm">Certificados a Importar</h3>' + response.certificates.valid.map(c => {
         return `<p class="text-xs my-0">
           Número: ${c.number}<br>
           CUIT: ${c.cuit}<br>
@@ -212,7 +212,7 @@ export default {
           <ul class="text-xs">
             ${c.autoparts.map(a => {
               return `<li>
-                Producto: ${a.product.name}<br>
+                Producto: ${a.product_name}<br>
                 Autoparte: ${a.name}<br>
                 Descripción: ${a.description}<br>
                 Marca: ${a.brand}<br>
@@ -268,7 +268,7 @@ export default {
           title: 'Confirmar importación',
           html: this.parseCertificatesFeedback(data),
           type: 'question',
-          showConfirmButton: data.certificates.length > 0,
+          showConfirmButton: data.certificates.valid.length > 0,
           showCancelButton: true,
           confirmButtonText: 'Importar',
           cancelButtonText: 'Volver',
@@ -278,7 +278,7 @@ export default {
           preConfirm: () => fetch('/certificados', {
             method: 'post',
             body: JSON.stringify({
-              'certificates': data.certificates
+              'certificates': data.certificates.valid
             }),
             headers: {
               'X-CSRF-TOKEN': Laravel.csrfToken,

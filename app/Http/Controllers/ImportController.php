@@ -47,7 +47,7 @@ class ImportController extends Controller
                 'unique' => $unique
             ],
             'certificates' => [
-                'valid' => $loadable,
+                'valid' => $certificates,
                 'invalid' => $unloadable
             ]
         ]);
