@@ -79,7 +79,7 @@ class ImportController extends Controller
 
         $rows->each(function ($row, $index) use ($valid, $invalid) {
             $validator = Validator::make($row->toArray(), [
-                'number'      => ['required', 'numeric', new IsNotCertificate],
+                'number'      => ['required', new IsNotCertificate],
                 'cuit'        => ['required', 'regex:/[0-9]{2}-[0-9]{6,8}-[0-9]/'],
                 'product'     => ['required', new IsProduct],
                 'name'        => 'required',
