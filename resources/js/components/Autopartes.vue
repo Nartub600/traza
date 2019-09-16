@@ -296,7 +296,7 @@ export default {
         error.json().then(data => {
           Swal.fire({
             type: 'warning',
-            text: data
+            text: data.rows || 'Error inesperado'
           })
         })
       })
@@ -332,7 +332,7 @@ export default {
         error.json().then(data => {
           Swal.fire({
             type: 'warning',
-            text: data
+            text: data.rows || 'Error inesperado'
           })
         })
       })
