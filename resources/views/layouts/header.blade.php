@@ -24,7 +24,7 @@
         @endguest
         @auth
         <div class="flex items-center -mx-2">
-          <a href="#" class="text-celeste uppercase no-underline font-black mr-8">
+          <a href="{{ route('trazas.index') }}" class="text-celeste uppercase no-underline font-black mr-8">
             Trazas
           </a>
 
