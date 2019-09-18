@@ -24,7 +24,7 @@ class UpdateCertificateRequest extends FormRequest
     public function rules()
     {
         return [
-            'number' => 'required',
+            'number' => 'required|max:20',
             'cuit' => [
                 'required',
                 'regex:/[0-9]{2}-[0-9]{6,8}-[0-9]/'

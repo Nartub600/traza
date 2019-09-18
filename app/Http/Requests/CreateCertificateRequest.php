@@ -25,7 +25,7 @@ class CreateCertificateRequest extends FormRequest
     {
         return [
             // single
-            'number' => 'required_without:certificates',
+            'number' => 'required_without:certificates|max:20',
             'cuit' => [
                 'required_without:certificates',
                 'regex:/[0-9]{2}-[0-9]{6,8}-[0-9]/'
@@ -39,7 +39,7 @@ class CreateCertificateRequest extends FormRequest
             'autoparts.*.origin'      => 'required_without:certificates|string|max:255',
 
             // bulk
-            'certificates.*.number' => 'required_without:number',
+            'certificates.*.number' => 'required_without:number|max:20',
             'certificates.*.cuit' => [
                 'required_without:cuit',
                 'regex:/[0-9]{2}-[0-9]{6,8}-[0-9]/'
