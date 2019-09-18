@@ -21,6 +21,7 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         '/subir/imagenes',
         '/importar/certificados',
-        '/importar/autopartes'
+        '/importar/autopartes',
+        '/homologar', // TODO: se debería poder usar el token para esto
     ];
 }
