@@ -42,7 +42,7 @@
               @can('listar perfiles')<li class="uppercase my-1"><a href="{{ route('perfiles.index') }}">Perfiles</a></li>@endcan
               @can('listar grupos')<li class="uppercase my-1"><a href="{{ route('grupos.index') }}">Grupos de usuarios</a></li>@endcan
               @can('listar productos')<li class="uppercase my-1"><a href="{{ route('productos.index') }}">Productos (Categorías)</a></li>@endcan
-              @can('listar lcm')<li class="uppercase mt-1"><a href="{{ route('lcms.index') }}">LCM</a></li>@endcan
+              @can('listar lcms')<li class="uppercase mt-1"><a href="{{ route('lcms.index') }}">LCM</a></li>@endcan
             </ul>
           </div>
           @endcanany
