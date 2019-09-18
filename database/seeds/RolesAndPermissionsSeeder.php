@@ -40,12 +40,12 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::create(['name' => 'eliminar productos', 'grupo' => 'datos maestros', 'subgrupo' => 'administrador de productos']);
         Permission::create(['name' => 'exportar productos', 'grupo' => 'datos maestros', 'subgrupo' => 'administrador de productos']);
 
-        Permission::create(['name' => 'listar lcm', 'grupo' => 'datos maestros', 'subgrupo' => 'administrador de lcm']);
-        Permission::create(['name' => 'crear lcm', 'grupo' => 'datos maestros', 'subgrupo' => 'administrador de lcm']);
-        Permission::create(['name' => 'ver lcm', 'grupo' => 'datos maestros', 'subgrupo' => 'administrador de lcm']);
-        Permission::create(['name' => 'editar lcm', 'grupo' => 'datos maestros', 'subgrupo' => 'administrador de lcm']);
-        Permission::create(['name' => 'eliminar lcm', 'grupo' => 'datos maestros', 'subgrupo' => 'administrador de lcm']);
-        Permission::create(['name' => 'exportar lcm', 'grupo' => 'datos maestros', 'subgrupo' => 'administrador de lcm']);
+        Permission::create(['name' => 'listar lcms', 'grupo' => 'datos maestros', 'subgrupo' => 'administrador de lcms']);
+        Permission::create(['name' => 'crear lcms', 'grupo' => 'datos maestros', 'subgrupo' => 'administrador de lcms']);
+        Permission::create(['name' => 'ver lcms', 'grupo' => 'datos maestros', 'subgrupo' => 'administrador de lcms']);
+        Permission::create(['name' => 'editar lcms', 'grupo' => 'datos maestros', 'subgrupo' => 'administrador de lcms']);
+        Permission::create(['name' => 'eliminar lcms', 'grupo' => 'datos maestros', 'subgrupo' => 'administrador de lcms']);
+        Permission::create(['name' => 'exportar lcms', 'grupo' => 'datos maestros', 'subgrupo' => 'administrador de lcms']);
 
         Permission::create(['name' => 'listar catalogo', 'grupo' => 'datos maestros', 'subgrupo' => 'administrador de catalogo']);
         Permission::create(['name' => 'crear catalogo', 'grupo' => 'datos maestros', 'subgrupo' => 'administrador de catalogo']);

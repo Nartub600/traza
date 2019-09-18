@@ -23,6 +23,7 @@ Route::group([
         'perfiles'     => 'RoleController',
         'productos'    => 'ProductController',
         'certificados' => 'CertificateController',
+        'lcms'         => 'LCMController',
     ]);
 
     Route::get('/perfil', 'AccountController@index')->name('perfil.index');
