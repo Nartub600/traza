@@ -53,5 +53,4 @@ class UserPolicy
         }
         return false;
     }
-
 }

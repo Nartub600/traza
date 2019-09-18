@@ -66,5 +66,4 @@ class ProductPolicy
         }
         return false;
     }
-
 }

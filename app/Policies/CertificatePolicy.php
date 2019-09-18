@@ -66,5 +66,4 @@ class CertificatePolicy
         }
         return false;
     }
-
 }

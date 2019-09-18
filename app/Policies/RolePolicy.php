@@ -53,5 +53,4 @@ class RolePolicy
         }
         return false;
     }
-
 }

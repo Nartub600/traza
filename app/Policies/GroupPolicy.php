@@ -53,5 +53,4 @@ class GroupPolicy
         }
         return false;
     }
-
 }
