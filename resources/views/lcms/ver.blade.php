@@ -17,7 +17,7 @@
   <div class="bg-white p-4 mb-4">
     <div class="flex flex-wrap -mx-4">
       <div class="w-1/2 form-group item-form px-4">
-        <label for="gde" class="mb-4">Nombre <sup>*</sup></label>
+        <label for="gde" class="mb-4">Número GDE <sup>*</sup></label>
         <input readonly type="text" name="gde" class="form-control" required aria-required value="{{ $lcm->gde }}">
       </div>
 

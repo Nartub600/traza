@@ -32,7 +32,7 @@
 
       <div class="flex flex-wrap -mx-4">
         <div class="w-1/2 form-group item-form px-4">
-          <label for="gde" class="mb-4">Nombre <sup>*</sup></label>
+          <label for="gde" class="mb-4">Número GDE <sup>*</sup></label>
           <input type="text" name="gde" class="form-control" required aria-required value="{{ old('gde', $lcm->gde) }}">
           <p class="help-block error hidden">Ingrese el número GDE</p>
         </div>
