@@ -4,12 +4,14 @@
 <div class="mx-8 my-auto md:m-auto w-full md:max-w-lg">
   <div class="bg-gris-intermedio border border-white border-solid p-8">
     <div class="bg-white flex flex-col items-center border border-gris-claro border-solid">
-      <img
-        alt="Argentina.gob.ar"
-        src="{{ asset('images/argentinagob.svg') }}"
-        height="50"
-        class="my-6"
-      >
+      <a href="{{ route('home') }}" aria-label="Argentina.gob.ar Presidencia de la Nación">
+        <img
+          alt="Argentina.gob.ar"
+          src="{{ asset('images/argentinagob.svg') }}"
+          height="50"
+          class="my-6"
+        >
+      </a>
 
       <hr class="m-0 w-full">
 

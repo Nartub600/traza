@@ -35,27 +35,31 @@
         </template>
 
         @if ($errors->any())
-        <div class="alert alert-danger mx-3 mt-8">
-          <h5>Se han producido los siguientes errores:</h5>
-          <ol>
-            @foreach ($errors->all() as $error)
-              <li>{{ $error }}</li>
-            @endforeach
-          </ol>
+        <div class="alert alert-danger mx-3 mt-8 w-1/2 mx-auto">
+          <h5 class="text-center mt-0">Se han producido errores</h5>
+          <ul>
+            @error('autoparts')
+              <li>{{ $message }}</li>
+            @enderror
+          </ul>
         </div>
         @endif
 
         <div class="flex flex-wrap -mx-4">
-          <div class="w-1/2 form-group item-form px-4">
+          <div class="w-1/2 form-group item-form px-4 @error('number') has-error @enderror">
             <label for="number" class="mb-4">Número de certificado <sup>*</sup></label>
             <input type="text" name="number" class="form-control" required aria-required value="{{ old('number') }}">
-            <p class="help-block error hidden">Ingrese el número del certificado</p>
+            @error('number')
+              <p class="help-block error">{{ $message }}</p>
+            @enderror
           </div>
 
-          <div class="w-1/2 form-group item-form px-4">
+          <div class="w-1/2 form-group item-form px-4 @error('cuit') has-error @enderror">
             <label for="cuit" class="mb-4">CUIT <sup>*</sup></label>
             <input type="text" name="cuit" class="form-control" required aria-required value="{{ old('cuit') }}">
-            <p class="help-block error hidden">Ingrese la CUIT</p>
+            @error('cuit')
+              <p class="help-block error">{{ $message }}</p>
+            @enderror
           </div>
         </div>
 
