@@ -153,6 +153,7 @@ return [
         'model' => 'modelo',
         'origin' => 'origen',
         'product' => 'producto',
+        'password' => 'contraseña'
     ],
 
 ];

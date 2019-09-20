@@ -57,7 +57,7 @@ class CreateCertificateRequest extends FormRequest
     public function messages()
     {
         return [
-            'autoparts.required' => 'Debe cargar al menos una autoparte'
+            'autoparts.required_without' => 'Debe cargar al menos una autoparte'
         ];
     }
 }
