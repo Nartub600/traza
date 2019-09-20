@@ -14,7 +14,14 @@
         <button type="button" class="btn btn-success uppercase mx-2" @click="beginCertificatesImport">
           Cargar Desde Excel
         </button>
-        <input action="{{ route('import.certificates') }}" class="hidden" type="file" ref="excel" @input="handleCertificatesExcel">
+        <input
+          action="{{ route('import.certificates') }}"
+          class="hidden"
+          type="file"
+          ref="excel"
+          @input="handleCertificatesExcel"
+          accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+        >
 
         @can('crear certificados')
         <a href="{{ route('certificados.create') }}" class="uppercase btn btn-success">

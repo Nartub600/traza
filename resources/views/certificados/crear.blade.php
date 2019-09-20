@@ -75,7 +75,14 @@
           <button type="button" class="btn btn-success uppercase mx-2" @click="beginAutopartsImport">
             Cargar Excel
           </button>
-          <input action="{{ route('import.autoparts') }}" class="hidden" type="file" ref="excel" @change="handleAutopartsExcel">
+          <input
+            action="{{ route('import.autoparts') }}"
+            class="hidden"
+            type="file"
+            ref="excel"
+            @change="handleAutopartsExcel"
+            accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+          >
 
           <button @click="clearIndex" type="button" class="btn btn-success uppercase mx-2">
             Vaciar listado
