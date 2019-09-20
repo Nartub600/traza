@@ -37,7 +37,7 @@
           <p class="help-block error hidden">Ingrese el nombre</p>
         </div>
 
-        <div class="w-1/2 form-group item-form px-4">
+        <div class="w-1/2 form-group item-form px-4 relative">
           <label for="family" class="mb-4">Familia <sup>*</sup></label>
           <select name="family_id" class="form-control" id="select-family">
             <option data-placeholder="true"></option>
@@ -48,9 +48,9 @@
           <p class="help-block error hidden">Ingrese la familia</p>
         </div>
 
-        <div class="w-1/2 form-group item-form px-4">
+        <div class="w-1/2 form-group item-form px-4 relative">
           <label for="active" class="mb-4">Estado <sup>*</sup></label>
-          <select name="active" class="form-control" id="select-active">
+          <select required name="active" class="form-control" id="select-active">
             <option data-placeholder="true"></option>
             <option value="1" @if (old('active', $product->active) === true) selected @endif>Activo</option>
             <option value="0" @if (old('active', $product->active) === true) selected @endif>Inactivo</option>

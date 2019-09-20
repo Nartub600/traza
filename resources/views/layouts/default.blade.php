@@ -7,9 +7,9 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <script>
-        window.Laravel = {!! json_encode([
-            'csrfToken' => csrf_token(),
-        ]) !!};
+      window.Laravel = {!! json_encode([
+        'csrfToken' => csrf_token(),
+      ]) !!};
     </script>
 
     <script src="{{ asset('js/estilos.js') }}"></script>

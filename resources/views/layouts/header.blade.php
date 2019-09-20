@@ -7,7 +7,7 @@
             <img alt="Argentina.gob.ar" src="{{ asset('images/argentinagob.svg') }}" height="50">
           </a>
           @guest
-          <a href="{{ route('login') }}" class="btn btn-login btn-link visible-xs">Login</a>
+          <a href="{{ route('login') }}" class="btn btn-login btn-link visible-xs m-0">Login</a>
           @endguest
           @auth
           <a
@@ -20,7 +20,7 @@
           @endauth
         </div>
         @guest
-        <a href="{{ route('login') }}" class="btn btn-login btn-link hidden-xs">Login</a>
+        <a href="{{ route('login') }}" class="btn btn-login btn-link hidden-xs m-0">Login</a>
         @endguest
         @auth
         <div class="flex items-center -mx-2">

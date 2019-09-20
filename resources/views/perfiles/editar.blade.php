@@ -43,9 +43,9 @@
             <p class="help-block error hidden">Ingrese el nombre del perfil</p>
           </div>
 
-          <div class="w-1/2 form-group item-form px-4">
+          <div class="w-1/2 form-group item-form px-4 relative">
             <label for="name" class="mb-4">Estado <sup>*</sup></label>
-            <select name="active" class="form-control" value="{{ old('active', $role->active) }}" id="select-active">
+            <select required name="active" class="form-control" value="{{ old('active', $role->active) }}" id="select-active">
               <option data-placeholder="true"></option>
               <option @if (old('active', $role->active) === true) selected @endif value="1">Activo</option>
               <option @if (old('active', $role->active) === false) selected @endif value="0">Inactivo</option>

@@ -22,6 +22,21 @@ button:focus {
   @apply h-auto self-center;
 }
 
+.ss-single-selected, .ss-multi-selected {
+  @apply border-0 !important;
+}
+
+.form-control.ss-main {
+  @apply px-0;
+}
+
+[data-ssid] {
+  @apply absolute appearance-none border-0 shadow-none;
+  width: calc(100% - 32px); /*¯\_(ツ)_/¯*/
+  height: 44px !important;
+  display: unset !important;
+}
+
 @tailwind utilities;
 
 .rotate-180 {

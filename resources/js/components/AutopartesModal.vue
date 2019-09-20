@@ -9,7 +9,7 @@
           </div>
           <div class="modal-body pb-0">
             <div class="flex flex-wrap -mx-4">
-              <div class="w-1/2 form-group item-form px-4">
+              <div class="w-1/2 form-group item-form px-4 relative">
                 <label class="mb-4">Producto <sup>*</sup></label>
                 <select
                   required

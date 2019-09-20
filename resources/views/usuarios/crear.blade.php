@@ -48,9 +48,9 @@
           <p class="help-block error hidden">Ingrese el correo electrónico</p>
         </div>
 
-        <div class="w-1/2 form-group item-form px-4">
+        <div class="w-1/2 form-group item-form px-4 relative">
           <label for="name" class="mb-4">Estado <sup>*</sup></label>
-          <select name="active" class="form-control" value="{{ old('active') }}" id="select-active">
+          <select required name="active" class="form-control" value="{{ old('active') }}" id="select-active">
             <option data-placeholder="true"></option>
             <option value="1">Activo</option>
             <option value="0">Inactivo</option>
@@ -69,9 +69,9 @@
           <p class="help-block error hidden">Confirme la contraseña</p>
         </div>
 
-        <div class="w-1/2 form-group item-form px-4">
+        <div class="w-1/2 form-group item-form px-4 relative">
           <label for="name" class="mb-4">Perfil (Permite seleccionar varios)</label>
-          <select multiple name="roles[]" class="form-control" id="select-roles">
+          <select required multiple name="roles[]" class="form-control" id="select-roles">
             @foreach ($roles as $role)
             <option class="capitalize" value="{{ $role->id }}">{{ $role->name }}</option>
             @endforeach
@@ -79,9 +79,9 @@
           <p class="help-block error hidden">Seleccione al menos un perfil</p>
         </div>
 
-        <div class="w-1/2 form-group item-form px-4">
+        <div class="w-1/2 form-group item-form px-4 relative">
           <label for="name" class="mb-4">Grupo de usuarios (Permite seleccionar varios)</label>
-          <select multiple name="groups[]" class="form-control" id="select-groups">
+          <select required multiple name="groups[]" class="form-control" id="select-groups">
             @foreach ($groups as $group)
             <option value="{{ $group->id }}">{{ $group->name }}</option>
             @endforeach

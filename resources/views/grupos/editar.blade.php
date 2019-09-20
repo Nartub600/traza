@@ -37,16 +37,16 @@
           <p class="help-block error hidden">Ingrese el nombre</p>
         </div>
 
-        <div class="w-1/2 form-group item-form px-4">
+        <div class="w-1/2 form-group item-form px-4 relative">
           <label for="name" class="mb-4">Estado <sup>*</sup></label>
-          <select name="active" class="form-control" id="select-active">
+          <select required name="active" class="form-control" id="select-active">
             <option data-placeholder="true"></option>
             <option value="1" @if (old('active', $group->active) === true) selected @endif>Activo</option>
             <option value="0" @if (old('active', $group->active) === false) selected @endif>Inactivo</option>
           </select>
         </div>
 
-        <div class="w-1/2 form-group item-form px-4">
+        <div class="w-1/2 form-group item-form px-4 relative">
           <label for="name" class="mb-4">Usuarios (Permite seleccionar varios)</label>
           <select multiple name="users[]" class="form-control" id="select-users">
             @foreach ($users as $user)
