@@ -209,9 +209,9 @@ export default {
           Número: ${c.number}<br>
           CUIT: ${c.cuit}<br>
           Autopartes:
-          <ul class="text-xs">
+          <ul class="text-xs flex flex-wrap">
             ${c.autoparts.map(a => {
-              return `<li>
+              return `<li class="w-1/2 p-1">
                 Producto: ${a.product_name}<br>
                 Autoparte: ${a.name}<br>
                 Descripción: ${a.description}<br>
@@ -253,36 +253,25 @@ export default {
     handleCertificatesExcel () {
       const importData = new FormData()
       importData.append('excel', this.$refs.excel.files[0]);
-      fetch('/importar/certificados', {
-        method: 'post',
-        body: importData
-      })
+      axios.post('/importar/certificados', importData)
       .then(response => {
-        if (!response.ok) {
-          throw response
-        }
-        return response.json()
-      })
-      .then(data => {
         Swal.fire({
+          width: '64rem',
           title: 'Confirmar importación',
-          html: this.parseCertificatesFeedback(data),
+          html: this.parseCertificatesFeedback(response.data),
           type: 'question',
-          showConfirmButton: data.certificates.valid.length > 0,
+          showConfirmButton: response.data.certificates.valid.length > 0,
           showCancelButton: true,
           confirmButtonText: 'Importar',
           cancelButtonText: 'Volver',
           reverseButtons: true,
           confirmButtonColor: '#0072BB',
           showLoaderOnConfirm: true,
-          preConfirm: () => fetch('/certificados', {
-            method: 'post',
-            body: JSON.stringify({
-              'certificates': data.certificates.valid
-            }),
+          preConfirm: () => axios.post('/certificados', {
+            'certificates': response.data.certificates.valid
+          }, {
             headers: {
               'X-CSRF-TOKEN': Laravel.csrfToken,
-              'Content-Type': 'application/json',
               'Accept': 'application/json',
             }
           })
@@ -293,11 +282,9 @@ export default {
         })
       })
       .catch(error => {
-        error.json().then(data => {
-          Swal.fire({
-            type: 'warning',
-            text: data.rows || 'Error inesperado'
-          })
+        Swal.fire({
+          type: 'warning',
+          text: error.response.data.rows || 'Error inesperado'
         })
       })
     },
@@ -305,19 +292,10 @@ export default {
     handleAutopartsExcel () {
       const formData = new FormData()
       formData.append('excel', this.$refs.excel.files[0]);
-      fetch('/importar/autopartes', {
-        method: 'post',
-        body: formData
-      })
+      axios.post('/importar/autopartes', formData)
       .then(response => {
-        if (!response.ok) {
-          throw response
-        }
-        return response.json()
-      })
-      .then(data => {
         this.destroyTable()
-        this.autopartes = data.autoparts
+        this.autopartes = response.data.autoparts
         this.$nextTick(() => {
           this.initTable()
         })
@@ -329,11 +307,9 @@ export default {
         })
       })
       .catch(error => {
-        error.json().then(data => {
-          Swal.fire({
-            type: 'warning',
-            text: data.rows || 'Error inesperado'
-          })
+        Swal.fire({
+          type: 'warning',
+          text: error.response.data.rows || 'Error inesperado'
         })
       })
     }

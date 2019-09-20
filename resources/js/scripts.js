@@ -4,6 +4,7 @@ window.jQuery = window.$
 window.Swal = require('sweetalert2')
 window.SlimSelect = require('slim-select')
 window.Swiper = require('swiper')
+window.axios = require('axios')
 require('bootstrap/dist/js/bootstrap.min.js')
 require('datatables.net-dt')
 
