@@ -11,7 +11,8 @@ Route::post('contrasenia/recuperar', 'Auth\ResetPasswordController@reset')->name
 
 Route::get('/', 'AppController@index')->name('home')->middleware('auth');
 
-Route::post('/homologar', 'HomologarController@store');
+Route::post('/homologar/empezar', 'HomologarController@empezar');
+Route::post('/homologar/finalizar', 'HomologarController@finalizar');
 
 Route::group([
     'middleware' => [
