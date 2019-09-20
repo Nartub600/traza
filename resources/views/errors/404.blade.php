@@ -1,5 +1,5 @@
-@extends('errors::minimal')
+@extends('errors::traza')
 
-@section('title', __('Not Found'))
+@section('title', __('No existe la página'))
 @section('code', '404')
-@section('message', __('Not Found'))
+@section('message', __('No existe la página'))

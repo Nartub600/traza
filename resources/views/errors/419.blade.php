@@ -1,5 +1,5 @@
-@extends('errors::minimal')
+@extends('errors::traza')
 
-@section('title', __('Page Expired'))
+@section('title', __('Página expiró'))
 @section('code', '419')
-@section('message', __('Page Expired'))
+@section('message', __('Página expiró'))

@@ -114,7 +114,7 @@
                     revert: (uniqueFileId, load) => ($delete($attrs.value.pictures, $attrs.value.pictures.indexOf(uniqueFileId[0])), load())
                   }"
                   @addfile="() => uploading = true"
-                  @processfile="() => uploading = false"
+                  @processfiles="() => uploading = false"
                 >
                 </file-pond>
                 <p class="help-block error hidden">Agregue una foto</p>
