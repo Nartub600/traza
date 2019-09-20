@@ -45,7 +45,7 @@
 
         <div class="w-1/2 form-group item-form px-4">
           <label for="email" class="mb-4">Correo Electrónico <sup>*</sup></label>
-          <input type="text" name="email" class="form-control" required aria-required value="{{ $user->email }}">
+          <input type="email" name="email" class="form-control" required aria-required value="{{ $user->email }}">
           <p class="help-block error hidden">Ingrese el correo electrónico</p>
         </div>
 
