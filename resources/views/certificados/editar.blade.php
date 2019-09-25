@@ -122,7 +122,7 @@
             <tr v-for="(autoparte, index) in autopartes">
               <td class="align-middle">@{{ index + 1 }}</td>
               <td class="align-middle">@{{ autoparte.product_name }}</td>
-              <td class="align-middle">@{{ autoparte.name }}</td>
+              <td class="align-middle">@{{ autoparte.family_name }}</td>
               <td class="align-middle">@{{ autoparte.description }}</td>
               <td class="align-middle">@{{ autoparte.brand }}</td>
               <td class="align-middle">@{{ autoparte.model }}</td>
