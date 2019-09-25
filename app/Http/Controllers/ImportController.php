@@ -211,13 +211,13 @@ class ImportController extends Controller
     private function prepareAutoparts($rows)
     {
         return $rows->map(function ($row) {
-            $product = Product::where('id', $row['product'])->orWhere('name', $row['product'])->first();
             $row = $row->toArray();
+
+            $product = Product::where('id', $row['product'])->orWhere('name', $row['product'])->first();
             $row['product_id'] = $product->id;
             $row['product_name'] = $product->name;
 
             $family = Product::where('id', $row['family'])->orWhere('name', $row['family'])->first();
-            $row = $row->toArray();
             $row['family_id'] = $family->id;
             $row['family_name'] = $family->name;
 
