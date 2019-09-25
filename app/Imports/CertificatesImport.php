@@ -17,7 +17,7 @@ class CertificatesImport implements WithMapping, WithStartRow
             'cuit'          => $row[1],
             'product'       => (string) $row[2],
             'family'        => (string) $row[3],
-            'ncm'           => $row[4],
+            'ncm_category'  => $row[4],
             'manufacturer'  => $row[5],
             'importer'      => $row[6],
             'business_name' => $row[7],

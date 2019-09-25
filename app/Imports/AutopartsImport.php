@@ -15,7 +15,7 @@ class AutopartsImport implements WithMapping, WithStartRow
         return [
             'product'       => (string) $row[0],
             'family'        => (string) $row[1],
-            'ncm'           => $row[2],
+            'ncm_category'  => $row[2],
             'manufacturer'  => $row[3],
             'importer'      => $row[4],
             'business_name' => $row[5],
