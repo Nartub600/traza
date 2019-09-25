@@ -36,7 +36,7 @@
           <th>DESCRIPCIÓN</th>
           <th>MARCA</th>
           <th>MODELO</th>
-          <th>FOTO</th>
+          {{-- <th>FOTO</th> --}}
           <th>ORIGEN</th>
         </tr>
       </thead>
@@ -50,7 +50,7 @@
           <td class="align-middle">{{ $autopart->description }}</td>
           <td class="align-middle">{{ $autopart->brand }}</td>
           <td class="align-middle">{{ $autopart->model }}</td>
-          <td class="align-middle"><img class="w-64" src="{{ $autopart->picture }}"></td>
+          {{-- <td class="align-middle"><img class="w-64" src="{{ $autopart->picture }}"></td> --}}
           <td class="align-middle">{{ $autopart->origin }}</td>
         </tr>
         @endforeach
