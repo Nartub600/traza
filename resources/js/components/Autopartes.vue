@@ -273,10 +273,8 @@ export default {
             location.reload()
           }
         }).catch(error => {
-          Swal.fire({
-            type: 'warning',
-            text: 'Error inesperado'
-          })
+          console.log(error)
+          return false
         })
       })
       .catch(error => {
