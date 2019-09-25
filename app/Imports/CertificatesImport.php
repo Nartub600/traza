@@ -30,7 +30,7 @@ class CertificatesImport implements WithMapping, WithStartRow
             'size'          => $row[13],
             'formulation'   => $row[14],
             'application'   => $row[15],
-            'certified_at'  => Carbon::parse($row[16]),
+            'certified_at'  => Carbon::parse($row[16])->format('Y-m-d'),
             'license'       => $row[17],
         ];
     }
