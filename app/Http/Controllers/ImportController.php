@@ -96,7 +96,7 @@ class ImportController extends Controller
                 'formulation'   => 'required|max:255',
                 'application'   => 'required|max:255',
                 'license'       => 'required|max:25',
-                'certified_at'  => 'required|max:255',
+                'certified_at'  => 'required|date|max:255',
             ]);
 
             $validator->passes()
@@ -137,7 +137,7 @@ class ImportController extends Controller
                 'formulation'   => 'required|max:255',
                 'application'   => 'required|max:255',
                 'license'       => 'required|max:25',
-                'certified_at'  => 'required|max:255',
+                'certified_at'  => 'required|date|max:255',
             ]);
 
             $validator->passes()
