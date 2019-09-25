@@ -14,13 +14,13 @@ button:focus {
   @apply outline-none;
 }
 
-.swiper-container {
+/*.swiper-container {
   @apply w-64;
-}
+}*/
 
-.swiper-slide {
+/*.swiper-slide {
   @apply h-auto self-center;
-}
+}*/
 
 .ss-single-selected, .ss-multi-selected {
   @apply border-0 !important;
@@ -30,9 +30,13 @@ button:focus {
   @apply px-0;
 }
 
+.swal2-styled:focus {
+  @apply shadow-none !important;
+}
+
 [data-ssid] {
   @apply absolute appearance-none border-0 shadow-none;
-  width: calc(100% - 32px); /*¯\_(ツ)_/¯*/
+  width: calc(100% - 16px); /*¯\_(ツ)_/¯*/
   height: 44px !important;
   display: unset !important;
 }

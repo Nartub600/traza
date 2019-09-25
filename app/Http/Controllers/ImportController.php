@@ -79,23 +79,37 @@ class ImportController extends Controller
 
         $rows->each(function ($row, $index) use ($valid, $invalid) {
             $validator = Validator::make($row->toArray(), [
-                'number'      => ['required', new IsNotCertificate],
-                'cuit'        => ['required', 'regex:/[0-9]{2}-[0-9]{6,8}-[0-9]/'],
-                'product'     => ['required', new IsProduct],
-                'name'        => 'required',
-                'description' => 'required',
-                'brand'       => 'required',
-                'model'       => 'required',
-                'origin'      => 'required',
+                'number'        => ['required', 'max:20', new IsNotCertificate],
+                'cuit'          => ['required', 'regex:/[0-9]{2}-[0-9]{6,8}-[0-9]/'],
+                'product'       => ['required', new IsProduct],
+                'family'        => ['required', new IsProduct],
+                'description'   => 'required|max:255',
+                'ncm'           => 'required|max:255',
+                'manufacturer'  => 'required|max:255',
+                'importer'      => 'required|max:255',
+                'business_name' => 'required|max:255',
+                'part_number'   => 'required|max:255',
+                'brand'         => 'required|max:255',
+                'model'         => 'required|max:255',
+                'origin'        => 'required|max:100',
+                'size'          => 'required|max:255',
+                'formulation'   => 'required|max:255',
+                'application'   => 'required|max:255',
+                'license'       => 'required|max:25',
+                'certified_at'  => 'required|max:255',
             ]);
 
             $validator->passes()
             ? $valid->push($row)
-            : $invalid->push([ 'row' => $row, 'errors' => $validator->errors(), 'index' => $index + 2 ]);
+            : $invalid->push([
+                'row'    => $row,
+                'errors' => $validator->errors(),
+                'index'  => $index + 2
+            ]);
         });
 
         $unique = $valid->unique(function ($row) {
-            return $row['product'] . $row['name'] . $row['description'] . $row['brand'] . $row['model'] . $row['origin'];
+            return $row['product'] . $row['description'] . $row['brand'] . $row['model'] . $row['origin'];
         });
 
         return [$valid, $invalid, $unique];
@@ -108,21 +122,35 @@ class ImportController extends Controller
 
         $rows->each(function ($row, $index) use ($valid, $invalid) {
             $validator = Validator::make($row->toArray(), [
-                'product'     => ['required', new IsProduct],
-                'name'        => 'required',
-                'description' => 'required',
-                'brand'       => 'required',
-                'model'       => 'required',
-                'origin'      => 'required',
+                'product'       => ['required', new IsProduct],
+                'family'        => ['required', new IsProduct],
+                'description'   => 'required|max:255',
+                'ncm'           => 'required|max:255',
+                'manufacturer'  => 'required|max:255',
+                'importer'      => 'required|max:255',
+                'business_name' => 'required|max:255',
+                'part_number'   => 'required|max:255',
+                'brand'         => 'required|max:255',
+                'model'         => 'required|max:255',
+                'origin'        => 'required|max:100',
+                'size'          => 'required|max:255',
+                'formulation'   => 'required|max:255',
+                'application'   => 'required|max:255',
+                'license'       => 'required|max:25',
+                'certified_at'  => 'required|max:255',
             ]);
 
             $validator->passes()
             ? $valid->push($row)
-            : $invalid->push([ 'row' => $row, 'errors' => $validator->errors(), 'index' => $index + 2 ]);
+            : $invalid->push([
+                'row'    => $row,
+                'errors' => $validator->errors(),
+                'index'  => $index + 2
+            ]);
         });
 
         $unique = $valid->unique(function ($row) {
-            return $row['product'] . $row['name'] . $row['description'] . $row['brand'] . $row['model'] . $row['origin'];
+            return $row['product'] . $row['description'] . $row['brand'] . $row['model'] . $row['origin'];
         });
 
         return [$valid, $invalid, $unique];
@@ -187,6 +215,11 @@ class ImportController extends Controller
             $row = $row->toArray();
             $row['product_id'] = $product->id;
             $row['product_name'] = $product->name;
+
+            $family = Product::where('id', $row['family'])->orWhere('name', $row['family'])->first();
+            $row = $row->toArray();
+            $row['family_id'] = $family->id;
+            $row['family_name'] = $family->name;
 
             return $row;
         });

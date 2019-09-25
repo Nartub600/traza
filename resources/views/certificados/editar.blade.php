@@ -6,6 +6,7 @@
   :old-autopartes="{{ collect(old('autoparts', [])) }}"
   :products="{{ $products }}"
   :certificate="{{ $certificate }}"
+  autoparts-template="{{ asset('plantillas/autopartes.xlsx') }}"
 >
   <div class="container-fluid">
     <ol class="breadcrumb">
@@ -28,22 +29,33 @@
         <template v-for="(autoparte, index) in autopartes">
           <input :key="`${index}-product_id`" type="hidden" :name="`autoparts[${index}][product_id]`" :value="autoparte.product_id">
           <input :key="`${index}-product_name`" type="hidden" :name="`autoparts[${index}][product_name]`" :value="autoparte.product_name">
+          <input :key="`${index}-family_id`" type="hidden" :name="`autoparts[${index}][family_id]`" :value="autoparte.family_id">
+          <input :key="`${index}-family_name`" type="hidden" :name="`autoparts[${index}][family_name]`" :value="autoparte.family_name">
           <input :key="`${index}-name`" type="hidden" :name="`autoparts[${index}][name]`" :value="autoparte.name">
           <input :key="`${index}-description`" type="hidden" :name="`autoparts[${index}][description]`" :value="autoparte.description">
           <input :key="`${index}-brand`" type="hidden" :name="`autoparts[${index}][brand]`" :value="autoparte.brand">
           <input :key="`${index}-model`" type="hidden" :name="`autoparts[${index}][model]`" :value="autoparte.model">
           <input :key="`${index}-origin`" type="hidden" :name="`autoparts[${index}][origin]`" :value="autoparte.origin">
-          <input v-for="picture in autoparte.pictures" :key="picture" type="hidden" :name="`autoparts[${index}][pictures][]`" :value="picture">
+          <input :key="`${index}-ncm_category`" type="hidden" :name="`autoparts[$index][ncm_category]`" :value="autoparte.ncm_category">
+          <input :key="`${index}-manufacturer`" type="hidden" :name="`autoparts[$index][manufacturer]`" :value="autoparte.manufacturer">
+          <input :key="`${index}-importer`" type="hidden" :name="`autoparts[$index][importer]`" :value="autoparte.importer">
+          <input :key="`${index}-business_name`" type="hidden" :name="`autoparts[$index][business_name]`" :value="autoparte.business_name">
+          <input :key="`${index}-part_number`" type="hidden" :name="`autoparts[$index][part_number]`" :value="autoparte.part_number">
+          <input :key="`${index}-size`" type="hidden" :name="`autoparts[$index][size]`" :value="autoparte.size">
+          <input :key="`${index}-formulation`" type="hidden" :name="`autoparts[$index][formulation]`" :value="autoparte.formulation">
+          <input :key="`${index}-application`" type="hidden" :name="`autoparts[$index][application]`" :value="autoparte.application">
+          <input :key="`${index}-license`" type="hidden" :name="`autoparts[$index][license]`" :value="autoparte.license">
+          <input :key="`${index}-certified_at`" type="hidden" :name="`autoparts[$index][certified_at]`" :value="autoparte.certified_at">
         </template>
 
         @if ($errors->any())
         <div class="alert alert-danger mx-3 mt-8 w-1/2 mx-auto">
           <h5 class="text-center mt-0">Se han producido errores</h5>
-          <ul>
-            @error('autoparts')
+          @error('autoparts')
+            <ul>
               <li>{{ $message }}</li>
-            @enderror
-          </ul>
+            </ul>
+          @enderror
         </div>
         @endif
 
@@ -100,7 +112,7 @@
               <th>DESCRIPCIÓN</th>
               <th>MARCA</th>
               <th>MODELO</th>
-              <th>FOTOS</th>
+              {{-- <th>FOTOS</th> --}}
               <th>ORIGEN</th>
               <th><i class="fa fa-cog"></i></th>
             </tr>
@@ -114,7 +126,7 @@
               <td class="align-middle">@{{ autoparte.description }}</td>
               <td class="align-middle">@{{ autoparte.brand }}</td>
               <td class="align-middle">@{{ autoparte.model }}</td>
-              <td class="align-middle">
+              {{-- <td class="align-middle">
                 <div class="swiper-container" :ref="`swiper${index}`">
                   <div class="swiper-wrapper">
                     <div class="swiper-slide" v-for="picture in autoparte.pictures">
@@ -124,7 +136,7 @@
                   <div class="swiper-button-prev"></div>
                   <div class="swiper-button-next"></div>
                 </div>
-              </td>
+              </td> --}}
               <td class="align-middle">@{{ autoparte.origin }}</td>
               <td class="align-middle">
                 <button type="button" @click="edit(autoparte, index)" class="btn text-azul m-0 p-0">

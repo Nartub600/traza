@@ -13,12 +13,22 @@ class AutopartsImport implements WithMapping, WithStartRow
     public function map($row): array
     {
         return [
-            'product'     => array_key_exists(0, $row) ? (string) $row[0] : null,
-            'name'        => array_key_exists(1, $row) ? $row[1] : null,
-            'description' => array_key_exists(2, $row) ? $row[2] : null,
-            'brand'       => array_key_exists(3, $row) ? $row[3] : null,
-            'model'       => array_key_exists(4, $row) ? $row[4] : null,
-            'origin'      => array_key_exists(5, $row) ? $row[5] : null,
+            'product'       => (string) $row[0],
+            'family'        => (string) $row[1],
+            'ncm'           => $row[2],
+            'manufacturer'  => $row[3],
+            'importer'      => $row[4],
+            'business_name' => $row[5],
+            'part_number'   => $row[6],
+            'brand'         => $row[7],
+            'model'         => $row[8],
+            'origin'        => $row[9],
+            'description'   => $row[10],
+            'size'          => $row[11],
+            'formulation'   => $row[12],
+            'application'   => $row[13],
+            'certified_at'  => $row[14],
+            'license'       => $row[15],
         ];
     }
 

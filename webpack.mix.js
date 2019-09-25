@@ -7,4 +7,5 @@ mix
       require('tailwindcss'),
     ])
     .copyDirectory('resources/images', 'public/images')
+    .copyDirectory('resources/templates', 'public/plantillas')
     .browserSync('autopartes.test')

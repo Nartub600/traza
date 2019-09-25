@@ -13,14 +13,24 @@ class CertificatesImport implements WithMapping, WithStartRow
     public function map($row): array
     {
         return [
-            'number'      => array_key_exists(0, $row) ? (string) $row[0]: null,
-            'cuit'        => array_key_exists(1, $row) ? $row[1]: null,
-            'product'     => array_key_exists(2, $row) ? (string) $row[2]: null,
-            'name'        => array_key_exists(3, $row) ? $row[3]: null,
-            'description' => array_key_exists(4, $row) ? $row[4]: null,
-            'brand'       => array_key_exists(5, $row) ? $row[5]: null,
-            'model'       => array_key_exists(6, $row) ? $row[6]: null,
-            'origin'      => array_key_exists(7, $row) ? $row[7]: null,
+            'number'        => (string) $row[0],
+            'cuit'          => $row[1],
+            'product'       => (string) $row[2],
+            'family'        => (string) $row[3],
+            'ncm'           => $row[4],
+            'manufacturer'  => $row[5],
+            'importer'      => $row[6],
+            'business_name' => $row[7],
+            'part_number'   => $row[8],
+            'brand'         => $row[9],
+            'model'         => $row[10],
+            'origin'        => $row[11],
+            'description'   => $row[12],
+            'size'          => $row[13],
+            'formulation'   => $row[14],
+            'application'   => $row[15],
+            'certified_at'  => $row[16],
+            'license'       => $row[17],
         ];
     }
 

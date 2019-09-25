@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('content')
-<autopartes inline-template>
+<autopartes inline-template certificates-template="{{ asset('plantillas/certificados.xlsx') }}">
   <div class="container-fluid">
     <ol class="breadcrumb">
       <li><a href="{{ route('home') }}">Inicio</a></li>

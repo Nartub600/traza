@@ -16,6 +16,14 @@ export default {
     certificate: {
       type: Object,
       default: () => null
+    },
+
+    certificatesTemplate: {
+      type: String
+    },
+
+    autopartsTemplate: {
+      type: String
     }
   },
 
@@ -32,7 +40,8 @@ export default {
     computedAutoparte () {
       return {
         ...this.autoparte,
-        ...(this.autoparte.product_id && { product_name: this.products.find(p => p.id === this.autoparte.product_id).name })
+        ...(this.autoparte.product_id && { product_name: this.products.find(p => p.id === this.autoparte.product_id).name }),
+        ...(this.autoparte.family_id && { family_name: this.products.find(p => p.id === this.autoparte.family_id).name })
       }
     }
   },
@@ -42,21 +51,12 @@ export default {
       Swal.fire({
         type: 'info',
         title: 'Importación masiva de certificados',
-        confirmButtonText: 'Seleccionar archivo',
+        confirmButtonText: '<span class="uppercase">Seleccionar archivo</span>',
         html: `
-          <p>Se debe seleccionar un archivo Excel con un máximo de 100 autopartes y el siguiente formato:</p>
-          <table class="table table-bordered">
-            <tr class="text-xs">
-              <td>Número</td>
-              <td>CUIT</td>
-              <td>Producto</td>
-              <td>Autoparte</td>
-              <td>Descripción</td>
-              <td>Marca</td>
-              <td>Modelo</td>
-              <td>Origen</td>
-            </tr>
-          </table>
+          <p>Se debe seleccionar un archivo Excel con un máximo de 100 autopartes y el formato de la siguiente plantilla:</p>
+          <a class="btn btn-success" href="${this.certificatesTemplate}" download>
+            Descargar plantilla
+          </a>
           <p>Se ignorará la primera fila</p>
         `
       }).then(result => {
@@ -71,19 +71,12 @@ export default {
       Swal.fire({
         type: 'info',
         title: 'Importación masiva de autopartes',
-        confirmButtonText: 'Seleccionar archivo',
+        confirmButtonText: '<span class="uppercase">Seleccionar archivo</span>',
         html: `
-          <p>Se debe seleccionar un archivo Excel con un máximo de 100 autopartes y el siguiente formato:</p>
-          <table class="table table-bordered">
-            <tr class="text-xs">
-              <td>Producto</td>
-              <td>Autoparte</td>
-              <td>Descripción</td>
-              <td>Marca</td>
-              <td>Modelo</td>
-              <td>Origen</td>
-            </tr>
-          </table>
+          <p>Se debe seleccionar un archivo Excel con un máximo de 100 autopartes y el formato de la siguiente plantilla:</p>
+          <a class="btn btn-success" href="${this.autopartsTemplate}" download>
+            Descargar plantilla
+          </a>
           <p>Se ignorará la primera fila</p>
         `
       }).then(result => {
@@ -301,9 +294,9 @@ export default {
         })
 
         Swal.fire({
-          type: data.autoparts.length && !data.invalid.length ? 'success' : (data.autoparts.length && data.invalid.length ? 'warning' : 'error'),
+          type: response.data.autoparts.length && !response.data.invalid.length ? 'success' : (response.data.autoparts.length && response.data.invalid.length ? 'warning' : 'error'),
           title: 'Operación finalizada',
-          html: this.parseAutopartsFeedback(data)
+          html: this.parseAutopartsFeedback(response.data)
         })
       })
       .catch(error => {
