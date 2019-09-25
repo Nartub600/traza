@@ -206,7 +206,7 @@ export default {
             ${c.autoparts.map(a => {
               return `<li class="w-1/2 p-1">
                 Producto: ${a.product_name}<br>
-                Autoparte: ${a.name}<br>
+                Autoparte: ${a.family_name}<br>
                 Descripción: ${a.description}<br>
                 Marca: ${a.brand}<br>
                 Modelo: ${a.model}<br>
