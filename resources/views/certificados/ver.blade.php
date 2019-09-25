@@ -45,8 +45,8 @@
         @foreach($certificate->autoparts as $autopart)
         <tr>
           <td class="align-middle">{{ $loop->index + 1 }}</td>
-          <td class="align-middle">{{ $autopart->product->name }}</td>
-          <td class="align-middle">{{ $autopart->name }}</td>
+          <td class="align-middle">{{ $autopart->product_name }}</td>
+          <td class="align-middle">{{ $autopart->family_name }}</td>
           <td class="align-middle">{{ $autopart->description }}</td>
           <td class="align-middle">{{ $autopart->brand }}</td>
           <td class="align-middle">{{ $autopart->model }}</td>
