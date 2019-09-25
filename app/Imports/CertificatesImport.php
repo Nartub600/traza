@@ -2,6 +2,7 @@
 
 namespace App\Imports;
 
+use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithStartRow;
@@ -29,7 +30,7 @@ class CertificatesImport implements WithMapping, WithStartRow
             'size'          => $row[13],
             'formulation'   => $row[14],
             'application'   => $row[15],
-            'certified_at'  => $row[16],
+            'certified_at'  => Carbon::parse($row[16]),
             'license'       => $row[17],
         ];
     }

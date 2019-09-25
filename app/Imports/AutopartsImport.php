@@ -2,6 +2,7 @@
 
 namespace App\Imports;
 
+use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithStartRow;
@@ -27,7 +28,7 @@ class AutopartsImport implements WithMapping, WithStartRow
             'size'          => $row[11],
             'formulation'   => $row[12],
             'application'   => $row[13],
-            'certified_at'  => $row[14],
+            'certified_at'  => Carbon::parse($row[14]),
             'license'       => $row[15],
         ];
     }
