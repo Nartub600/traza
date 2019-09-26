@@ -146,14 +146,28 @@ return [
     */
 
     'attributes' => [
-        'cuit' => 'CUIT',
-        'number' => 'número',
-        'active' => 'estado',
-        'brand' => 'marca',
-        'model' => 'modelo',
-        'origin' => 'origen',
-        'product' => 'producto',
-        'password' => 'contraseña'
+        'cuit'          => 'CUIT',
+        'number'        => 'número',
+        'active'        => 'estado',
+        'brand'         => 'marca',
+        'model'         => 'modelo',
+        'origin'        => 'origen',
+        'product'       => 'producto',
+        'password'      => 'contraseña',
+        'description'   => 'descripción',
+        'ncm_category'  => 'Nº NCM',
+        'manufacturer'  => 'fabricante',
+        'importer'      => 'importador',
+        'business_name' => 'razón social',
+        'part_number'   => 'part number',
+        'brand'         => 'marca',
+        'model'         => 'modelo',
+        'origin'        => 'origen',
+        'size'          => 'tamaño',
+        'formulation'   => 'formulación',
+        'application'   => 'aplicación',
+        'license'       => 'Nº licencia',
+        'certified_at'  => 'fecha de certificación',
     ],
 
 ];
