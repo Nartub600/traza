@@ -28,7 +28,7 @@ class AutopartsImport implements WithMapping, WithStartRow
             'size'          => $row[11],
             'formulation'   => $row[12],
             'application'   => $row[13],
-            'certified_at'  => Carbon::parse($row[14])->format('Y-m-d'),
+            'certified_at'  => (new Carbon('1899/12/31'))->addDays($row[14])->format('Y-m-d'),
             'license'       => $row[15],
         ];
     }
