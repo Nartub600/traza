@@ -28,6 +28,7 @@ Route::group([
         'certificados' => 'CertificateController',
         'lcms'         => 'LCMController',
         'trazas'       => 'TrazaController',
+        'ncm'          => 'NCMController',
     ]);
 
     Route::get('/perfil', 'AccountController@index')->name('perfil.index');
