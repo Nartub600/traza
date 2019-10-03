@@ -22,37 +22,41 @@
       <div class="alert alert-danger mx-3 mt-8">
         <h5>Se han producido los siguientes errores:</h5>
         <ol>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
+          @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+          @endforeach
         </ol>
       </div>
       @endif
 
       <div class="flex flex-wrap -mx-4">
-        <div class="w-1/2 form-group item-form px-4">
+        <div class="w-1/2 form-group item-form px-4 @error('name') has-error @enderror">
           <label for="name" class="mb-4">Nombre <sup>*</sup></label>
           <input type="text" name="name" class="form-control" required aria-required>
-          <p class="help-block error hidden">Ingrese el nombre</p>
+          @error('name')
+            <p class="help-block error hidden">{{ $message }}</p>
+          @enderror
         </div>
 
-        <div class="w-1/2 form-group item-form px-4 relative">
-          <label for="name" class="mb-4">Estado <sup>*</sup></label>
+        <div class="w-1/2 form-group item-form px-4 relative @error('active') has-error @enderror">
+          <label for="active" class="mb-4">Estado <sup>*</sup></label>
           <select required name="active" class="form-control" id="select-active">
             <option data-placeholder="true"></option>
             <option value="1">Activo</option>
             <option value="0">Inactivo</option>
           </select>
+          @error('active')
+            <p class="help-block error hidden">{{ $message }}</p>
+          @enderror
         </div>
 
         <div class="w-1/2 form-group item-form px-4 relative">
-          <label for="name" class="mb-4">Usuarios (Permite seleccionar varios)</label>
+          <label for="users[]" class="mb-4">Usuarios (Permite seleccionar varios)</label>
           <select multiple name="users[]" class="form-control" id="select-users">
             @foreach ($users as $user)
             <option value="{{ $user->id }}">{{ $user->username }}</option>
             @endforeach
           </select>
-          {{-- <p class="help-block error hidden">Seleccione al menos un perfil</p> --}}
         </div>
       </div>
 

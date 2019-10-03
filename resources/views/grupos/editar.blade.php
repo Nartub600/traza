@@ -38,7 +38,7 @@
         </div>
 
         <div class="w-1/2 form-group item-form px-4 relative">
-          <label for="name" class="mb-4">Estado <sup>*</sup></label>
+          <label for="active" class="mb-4">Estado <sup>*</sup></label>
           <select required name="active" class="form-control" id="select-active">
             <option data-placeholder="true"></option>
             <option value="1" @if (old('active', $group->active) === true) selected @endif>Activo</option>
@@ -47,13 +47,12 @@
         </div>
 
         <div class="w-1/2 form-group item-form px-4 relative">
-          <label for="name" class="mb-4">Usuarios (Permite seleccionar varios)</label>
+          <label for="users[]" class="mb-4">Usuarios (Permite seleccionar varios)</label>
           <select multiple name="users[]" class="form-control" id="select-users">
             @foreach ($users as $user)
             <option value="{{ $user->id }}" @if (old('users', $group->users)->contains($user)) selected @endif>{{ $user->username }}</option>
             @endforeach
           </select>
-          {{-- <p class="help-block error hidden">Seleccione al menos un perfil</p> --}}
         </div>
       </div>
 
