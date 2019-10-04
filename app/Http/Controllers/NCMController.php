@@ -36,6 +36,15 @@ class NCMController extends Controller
         return redirect()->route('ncm.index');
     }
 
+    public function show($id)
+    {
+        $this->authorize('ver', NCM::class);
+
+        $ncm = NCM::findOrFail($id);
+
+        return view('ncm.ver', compact('ncm'));
+    }
+
     public function edit($id)
     {
         $this->authorize('editar', NCM::class);
