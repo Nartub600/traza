@@ -59,6 +59,12 @@
           </div>
 
           <div class="w-2/3 mx-auto mt-8 form-group item-form text-center">
+            <a href="https://tstpaec.gde.gob.ar/auth/" class="btn btn-block btn-primary uppercase">
+              Inicia sesión con PAEC
+            </a>
+          </div>
+
+          <div class="w-2/3 mx-auto mt-8 form-group item-form text-center">
             <button type="submit" class="btn btn-block btn-primary uppercase">
               Inicia sesión
             </button>
