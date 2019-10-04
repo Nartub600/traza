@@ -16,10 +16,20 @@ class CreateLcmsTable extends Migration
         Schema::create('lcms', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
-            $table->string('gde');
-            $table->string('special');
-            $table->text('reference');
             $table->string('type');
+            $table->string('defeats');
+            $table->string('number');
+            $table->string('issued_at');
+            $table->string('business_name');
+            $table->string('address');
+            $table->string('cuit');
+            $table->string('country');
+            $table->string('manufacturing_place');
+            $table->string('commercial_name');
+            $table->string('brand');
+            $table->string('model');
+            $table->string('category');
+            $table->string('version');
             $table->timestamps();
             $table->softDeletes();
 

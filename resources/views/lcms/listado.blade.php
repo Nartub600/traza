@@ -22,12 +22,12 @@
     <thead>
       <tr>
         <td>ID</td>
-        <td>NÚMERO GDE</td>
-        <td>NÚMERO ESPECIAL</td>
-        <td>CREADO</td>
+        <td>NÚMERO</td>
+        <td>TIPO</td>
+        <td>FECHA DE EMISIÓN</td>
         <td>USUARIO</td>
-        <td>REFERENCIA</td>
-        <td>TIPO DOCUMENTO</td>
+        <td>CUIT</td>
+        <td>RAZÓN SOCIAL</td>
         <th class="text-center"><i class="fa fa-cog"></i></th>
       </tr>
     </thead>
@@ -36,12 +36,12 @@
       @foreach ($lcms as $lcm)
       <tr>
         <td>{{ $lcm->id }}</td>
-        <td>{{ $lcm->gde }}</td>
-        <td>{{ $lcm->special }}</td>
-        <td>{{ $lcm->created_at }}</td>
-        <td>{{ $lcm->user->username }}</td>
-        <td>{{ $lcm->reference }}</td>
+        <td>{{ $lcm->number }}</td>
         <td>{{ $lcm->type }}</td>
+        <td>{{ $lcm->issued_at }}</td>
+        <td>{{ $lcm->user->username }}</td>
+        <td>{{ $lcm->cuit }}</td>
+        <td>{{ $lcm->business_name }}</td>
         <td class="text-center">
           @can('ver lcms')
           <a href="{{ route('lcms.show', $lcm->id) }}" class="btn m-0 p-0">
@@ -88,7 +88,7 @@
     event.preventDefault()
     Swal.fire({
       title: 'Confirmar eliminación',
-      html: `Desea eliminar <em>${lcm.gde}</em>?`,
+      html: `Desea eliminar <em>${lcm.number}</em>?`,
       type: 'question',
       showConfirmButton: true,
       showCancelButton: true,

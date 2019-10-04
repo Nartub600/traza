@@ -11,7 +11,7 @@ class LCM extends Model
 
     protected $table = 'lcms';
 
-    protected $fillable = ['gde', 'special', 'reference', 'type'];
+    protected $fillable = ['type', 'defeats', 'number', 'issued_at', 'business_name', 'address', 'cuit', 'country', 'manufacturing_place', 'commercial_name', 'brand', 'model', 'category', 'version'];
 
     public function user()
     {

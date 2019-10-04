@@ -24,10 +24,20 @@ class UpdateLCMRequest extends FormRequest
     public function rules()
     {
         return [
-            'gde'       => 'required',
-            'special'   => 'required',
-            'reference' => 'required',
-            'type'      => 'required',
+            'type'                => 'required',
+            'defeats'             => 'required',
+            'number'              => 'required',
+            'issued_at'           => 'required',
+            'business_name'       => 'required',
+            'address'             => 'required',
+            'cuit'                => 'required',
+            'country'             => 'required',
+            'manufacturing_place' => 'required',
+            'commercial_name'     => 'required',
+            'brand'               => 'required',
+            'model'               => 'required',
+            'category'            => 'required',
+            'version'             => 'required',
         ];
     }
 }
