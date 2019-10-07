@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/estilos.css') }}">
   </head>
   <body class="antialiased">
-    <div class="flex flex-col min-h-screen">
+    <div class="flex flex-col min-h-screen" id="traza" v-cloak>
       @include('layouts.header')
 
       <main class="flex-1 flex flex-col items-center justify-center text-celeste">
@@ -25,5 +25,7 @@
 
       @include('layouts.footer')
     </div>
+
+    <script src="{{ asset('js/scripts.js') }}"></script>
   </body>
 </html>
