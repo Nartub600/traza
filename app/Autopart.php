@@ -34,6 +34,11 @@ class Autopart extends Model
         'certified_at' => 'date'
     ];
 
+    public function ncm()
+    {
+        return $this->belongsTo(NCM::class, 'ncm_id');
+    }
+
     public function product()
     {
         return $this->belongsTo(Product::class);
