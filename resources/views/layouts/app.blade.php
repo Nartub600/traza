@@ -8,8 +8,6 @@
 
     <script src="{{ asset('js/estilos.js') }}"></script>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/estilos.css') }}">
-
-    {{-- <script src="{{ asset('js/scripts.js') }}"></script> --}}
   </head>
   <body class="antialiased">
     <div id="traza">
@@ -17,6 +15,8 @@
         @yield('content')
       </main>
     </div>
+
+    <script src="{{ asset('js/scripts.js') }}"></script>
   </body>
 </html>
 

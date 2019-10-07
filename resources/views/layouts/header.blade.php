@@ -24,13 +24,17 @@
         @endguest
         @auth
         <div class="flex items-center -mx-2">
+          @can('listar trazas')
           <a href="{{ route('trazas.index') }}" class="text-celeste uppercase no-underline font-black mr-8">
             Trazas
           </a>
+          @endcan
 
+          @can('listar certificados')
           <a href="{{ route('certificados.index') }}" class="text-celeste uppercase no-underline font-black mr-8">
             Certificados
           </a>
+          @endcan
 
           @canany(['listar usuarios', 'listar perfiles', 'listar grupos', 'listar productos', 'listar lcm', 'listar catalogo'])
           <div class="dropdown">
