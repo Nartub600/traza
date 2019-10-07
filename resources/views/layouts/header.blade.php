@@ -34,7 +34,7 @@
 
           @canany(['listar usuarios', 'listar perfiles', 'listar grupos', 'listar productos', 'listar lcm', 'listar catalogo'])
           <div class="dropdown">
-            <button class="text-celeste mr-8 p-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button class="bg-white text-celeste mr-8 p-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fa fa-cog fa-2x"></i>
             </button>
             <ul class="dropdown-menu p-1 right-0" style="left: unset;">
@@ -49,7 +49,7 @@
           @endcanany
 
           <div class="dropdown">
-            <button class="text-celeste p-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button class="bg-white text-celeste p-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fa fa-user-circle fa-2x"></i>
             </button>
             <ul class="dropdown-menu p-1 right-0" style="left: unset;">
