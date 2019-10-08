@@ -22,7 +22,7 @@ class ProductController extends Controller
     {
         $this->authorize('crear', Product::class);
 
-        $products = Product::all();
+        $products = Product::doesntHave('parent')->get();
 
         return view('productos.crear', compact('products'));
     }
@@ -42,7 +42,7 @@ class ProductController extends Controller
 
         $product = Product::findOrFail($id);
 
-        $products = Product::all();
+        $products = Product::doesntHave('parent')->get();
 
         return view('productos.editar', compact('product', 'products'));
     }
@@ -54,8 +54,8 @@ class ProductController extends Controller
         $product = new Product($request->validated());
         $product->user()->associate($request->user());
 
-        $family = Product::findOrFail($request->family_id);
-        $product->family()->associate($family);
+        $parent = Product::findOrFail($request->parent_id);
+        $product->parent()->associate($parent);
 
         $product->save();
 
@@ -69,8 +69,8 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
         $product->fill($request->validated());
 
-        $family = Product::findOrFail($request->family_id);
-        $product->family()->associate($family);
+        $parent = Product::findOrFail($request->parent_id);
+        $product->parent()->associate($parent);
 
         $product->save();
 

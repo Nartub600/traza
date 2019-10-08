@@ -22,38 +22,42 @@
       <div class="alert alert-danger mx-3 mt-8">
         <h5>Se han producido los siguientes errores:</h5>
         <ol>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
+          @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+          @endforeach
         </ol>
       </div>
       @endif
 
       <div class="flex flex-wrap -mx-4">
-        <div class="w-1/2 form-group item-form px-4">
+        <div class="w-1/2 form-group item-form px-4 @error('name') has-error @enderror">
           <label for="name" class="mb-4">Nombre <sup>*</sup></label>
           <input type="text" name="name" class="form-control" required aria-required>
-          <p class="help-block error hidden">Ingrese el nombre</p>
+          @error('name')
+            <p class="help-block error">{{ $message }}</p>
+          @enderror
         </div>
 
         <div class="w-1/2 form-group item-form px-4 relative">
-          <label for="family" class="mb-4">Familia <sup>*</sup></label>
-          <select name="family_id" class="form-control" id="select-family">
+          <label for="parent" class="mb-4">Familia <sup>*</sup></label>
+          <select name="parent_id" class="form-control" id="select-parent">
             <option data-placeholder="true"></option>
-            @foreach ($products as $p)
-            <option value="{{ $p->id }}" >{{ $p->name }}</option>
+            @foreach($products as $p)
+              @include('productos.arbol', [ 'p' => $p ])
             @endforeach
           </select>
-          <p class="help-block error hidden">Ingrese la familia</p>
         </div>
 
-        <div class="w-1/2 form-group item-form px-4 relative">
+        <div class="w-1/2 form-group item-form px-4 relative @error('name') has-error @enderror">
           <label for="active" class="mb-4">Estado <sup>*</sup></label>
           <select required name="active" class="form-control" id="select-active">
             <option data-placeholder="true"></option>
             <option value="1">Activo</option>
             <option value="0">Inactivo</option>
           </select>
+          @error('name')
+            <p class="help-block error">{{ $message }}</p>
+          @enderror
         </div>
       </div>
 
@@ -74,7 +78,7 @@
 @push('scripts')
 <script>
 new SlimSelect({
-  select: '#select-family',
+  select: '#select-parent',
   placeholder: 'Seleccione la familia',
   searchPlaceholder: 'Buscar',
 })

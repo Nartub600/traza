@@ -31,21 +31,22 @@
       @endif
 
       <div class="flex flex-wrap -mx-4">
-        <div class="w-1/2 form-group item-form px-4">
+        <div class="w-1/2 form-group item-form px-4 @error('name') has-error @enderror">
           <label for="name" class="mb-4">Nombre <sup>*</sup></label>
           <input type="text" name="name" class="form-control" required aria-required value="{{ old('name', $product->name) }}">
-          <p class="help-block error hidden">Ingrese el nombre</p>
+          @error('name')
+            <p class="help-block error">{{ $message }}</p>
+          @enderror
         </div>
 
         <div class="w-1/2 form-group item-form px-4 relative">
-          <label for="family" class="mb-4">Familia <sup>*</sup></label>
-          <select name="family_id" class="form-control" id="select-family">
+          <label for="parent" class="mb-4">Familia <sup>*</sup></label>
+          <select name="parent_id" class="form-control" id="select-parent">
             <option data-placeholder="true"></option>
-            @foreach ($products as $p)
-            <option value="{{ $p->id }}" @if (old('family_id', $product->family_id) === $p->id) selected @endif>{{ $p->name }}</option>
+            @foreach($products as $p)
+              @include('productos.arbol', [ 'p' => $p, 'product' => $product ])
             @endforeach
           </select>
-          <p class="help-block error hidden">Ingrese la familia</p>
         </div>
 
         <div class="w-1/2 form-group item-form px-4 relative">
@@ -75,7 +76,7 @@
 @push('scripts')
 <script>
 new SlimSelect({
-  select: '#select-family',
+  select: '#select-parent',
   placeholder: 'Seleccione la familia',
   searchPlaceholder: 'Buscar',
 })

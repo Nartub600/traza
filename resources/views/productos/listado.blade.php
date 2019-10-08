@@ -21,7 +21,7 @@
       <tr>
         <th>ID</th>
         <th>NOMBRE</th>
-        <th>FAMILIA</th>
+        <th>PADRE</th>
         <th>USUARIO</th>
         <th>ACTUALIZACIÓN</th>
         <th>ESTADO</th>
@@ -32,9 +32,11 @@
     <tbody>
       @foreach ($products as $product)
       <tr>
-        <td>{{ $product->id }}</td>
+        <td>{{ $product->category }}</td>
         <td>{{ $product->name }}</td>
-        <td>{{ optional($product->family)->name }}</td>
+        <td>
+          @includeWhen($product->parent, 'productos.ruta', [ 'product' => $product->parent ])
+        </td>
         <td>{{ optional($product->user)->username }}</td>
         <td>{{ $product->updated_at }}</td>
         <td>{{ $product->active ? 'Activo' : 'Inactivo' }}</td>
