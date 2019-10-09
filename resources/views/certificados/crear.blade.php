@@ -56,8 +56,8 @@
         </div>
         @endif
 
-        <div class="flex flex-wrap -mx-4">
-          <div class="w-1/2 form-group item-form px-4 @error('number') has-error @enderror">
+        <div class="flex flex-wrap -mx-2">
+          <div class="w-1/2 form-group item-form px-2 @error('number') has-error @enderror">
             <label for="number" class="mb-4">Número de certificado <sup>*</sup></label>
             <input type="text" name="number" class="form-control" required aria-required value="{{ old('number') }}">
             @error('number')
@@ -65,7 +65,7 @@
             @enderror
           </div>
 
-          <div class="w-1/2 form-group item-form px-4 @error('cuit') has-error @enderror">
+          <div class="w-1/2 form-group item-form px-2 @error('cuit') has-error @enderror">
             <label for="cuit" class="mb-4">CUIT <sup>*</sup></label>
             <input type="text" name="cuit" class="form-control" required aria-required value="{{ old('cuit') }}">
             @error('cuit')
@@ -170,3 +170,13 @@
   </div>
 </autopartes>
 @endsection
+
+@push('scripts')
+<script>
+  IMask(document.querySelector('[name="cuit"]'), {
+    mask: '00{-}000000[00]{-}0',
+    lazy: false,
+    placeholderChar: '#'
+  })
+</script>
+@endpush

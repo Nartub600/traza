@@ -5,6 +5,7 @@ window.Swal = require('sweetalert2')
 window.SlimSelect = require('slim-select')
 window.Swiper = require('swiper')
 window.axios = require('axios')
+window.IMask = require('imask').default
 require('bootstrap/dist/js/bootstrap.min.js')
 require('datatables.net-dt')
 

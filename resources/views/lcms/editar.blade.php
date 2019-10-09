@@ -186,3 +186,13 @@
   </div>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+  IMask(document.querySelector('[name="cuit"]'), {
+    mask: '00{-}000000[00]{-}0',
+    lazy: false,
+    placeholderChar: '#'
+  })
+</script>
+@endpush
