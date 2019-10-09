@@ -28,6 +28,10 @@ $factory->define(User::class, function (Faker $faker) {
     ];
 });
 
+$factory->afterCreating(User::class, function ($user) {
+    $user->groups()->attach(1);
+});
+
 $factory->afterCreatingState(User::class, 'administrador', function ($user) {
     $user->assignRole('administrador');
 });

@@ -30,26 +30,26 @@
       </div>
       @endif
 
-      <div class="flex flex-wrap -mx-4">
-        <div class="w-1/2 form-group item-form px-4">
+      <div class="flex flex-wrap -mx-2">
+        <div class="w-1/2 form-group item-form px-2">
           <label for="name" class="mb-4">Nombre Completo <sup>*</sup></label>
           <input type="text" name="name" class="form-control" required aria-required value="{{ $user->name }}">
           <p class="help-block error hidden">Ingrese el nombre completo</p>
         </div>
 
-        <div class="w-1/2 form-group item-form px-4">
+        <div class="w-1/2 form-group item-form px-2">
           <label for="username" class="mb-4">Nombre de usuario <sup>*</sup></label>
           <input type="text" name="username" class="form-control" required aria-required value="{{ $user->username }}">
           <p class="help-block error hidden">Ingrese el nombre de usuario</p>
         </div>
 
-        <div class="w-1/2 form-group item-form px-4">
+        <div class="w-1/2 form-group item-form px-2">
           <label for="email" class="mb-4">Correo Electrónico <sup>*</sup></label>
           <input type="email" name="email" class="form-control" required aria-required value="{{ $user->email }}">
           <p class="help-block error hidden">Ingrese el correo electrónico</p>
         </div>
 
-        <div class="w-1/2 form-group item-form px-4 relative">
+        <div class="w-1/2 form-group item-form px-2 relative">
           <label for="name" class="mb-4">Estado <sup>*</sup></label>
           <select required name="active" class="form-control" id="select-active">
             <option data-placeholder="true"></option>
@@ -58,19 +58,19 @@
           </select>
         </div>
 
-        <div class="w-1/2 form-group item-form px-4">
+        <div class="w-1/2 form-group item-form px-2">
           <label for="password" class="mb-4">Contraseña <sup>*</sup></label>
           <input type="password" name="password" class="form-control">
           <p class="help-block error hidden">Ingrese la contraseña</p>
         </div>
 
-        <div class="w-1/2 form-group item-form px-4">
+        <div class="w-1/2 form-group item-form px-2">
           <label for="password_confirmation" class="mb-4">Confirmar contraseña <sup>*</sup></label>
           <input type="password" name="password_confirmation" class="form-control">
           <p class="help-block error hidden">Confirme la contraseña</p>
         </div>
 
-        <div class="w-1/2 form-group item-form px-4 relative">
+        <div class="w-1/2 form-group item-form px-2 relative">
           <label for="name" class="mb-4">Perfil (Permite seleccionar varios)</label>
           <select required multiple name="roles[]" class="form-control" id="select-roles">
             @foreach ($roles as $role)
@@ -80,7 +80,7 @@
           <p class="help-block error hidden">Seleccione al menos un perfil</p>
         </div>
 
-        <div class="w-1/2 form-group item-form px-4 relative">
+        <div class="w-1/2 form-group item-form px-2 relative">
           <label for="name" class="mb-4">Grupo de usuarios (Permite seleccionar varios)</label>
           <select required multiple name="groups[]" class="form-control" id="select-groups">
             @foreach ($groups as $group)

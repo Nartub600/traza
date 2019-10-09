@@ -12,7 +12,6 @@ class GroupsSeeder extends Seeder
      */
     public function run()
     {
-        Group::create(['name' => 'Primero', 'active' => true]);
-        Group::create(['name' => 'Segundo', 'active' => true]);
+        Group::create(['name' => 'genérico', 'active' => true]);
     }
 }
