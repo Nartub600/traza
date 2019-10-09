@@ -52,8 +52,8 @@
         </div>
 
         <div class="w-1/2 form-group item-form px-4">
-          <label for="country" class="mb-4">País de Origen <sup>*</sup></label>
-          <input readonly type="text" name="country" class="form-control" required aria-required value="{{ old('country', $lcm->country) }}">
+          <label for="origin" class="mb-4">País de Origen <sup>*</sup></label>
+          <input readonly type="text" name="origin" class="form-control" required aria-required value="{{ old('country', $lcm->country) }}">
         </div>
 
         <div class="w-1/2 form-group item-form px-4">
