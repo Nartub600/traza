@@ -76,7 +76,8 @@ class UserController extends Controller
 
         $user = User::findOrFail($id);
         $user->fill($request->validated());
-        if ($request->has('password')) {
+
+        if ($request->filled('password')) {
             $user->password = Hash::make($request->password);
         }
 
