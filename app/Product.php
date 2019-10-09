@@ -40,12 +40,10 @@ class Product extends Model
 
     public function getIndexAttribute()
     {
-        $model = $this;
-
         $products = $this->parent ? $this->parent->children : Product::doesntHave('parent')->get();
 
-        $index = $products->search(function ($product) use ($model) {
-            return $product->id === $model->id;
+        $index = $products->search(function ($product) {
+            return $product->id === $this->id;
         });
 
         return $index + 1;

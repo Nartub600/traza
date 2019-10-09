@@ -6,5 +6,5 @@
   {{ $p->category . ' ' . $p->name }}
 </option>
 @foreach ($p->children as $p)
-  @include('productos.arbol', [ 'p' => $p, 'product' => $product ?? null ])
+  @include('productos.option', [ 'p' => $p, 'product' => $product ?? null ])
 @endforeach

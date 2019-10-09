@@ -30,8 +30,8 @@
       </div>
       @endif
 
-      <div class="flex flex-wrap -mx-4">
-        <div class="w-1/2 form-group item-form px-4 @error('name') has-error @enderror">
+      <div class="flex flex-wrap -mx-2">
+        <div class="w-1/2 form-group item-form px-2 @error('name') has-error @enderror">
           <label for="name" class="mb-4">Nombre <sup>*</sup></label>
           <input type="text" name="name" class="form-control" required aria-required value="{{ old('name', $product->name) }}">
           @error('name')
@@ -39,22 +39,22 @@
           @enderror
         </div>
 
-        <div class="w-1/2 form-group item-form px-4 relative">
-          <label for="parent" class="mb-4">Familia <sup>*</sup></label>
+        <div class="w-1/2 form-group item-form px-2 relative">
+          <label for="parent" class="mb-4">Padre <sup>*</sup></label>
           <select name="parent_id" class="form-control" id="select-parent">
             <option data-placeholder="true"></option>
             @foreach($products as $p)
-              @include('productos.arbol', [ 'p' => $p, 'product' => $product ])
+              @include('productos.option', [ 'p' => $p, 'product' => $product ])
             @endforeach
           </select>
         </div>
 
-        <div class="w-1/2 form-group item-form px-4 relative">
+        <div class="w-1/2 form-group item-form px-2 relative">
           <label for="active" class="mb-4">Estado <sup>*</sup></label>
           <select required name="active" class="form-control" id="select-active">
             <option data-placeholder="true"></option>
             <option value="1" @if (old('active', $product->active) === true) selected @endif>Activo</option>
-            <option value="0" @if (old('active', $product->active) === true) selected @endif>Inactivo</option>
+            <option value="0" @if (old('active', $product->active) === false) selected @endif>Inactivo</option>
           </select>
         </div>
       </div>
