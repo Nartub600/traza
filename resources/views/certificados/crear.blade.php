@@ -160,7 +160,7 @@
 
       <autopartes-modal
         v-if="showModal"
-        :products="{{ $products }}"
+        :products="flatProducts"
         :editing="editing"
         v-model="autoparte"
         @done="addToIndex"

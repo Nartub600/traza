@@ -21,7 +21,7 @@
                 >
                   <option data-placeholder="true"></option>
                   <option
-                    v-for="product in flatProducts"
+                    v-for="product in products"
                     :key="`product-${product.id}`"
                     :value="product.id"
                   >
@@ -501,12 +501,6 @@ export default {
     }
   },
 
-  computed: {
-    flatProducts () {
-      return this.flat(this.products)
-    }
-  },
-
   methods: {
     // initSwiper () {
     //   new Swiper.default(this.$refs.swiper, {
@@ -523,19 +517,6 @@ export default {
     //     this.initSwiper()
     //   })
     // },
-
-    flat (products) {
-      const flat = []
-
-      products.forEach(p => {
-        flat.push(p)
-        if (p.children.length > 0) {
-          flat.push(...this.flat(p.children))
-        }
-      })
-
-      return flat
-    },
 
     done () {
       this.$emit('done')

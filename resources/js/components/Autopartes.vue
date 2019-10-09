@@ -40,12 +40,29 @@ export default {
     computedAutoparte () {
       return {
         ...this.autoparte,
-        ...(this.autoparte.product_id && { product_name: this.products.find(p => p.id === this.autoparte.product_id).name })
+        ...(this.autoparte.product_id && { product_name: this.flatProducts.find(p => p.id === this.autoparte.product_id).name })
       }
+    },
+
+    flatProducts () {
+      return this.flat(this.products)
     }
   },
 
   methods: {
+    flat (products) {
+      const flat = []
+
+      products.forEach(p => {
+        flat.push(p)
+        if (p.children.length > 0) {
+          flat.push(...this.flat(p.children))
+        }
+      })
+
+      return flat
+    },
+
     beginCertificatesImport () {
       Swal.fire({
         type: 'info',
