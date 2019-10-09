@@ -40,8 +40,7 @@ export default {
     computedAutoparte () {
       return {
         ...this.autoparte,
-        ...(this.autoparte.product_id && { product_name: this.products.find(p => p.id === this.autoparte.product_id).name }),
-        ...(this.autoparte.family_id && { family_name: this.products.find(p => p.id === this.autoparte.family_id).name })
+        ...(this.autoparte.product_id && { product_name: this.products.find(p => p.id === this.autoparte.product_id).name })
       }
     }
   },
@@ -206,7 +205,6 @@ export default {
             ${c.autoparts.map(a => {
               return `<li class="w-1/2 p-1">
                 Producto: ${a.product_name}<br>
-                Autoparte: ${a.family_name}<br>
                 Descripción: ${a.description}<br>
                 Marca: ${a.brand}<br>
                 Modelo: ${a.model}<br>

@@ -8,6 +8,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
+    public static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($product) {
+            $product->category = $product->category();
+        });
+    }
+
     use SoftDeletes;
 
     protected $fillable = ['name', 'active'];
@@ -38,30 +47,21 @@ class Product extends Model
         return $query->where('active', true);
     }
 
-    public function getIndexAttribute()
-    {
-        $products = $this->parent ? $this->parent->children : Product::doesntHave('parent')->get();
-
-        $index = $products->search(function ($product) {
-            return $product->id === $this->id;
-        });
-
-        return $index + 1;
-    }
-
-    public function getCategoryAttribute()
+    public function category()
     {
         $tree = [];
+
         if ($parent = $this->parent) {
-            array_unshift($tree, $this->index);
+            array_unshift($tree, $this->subindex);
             while ($parent->parent) {
-                array_unshift($tree, $parent->index);
+                array_unshift($tree, $parent->subindex);
                 $parent = $parent->parent;
             }
             array_unshift($tree, $parent->id);
         } else {
-            array_unshift($tree, $this->id);
+            array_unshift($tree, $this->id ?? (Product::doesntHave('parent')->count() + 1));
         }
+
         return implode('.', $tree);
     }
 }

@@ -12,40 +12,110 @@ class ProductsSeeder extends Seeder
      */
     public function run()
     {
-        Product::create(['name' => 'Neumáticos']);
-        Product::create(['name' => 'Balizas triangulares retroreflectoras']);
-        Product::create(['name' => 'Cascos de protección para uso vehicular']);
-        Product::create(['name' => 'Cinturones de seguridad']);
-        Product::create(['name' => 'Pastillas y cintas de frenos']);
-        Product::create(['name' => 'Lí­quido de frenos']);
-        Product::create(['name' => 'Vidrios de seguridad para automotores']);
-        Product::create(['name' => 'Matafuegos']);
-        Product::create(['name' => 'Apoyacabezas']);
-        Product::create(['name' => 'Asientos y sus anclajes']);
-        Product::create(['name' => 'Sistema de enganche de remolques y semiremolques']);
-        Product::create(['name' => 'Trabas giratorias para transporte carretero de contenedores']);
-        Product::create(['name' => 'Bombas de vacío']);
-        Product::create(['name' => 'Baterías']);
-        Product::create(['name' => 'Espejos retrovisores']);
-        Product::create(['name' => 'Extremos y rótulas de dirección']);
-        Product::create(['name' => 'Amortiguadores convencionales']);
-        Product::create(['name' => 'Cajas de direccion tipo piñón y cremallera']);
-        Product::create(['name' => 'Bocinas']);
-        Product::create(['name' => 'Limpiaparabrisas']);
-        Product::create(['name' => 'Sistema de lámparas e iluminación vehicular. Faros de señalización e iluminación para vehículos de tránsito vial']);
-        Product::create(['name' => 'Ruedas de Acero']);
-        Product::create(['name' => 'Balastos para lámparas de descarga']);
-        Product::create(['name' => 'Chalecos de seguridad de alta visibilidad']);
-        Product::create(['name' => 'Cerrojos y sistemas de retención de puertas para vehí­culos M1 y N1']);
-        Product::create(['name' => 'Protección contra uso no autorizado (trabas de volante alarmas) para vehí­culos M1 y N1']);
-        Product::create(['name' => 'Sistemas de Retención infantil']);
-        Product::create(['name' => 'Sistema de reemplazo de airbag']);
-        Product::create(['name' => 'Cilindro maestro para frenos']);
-        Product::create(['name' => 'Diafragma para cámara de frenos de aire']);
-        Product::create(['name' => 'Cilindro de Rueda para frenos']);
-        Product::create(['name' => 'Flexible para frenos']);
-        Product::create(['name' => 'Cubetas para frenos']);
-        Product::create(['name' => 'Ejes de semirremolques y acoplados']);
-        Product::create(['name' => 'Paragolpes de Seguridad']);
+        $product = new Product(['name' => 'Neumáticos']);
+        $product->save();
+
+        $product = new Product(['name' => 'Balizas triangulares retroreflectoras']);
+        $product->save();
+
+        $product = new Product(['name' => 'Cascos de protección para uso vehicular']);
+        $product->save();
+
+        $product = new Product(['name' => 'Cinturones de seguridad']);
+        $product->save();
+
+        $product = new Product(['name' => 'Pastillas y cintas de frenos']);
+        $product->save();
+
+        $product = new Product(['name' => 'Lí­quido de frenos']);
+        $product->save();
+
+        $product = new Product(['name' => 'Vidrios de seguridad para automotores']);
+        $product->save();
+
+        $product = new Product(['name' => 'Matafuegos']);
+        $product->save();
+
+        $product = new Product(['name' => 'Apoyacabezas']);
+        $product->save();
+
+        $product = new Product(['name' => 'Asientos y sus anclajes']);
+        $product->save();
+
+        $product = new Product(['name' => 'Sistema de enganche de remolques y semiremolques']);
+        $product->save();
+
+        $product = new Product(['name' => 'Trabas giratorias para transporte carretero de contenedores']);
+        $product->save();
+
+        $product = new Product(['name' => 'Bombas de vacío']);
+        $product->save();
+
+        $product = new Product(['name' => 'Baterías']);
+        $product->save();
+
+        $product = new Product(['name' => 'Espejos retrovisores']);
+        $product->save();
+
+        $product = new Product(['name' => 'Extremos y rótulas de dirección']);
+        $product->save();
+
+        $product = new Product(['name' => 'Amortiguadores convencionales']);
+        $product->save();
+
+        $product = new Product(['name' => 'Cajas de direccion tipo piñón y cremallera']);
+        $product->save();
+
+        $product = new Product(['name' => 'Bocinas']);
+        $product->save();
+
+        $product = new Product(['name' => 'Limpiaparabrisas']);
+        $product->save();
+
+        $product = new Product(['name' => 'Sistema de lámparas e iluminación vehicular. Faros de señalización e iluminación para vehículos de tránsito vial']);
+        $product->save();
+
+        $product = new Product(['name' => 'Ruedas de Acero']);
+        $product->save();
+
+        $product = new Product(['name' => 'Balastos para lámparas de descarga']);
+        $product->save();
+
+        $product = new Product(['name' => 'Chalecos de seguridad de alta visibilidad']);
+        $product->save();
+
+        $product = new Product(['name' => 'Cerrojos y sistemas de retención de puertas para vehí­culos M1 y N1']);
+        $product->save();
+
+        $product = new Product(['name' => 'Protección contra uso no autorizado (trabas de volante alarmas) para vehí­culos M1 y N1']);
+        $product->save();
+
+        $product = new Product(['name' => 'Sistemas de Retención infantil']);
+        $product->save();
+
+        $product = new Product(['name' => 'Sistema de reemplazo de airbag']);
+        $product->save();
+
+        $product = new Product(['name' => 'Cilindro maestro para frenos']);
+        $product->save();
+
+        $product = new Product(['name' => 'Diafragma para cámara de frenos de aire']);
+        $product->save();
+
+        $product = new Product(['name' => 'Cilindro de Rueda para frenos']);
+        $product->save();
+
+        $product = new Product(['name' => 'Flexible para frenos']);
+        $product->save();
+
+        $product = new Product(['name' => 'Cubetas para frenos']);
+        $product->save();
+
+        $product = new Product(['name' => 'Ejes de semirremolques y acoplados']);
+        $product->save();
+
+        $product = new Product(['name' => 'Paragolpes de Seguridad']);
+        $product->save();
+
     }
 }

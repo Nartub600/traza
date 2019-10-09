@@ -17,6 +17,8 @@ class CreateProductsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('parent_id')->nullable();
+            $table->bigInteger('subindex')->nullable();
+            $table->string('category');
             $table->string('name');
             $table->boolean('active')->default(true);
             $table->timestamps();

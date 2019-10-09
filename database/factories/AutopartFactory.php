@@ -9,7 +9,6 @@ use Faker\Generator as Faker;
 $factory->define(Autopart::class, function (Faker $faker) {
     return [
         // 'certificate_id' => factory(Certificate::class),
-        'family_id' => Product::inRandomOrder()->first()->id,
         'product_id' => Product::inRandomOrder()->first()->id,
         'ncm_id' => NCM::inRandomOrder()->first()->id,
         'description' => $faker->bs,

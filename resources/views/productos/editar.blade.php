@@ -40,7 +40,7 @@
         </div>
 
         <div class="w-1/2 form-group item-form px-2 relative">
-          <label for="parent" class="mb-4">Padre <sup>*</sup></label>
+          <label for="parent" class="mb-4">Padre</label>
           <select name="parent_id" class="form-control" id="select-parent">
             <option data-placeholder="true"></option>
             @foreach($products as $p)

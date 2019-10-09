@@ -27,7 +27,7 @@ class CertificateController extends Controller
     {
         $this->authorize('crear', Certificate::class);
 
-        $products = Product::active()->get();
+        $products = Product::active()->doesntHave('parent')->get();
 
         return view('certificados.crear', compact('products'));
     }
@@ -47,7 +47,7 @@ class CertificateController extends Controller
 
         $certificate = Certificate::with('autoparts')->findOrFail($id);
 
-        $products = Product::active()->get();
+        $products = Product::active()->doesntHave('parent')->get();
 
         return view('certificados.editar', compact('certificate', 'products'));
     }
