@@ -31,7 +31,7 @@
           <input :key="`${index}-brand`" type="hidden" :name="`autoparts[${index}][brand]`" :value="autoparte.brand">
           <input :key="`${index}-model`" type="hidden" :name="`autoparts[${index}][model]`" :value="autoparte.model">
           <input :key="`${index}-origin`" type="hidden" :name="`autoparts[${index}][origin]`" :value="autoparte.origin">
-          <input :key="`${index}-ncm_category`" type="hidden" :name="`autoparts[${index}][ncm_category]`" :value="autoparte.ncm_category">
+          <input :key="`${index}-ncm`" type="hidden" :name="`autoparts[${index}][ncm]`" :value="autoparte.ncm">
           <input :key="`${index}-manufacturer`" type="hidden" :name="`autoparts[${index}][manufacturer]`" :value="autoparte.manufacturer">
           <input :key="`${index}-importer`" type="hidden" :name="`autoparts[${index}][importer]`" :value="autoparte.importer">
           <input :key="`${index}-business_name`" type="hidden" :name="`autoparts[${index}][business_name]`" :value="autoparte.business_name">

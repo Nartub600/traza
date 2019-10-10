@@ -34,12 +34,12 @@
               <div class="w-1/4 form-group item-form px-2">
                 <label class="mb-4">Categoría NCM <sup>*</sup></label>
                 <input
-                  name="ncm_category"
+                  name="ncm"
                   type="text"
                   class="form-control"
                   required
                   aria-required
-                  v-model="$attrs.value.ncm_category"
+                  v-model="$attrs.value.ncm"
                 >
                 <!-- <p class="help-block error hidden">Ingrese la descripción</p> -->
               </div>

@@ -18,7 +18,7 @@ class CreateAutopartsTable extends Migration
             $table->unsignedBigInteger('certificate_id')->nullable();
             $table->unsignedBigInteger('family_id'); // 01
             $table->unsignedBigInteger('product_id'); // 02
-            $table->unsignedBigInteger('ncm_id'); // 03
+            $table->string('ncm'); // 03
             $table->string('description'); // 11
             $table->string('manufacturer'); // 04
             $table->string('importer'); // 05
