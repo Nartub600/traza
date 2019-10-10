@@ -37,7 +37,7 @@ class CreateAutopartsTable extends Migration
             $table->foreign('certificate_id')->references('id')->on('certificates');
             $table->foreign('family_id')->references('id')->on('products');
             $table->foreign('product_id')->references('id')->on('products');
-            $table->foreign('ncm_id')->references('id')->on('ncm');
+            // $table->foreign('ncm_id')->references('id')->on('ncm');
         });
     }
 
