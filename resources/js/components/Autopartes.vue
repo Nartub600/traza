@@ -40,7 +40,7 @@ export default {
     computedAutoparte () {
       return {
         ...this.autoparte,
-        ...(this.autoparte.product_id && { product_name: this.flatProducts.find(p => p.id === this.autoparte.product_id).name })
+        ...(this.autoparte.product_id && { product: `${this.flatProducts.find(p => p.id === this.autoparte.product_id).category} ${this.flatProducts.find(p => p.id === this.autoparte.product_id).name}` })
       }
     },
 

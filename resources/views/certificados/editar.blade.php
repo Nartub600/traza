@@ -28,24 +28,22 @@
 
         <template v-for="(autoparte, index) in autopartes">
           <input :key="`${index}-product_id`" type="hidden" :name="`autoparts[${index}][product_id]`" :value="autoparte.product_id">
-          <input :key="`${index}-product_name`" type="hidden" :name="`autoparts[${index}][product_name]`" :value="autoparte.product_name">
-          <input :key="`${index}-family_id`" type="hidden" :name="`autoparts[${index}][family_id]`" :value="autoparte.family_id">
-          <input :key="`${index}-family_name`" type="hidden" :name="`autoparts[${index}][family_name]`" :value="autoparte.family_name">
+          <input :key="`${index}-product`" type="hidden" :name="`autoparts[${index}][product]`" :value="autoparte.product">
           <input :key="`${index}-name`" type="hidden" :name="`autoparts[${index}][name]`" :value="autoparte.name">
           <input :key="`${index}-description`" type="hidden" :name="`autoparts[${index}][description]`" :value="autoparte.description">
           <input :key="`${index}-brand`" type="hidden" :name="`autoparts[${index}][brand]`" :value="autoparte.brand">
           <input :key="`${index}-model`" type="hidden" :name="`autoparts[${index}][model]`" :value="autoparte.model">
           <input :key="`${index}-origin`" type="hidden" :name="`autoparts[${index}][origin]`" :value="autoparte.origin">
-          <input :key="`${index}-ncm_category`" type="hidden" :name="`autoparts[$index][ncm_category]`" :value="autoparte.ncm_category">
-          <input :key="`${index}-manufacturer`" type="hidden" :name="`autoparts[$index][manufacturer]`" :value="autoparte.manufacturer">
-          <input :key="`${index}-importer`" type="hidden" :name="`autoparts[$index][importer]`" :value="autoparte.importer">
-          <input :key="`${index}-business_name`" type="hidden" :name="`autoparts[$index][business_name]`" :value="autoparte.business_name">
-          <input :key="`${index}-part_number`" type="hidden" :name="`autoparts[$index][part_number]`" :value="autoparte.part_number">
-          <input :key="`${index}-size`" type="hidden" :name="`autoparts[$index][size]`" :value="autoparte.size">
-          <input :key="`${index}-formulation`" type="hidden" :name="`autoparts[$index][formulation]`" :value="autoparte.formulation">
-          <input :key="`${index}-application`" type="hidden" :name="`autoparts[$index][application]`" :value="autoparte.application">
-          <input :key="`${index}-license`" type="hidden" :name="`autoparts[$index][license]`" :value="autoparte.license">
-          <input :key="`${index}-certified_at`" type="hidden" :name="`autoparts[$index][certified_at]`" :value="autoparte.certified_at">
+          <input :key="`${index}-ncm_category`" type="hidden" :name="`autoparts[${index}][ncm_category]`" :value="autoparte.ncm_category">
+          <input :key="`${index}-manufacturer`" type="hidden" :name="`autoparts[${index}][manufacturer]`" :value="autoparte.manufacturer">
+          <input :key="`${index}-importer`" type="hidden" :name="`autoparts[${index}][importer]`" :value="autoparte.importer">
+          <input :key="`${index}-business_name`" type="hidden" :name="`autoparts[${index}][business_name]`" :value="autoparte.business_name">
+          <input :key="`${index}-part_number`" type="hidden" :name="`autoparts[${index}][part_number]`" :value="autoparte.part_number">
+          <input :key="`${index}-size`" type="hidden" :name="`autoparts[${index}][size]`" :value="autoparte.size">
+          <input :key="`${index}-formulation`" type="hidden" :name="`autoparts[${index}][formulation]`" :value="autoparte.formulation">
+          <input :key="`${index}-application`" type="hidden" :name="`autoparts[${index}][application]`" :value="autoparte.application">
+          <input :key="`${index}-license`" type="hidden" :name="`autoparts[${index}][license]`" :value="autoparte.license">
+          <input :key="`${index}-certified_at`" type="hidden" :name="`autoparts[${index}][certified_at]`" :value="autoparte.certified_at">
         </template>
 
         @if ($errors->any())
@@ -121,7 +119,7 @@
           <tbody>
             <tr v-for="(autoparte, index) in autopartes">
               <td class="align-middle">@{{ index + 1 }}</td>
-              <td class="align-middle">@{{ autoparte.product_name }}</td>
+              <td class="align-middle">@{{ autoparte.product }}</td>
               <td class="align-middle">@{{ autoparte.family_name }}</td>
               <td class="align-middle">@{{ autoparte.description }}</td>
               <td class="align-middle">@{{ autoparte.brand }}</td>

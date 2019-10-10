@@ -57,7 +57,7 @@ class ProductController extends Controller
         if ($request->filled('parent_id')) {
             $parent = Product::findOrFail($request->parent_id);
             $product->parent()->associate($parent);
-            $product->subindex = $parent->children->count() + 1;
+            $product->subindex = $parent->children()->withTrashed()->count() + 1;
         }
 
         $product->save();
@@ -71,14 +71,6 @@ class ProductController extends Controller
 
         $product = Product::findOrFail($id);
         $product->fill($request->validated());
-
-        if ($request->filled('parent_id') && $request->parent_id != $product->parent_id) { // danger zone
-            $parent = Product::findOrFail($request->parent_id);
-            $product->parent()->associate($parent);
-            $product->subindex = $parent->children->count() + 1;
-        } else {
-            $product->subindex = null;
-        }
 
         $product->save();
 
