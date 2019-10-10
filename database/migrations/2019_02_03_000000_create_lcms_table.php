@@ -17,14 +17,14 @@ class CreateLcmsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->string('type');
-            $table->string('defeats');
+            $table->string('defeats')->nullable();
             $table->string('number');
-            $table->string('issued_at');
+            $table->string('issued_at')->nullable();
             $table->string('business_name');
             $table->string('address');
             $table->string('cuit');
             $table->string('country');
-            $table->string('manufacturing_place');
+            $table->string('manufacturing_place')->nullable();
             $table->string('commercial_name');
             $table->string('brand');
             $table->string('model');
