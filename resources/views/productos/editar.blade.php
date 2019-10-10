@@ -41,12 +41,7 @@
 
         <div class="w-1/2 form-group item-form px-2 relative">
           <label for="parent" class="mb-4">Padre</label>
-          <select name="parent_id" class="form-control" id="select-parent">
-            <option data-placeholder="true"></option>
-            @foreach($products as $p)
-              @include('productos.option', [ 'p' => $p, 'product' => $product ])
-            @endforeach
-          </select>
+          <input readonly name="parent_id" class="form-control" value="{{ $product->parent ? $product->parent->category . ' ' . $product->parent->name : '---' }}" >
         </div>
 
         <div class="w-1/2 form-group item-form px-2 relative">
@@ -75,12 +70,6 @@
 
 @push('scripts')
 <script>
-new SlimSelect({
-  select: '#select-parent',
-  placeholder: 'Seleccione la familia',
-  searchPlaceholder: 'Buscar',
-})
-
 new SlimSelect({
   select: '#select-active',
   placeholder: 'Seleccione el estado',

@@ -26,7 +26,7 @@ class IsProduct implements Rule
      */
     public function passes($attribute, $value)
     {
-        return !is_null(Product::where('id', $value)->orWhere('name', $value)->first());
+        return !is_null(Product::findByCategory($value));
     }
 
     /**

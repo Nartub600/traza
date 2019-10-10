@@ -30,9 +30,16 @@
       @endif
 
       <div class="flex flex-wrap -mx-4">
-        <div class="w-1/2 form-group item-form px-4 @error('type') has-error @enderror">
+        <div class="w-1/2 form-group item-form px-4 relative @error('type') has-error @enderror">
           <label for="type" class="mb-4">Tipo de Licencia <sup>*</sup></label>
-          <input type="text" name="type" class="form-control" required aria-required>
+          <select required aria-required name="type" class="form-control" id="select-type">
+            <option data-placeholder="true"></option>
+            <option>Nueva</option>
+            <option>Actualización Administrativa</option>
+            <option>Actualización Técnica</option>
+            <option>Extensión</option>
+            <option>Renovación</option>
+          </select>
           @error('type')
             <p class="help-block error">
               {{ $message }}
@@ -62,7 +69,7 @@
 
         <div class="w-1/2 form-group item-form px-4 @error('issued_at') has-error @enderror">
           <label for="issued_at" class="mb-4">Fecha de emisión <sup>*</sup></label>
-          <input type="text" name="issued_at" class="form-control" required aria-required>
+          <input type="date" name="issued_at" class="form-control" required aria-required>
           @error('issued_at')
             <p class="help-block error">
               {{ $message }}
@@ -390,9 +397,15 @@
   })
 
   new SlimSelect({
+    select: '#select-type',
+    placeholder: 'Seleccione el tipo',
+    searchPlaceholder: 'Buscar',
+  })
+
+  new SlimSelect({
     select: '#select-origin',
     placeholder: 'Seleccione el origen',
-    showSearch: false,
+    searchPlaceholder: 'Buscar',
   })
 </script>
 @endpush

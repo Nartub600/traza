@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 
 class Product extends Model
 {
@@ -13,7 +14,7 @@ class Product extends Model
         parent::boot();
 
         static::saving(function ($product) {
-            $product->category = $product->category();
+            $product->category = $product->resolveCategory();
         });
     }
 
@@ -26,6 +27,11 @@ class Product extends Model
     ];
 
     protected $with = ['children'];
+
+    public static function findByCategory($category)
+    {
+        return (new static)::where('category', $category)->first();
+    }
 
     public function user()
     {
@@ -47,7 +53,7 @@ class Product extends Model
         return $query->where('active', true);
     }
 
-    public function category()
+    public function resolveCategory()
     {
         $tree = [];
 
@@ -59,7 +65,9 @@ class Product extends Model
             }
             array_unshift($tree, $parent->id);
         } else {
-            array_unshift($tree, $this->id ?? (Product::doesntHave('parent')->count() + 1));
+            $statement = DB::select("SHOW TABLE STATUS LIKE 'products'");
+            $nextId = $statement[0]->Auto_increment;
+            array_unshift($tree, $this->id ?? $nextId);
         }
 
         return implode('.', $tree);
