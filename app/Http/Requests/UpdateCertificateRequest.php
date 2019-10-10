@@ -33,7 +33,7 @@ class UpdateCertificateRequest extends FormRequest
             'autoparts.*.product_id'    => 'required',
             'autoparts.*.name'          => 'required|string|max:255',
             'autoparts.*.description'   => 'required|string|max:255',
-            'autoparts.*.ncm'           => 'required|string|max:255',
+            'autoparts.*.ncm_id'        => 'required|string|max:255',
             'autoparts.*.manufacturer'  => 'required|string|max:255',
             'autoparts.*.importer'      => 'required|string|max:255',
             'autoparts.*.business_name' => 'required|string|max:255',
