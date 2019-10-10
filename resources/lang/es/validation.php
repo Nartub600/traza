@@ -155,7 +155,7 @@ return [
         'product'       => 'producto',
         'password'      => 'contraseña',
         'description'   => 'descripción',
-        'ncm_category'  => 'Nº NCM',
+        'ncm'           => 'Nº NCM',
         'manufacturer'  => 'fabricante',
         'importer'      => 'importador',
         'business_name' => 'razón social',

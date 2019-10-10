@@ -40,12 +40,12 @@ class Product extends Model
 
     public function parent()
     {
-        return $this->belongsTo(Product::class, 'parent_id');
+        return $this->belongsTo(Product::class, 'parent_id')->active();
     }
 
     public function children()
     {
-        return $this->hasMany(Product::class, 'parent_id');
+        return $this->hasMany(Product::class, 'parent_id')->active();
     }
 
     public function scopeActive($query)
