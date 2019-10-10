@@ -34,7 +34,7 @@ class CreateCertificateRequest extends FormRequest
             'autoparts.*.product_id'    => 'required_without:certificates',
             // 'autoparts.*.name'          => 'required_without:certificates|string|max:255',
             'autoparts.*.description'   => 'required_without:certificates|max:255',
-            'autoparts.*.ncm_category'  => 'required_without:certificates|max:255',
+            'autoparts.*.ncm'           => 'required_without:certificates|max:255',
             'autoparts.*.manufacturer'  => 'required_without:certificates|max:255',
             'autoparts.*.importer'      => 'required_without:certificates|max:255',
             'autoparts.*.business_name' => 'required_without:certificates|max:255',

@@ -16,7 +16,6 @@ class CreateAutopartsTable extends Migration
         Schema::create('autoparts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('certificate_id')->nullable();
-            $table->unsignedBigInteger('family_id'); // 01
             $table->unsignedBigInteger('product_id'); // 02
             $table->string('ncm'); // 03
             $table->string('description'); // 11
@@ -35,7 +34,6 @@ class CreateAutopartsTable extends Migration
             $table->timestamps();
 
             $table->foreign('certificate_id')->references('id')->on('certificates');
-            $table->foreign('family_id')->references('id')->on('products');
             $table->foreign('product_id')->references('id')->on('products');
             // $table->foreign('ncm_id')->references('id')->on('ncm');
         });
