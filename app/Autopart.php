@@ -8,8 +8,8 @@ class Autopart extends Model
 {
     protected $fillable = [
         'product_id',
+        'ncm_id',
         'description',
-        'ncm',
         'manufacturer',
         'importer',
         'business_name',

@@ -31,16 +31,32 @@
                 <!-- <p class="help-block error hidden">Seleccione el producto</p> -->
               </div>
 
-              <div class="w-1/4 form-group item-form px-2">
+              <div class="w-1/4 form-group item-form px-2 relative">
                 <label class="mb-4">Categoría NCM <sup>*</sup></label>
-                <input
-                  name="ncm"
-                  type="text"
-                  class="form-control"
+                <select
                   required
                   aria-required
-                  v-model="$attrs.value.ncm"
+                  name="ncm"
+                  class="form-control"
+                  v-model="$attrs.value.ncm_id"
+                  ref="selectNcm"
                 >
+                  <option data-placeholder="true"></option>
+                  <option
+                    v-for="row in ncm"
+                    :key="`ncm-${row.id}`"
+                    :value="row.id"
+                  >
+                    {{ `${row.category} ${row.description}` }}
+                  </option>
+                  <!-- <option
+                    v-for="category in ncm"
+                    :key="`ncm-${category.category}`"
+                    :value="ncm.id"
+                  >
+                    {{ `${category.category}` }}
+                  </option> -->
+                </select>
                 <!-- <p class="help-block error hidden">Ingrese la descripción</p> -->
               </div>
 
@@ -493,7 +509,7 @@ export default {
   //   FilePond
   // },
 
-  props: ['products', 'editing'],
+  props: ['products', 'editing', 'ncm'],
 
   data () {
     return {
@@ -527,6 +543,12 @@ export default {
     new SlimSelect({
       select: this.$refs.selectProduct,
       placeholder: 'Seleccione el producto',
+      searchPlaceholder: 'Buscar',
+    })
+
+    new SlimSelect({
+      select: this.$refs.selectNcm,
+      placeholder: 'Seleccione la categoría NCM',
       searchPlaceholder: 'Buscar',
     })
 

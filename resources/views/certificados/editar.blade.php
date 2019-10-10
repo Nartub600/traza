@@ -5,6 +5,7 @@
   inline-template
   :old-autopartes="{{ collect(old('autoparts', [])) }}"
   :products="{{ $products }}"
+  :ncm="{{ $ncm }}"
   :certificate="{{ $certificate }}"
   autoparts-template="{{ asset('plantillas/autopartes.xlsx') }}"
 >
@@ -34,6 +35,7 @@
           <input :key="`${index}-brand`" type="hidden" :name="`autoparts[${index}][brand]`" :value="autoparte.brand">
           <input :key="`${index}-model`" type="hidden" :name="`autoparts[${index}][model]`" :value="autoparte.model">
           <input :key="`${index}-origin`" type="hidden" :name="`autoparts[${index}][origin]`" :value="autoparte.origin">
+          <input :key="`${index}-ncm_id`" type="hidden" :name="`autoparts[${index}][ncm_id]`" :value="autoparte.ncm_id">
           <input :key="`${index}-ncm`" type="hidden" :name="`autoparts[${index}][ncm]`" :value="autoparte.ncm">
           <input :key="`${index}-manufacturer`" type="hidden" :name="`autoparts[${index}][manufacturer]`" :value="autoparte.manufacturer">
           <input :key="`${index}-importer`" type="hidden" :name="`autoparts[${index}][importer]`" :value="autoparte.importer">
@@ -162,6 +164,7 @@
       <autopartes-modal
         v-if="showModal"
         :products="flatProducts"
+        :ncm="{{ $ncm }}"
         :editing="editing"
         v-model="autoparte"
         @done="addToIndex"

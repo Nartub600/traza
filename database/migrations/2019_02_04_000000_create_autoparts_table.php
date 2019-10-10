@@ -17,7 +17,7 @@ class CreateAutopartsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('certificate_id')->nullable();
             $table->unsignedBigInteger('product_id'); // 02
-            $table->string('ncm'); // 03
+            $table->unsignedBigInteger('ncm_id'); // 03
             $table->string('description'); // 11
             $table->string('manufacturer'); // 04
             $table->string('importer'); // 05
@@ -35,7 +35,7 @@ class CreateAutopartsTable extends Migration
 
             $table->foreign('certificate_id')->references('id')->on('certificates');
             $table->foreign('product_id')->references('id')->on('products');
-            // $table->foreign('ncm_id')->references('id')->on('ncm');
+            $table->foreign('ncm_id')->references('id')->on('ncm');
         });
     }
 

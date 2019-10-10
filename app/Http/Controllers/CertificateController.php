@@ -6,6 +6,7 @@ use App\Autopart;
 use App\Certificate;
 use App\Http\Requests\CreateCertificateRequest;
 use App\Http\Requests\UpdateCertificateRequest;
+use App\NCM;
 use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -28,8 +29,9 @@ class CertificateController extends Controller
         $this->authorize('crear', Certificate::class);
 
         $products = Product::active()->doesntHave('parent')->get();
+        $ncm = NCM::active()->get();
 
-        return view('certificados.crear', compact('products'));
+        return view('certificados.crear', compact('products' , 'ncm'));
     }
 
     public function show($id)
@@ -48,8 +50,9 @@ class CertificateController extends Controller
         $certificate = Certificate::with('autoparts')->findOrFail($id);
 
         $products = Product::active()->doesntHave('parent')->get();
+        $ncm = NCM::active()->get();
 
-        return view('certificados.editar', compact('certificate', 'products'));
+        return view('certificados.editar', compact('certificate', 'products', 'ncm'));
     }
 
     public function store(CreateCertificateRequest $request)

@@ -24,6 +24,11 @@ export default {
 
     autopartsTemplate: {
       type: String
+    },
+
+    ncm: {
+      type: Array,
+      default: () => []
     }
   },
 
@@ -40,7 +45,8 @@ export default {
     computedAutoparte () {
       return {
         ...this.autoparte,
-        ...(this.autoparte.product_id && { product: `${this.flatProducts.find(p => p.id === this.autoparte.product_id).category} ${this.flatProducts.find(p => p.id === this.autoparte.product_id).name}` })
+        ...(this.autoparte.product_id && { product: `${this.flatProducts.find(p => p.id === this.autoparte.product_id).category} ${this.flatProducts.find(p => p.id === this.autoparte.product_id).name}` }),
+        ...(this.autoparte.ncm_id && { ncm: `${this.ncm.find(p => p.id === this.autoparte.ncm_id).category} ${this.ncm.find(p => p.id === this.autoparte.ncm_id).description}` })
       }
     },
 
@@ -158,14 +164,14 @@ export default {
           url: 'https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json'
         }
       })
-      this.autopartes.forEach((a, i) => {
-        new Swiper.default(this.$refs[`swiper${i}`], {
-          navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-          },
-        })
-      })
+      // this.autopartes.forEach((a, i) => {
+      //   new Swiper.default(this.$refs[`swiper${i}`], {
+      //     navigation: {
+      //       nextEl: '.swiper-button-next',
+      //       prevEl: '.swiper-button-prev',
+      //     },
+      //   })
+      // })
     },
 
     openModal () {
