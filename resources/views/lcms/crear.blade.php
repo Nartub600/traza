@@ -109,7 +109,7 @@
 
         <div class="w-1/2 form-group item-form px-4 relative @error('country') has-error @enderror">
           <label for="country" class="mb-4">País de Origen <sup>*</sup></label>
-          <select class="form-control" name="origin" required aria-required id="select-origin">
+          <select class="form-control" name="country" required aria-required id="select-country">
             <option data-placeholder="true"></option>
             <option>Afganistán</option>
             <option>Albania</option>
@@ -403,7 +403,7 @@
   })
 
   new SlimSelect({
-    select: '#select-origin',
+    select: '#select-country',
     placeholder: 'Seleccione el origen',
     searchPlaceholder: 'Buscar',
   })
