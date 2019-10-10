@@ -25,14 +25,14 @@ class CreateLCMRequest extends FormRequest
     {
         return [
             'type'                => 'required',
-            'defeats'             => 'required',
+            'defeats'             => 'nullable',
             'number'              => 'required',
-            'issued_at'           => 'required',
+            'issued_at'           => 'nullable',
             'business_name'       => 'required',
             'address'             => 'required',
             'cuit'                => 'required',
             'country'             => 'required',
-            'manufacturing_place' => 'required',
+            'manufacturing_place' => 'nullable',
             'commercial_name'     => 'required',
             'brand'               => 'required',
             'model'               => 'required',

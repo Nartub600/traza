@@ -48,8 +48,8 @@
         </div>
 
         <div class="w-1/2 form-group item-form px-4 @error('defeats') has-error @enderror">
-          <label for="defeats" class="mb-4">Anula y Reemplaza (Nº LCM) <sup>*</sup></label>
-          <input type="text" name="defeats" class="form-control" required aria-required>
+          <label for="defeats" class="mb-4">Anula y Reemplaza (Nº LCM)</label>
+          <input type="text" name="defeats" class="form-control">
           @error('defeats')
             <p class="help-block error">
               {{ $message }}
@@ -68,8 +68,8 @@
         </div>
 
         <div class="w-1/2 form-group item-form px-4 @error('issued_at') has-error @enderror">
-          <label for="issued_at" class="mb-4">Fecha de emisión <sup>*</sup></label>
-          <input type="date" name="issued_at" class="form-control" required aria-required>
+          <label for="issued_at" class="mb-4">Fecha de emisión</label>
+          <input type="date" name="issued_at" class="form-control">
           @error('issued_at')
             <p class="help-block error">
               {{ $message }}
@@ -314,8 +314,8 @@
         </div>
 
         <div class="w-1/2 form-group item-form px-4 @error('manufacturing_place') has-error @enderror">
-          <label for="manufacturing_place" class="mb-4">Lugar de Fabricación <sup>*</sup></label>
-          <input type="text" name="manufacturing_place" class="form-control" required aria-required>
+          <label for="manufacturing_place" class="mb-4">Lugar de Fabricación</label>
+          <input type="text" name="manufacturing_place" class="form-control">
           @error('manufacturing_place')
             <p class="help-block error">
               {{ $message }}
