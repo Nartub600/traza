@@ -6,7 +6,9 @@ use App\Autopart;
 use App\Certificate;
 use App\Imports\AutopartsImport;
 use App\Imports\CertificatesImport;
+use App\NCM;
 use App\Product;
+use App\Rules\IsNCM;
 use App\Rules\IsNotCertificate;
 use App\Rules\IsProduct;
 use Illuminate\Http\Request;
@@ -82,9 +84,8 @@ class ImportController extends Controller
                 'number'        => ['required', 'max:20', new IsNotCertificate],
                 'cuit'          => ['required', 'regex:/[0-9]{2}-[0-9]{6,8}-[0-9]/'],
                 'product'       => ['required', new IsProduct],
-                'family'        => ['required', new IsProduct],
+                'ncm'           => ['required', new IsNCM],
                 'description'   => 'required|max:255',
-                'ncm_category'  => 'required|max:255',
                 'manufacturer'  => 'required|max:255',
                 'importer'      => 'required|max:255',
                 'business_name' => 'required|max:255',
@@ -123,9 +124,8 @@ class ImportController extends Controller
         $rows->each(function ($row, $index) use ($valid, $invalid) {
             $validator = Validator::make($row->toArray(), [
                 'product'       => ['required', new IsProduct],
-                'family'        => ['required', new IsProduct],
+                'ncm'           => ['required', new IsNCM],
                 'description'   => 'required|max:255',
-                'ncm_category'  => 'required|max:255',
                 'manufacturer'  => 'required|max:255',
                 'importer'      => 'required|max:255',
                 'business_name' => 'required|max:255',
@@ -213,13 +213,13 @@ class ImportController extends Controller
         return $rows->map(function ($row) {
             $row = $row->toArray();
 
-            $product = Product::where('id', $row['product'])->orWhere('name', $row['product'])->first();
+            $product = Product::where('category', $row['product'])->first();
             $row['product_id'] = $product->id;
-            $row['product_name'] = $product->name;
+            $row['product_string'] = $product->category . ' ' . $product->name;
 
-            $family = Product::where('id', $row['family'])->orWhere('name', $row['family'])->first();
-            $row['family_id'] = $family->id;
-            $row['family_name'] = $family->name;
+            $ncm = NCM::where('category', $row['ncm'])->first();
+            $row['ncm_id'] = $ncm->id;
+            $row['ncm_string'] = $ncm->category . ' ' . $ncm->description;
 
             return $row;
         });

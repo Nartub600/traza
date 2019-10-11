@@ -27,13 +27,13 @@
 
         <template v-for="(autoparte, index) in autopartes">
           <input :key="`${index}-product_id`" type="hidden" :name="`autoparts[${index}][product_id]`" :value="autoparte.product_id">
-          <input :key="`${index}-product`" type="hidden" :name="`autoparts[${index}][product]`" :value="autoparte.product">
+          <input :key="`${index}-product_string`" type="hidden" :name="`autoparts[${index}][product_string]`" :value="autoparte.product_string">
           <input :key="`${index}-description`" type="hidden" :name="`autoparts[${index}][description]`" :value="autoparte.description">
           <input :key="`${index}-brand`" type="hidden" :name="`autoparts[${index}][brand]`" :value="autoparte.brand">
           <input :key="`${index}-model`" type="hidden" :name="`autoparts[${index}][model]`" :value="autoparte.model">
           <input :key="`${index}-origin`" type="hidden" :name="`autoparts[${index}][origin]`" :value="autoparte.origin">
           <input :key="`${index}-ncm_id`" type="hidden" :name="`autoparts[${index}][ncm_id]`" :value="autoparte.ncm_id">
-          <input :key="`${index}-ncm`" type="hidden" :name="`autoparts[${index}][ncm]`" :value="autoparte.ncm">
+          <input :key="`${index}-ncm_string`" type="hidden" :name="`autoparts[${index}][ncm_string]`" :value="autoparte.ncm_string">
           <input :key="`${index}-manufacturer`" type="hidden" :name="`autoparts[${index}][manufacturer]`" :value="autoparte.manufacturer">
           <input :key="`${index}-importer`" type="hidden" :name="`autoparts[${index}][importer]`" :value="autoparte.importer">
           <input :key="`${index}-business_name`" type="hidden" :name="`autoparts[${index}][business_name]`" :value="autoparte.business_name">
@@ -117,7 +117,7 @@
           <tbody>
             <tr v-for="(autoparte, index) in autopartes">
               <td class="align-middle">@{{ index + 1 }}</td>
-              <td class="align-middle">@{{ autoparte.product }}</td>
+              <td class="align-middle">@{{ autoparte.product_string }}</td>
               <td class="align-middle">@{{ autoparte.description }}</td>
               <td class="align-middle">@{{ autoparte.brand }}</td>
               <td class="align-middle">@{{ autoparte.model }}</td>

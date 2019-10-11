@@ -17,8 +17,18 @@ class NCM extends Model
         'active' => 'boolean',
     ];
 
+    public static function findByCategory($category)
+    {
+        return (new static)::where('category', $category)->first();
+    }
+
     public function scopeActive($query)
     {
         return $query->where('active', true);
+    }
+
+    public function getHumanAttribute()
+    {
+        return $this->category . ' ' . $this->description;
     }
 }

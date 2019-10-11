@@ -25,11 +25,12 @@ class Autopart extends Model
     ];
 
     protected $appends = [
-        'product_name',
+        'product_string',
+        'ncm_string'
     ];
 
     protected $casts = [
-        'certified_at' => 'date'
+        'certified_at' => 'date|Y-m-d'
     ];
 
     public function ncm()
@@ -42,8 +43,13 @@ class Autopart extends Model
         return $this->belongsTo(Product::class);
     }
 
-    public function getProductNameAttribute()
+    public function getProductStringAttribute()
     {
-        return $this->product->name;
+        return $this->product->human;
+    }
+
+    public function getNcmStringAttribute()
+    {
+        return $this->ncm->human;
     }
 }

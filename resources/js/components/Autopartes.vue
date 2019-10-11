@@ -45,8 +45,8 @@ export default {
     computedAutoparte () {
       return {
         ...this.autoparte,
-        ...(this.autoparte.product_id && { product: `${this.flatProducts.find(p => p.id === this.autoparte.product_id).category} ${this.flatProducts.find(p => p.id === this.autoparte.product_id).name}` }),
-        ...(this.autoparte.ncm_id && { ncm: `${this.ncm.find(p => p.id === this.autoparte.ncm_id).category} ${this.ncm.find(p => p.id === this.autoparte.ncm_id).description}` })
+        ...(this.autoparte.product_id && { product_string: `${this.flatProducts.find(p => p.id === this.autoparte.product_id).category} ${this.flatProducts.find(p => p.id === this.autoparte.product_id).name}` }),
+        ...(this.autoparte.ncm_id && { ncm_string: `${this.ncm.find(p => p.id === this.autoparte.ncm_id).category} ${this.ncm.find(p => p.id === this.autoparte.ncm_id).description}` })
       }
     },
 
@@ -227,7 +227,7 @@ export default {
           <ul class="text-xs flex flex-wrap">
             ${c.autoparts.map(a => {
               return `<li class="w-1/2 p-1">
-                Producto: ${a.product_name}<br>
+                Producto: ${a.product_string}<br>
                 Descripción: ${a.description}<br>
                 Marca: ${a.brand}<br>
                 Modelo: ${a.model}<br>

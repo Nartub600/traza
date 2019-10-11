@@ -72,4 +72,9 @@ class Product extends Model
 
         return implode('.', $tree);
     }
+
+    public function getHumanAttribute()
+    {
+        return $this->category . ' ' . $this->name;
+    }
 }
