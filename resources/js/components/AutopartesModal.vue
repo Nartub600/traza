@@ -5,13 +5,15 @@
         <form @submit.prevent="done">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">{{ editing === -1 ? 'Agregar' : 'Editar' }} autoparte</h4>
+            <h4 v-if="editing !== 0" class="modal-title">{{ editing === -1 ? 'Agregar' : 'Editar' }} autoparte</h4>
+            <h4 v-else class="modal-title">Ver autoparte</h4>
           </div>
           <div class="modal-body pb-0">
             <div class="flex flex-wrap -mx-2">
               <div class="w-1/4 form-group item-form px-2 relative">
                 <label class="mb-4">Producto <sup>*</sup></label>
                 <select
+                  v-if="editing !== 0"
                   required
                   aria-required
                   name="product"
@@ -28,12 +30,19 @@
                     {{ `${product.category} ${product.name}` }}
                   </option>
                 </select>
+                <input
+                  v-else
+                  readonly
+                  class="form-control"
+                  :value="`${$attrs.value.product.category} ${$attrs.value.product.name}`"
+                >
                 <!-- <p class="help-block error hidden">Seleccione el producto</p> -->
               </div>
 
               <div class="w-1/4 form-group item-form px-2 relative">
                 <label class="mb-4">Categoría NCM <sup>*</sup></label>
                 <select
+                  v-if="editing !== 0"
                   required
                   aria-required
                   name="ncm"
@@ -57,12 +66,19 @@
                     {{ `${category.category}` }}
                   </option> -->
                 </select>
+                <input
+                  v-else
+                  readonly
+                  class="form-control"
+                  :value="`${$attrs.value.ncm.category} ${$attrs.value.ncm.description}`"
+                >
                 <!-- <p class="help-block error hidden">Ingrese la descripción</p> -->
               </div>
 
               <div class="w-1/4 form-group item-form px-2">
                 <label class="mb-4">Fabricante <sup>*</sup></label>
                 <input
+                  :readonly="editing === 0"
                   name="manufacturer"
                   type="text"
                   class="form-control"
@@ -76,6 +92,7 @@
               <div class="w-1/4 form-group item-form px-2">
                 <label class="mb-4">Importador <sup>*</sup></label>
                 <input
+                  :readonly="editing === 0"
                   name="importer"
                   type="text"
                   class="form-control"
@@ -89,6 +106,7 @@
               <div class="w-1/4 form-group item-form px-2">
                 <label class="mb-4">Razón Social <sup>*</sup></label>
                 <input
+                  :readonly="editing === 0"
                   name="business_name"
                   type="text"
                   class="form-control"
@@ -102,6 +120,7 @@
               <div class="w-1/4 form-group item-form px-2">
                 <label class="mb-4">Part Number <sup>*</sup></label>
                 <input
+                  :readonly="editing === 0"
                   name="part_number"
                   type="text"
                   class="form-control"
@@ -115,6 +134,7 @@
               <div class="w-1/4 form-group item-form px-2">
                 <label class="mb-4">Descripción <sup>*</sup></label>
                 <input
+                  :readonly="editing === 0"
                   name="description"
                   type="text"
                   class="form-control"
@@ -128,6 +148,7 @@
               <div class="w-1/4 form-group item-form px-2">
                 <label class="mb-4">Marca <sup>*</sup></label>
                 <input
+                  :readonly="editing === 0"
                   name="brand"
                   type="text"
                   class="form-control"
@@ -141,6 +162,7 @@
               <div class="w-1/4 form-group item-form px-2">
                 <label class="mb-4">Modelo <sup>*</sup></label>
                 <input
+                  :readonly="editing === 0"
                   name="model"
                   type="text"
                   class="form-control"
@@ -154,6 +176,7 @@
               <div class="w-1/4 form-group item-form px-2 relative">
                 <label class="mb-4">Origen <sup>*</sup></label>
                 <select
+                  v-if="editing !== 0"
                   v-model="$attrs.value.origin"
                   name="origin"
                   class="form-control"
@@ -356,12 +379,19 @@
                   <option>Zambia</option>
                   <option>Zimbabue</option>
                 </select>
+                <input
+                  v-else
+                  class="form-control"
+                  readonly
+                  :value="$attrs.value.origin"
+                >
                 <!-- <p class="help-block error hidden">Ingrese el origen</p> -->
               </div>
 
               <div class="w-1/4 form-group item-form px-2">
                 <label class="mb-4">Tamaño/Talle <sup>*</sup></label>
                 <input
+                  :readonly="editing === 0"
                   name="size"
                   type="text"
                   class="form-control"
@@ -375,6 +405,7 @@
               <div class="w-1/4 form-group item-form px-2">
                 <label class="mb-4">Formulación <sup>*</sup></label>
                 <input
+                  :readonly="editing === 0"
                   name="formulation"
                   type="text"
                   class="form-control"
@@ -388,6 +419,7 @@
               <div class="w-1/4 form-group item-form px-2">
                 <label class="mb-4">Aplicación <sup>*</sup></label>
                 <input
+                  :readonly="editing === 0"
                   name="application"
                   type="text"
                   class="form-control"
@@ -401,6 +433,7 @@
               <div class="w-1/4 form-group item-form px-2">
                 <label class="mb-4">Fecha de certificación <sup>*</sup></label>
                 <input
+                  :readonly="editing === 0"
                   name="certified_at"
                   type="date"
                   class="form-control"
@@ -414,6 +447,7 @@
               <div class="w-1/4 form-group item-form px-2">
                 <label class="mb-4">Licencia de certificación <sup>*</sup></label>
                 <input
+                  :readonly="editing === 0"
                   name="license"
                   type="text"
                   class="form-control"
@@ -479,6 +513,7 @@
               Volver
             </button>
             <button
+              v-if="editing !== 0"
               type="submit"
               class="btn btn-primary"
               :disabled="uploading"
@@ -540,23 +575,25 @@ export default {
   },
 
   mounted () {
-    new SlimSelect({
-      select: this.$refs.selectProduct,
-      placeholder: 'Seleccione el producto',
-      searchPlaceholder: 'Buscar',
-    })
+    if (this.editing !== 0) {
+      new SlimSelect({
+        select: this.$refs.selectProduct,
+        placeholder: 'Seleccione el producto',
+        searchPlaceholder: 'Buscar',
+      })
 
-    new SlimSelect({
-      select: this.$refs.selectNcm,
-      placeholder: 'Seleccione la categoría NCM',
-      searchPlaceholder: 'Buscar',
-    })
+      new SlimSelect({
+        select: this.$refs.selectNcm,
+        placeholder: 'Seleccione la categoría NCM',
+        searchPlaceholder: 'Buscar',
+      })
 
-    new SlimSelect({
-      select: this.$refs.selectOrigin,
-      placeholder: 'Seleccione el origen',
-      searchPlaceholder: 'Buscar',
-    })
+      new SlimSelect({
+        select: this.$refs.selectOrigin,
+        placeholder: 'Seleccione el origen',
+        searchPlaceholder: 'Buscar',
+      })
+    }
 
     // $('#crear-autoparte').on('shown.bs.modal', e => {
     //   this.initSwiper()

@@ -16,7 +16,7 @@ class CreateNcmTable extends Migration
         Schema::create('ncm', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('category');
-            $table->string('description');
+            $table->text('description');
             $table->boolean('active');
             $table->timestamps();
             $table->softDeletes();

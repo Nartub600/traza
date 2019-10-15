@@ -115,6 +115,12 @@ export default {
       this.openModal()
     },
 
+    view (autoparte) {
+      this.autoparte = { ...autoparte }
+      this.editing = 0
+      this.openModal()
+    },
+
     edit (autoparte, index) {
       this.editing = index
       this.autoparte = { ...autoparte }

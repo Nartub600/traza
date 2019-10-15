@@ -1,7 +1,9 @@
 <?php
 
+use App\Imports\NCMImport;
 use App\NCM;
 use Illuminate\Database\Seeder;
+use Maatwebsite\Excel\Facades\Excel;
 
 class NCMSeeder extends Seeder
 {
@@ -12,6 +14,8 @@ class NCMSeeder extends Seeder
      */
     public function run()
     {
+        // Excel::import(new NCMImport, './resources/ncm/ncm.xls');
+
         NCM::create([
             'category' => '6506.10.00',
             'description' => 'Cascos de seguridad',
