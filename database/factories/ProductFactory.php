@@ -11,3 +11,7 @@ $factory->define(Product::class, function (Faker $faker) {
         'active' => $faker->boolean,
     ];
 });
+
+$factory->state(Product::class, 'active', [
+    'active' => true
+]);

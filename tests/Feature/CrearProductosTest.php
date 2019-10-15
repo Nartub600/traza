@@ -21,12 +21,12 @@ class CrearProductosTest extends TestCase
 
         $administrador = factory(User::class)->state('administrador')->create();
 
-        $family = factory(Product::class)->create();
+        $parent = factory(Product::class)->state('active')->create();
 
         $data = [
             'name'      => $this->faker->name,
             'active'    => $this->faker->boolean,
-            'family_id' => $family->id,
+            'parent_id' => $parent->id,
         ];
 
         $response = $this
@@ -43,7 +43,7 @@ class CrearProductosTest extends TestCase
 
         $this->assertNotNull($product);
         $this->assertEquals($product->active, $data['active']);
-        $this->assertEquals($product->family->id, $family->id);
+        $this->assertEquals($product->parent->id, $parent->id);
     }
 
     /** @test */

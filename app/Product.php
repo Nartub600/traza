@@ -65,8 +65,7 @@ class Product extends Model
             }
             array_unshift($tree, $parent->id);
         } else {
-            $statement = DB::select("SHOW TABLE STATUS LIKE 'products'");
-            $nextId = $statement[0]->Auto_increment;
+            $nextId = Product::withTrashed()->count() + 1;
             array_unshift($tree, $this->id ?? $nextId);
         }
 

@@ -19,14 +19,14 @@ class EditarProductoTest extends TestCase
 
         $administrador = factory(User::class)->state('administrador')->create();
 
-        $product = factory(Product::class)->create();
-
-        $family = factory(Product::class)->create();
+        $product = factory(Product::class)->state('active')->create();
+        $parent = factory(Product::class)->state('active')->create();
+        $product->parent()->associate($parent);
+        $product->save();
 
         $data = [
             'name' => $this->faker->word,
             'active' => $this->faker->boolean,
-            'family_id' => $family->id,
         ];
 
         $response = $this
@@ -45,7 +45,7 @@ class EditarProductoTest extends TestCase
 
         $this->assertEquals($product->name, $data['name']);
         $this->assertEquals($product->active, $data['active']);
-        $this->assertEquals($product->family->id, $family->id);
+        $this->assertEquals($product->parent->id, $parent->id);
     }
 
     /** @test */

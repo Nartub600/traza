@@ -1,5 +1,6 @@
 <?php
 
+use App\Group;
 use App\User;
 use Faker\Generator as Faker;
 use Illuminate\Support\Facades\Hash;
@@ -28,8 +29,9 @@ $factory->define(User::class, function (Faker $faker) {
     ];
 });
 
-$factory->afterCreating(User::class, function ($user) {
-    $user->groups()->attach(1);
+$factory->afterCreatingState(User::class, 'inNewGroup', function ($user) {
+    $group = factory(Group::class)->create();
+    $user->groups()->attach($group);
 });
 
 $factory->afterCreatingState(User::class, 'administrador', function ($user) {

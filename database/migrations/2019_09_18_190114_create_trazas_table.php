@@ -17,6 +17,7 @@ class CreateTrazasTable extends Migration
             $table->bigIncrements('id');
             $table->string('number');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -39,8 +39,9 @@ class CertificateController extends Controller
         $this->authorize('ver', Certificate::class);
 
         $certificate = Certificate::with('autoparts')->findOrFail($id);
+        $ncm = NCM::active()->get();
 
-        return view('certificados.ver', compact('certificate'));
+        return view('certificados.ver', compact('certificate', 'ncm'));
     }
 
     public function edit($id)
