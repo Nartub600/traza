@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class LcmsTableSeeder extends Seeder
+class LCMsSeeder extends Seeder
 {
 
     /**
@@ -12,12 +12,12 @@ class LcmsTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         \DB::table('lcms')->delete();
-        
+
         \DB::table('lcms')->insert(array (
-            0 => 
+            0 =>
             array (
                 'id' => 152,
                 'user_id' => 1,
@@ -39,7 +39,7 @@ class LcmsTableSeeder extends Seeder
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            1 => 
+            1 =>
             array (
                 'id' => 153,
                 'user_id' => 1,
@@ -61,7 +61,7 @@ class LcmsTableSeeder extends Seeder
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            2 => 
+            2 =>
             array (
                 'id' => 154,
                 'user_id' => 1,
@@ -83,7 +83,7 @@ class LcmsTableSeeder extends Seeder
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            3 => 
+            3 =>
             array (
                 'id' => 155,
                 'user_id' => 1,
@@ -105,7 +105,7 @@ class LcmsTableSeeder extends Seeder
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            4 => 
+            4 =>
             array (
                 'id' => 156,
                 'user_id' => 1,
@@ -127,7 +127,7 @@ class LcmsTableSeeder extends Seeder
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            5 => 
+            5 =>
             array (
                 'id' => 157,
                 'user_id' => 1,
@@ -149,7 +149,7 @@ class LcmsTableSeeder extends Seeder
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            6 => 
+            6 =>
             array (
                 'id' => 158,
                 'user_id' => 1,
@@ -171,7 +171,7 @@ class LcmsTableSeeder extends Seeder
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            7 => 
+            7 =>
             array (
                 'id' => 159,
                 'user_id' => 1,
@@ -193,7 +193,7 @@ class LcmsTableSeeder extends Seeder
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            8 => 
+            8 =>
             array (
                 'id' => 160,
                 'user_id' => 1,
@@ -215,7 +215,7 @@ class LcmsTableSeeder extends Seeder
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            9 => 
+            9 =>
             array (
                 'id' => 161,
                 'user_id' => 1,
@@ -237,7 +237,7 @@ class LcmsTableSeeder extends Seeder
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            10 => 
+            10 =>
             array (
                 'id' => 162,
                 'user_id' => 1,
@@ -259,7 +259,7 @@ class LcmsTableSeeder extends Seeder
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            11 => 
+            11 =>
             array (
                 'id' => 163,
                 'user_id' => 1,
@@ -281,7 +281,7 @@ class LcmsTableSeeder extends Seeder
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            12 => 
+            12 =>
             array (
                 'id' => 164,
                 'user_id' => 1,
@@ -303,7 +303,7 @@ class LcmsTableSeeder extends Seeder
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            13 => 
+            13 =>
             array (
                 'id' => 165,
                 'user_id' => 1,
@@ -325,7 +325,7 @@ class LcmsTableSeeder extends Seeder
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            14 => 
+            14 =>
             array (
                 'id' => 166,
                 'user_id' => 1,
@@ -347,7 +347,7 @@ class LcmsTableSeeder extends Seeder
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            15 => 
+            15 =>
             array (
                 'id' => 167,
                 'user_id' => 1,
@@ -360,10 +360,10 @@ class LcmsTableSeeder extends Seeder
                 'cuit' => '30678149639',
                 'country' => 'ESTADOS UNIDOS',
                 'manufacturing_place' => 'HARLEY - DAVIDSON KANSAS CITY 11401 N, Congress - Kansas City,',
-                'commercial_name' => 'XL883L SUPERLOW XL1200C 1200 CUSTOM; XL1200CA; 1200 CUSTOM LIMITED A; XL1200CB; 1200 CUSTOM LIMITED B; XL883N; IRON 883; XL1200X FORTY-EIGHT; XL1200V; SEVENTY-TWO; XL1200T SUPERLOW 1200T; XL1200CX; 
+                'commercial_name' => 'XL883L SUPERLOW XL1200C 1200 CUSTOM; XL1200CA; 1200 CUSTOM LIMITED A; XL1200CB; 1200 CUSTOM LIMITED B; XL883N; IRON 883; XL1200X FORTY-EIGHT; XL1200V; SEVENTY-TWO; XL1200T SUPERLOW 1200T; XL1200CX;
 ROADSTER; XL1200NS~ IRON 1200; XL1200XS',
                 'brand' => 'HARLEY - DAVIDSON',
-                'model' => 'XL883L; SUPERLOW; XL1200C 1200 CUSTOM; XL1200CA 1200 CUSTOM LIMITED. XL1200CB; 1200 CUSTOM LIMITED B; XL883N IRON 883; XL1200X; FORTY-EIGHT" XLl~O SEVENTY-TVO; XL1200T SUPERLOW 1200T; XL1200CX; ROADSTER; XL1200NS; IRON 120 
+                'model' => 'XL883L; SUPERLOW; XL1200C 1200 CUSTOM; XL1200CA 1200 CUSTOM LIMITED. XL1200CB; 1200 CUSTOM LIMITED B; XL883N IRON 883; XL1200X; FORTY-EIGHT" XLl~O SEVENTY-TVO; XL1200T SUPERLOW 1200T; XL1200CX; ROADSTER; XL1200NS; IRON 120
 XL1200XS',
                 'category' => 'L1 a L7',
                 'version' => '5HD4CR2C*; 5HD4CR2D*; 5HDICT3C*; 5HDICT3D* ; 5HDILBC* ;5HDILJ3D* ;5HDILK3C* ;5HDILK3D* ;5HD-tLE2C* ;5HD4LE2D* ;5HDILC3C* ;5HDILC3D* ;5HDILF3C* ;5HDILF3D* ;5HDILL3C* ;5HDILL3D* ;5HDILM3C*;5HDILM3D* ;5HDILP3C* ;5HDILP3D* ; 5HDILR3C*',
@@ -371,7 +371,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            16 => 
+            16 =>
             array (
                 'id' => 168,
                 'user_id' => 1,
@@ -393,7 +393,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            17 => 
+            17 =>
             array (
                 'id' => 169,
                 'user_id' => 1,
@@ -415,7 +415,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            18 => 
+            18 =>
             array (
                 'id' => 170,
                 'user_id' => 1,
@@ -437,7 +437,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            19 => 
+            19 =>
             array (
                 'id' => 171,
                 'user_id' => 1,
@@ -459,7 +459,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            20 => 
+            20 =>
             array (
                 'id' => 172,
                 'user_id' => 1,
@@ -481,7 +481,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            21 => 
+            21 =>
             array (
                 'id' => 173,
                 'user_id' => 1,
@@ -503,7 +503,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            22 => 
+            22 =>
             array (
                 'id' => 174,
                 'user_id' => 1,
@@ -525,7 +525,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            23 => 
+            23 =>
             array (
                 'id' => 175,
                 'user_id' => 1,
@@ -547,7 +547,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            24 => 
+            24 =>
             array (
                 'id' => 176,
                 'user_id' => 1,
@@ -569,7 +569,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            25 => 
+            25 =>
             array (
                 'id' => 177,
                 'user_id' => 1,
@@ -591,7 +591,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            26 => 
+            26 =>
             array (
                 'id' => 178,
                 'user_id' => 1,
@@ -613,7 +613,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            27 => 
+            27 =>
             array (
                 'id' => 179,
                 'user_id' => 1,
@@ -635,7 +635,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            28 => 
+            28 =>
             array (
                 'id' => 180,
                 'user_id' => 1,
@@ -657,7 +657,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            29 => 
+            29 =>
             array (
                 'id' => 181,
                 'user_id' => 1,
@@ -679,7 +679,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            30 => 
+            30 =>
             array (
                 'id' => 182,
                 'user_id' => 1,
@@ -701,7 +701,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            31 => 
+            31 =>
             array (
                 'id' => 183,
                 'user_id' => 1,
@@ -723,7 +723,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            32 => 
+            32 =>
             array (
                 'id' => 184,
                 'user_id' => 1,
@@ -745,7 +745,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            33 => 
+            33 =>
             array (
                 'id' => 185,
                 'user_id' => 1,
@@ -767,7 +767,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            34 => 
+            34 =>
             array (
                 'id' => 186,
                 'user_id' => 1,
@@ -789,7 +789,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            35 => 
+            35 =>
             array (
                 'id' => 187,
                 'user_id' => 1,
@@ -811,7 +811,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            36 => 
+            36 =>
             array (
                 'id' => 188,
                 'user_id' => 1,
@@ -833,7 +833,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            37 => 
+            37 =>
             array (
                 'id' => 189,
                 'user_id' => 1,
@@ -855,7 +855,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            38 => 
+            38 =>
             array (
                 'id' => 190,
                 'user_id' => 1,
@@ -877,7 +877,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            39 => 
+            39 =>
             array (
                 'id' => 191,
                 'user_id' => 1,
@@ -899,7 +899,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            40 => 
+            40 =>
             array (
                 'id' => 192,
                 'user_id' => 1,
@@ -921,7 +921,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            41 => 
+            41 =>
             array (
                 'id' => 193,
                 'user_id' => 1,
@@ -943,7 +943,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            42 => 
+            42 =>
             array (
                 'id' => 194,
                 'user_id' => 1,
@@ -965,7 +965,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            43 => 
+            43 =>
             array (
                 'id' => 195,
                 'user_id' => 1,
@@ -987,7 +987,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            44 => 
+            44 =>
             array (
                 'id' => 196,
                 'user_id' => 1,
@@ -1009,7 +1009,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            45 => 
+            45 =>
             array (
                 'id' => 197,
                 'user_id' => 1,
@@ -1031,7 +1031,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            46 => 
+            46 =>
             array (
                 'id' => 198,
                 'user_id' => 1,
@@ -1053,7 +1053,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            47 => 
+            47 =>
             array (
                 'id' => 199,
                 'user_id' => 1,
@@ -1075,7 +1075,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            48 => 
+            48 =>
             array (
                 'id' => 200,
                 'user_id' => 1,
@@ -1097,7 +1097,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            49 => 
+            49 =>
             array (
                 'id' => 201,
                 'user_id' => 1,
@@ -1119,7 +1119,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            50 => 
+            50 =>
             array (
                 'id' => 202,
                 'user_id' => 1,
@@ -1141,7 +1141,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            51 => 
+            51 =>
             array (
                 'id' => 203,
                 'user_id' => 1,
@@ -1163,7 +1163,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            52 => 
+            52 =>
             array (
                 'id' => 204,
                 'user_id' => 1,
@@ -1185,7 +1185,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            53 => 
+            53 =>
             array (
                 'id' => 205,
                 'user_id' => 1,
@@ -1207,7 +1207,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            54 => 
+            54 =>
             array (
                 'id' => 206,
                 'user_id' => 1,
@@ -1229,7 +1229,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            55 => 
+            55 =>
             array (
                 'id' => 207,
                 'user_id' => 1,
@@ -1251,7 +1251,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            56 => 
+            56 =>
             array (
                 'id' => 208,
                 'user_id' => 1,
@@ -1273,7 +1273,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            57 => 
+            57 =>
             array (
                 'id' => 209,
                 'user_id' => 1,
@@ -1295,7 +1295,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            58 => 
+            58 =>
             array (
                 'id' => 210,
                 'user_id' => 1,
@@ -1317,7 +1317,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            59 => 
+            59 =>
             array (
                 'id' => 211,
                 'user_id' => 1,
@@ -1339,7 +1339,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            60 => 
+            60 =>
             array (
                 'id' => 212,
                 'user_id' => 1,
@@ -1361,7 +1361,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            61 => 
+            61 =>
             array (
                 'id' => 213,
                 'user_id' => 1,
@@ -1383,7 +1383,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            62 => 
+            62 =>
             array (
                 'id' => 214,
                 'user_id' => 1,
@@ -1405,7 +1405,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            63 => 
+            63 =>
             array (
                 'id' => 215,
                 'user_id' => 1,
@@ -1427,7 +1427,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            64 => 
+            64 =>
             array (
                 'id' => 216,
                 'user_id' => 1,
@@ -1449,7 +1449,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            65 => 
+            65 =>
             array (
                 'id' => 217,
                 'user_id' => 1,
@@ -1471,7 +1471,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            66 => 
+            66 =>
             array (
                 'id' => 218,
                 'user_id' => 1,
@@ -1493,7 +1493,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            67 => 
+            67 =>
             array (
                 'id' => 219,
                 'user_id' => 1,
@@ -1515,7 +1515,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            68 => 
+            68 =>
             array (
                 'id' => 220,
                 'user_id' => 1,
@@ -1537,7 +1537,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            69 => 
+            69 =>
             array (
                 'id' => 221,
                 'user_id' => 1,
@@ -1559,7 +1559,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            70 => 
+            70 =>
             array (
                 'id' => 222,
                 'user_id' => 1,
@@ -1581,7 +1581,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            71 => 
+            71 =>
             array (
                 'id' => 223,
                 'user_id' => 1,
@@ -1603,7 +1603,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            72 => 
+            72 =>
             array (
                 'id' => 224,
                 'user_id' => 1,
@@ -1625,7 +1625,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            73 => 
+            73 =>
             array (
                 'id' => 225,
                 'user_id' => 1,
@@ -1647,7 +1647,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            74 => 
+            74 =>
             array (
                 'id' => 226,
                 'user_id' => 1,
@@ -1669,7 +1669,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            75 => 
+            75 =>
             array (
                 'id' => 227,
                 'user_id' => 1,
@@ -1691,7 +1691,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            76 => 
+            76 =>
             array (
                 'id' => 228,
                 'user_id' => 1,
@@ -1713,7 +1713,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            77 => 
+            77 =>
             array (
                 'id' => 229,
                 'user_id' => 1,
@@ -1735,7 +1735,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            78 => 
+            78 =>
             array (
                 'id' => 230,
                 'user_id' => 1,
@@ -1757,7 +1757,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            79 => 
+            79 =>
             array (
                 'id' => 231,
                 'user_id' => 1,
@@ -1779,7 +1779,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            80 => 
+            80 =>
             array (
                 'id' => 232,
                 'user_id' => 1,
@@ -1801,7 +1801,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            81 => 
+            81 =>
             array (
                 'id' => 233,
                 'user_id' => 1,
@@ -1823,7 +1823,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            82 => 
+            82 =>
             array (
                 'id' => 234,
                 'user_id' => 1,
@@ -1845,7 +1845,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            83 => 
+            83 =>
             array (
                 'id' => 235,
                 'user_id' => 1,
@@ -1867,7 +1867,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            84 => 
+            84 =>
             array (
                 'id' => 236,
                 'user_id' => 1,
@@ -1889,7 +1889,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            85 => 
+            85 =>
             array (
                 'id' => 237,
                 'user_id' => 1,
@@ -1911,7 +1911,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            86 => 
+            86 =>
             array (
                 'id' => 238,
                 'user_id' => 1,
@@ -1933,7 +1933,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            87 => 
+            87 =>
             array (
                 'id' => 239,
                 'user_id' => 1,
@@ -1955,7 +1955,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            88 => 
+            88 =>
             array (
                 'id' => 240,
                 'user_id' => 1,
@@ -1977,7 +1977,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            89 => 
+            89 =>
             array (
                 'id' => 241,
                 'user_id' => 1,
@@ -1999,7 +1999,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            90 => 
+            90 =>
             array (
                 'id' => 242,
                 'user_id' => 1,
@@ -2021,7 +2021,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            91 => 
+            91 =>
             array (
                 'id' => 243,
                 'user_id' => 1,
@@ -2043,7 +2043,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            92 => 
+            92 =>
             array (
                 'id' => 244,
                 'user_id' => 1,
@@ -2065,7 +2065,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            93 => 
+            93 =>
             array (
                 'id' => 245,
                 'user_id' => 1,
@@ -2087,7 +2087,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            94 => 
+            94 =>
             array (
                 'id' => 246,
                 'user_id' => 1,
@@ -2109,7 +2109,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            95 => 
+            95 =>
             array (
                 'id' => 247,
                 'user_id' => 1,
@@ -2131,7 +2131,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            96 => 
+            96 =>
             array (
                 'id' => 248,
                 'user_id' => 1,
@@ -2153,7 +2153,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            97 => 
+            97 =>
             array (
                 'id' => 249,
                 'user_id' => 1,
@@ -2175,7 +2175,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            98 => 
+            98 =>
             array (
                 'id' => 250,
                 'user_id' => 1,
@@ -2197,7 +2197,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            99 => 
+            99 =>
             array (
                 'id' => 251,
                 'user_id' => 1,
@@ -2219,7 +2219,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            100 => 
+            100 =>
             array (
                 'id' => 252,
                 'user_id' => 1,
@@ -2241,7 +2241,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            101 => 
+            101 =>
             array (
                 'id' => 253,
                 'user_id' => 1,
@@ -2263,7 +2263,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            102 => 
+            102 =>
             array (
                 'id' => 254,
                 'user_id' => 1,
@@ -2285,7 +2285,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            103 => 
+            103 =>
             array (
                 'id' => 255,
                 'user_id' => 1,
@@ -2307,7 +2307,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            104 => 
+            104 =>
             array (
                 'id' => 256,
                 'user_id' => 1,
@@ -2329,7 +2329,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            105 => 
+            105 =>
             array (
                 'id' => 257,
                 'user_id' => 1,
@@ -2351,7 +2351,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            106 => 
+            106 =>
             array (
                 'id' => 258,
                 'user_id' => 1,
@@ -2373,7 +2373,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            107 => 
+            107 =>
             array (
                 'id' => 259,
                 'user_id' => 1,
@@ -2395,7 +2395,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            108 => 
+            108 =>
             array (
                 'id' => 260,
                 'user_id' => 1,
@@ -2417,7 +2417,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            109 => 
+            109 =>
             array (
                 'id' => 261,
                 'user_id' => 1,
@@ -2439,7 +2439,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            110 => 
+            110 =>
             array (
                 'id' => 262,
                 'user_id' => 1,
@@ -2461,7 +2461,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            111 => 
+            111 =>
             array (
                 'id' => 263,
                 'user_id' => 1,
@@ -2483,7 +2483,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            112 => 
+            112 =>
             array (
                 'id' => 264,
                 'user_id' => 1,
@@ -2505,7 +2505,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            113 => 
+            113 =>
             array (
                 'id' => 265,
                 'user_id' => 1,
@@ -2527,7 +2527,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            114 => 
+            114 =>
             array (
                 'id' => 266,
                 'user_id' => 1,
@@ -2549,7 +2549,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            115 => 
+            115 =>
             array (
                 'id' => 267,
                 'user_id' => 1,
@@ -2571,7 +2571,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            116 => 
+            116 =>
             array (
                 'id' => 268,
                 'user_id' => 1,
@@ -2593,7 +2593,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            117 => 
+            117 =>
             array (
                 'id' => 269,
                 'user_id' => 1,
@@ -2615,7 +2615,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            118 => 
+            118 =>
             array (
                 'id' => 270,
                 'user_id' => 1,
@@ -2637,7 +2637,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            119 => 
+            119 =>
             array (
                 'id' => 271,
                 'user_id' => 1,
@@ -2659,7 +2659,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            120 => 
+            120 =>
             array (
                 'id' => 272,
                 'user_id' => 1,
@@ -2681,7 +2681,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            121 => 
+            121 =>
             array (
                 'id' => 273,
                 'user_id' => 1,
@@ -2703,7 +2703,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            122 => 
+            122 =>
             array (
                 'id' => 274,
                 'user_id' => 1,
@@ -2725,7 +2725,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            123 => 
+            123 =>
             array (
                 'id' => 275,
                 'user_id' => 1,
@@ -2747,7 +2747,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            124 => 
+            124 =>
             array (
                 'id' => 276,
                 'user_id' => 1,
@@ -2769,7 +2769,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            125 => 
+            125 =>
             array (
                 'id' => 277,
                 'user_id' => 1,
@@ -2791,7 +2791,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            126 => 
+            126 =>
             array (
                 'id' => 278,
                 'user_id' => 1,
@@ -2813,7 +2813,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            127 => 
+            127 =>
             array (
                 'id' => 279,
                 'user_id' => 1,
@@ -2835,7 +2835,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            128 => 
+            128 =>
             array (
                 'id' => 280,
                 'user_id' => 1,
@@ -2857,7 +2857,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            129 => 
+            129 =>
             array (
                 'id' => 281,
                 'user_id' => 1,
@@ -2879,7 +2879,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            130 => 
+            130 =>
             array (
                 'id' => 282,
                 'user_id' => 1,
@@ -2901,7 +2901,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            131 => 
+            131 =>
             array (
                 'id' => 283,
                 'user_id' => 1,
@@ -2923,7 +2923,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            132 => 
+            132 =>
             array (
                 'id' => 284,
                 'user_id' => 1,
@@ -2945,7 +2945,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            133 => 
+            133 =>
             array (
                 'id' => 285,
                 'user_id' => 1,
@@ -2967,7 +2967,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            134 => 
+            134 =>
             array (
                 'id' => 286,
                 'user_id' => 1,
@@ -2989,7 +2989,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            135 => 
+            135 =>
             array (
                 'id' => 287,
                 'user_id' => 1,
@@ -3011,7 +3011,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            136 => 
+            136 =>
             array (
                 'id' => 288,
                 'user_id' => 1,
@@ -3033,7 +3033,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            137 => 
+            137 =>
             array (
                 'id' => 289,
                 'user_id' => 1,
@@ -3055,7 +3055,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            138 => 
+            138 =>
             array (
                 'id' => 290,
                 'user_id' => 1,
@@ -3077,7 +3077,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            139 => 
+            139 =>
             array (
                 'id' => 291,
                 'user_id' => 1,
@@ -3099,7 +3099,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            140 => 
+            140 =>
             array (
                 'id' => 292,
                 'user_id' => 1,
@@ -3121,7 +3121,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            141 => 
+            141 =>
             array (
                 'id' => 293,
                 'user_id' => 1,
@@ -3143,7 +3143,7 @@ XL1200XS',
                 'updated_at' => '2019-10-10 00:00:00',
                 'deleted_at' => NULL,
             ),
-            142 => 
+            142 =>
             array (
                 'id' => 294,
                 'user_id' => 1,
@@ -3166,7 +3166,7 @@ XL1200XS',
                 'deleted_at' => NULL,
             ),
         ));
-        
-        
+
+
     }
 }

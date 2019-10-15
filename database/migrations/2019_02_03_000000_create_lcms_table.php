@@ -29,7 +29,7 @@ class CreateLcmsTable extends Migration
             $table->string('brand');
             $table->string('model');
             $table->string('category');
-            $table->string('version');
+            $table->text('version');
             $table->timestamps();
             $table->softDeletes();
 
