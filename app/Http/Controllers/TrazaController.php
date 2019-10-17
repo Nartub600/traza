@@ -17,11 +17,13 @@ class TrazaController extends Controller
         return view('trazas.listado', compact('trazas'));
     }
 
-    public function create()
+    public function create($type)
     {
         $this->authorize('crear', Traza::class);
 
-        return view('trazas.crear');
+        if (!in_array($type, ['chas', 'cape', 'excepcion-chas'])) abort(404);
+
+        return view('trazas.crear', compact('type'));
     }
 
     public function store(CreateTrazaRequest $request)

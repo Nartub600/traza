@@ -8,17 +8,42 @@
   </ol>
 
   <h1 class="flex justify-between">
-    Administrador de Trazas
-    <div>
+    Trazas
+    <div class="flex">
       @can('exportar trazas')
       <button type="button" class="btn btn-success uppercase mx-2" onclick="exportarTrazas()">
         Exportar Excel
       </button>
       @endcan
       @can('crear trazas')
-      <a href="{{ route('trazas.create') }}" class="uppercase btn btn-success">
-        Nueva traza
-      </a>
+      <div class="dropdown">
+        <a
+          href="{{ route('trazas.create') }}"
+          class="uppercase btn btn-success"
+          data-target="#"
+          data-toggle="dropdown"
+          role="button"
+        >
+          Nueva traza
+        </a>
+        <ul class="p-1 dropdown-menu left-auto right-0">
+          <li class="text-right">
+            <a href="{{ url('/trazas/crear/chas') }}" class="uppercase">
+              Solicitud de Certificación de Homologación de Autopartes y/o Elementos de Seguridad
+            </a>
+          </li>
+          <li class="text-right">
+            <a href="{{ url('/trazas/crear/cape') }}" class="uppercase">
+              Solicitud del Certificado de Autoparte Primer Equipo (CAPE) - Excepción CHAS
+            </a>
+          </li>
+          <li class="text-right">
+            <a href="{{ url('/trazas/crear/excepcion-chas') }}" class="uppercase mb-0">
+              Solicitud de Excepción CHAS
+            </a>
+          </li>
+        </ul>
+      </div>
       @endcan
     </div>
   </h1>

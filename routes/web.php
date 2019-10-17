@@ -31,6 +31,9 @@ Route::group([
         'ncm'          => 'NCMController',
     ]);
 
+    Route::get('/trazas/crear/{tipo}', 'TrazaController@create');
+    Route::resource('trazas', 'TrazaController')->except(['create']);
+
     Route::get('/perfil', 'AccountController@index')->name('perfil.index');
     Route::put('/perfil/{usuario}', 'AccountController@update')->name('perfil.update');
 
