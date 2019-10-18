@@ -24,7 +24,15 @@ class CreateTrazaRequest extends FormRequest
     public function rules()
     {
         return [
-            'number' => 'required'
+            'type' => 'required',
+            'number' => 'required',
+            'user' => 'required',
+            'division' => 'required',
+            'sector' => 'required',
+            'tag' => 'required',
+            'validation' => 'required',
+            'signature' => 'required',
+            'auth_level' => 'required',
         ];
     }
 }

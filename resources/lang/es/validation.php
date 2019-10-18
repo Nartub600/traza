@@ -168,6 +168,13 @@ return [
         'application'   => 'aplicación',
         'license'       => 'Nº licencia',
         'certified_at'  => 'fecha de certificación',
+        'user'          => 'usuario',
+        'division'      => 'repartición',
+        'sector'        => 'sector',
+        'tag'           => 'etiqueta',
+        'validation'    => 'validación',
+        'signature'     => 'firma',
+        'auth_level'    => 'nivel de autenticación'
     ],
 
 ];

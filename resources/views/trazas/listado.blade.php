@@ -10,11 +10,6 @@
   <h1 class="flex justify-between">
     Trazas
     <div class="flex">
-      @can('exportar trazas')
-      <button type="button" class="btn btn-success uppercase mx-2" onclick="exportarTrazas()">
-        Exportar Excel
-      </button>
-      @endcan
       @can('crear trazas')
       <div class="dropdown">
         <a
@@ -45,6 +40,11 @@
         </ul>
       </div>
       @endcan
+      @can('exportar trazas')
+      <button type="button" class="btn btn-success uppercase mx-2" onclick="exportarTrazas()">
+        Exportar Excel
+      </button>
+      @endcan
     </div>
   </h1>
 
@@ -54,8 +54,10 @@
     <thead>
       <tr>
         <td>ID</td>
+        <td>TIPO</td>
         <td>NÚMERO</td>
         <td>CREADO</td>
+        <th class="text-center"><i class="fa fa-cog"></i></th>
       </tr>
     </thead>
 
@@ -63,8 +65,16 @@
       @foreach ($trazas as $traza)
       <tr>
         <td>{{ $traza->id }}</td>
+        <td>{{ __('traza.' . $traza->type) }}</td>
         <td>{{ $traza->number }}</td>
         <td>{{ $traza->created_at }}</td>
+        <td class="text-center">
+          @can('ver trazas')
+            <a href="{{ route('trazas.show', $traza->id) }}" class="btn m-0 p-0">
+              <i class="fa fa-eye"></i>
+            </a>
+          @endcan
+        </td>
       </tr>
       @endforeach
     </tbody>

@@ -9,5 +9,19 @@ class Traza extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['number'];
+    protected $fillable = [
+        'type',
+        'number',
+        'user',
+        'division',
+        'sector',
+        'tag',
+        'validation',
+        'signature',
+        'auth_level',
+    ];
+
+    protected $casts = [
+        'files' => 'array'
+    ];
 }

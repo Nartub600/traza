@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateTrazaRequest;
 use App\Traza;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class TrazaController extends Controller
 {
@@ -15,6 +16,15 @@ class TrazaController extends Controller
         $trazas = Traza::all();
 
         return view('trazas.listado', compact('trazas'));
+    }
+
+    public function show($id)
+    {
+        $this->authorize('ver', Traza::class);
+
+        $traza = Traza::findOrFail($id);
+
+        return view('trazas.ver', compact('traza'));
     }
 
     public function create($type)
@@ -31,7 +41,33 @@ class TrazaController extends Controller
         $this->authorize('crear', Traza::class);
 
         $traza = new Traza($request->validated());
+        $uuid = Str::uuid();
+        $traza->uuid = $uuid;
+        $files = [];
 
+        foreach($request->documents as $key => $field) {
+            if (is_array($field)) {
+                foreach($field as $file) {
+                    $savedName = $file->store('documents/' . $uuid, 'public');
+                    $fileData = [
+                        'name' => $file->getClientOriginalName(),
+                        'file' => $savedName,
+                        'type' => $key
+                    ];
+                    array_push($files, $fileData);
+                }
+            } else {
+                $savedName = $field->store('documents/' . $uuid, 'public');
+                $fileData = [
+                    'name' => $field->getClientOriginalName(),
+                    'field' => $savedName,
+                    'type' => $key
+                ];
+                array_push($files, $fileData);
+            }
+        }
+
+        $traza->files = $files;
         $traza->save();
 
         return redirect()->route('trazas.index');

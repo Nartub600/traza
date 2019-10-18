@@ -26,6 +26,13 @@ class TrazaPolicy
         return false;
     }
 
+    public function ver (User $user) {
+        if ($user->can('ver trazas')) {
+            return true;
+        }
+        return false;
+    }
+
     public function crear (User $user) {
         if ($user->can('crear trazas')) {
             return true;
