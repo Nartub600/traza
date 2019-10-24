@@ -23,9 +23,9 @@ class EliminarCertificadosTest extends TestCase
 
         $response = $this
             ->actingAs($administrador)
-            ->delete('/certificados/' . $certificate->id);
+            ->delete('/licencias/' . $certificate->id);
 
-        $response->assertRedirect('/certificados');
+        $response->assertRedirect('/licencias');
 
         $certificate = Certificate::onlyTrashed()->find($certificate->id);
 

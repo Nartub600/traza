@@ -21,7 +21,7 @@ class NCMPolicy
 
     public function listar(User $user)
     {
-        if ($user->can('listar catalogo')) {
+        if ($user->can('listar ncm')) {
             return true;
         }
         return false;
@@ -29,7 +29,7 @@ class NCMPolicy
 
     public function crear(User $user)
     {
-        if ($user->can('crear catalogo')) {
+        if ($user->can('crear ncm')) {
             return true;
         }
         return false;
@@ -37,7 +37,7 @@ class NCMPolicy
 
     public function ver(User $user)
     {
-        if ($user->can('ver catalogo')) {
+        if ($user->can('ver ncm')) {
             return true;
         }
         return false;
@@ -45,7 +45,7 @@ class NCMPolicy
 
     public function editar(User $user)
     {
-        if ($user->can('editar catalogo')) {
+        if ($user->can('editar ncm')) {
             return true;
         }
         return false;
@@ -53,7 +53,7 @@ class NCMPolicy
 
     public function eliminar(User $user)
     {
-        if ($user->can('eliminar catalogo')) {
+        if ($user->can('eliminar ncm')) {
             return true;
         }
         return false;
@@ -61,7 +61,7 @@ class NCMPolicy
 
     public function exportar(User $user)
     {
-        if ($user->can('exportar catalogo')) {
+        if ($user->can('exportar ncm')) {
             return true;
         }
         return false;

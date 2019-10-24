@@ -14,14 +14,14 @@
 
   <hr class="my-4">
 
-  <div class="form-group item-form px-4">
+  <div class="form-group item-form px-4 mb-4">
     <label for="name" class="mb-4">Nombre del perfil <sup>*</sup></label>
     <input type="text" name="name" class="form-control" readonly value="{{ $role->name }}">
   </div>
 
   <hr class="my-4">
 
-  <div class="bg-white px-8 py-4 mx-4 mb-4">
+  <div class="bg-white px-4 py-4 mx-4 mb-4">
     @foreach ($role->permissions->map->grupo->unique()->values() as $grupo)
     <div class="grupo">
       <p class="capitalize">

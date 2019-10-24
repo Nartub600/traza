@@ -12,7 +12,7 @@ class CrearTrazasTest extends TestCase
     use RefreshDatabase, WithFaker;
 
     /** @test */
-    public function administradorPuedeCrearTrazas()
+    public function administradorPuedeCrearTrazasCHAS()
     {
         $this->withoutExceptionHandling();
 
@@ -20,12 +20,21 @@ class CrearTrazasTest extends TestCase
 
         $response = $this
             ->actingAs($administrador)
-            ->get('/trazas/crear');
+            ->get('/trazas/crear/chas');
 
         $response->assertSuccessful();
 
         $data = [
-            'number' => $this->faker->phoneNumber
+            'type' => 'chas',
+            'number' => $this->faker->phoneNumber,
+            'user' => $this->faker->name,
+            'division' => $this->faker->bs,
+            'sector' => $this->faker->bs,
+            'tag' => $this->faker->bs,
+            'validation' => $this->faker->bs,
+            'signature' => $this->faker->bs,
+            'auth_level' => $this->faker->bs,
+            'documents' => []
         ];
 
         $response = $this

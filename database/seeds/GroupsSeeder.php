@@ -12,7 +12,7 @@ class GroupsSeeder extends Seeder
      */
     public function run()
     {
-        Group::create(['name' => 'INTI', 'active' => true]);
-        Group::create(['name' => 'IRAM', 'active' => true]);
+        Group::create(['name' => 'INTI', 'active' => true, 'fixed' => true ]);
+        Group::create(['name' => 'IRAM', 'active' => true, 'fixed' => true ]);
     }
 }

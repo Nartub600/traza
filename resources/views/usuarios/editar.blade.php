@@ -92,11 +92,11 @@
       </div>
 
       <div class="flex justify-end">
-        <a class="btn btn-success uppercase mr-4" href="{{ route('usuarios.index') }}">
+        <a class="btn btn-success uppercase mr-4 mb-0" href="{{ route('usuarios.index') }}">
           Volver
         </a>
 
-        <button class="btn btn-info uppercase" type="submit">
+        <button class="btn btn-info uppercase mb-0" type="submit">
           Guardar
         </button>
       </div>

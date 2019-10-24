@@ -72,7 +72,7 @@ export default {
     beginCertificatesImport () {
       Swal.fire({
         type: 'info',
-        title: 'Importación masiva de certificados',
+        title: 'Importación masiva de licencias',
         confirmButtonText: '<span class="uppercase">Seleccionar archivo</span>',
         html: `
           <p>Se debe seleccionar un archivo Excel con un máximo de 100 autopartes y el formato de la siguiente plantilla:</p>
@@ -197,8 +197,8 @@ export default {
 
     parseCertificatesFeedback (response) {
       const certificatesMessage = response.certificates.valid.length
-      ? `${response.certificates.valid.length} ${response.certificates.valid.length > 1 ? 'certificados válidos' : 'certificado válido'}`
-      : 'No se detectaron certificados para importar'
+      ? `${response.certificates.valid.length} ${response.certificates.valid.length > 1 ? 'licencias válidas' : 'licencia válida'}`
+      : 'No se detectaron licencias para importar'
 
       const duplicatedRowsMessage = response.rows.valid.length - response.rows.unique.length > 0
       ? `${response.rows.valid.length - response.rows.unique.length} ${response.rows.valid.length - response.rows.unique.length > 1 ? 'filas se ignoraron' : 'fila se ignoró'} por tener información duplicada`
@@ -209,7 +209,7 @@ export default {
       : ''
 
       const invalidCertificatesMessage = response.certificates.invalid.length
-      ? `${response.certificates.invalid.length} ${response.certificates.invalid.length > 1 ? 'certificados inválidos' : 'certificado inválido'}`
+      ? `${response.certificates.invalid.length} ${response.certificates.invalid.length > 1 ? 'licencias inválidas' : 'licencia inválida'}`
       : ''
 
       const invalidRowsDetail = response.rows.invalid.length
@@ -219,13 +219,13 @@ export default {
       : ''
 
       const invalidCertificatesDetail = response.certificates.invalid.length
-      ? '<div class="text-left"><h3 class="text-sm">Certificados con errores</h3>' + response.certificates.invalid.map(c => {
+      ? '<div class="text-left"><h3 class="text-sm">Licencias con errores</h3>' + response.certificates.invalid.map(c => {
         return `<p class="text-xs my-0">Certificado ${c[0].number}: no coinciden los CUIT</p>`
       }).join('') + '</div>'
       : ''
 
       const certificatesDetail = response.certificates.valid.length
-      ? '<div class="text-left"><h3 class="text-sm">Certificados a Importar</h3>' + response.certificates.valid.map(c => {
+      ? '<div class="text-left"><h3 class="text-sm">Licencias a Importar</h3>' + response.certificates.valid.map(c => {
         return `<p class="text-xs my-0">
           Número: ${c.number}<br>
           CUIT: ${c.cuit}<br>
@@ -273,7 +273,7 @@ export default {
     handleCertificatesExcel () {
       const importData = new FormData()
       importData.append('excel', this.$refs.excel.files[0]);
-      axios.post('/importar/certificados', importData)
+      axios.post('/importar/licencias', importData)
       .then(response => {
         Swal.fire({
           width: '64rem',
@@ -287,7 +287,7 @@ export default {
           reverseButtons: true,
           confirmButtonColor: '#0072BB',
           showLoaderOnConfirm: true,
-          preConfirm: () => axios.post('/certificados', {
+          preConfirm: () => axios.post('/licencias', {
             'certificates': response.data.certificates.valid
           }, {
             headers: {

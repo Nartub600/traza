@@ -8,26 +8,35 @@
   <div class="container-fluid">
     <ol class="breadcrumb">
       <li><a href="{{ route('home') }}">Inicio</a></li>
-      <li><a href="{{ route('certificados.index') }}">Certificados</a></li>
+      <li><a href="{{ route('licencias.index') }}">Licencias</a></li>
       <li class="active">Ver</li>
     </ol>
 
     <h1>
-      Ver Certificado <em>{{ $certificate->number }}</em>
+      Ver Licencia <em>{{ $certificate->number }}</em>
     </h1>
 
     <hr class="my-4">
 
     <div class="bg-white p-4 mb-4">
       <div class="flex flex-wrap -mx-4">
-        <div class="w-1/2 form-group item-form px-4">
-          <label for="number" class="mb-4">Número de certificado <sup>*</sup></label>
+        <div class="w-1/3 form-group item-form px-4">
+          <label for="number" class="mb-4">Número de licencia <sup>*</sup></label>
           <input type="text" name="number" class="form-control" readonly value="{{ $certificate->number }}">
         </div>
 
-        <div class="w-1/2 form-group item-form px-4">
+        <div class="w-1/3 form-group item-form px-4">
           <label for="cuit" class="mb-4">CUIT <sup>*</sup></label>
           <input type="text" name="cuit" class="form-control" readonly value="{{ $certificate->cuit }}">
+        </div>
+
+        <div class="w-1/3 form-group item-form px-4">
+          <label for="documents[licencia]" class="mb-4">Licencia <sup>*</sup></label>
+          @if($certificate->files[0])
+            <a class="block" href="{{ url($certificate->files[0]['file']) }}">Ver actual</a>
+          @else
+            <p>Todavía no fue adjuntada</p>
+          @endif
         </div>
       </div>
 
@@ -66,7 +75,7 @@
       </table>
 
       <div class="flex justify-end">
-        <a class="btn btn-success uppercase mr-4" href="{{ route('certificados.index') }}">
+        <a class="btn btn-success uppercase mt-4 mb-0" href="{{ route('licencias.index') }}">
           Volver
         </a>
       </div>

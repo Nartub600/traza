@@ -12,18 +12,18 @@
   <div class="container-fluid">
     <ol class="breadcrumb">
       <li><a href="{{ route('home') }}">Inicio</a></li>
-      <li><a href="{{ route('certificados.index') }}">Certificados</a></li>
+      <li><a href="{{ route('licencias.index') }}">Licencias</a></li>
       <li class="active">Editar</li>
     </ol>
 
     <h1>
-      Editar Certificado <em>{{ $certificate->number }}</em>
+      Editar Licencia <em>{{ $certificate->number }}</em>
     </h1>
 
     <hr class="my-4">
 
     <div class="bg-white p-4 mb-4" v-cloak>
-      <form action="{{ route('certificados.update', $certificate->id) }}" method="post">
+      <form action="{{ route('licencias.update', $certificate->id) }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('put')
 
@@ -60,18 +60,29 @@
         @endif
 
         <div class="flex flex-wrap -mx-4">
-          <div class="w-1/2 form-group item-form px-4 @error('number') has-error @enderror">
-            <label for="number" class="mb-4">Número de certificado <sup>*</sup></label>
+          <div class="w-1/3 form-group item-form px-4 @error('number') has-error @enderror">
+            <label for="number" class="mb-4">Número de licencia <sup>*</sup></label>
             <input type="text" name="number" class="form-control" required aria-required value="{{ old('number', $certificate->number) }}">
             @error('number')
               <p class="help-block error">{{ $message }}</p>
             @enderror
           </div>
 
-          <div class="w-1/2 form-group item-form px-4 @error('cuit') has-error @enderror">
+          <div class="w-1/3 form-group item-form px-4 @error('cuit') has-error @enderror">
             <label for="cuit" class="mb-4">CUIT <sup>*</sup></label>
             <input type="text" name="cuit" class="form-control" required aria-required value="{{ old('cuit', $certificate->cuit) }}">
             @error('cuit')
+              <p class="help-block error">{{ $message }}</p>
+            @enderror
+          </div>
+
+          <div class="w-1/3 form-group item-form px-2 @error('documents[licencia]') has-error @enderror">
+            <label for="documents[licencia]" class="mb-4">Licencia <sup>*</sup></label>
+            @if($certificate->files[0]) {{-- todo: ver si es mejorable esto --}}
+              <a href="{{ url($certificate->files[0]['file']) }}">Ver actual</a>
+            @endif
+            <input type="file" name="documents[licencia]" class="form-control" accept="application/pdf">
+            @error('documents[licencia]')
               <p class="help-block error">{{ $message }}</p>
             @enderror
           </div>
@@ -149,11 +160,11 @@
         </table>
 
         <div class="flex justify-end mt-3">
-          <a class="btn btn-success uppercase mr-4" href="{{ route('certificados.index') }}">
+          <a class="btn btn-success uppercase mr-4 mb-0" href="{{ route('licencias.index') }}">
             Volver
           </a>
 
-          <button class="btn btn-info uppercase" type="submit">
+          <button class="btn btn-info uppercase mb-0" type="submit">
             Guardar
           </button>
         </div>

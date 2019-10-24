@@ -25,7 +25,7 @@ Route::group([
         'grupos'       => 'GroupController',
         'perfiles'     => 'RoleController',
         'productos'    => 'ProductController',
-        'certificados' => 'CertificateController',
+        'licencias'    => 'CertificateController',
         'lcms'         => 'LCMController',
         'trazas'       => 'TrazaController',
         'ncm'          => 'NCMController',
@@ -41,6 +41,6 @@ Route::group([
     Route::put('/contrasenia/cambiar/{usuario}', 'PasswordController@update')->name('cambiarpassword.update');
 
     Route::post('/subir/imagenes', 'UploadController@store');
-    Route::post('/importar/certificados', 'ImportController@certificates')->name('import.certificates');
+    Route::post('/importar/licencias', 'ImportController@certificates')->name('import.certificates');
     Route::post('/importar/autopartes', 'ImportController@autoparts')->name('import.autoparts');
 });

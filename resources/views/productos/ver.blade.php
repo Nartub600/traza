@@ -44,11 +44,11 @@
       </div>
 
       <div class="flex justify-end">
-        <a class="btn btn-success uppercase mr-4" href="{{ route('productos.index') }}">
+        <a class="btn btn-success uppercase mr-4 mb-0" href="{{ route('productos.index') }}">
           Volver
         </a>
 
-        <button class="btn btn-info uppercase" type="submit" :disabled="uploading">
+        <button class="btn btn-info uppercase mb-0" type="submit" :disabled="uploading">
           Guardar
         </button>
       </div>

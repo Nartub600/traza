@@ -44,24 +44,28 @@
             <i class="fa fa-eye"></i>
           </a>
           @endcan
-          @can('editar grupos')
-          <a href="{{ route('grupos.edit', $group->id) }}" class="btn m-0 p-0">
-            <i class="fa fa-edit"></i>
-          </a>
-          @endcan
-          @can('eliminar grupos')
-            <a
-              class="btn m-0 p-0"
-              href="{{ route('grupos.destroy', $group->id) }}"
-              onclick="confirmDelete(event, {{ $group }})"
-            >
-                <i class="fa fa-times"></i>
+          @if(!$group->fixed)
+            @can('editar grupos')
+            <a href="{{ route('grupos.edit', $group->id) }}" class="btn m-0 p-0">
+              <i class="fa fa-edit"></i>
             </a>
-            <form id="delete-form-{{ $group->id }}" action="{{ route('grupos.destroy', $group->id) }}" method="POST" style="display: none;">
-                @csrf
-                @method('delete')
-            </form>
             @endcan
+          @endif
+          @if(!$group->fixed)
+            @can('eliminar grupos')
+              <a
+                class="btn m-0 p-0"
+                href="{{ route('grupos.destroy', $group->id) }}"
+                onclick="confirmDelete(event, {{ $group }})"
+              >
+                  <i class="fa fa-times"></i>
+              </a>
+              <form id="delete-form-{{ $group->id }}" action="{{ route('grupos.destroy', $group->id) }}" method="POST" style="display: none;">
+                  @csrf
+                  @method('delete')
+              </form>
+              @endcan
+            @endif
         </td>
       </tr>
       @endforeach

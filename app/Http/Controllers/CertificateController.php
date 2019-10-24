@@ -10,6 +10,7 @@ use App\NCM;
 use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class CertificateController extends Controller
 {
@@ -70,6 +71,9 @@ class CertificateController extends Controller
                 $certificate = new Certificate($certificate);
                 $certificate->user()->associate(request()->user());
 
+                $uuid = Str::uuid();
+                $certificate->uuid = $uuid;
+
                 DB::transaction(function () use ($certificate, $autoparts) {
                     $certificate->save();
                     $certificate->autoparts()->saveMany($autoparts);
@@ -80,15 +84,30 @@ class CertificateController extends Controller
             $certificate = new Certificate($request->validated());
             $certificate->user()->associate($request->user());
 
+            $uuid = Str::uuid();
+            $certificate->uuid = $uuid;
+
             $autoparts = collect($request->autoparts)
                 ->mapInto(Autopart::class);
+
+            $licencia = $request->file('documents')['licencia'];
+
+            $files = [];
+            $savedName = $licencia->store('documents/licencias/' . $uuid, 'public');
+            $fileData = [
+                'name' => $licencia->getClientOriginalName(),
+                'file' => $savedName,
+                'type' => 'licencia'
+            ];
+            array_push($files, $fileData);
+            $certificate->files = $files;
 
             DB::transaction(function () use ($certificate, $autoparts) {
                 $certificate->save();
                 $certificate->autoparts()->saveMany($autoparts);
             });
 
-            return redirect()->route('certificados.index');
+            return redirect()->route('licencias.index');
         }
     }
 
@@ -102,13 +121,27 @@ class CertificateController extends Controller
         $autoparts = collect($request->autoparts)
             ->mapInto(Autopart::class);
 
+        if ($request->hasFile('documents')['licencia']) { // todo: verlo en el validador
+            $licencia = $request->file('documents')['licencia'];
+
+            $files = [];
+            $savedName = $licencia->store('documents/licencias/' . $uuid, 'public');
+            $fileData = [
+                'name' => $licencia->getClientOriginalName(),
+                'field' => $savedName,
+                'type' => 'licencia'
+            ];
+            array_push($files, $fileData);
+            $certificate->files = $files;
+        }
+
         DB::transaction(function () use ($certificate, $autoparts) {
             $certificate->save();
             $certificate->autoparts()->delete();
             $certificate->autoparts()->saveMany($autoparts);
         });
 
-        return redirect()->route('certificados.index');
+        return redirect()->route('licencias.index');
     }
 
     public function destroy($id)
@@ -119,6 +152,6 @@ class CertificateController extends Controller
 
         $certificate->delete();
 
-        return redirect()->route('certificados.index');
+        return redirect()->route('licencias.index');
     }
 }

@@ -35,15 +35,15 @@ class EditarCertificadosTest extends TestCase
 
         $response = $this
             ->actingAs($administrador)
-            ->get('/certificados/' . $certificate->id . '/editar');
+            ->get('/licencias/' . $certificate->id . '/editar');
 
         $response->assertSuccessful();
 
         $response = $this
             ->actingAs($administrador)
-            ->put('/certificados/' . $certificate->id, $data);
+            ->put('/licencias/' . $certificate->id, $data);
 
-        $response->assertRedirect('/certificados');
+        $response->assertRedirect('/licencias');
 
         $certificate = Certificate::where('number', $data['number'])->first();
 
@@ -63,7 +63,7 @@ class EditarCertificadosTest extends TestCase
 
         $response = $this
             ->actingAs($fabricante)
-            ->get('/certificados/' . $certificate->id . '/editar');
+            ->get('/licencias/' . $certificate->id . '/editar');
 
         $response->assertStatus(403);
     }

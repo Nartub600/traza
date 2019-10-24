@@ -48,7 +48,7 @@
     </div>
 
     <div class="flex justify-end">
-      <a class="btn btn-success uppercase" href="{{ route('usuarios.index') }}">
+      <a class="btn btn-success uppercase mb-0" href="{{ route('usuarios.index') }}">
         Volver
       </a>
     </div>

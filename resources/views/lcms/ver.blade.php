@@ -89,7 +89,7 @@
       </div>
 
     <div class="flex justify-end">
-      <a class="btn btn-success uppercase mr-4" href="{{ route('lcms.index') }}">
+      <a class="btn btn-success uppercase mt-4 mb-0" href="{{ route('lcms.index') }}">
         Volver
       </a>
     </div>

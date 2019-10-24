@@ -3,16 +3,16 @@
 @section('content')
 <autopartes
   inline-template
-  certificates-template="{{ asset('plantillas/certificados.xlsx') }}"
+  certificates-template="{{ asset('plantillas/licencias.xlsx') }}"
 >
   <div class="container-fluid">
     <ol class="breadcrumb">
       <li><a href="{{ route('home') }}">Inicio</a></li>
-      <li class="active">Certificados</li>
+      <li class="active">Licencias</li>
     </ol>
 
     <h1 class="flex justify-between">
-      Certificados
+      Licencias
       <div>
         <button type="button" class="btn btn-success uppercase mx-2" @click="beginCertificatesImport">
           Cargar Desde Excel
@@ -26,9 +26,9 @@
           accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
         >
 
-        @can('crear certificados')
-        <a href="{{ route('certificados.create') }}" class="uppercase btn btn-success">
-          Nuevo certificado
+        @can('crear licencias')
+        <a href="{{ route('licencias.create') }}" class="uppercase btn btn-success">
+          Nueva licencia
         </a>
         @endcan
       </div>
@@ -40,7 +40,7 @@
       <thead>
         <tr>
           <td>ID</td>
-          <td>NÚMERO CERTIFICADO</td>
+          <td>NÚMERO LICENCIA</td>
           <td>CUIT</td>
           <td>CANTIDAD DE AUTOPARTES</td>
           <td>USUARIO</td>
@@ -59,25 +59,25 @@
           <td>{{ $certificate->user->username }}</td>
           <td>{{ $certificate->updated_at }}</td>
           <td class="text-center">
-            @can('ver certificados')
-            <a href="{{ route('certificados.show', $certificate->id) }}" class="btn m-0 p-0">
+            @can('ver licencias')
+            <a href="{{ route('licencias.show', $certificate->id) }}" class="btn m-0 p-0">
               <i class="fa fa-eye"></i>
             </a>
             @endcan
-            @can('editar certificados')
-            <a href="{{ route('certificados.edit', $certificate->id) }}" class="btn m-0 p-0">
+            @can('editar licencias')
+            <a href="{{ route('licencias.edit', $certificate->id) }}" class="btn m-0 p-0">
               <i class="fa fa-edit"></i>
             </a>
             @endcan
-            @can('eliminar certificados')
+            @can('eliminar licencias')
               <a
                 class="mx-2 my-0 p-0"
-                href="{{ route('certificados.destroy', $certificate->id) }}"
+                href="{{ route('licencias.destroy', $certificate->id) }}"
                 onclick="confirmDelete(event, {{ $certificate }})"
               >
                   <i class="fa fa-times"></i>
               </a>
-              <form id="delete-form-{{ $certificate->id }}" action="{{ route('certificados.destroy', $certificate->id) }}" method="POST" style="display: none;">
+              <form id="delete-form-{{ $certificate->id }}" action="{{ route('licencias.destroy', $certificate->id) }}" method="POST" style="display: none;">
                   @csrf
                   @method('delete')
               </form>

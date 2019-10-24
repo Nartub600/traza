@@ -26,6 +26,10 @@ class Certificate extends Model
 
     protected $fillable = ['number', 'cuit'];
 
+    protected $casts = [
+        'files' => 'json'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

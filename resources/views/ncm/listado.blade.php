@@ -9,7 +9,7 @@
 
   <h1 class="flex justify-between">
     Administrador de NCM
-    @can('crear catalogo')
+    @can('crear ncm')
     <a href="{{ route('ncm.create') }}" class="uppercase btn btn-success">
       Nueva categoría
     </a>
@@ -37,17 +37,17 @@
         <td>{{ $item->description }}</td>
         <td>{{ $item->active ? 'Activo' : 'Inactivo' }}</td>
         <td class="text-center">
-          @can('ver catalogo')
+          @can('ver ncm')
           <a href="{{ route('ncm.show', $item->id) }}" class="btn m-0 p-0">
             <i class="fa fa-eye"></i>
           </a>
           @endcan
-          @can('editar catalogo')
+          @can('editar ncm')
           <a href="{{ route('ncm.edit', $item->id) }}" class="btn m-0 p-0">
             <i class="fa fa-edit"></i>
           </a>
           @endcan
-          @can('eliminar catalogo')
+          @can('eliminar ncm')
             <a
               class="btn m-0 p-0"
               href="{{ route('ncm.destroy', $item->id) }}"

@@ -96,7 +96,7 @@
     </div>
 
     <div class="flex justify-end">
-      <a class="btn btn-success uppercase mr-4" href="{{ route('trazas.index') }}">
+      <a class="btn btn-success uppercase mr-4 mb-0" href="{{ route('trazas.index') }}">
         Volver
       </a>
     </div>

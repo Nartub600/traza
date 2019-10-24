@@ -29,9 +29,9 @@ class UpdateCertificateRequest extends FormRequest
                 'required',
                 'regex:/[0-9]{2}-[0-9]{6,8}-[0-9]/'
             ],
-            'autoparts' => 'required|array',
+            'documents.licencia'        => 'file|mimetypes:application/pdf',
+            'autoparts'                 => 'required|array',
             'autoparts.*.product_id'    => 'required',
-            // 'autoparts.*.name'          => 'required|string|max:255',
             'autoparts.*.description'   => 'required|max:255',
             'autoparts.*.ncm_id'        => 'required|max:255',
             'autoparts.*.manufacturer'  => 'required|max:255',

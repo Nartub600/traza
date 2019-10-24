@@ -30,13 +30,13 @@
           </a>
           @endcan
 
-          @can('listar certificados')
-          <a href="{{ route('certificados.index') }}" class="text-celeste uppercase no-underline font-black mr-8">
-            Certificados
+          @can('listar licencias')
+          <a href="{{ route('licencias.index') }}" class="text-celeste uppercase no-underline font-black mr-8">
+            Licencias
           </a>
           @endcan
 
-          @canany(['listar usuarios', 'listar perfiles', 'listar grupos', 'listar productos', 'listar lcm', 'listar catalogo'])
+          @canany(['listar usuarios', 'listar perfiles', 'listar grupos', 'listar productos', 'listar lcm', 'listar ncm'])
           <div class="dropdown">
             <button class="bg-white text-celeste mr-8 p-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fa fa-cog fa-2x"></i>
@@ -47,7 +47,7 @@
               @can('listar grupos')<li class="uppercase my-1"><a href="{{ route('grupos.index') }}">Grupos de usuarios</a></li>@endcan
               @can('listar productos')<li class="uppercase my-1"><a href="{{ route('productos.index') }}">Productos (Categorías)</a></li>@endcan
               @can('listar lcms')<li class="uppercase mt-1"><a href="{{ route('lcms.index') }}">LCMs</a></li>@endcan
-              @can('listar catalogo')<li class="uppercase mt-1"><a href="{{ route('ncm.index') }}">NCM</a></li>@endcan
+              @can('listar ncm')<li class="uppercase mt-1"><a href="{{ route('ncm.index') }}">NCM</a></li>@endcan
             </ul>
           </div>
           @endcanany

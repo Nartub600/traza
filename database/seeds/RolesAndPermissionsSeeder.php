@@ -47,27 +47,28 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::create(['name' => 'eliminar lcms', 'grupo' => 'datos maestros', 'subgrupo' => 'administrador de lcms']);
         Permission::create(['name' => 'exportar lcms', 'grupo' => 'datos maestros', 'subgrupo' => 'administrador de lcms']);
 
-        Permission::create(['name' => 'listar catalogo', 'grupo' => 'datos maestros', 'subgrupo' => 'administrador de catalogo']);
-        Permission::create(['name' => 'crear catalogo', 'grupo' => 'datos maestros', 'subgrupo' => 'administrador de catalogo']);
-        Permission::create(['name' => 'ver catalogo', 'grupo' => 'datos maestros', 'subgrupo' => 'administrador de catalogo']);
-        Permission::create(['name' => 'editar catalogo', 'grupo' => 'datos maestros', 'subgrupo' => 'administrador de catalogo']);
-        Permission::create(['name' => 'eliminar catalogo', 'grupo' => 'datos maestros', 'subgrupo' => 'administrador de catalogo']);
-        Permission::create(['name' => 'exportar catalogo', 'grupo' => 'datos maestros', 'subgrupo' => 'administrador de catalogo']);
+        Permission::create(['name' => 'listar ncm', 'grupo' => 'datos maestros', 'subgrupo' => 'administrador de ncm']);
+        Permission::create(['name' => 'crear ncm', 'grupo' => 'datos maestros', 'subgrupo' => 'administrador de ncm']);
+        Permission::create(['name' => 'ver ncm', 'grupo' => 'datos maestros', 'subgrupo' => 'administrador de ncm']);
+        Permission::create(['name' => 'editar ncm', 'grupo' => 'datos maestros', 'subgrupo' => 'administrador de ncm']);
+        Permission::create(['name' => 'eliminar ncm', 'grupo' => 'datos maestros', 'subgrupo' => 'administrador de ncm']);
+        Permission::create(['name' => 'exportar ncm', 'grupo' => 'datos maestros', 'subgrupo' => 'administrador de ncm']);
 
-        Permission::create(['name' => 'listar certificados', 'grupo' => 'certificados']);
-        Permission::create(['name' => 'crear certificados', 'grupo' => 'certificados']);
-        Permission::create(['name' => 'ver certificados', 'grupo' => 'certificados']);
-        Permission::create(['name' => 'editar certificados', 'grupo' => 'certificados']);
-        Permission::create(['name' => 'eliminar certificados', 'grupo' => 'certificados']);
-        Permission::create(['name' => 'exportar certificados', 'grupo' => 'certificados']);
+        Permission::create(['name' => 'listar licencias', 'grupo' => 'licencias']);
+        Permission::create(['name' => 'crear licencias', 'grupo' => 'licencias']);
+        Permission::create(['name' => 'ver licencias', 'grupo' => 'licencias']);
+        Permission::create(['name' => 'editar licencias', 'grupo' => 'licencias']);
+        Permission::create(['name' => 'eliminar licencias', 'grupo' => 'licencias']);
+        Permission::create(['name' => 'exportar licencias', 'grupo' => 'licencias']);
 
         Permission::create(['name' => 'listar trazas', 'grupo' => 'trazas']);
         Permission::create(['name' => 'crear trazas', 'grupo' => 'trazas']);
         Permission::create(['name' => 'ver trazas', 'grupo' => 'trazas']);
         Permission::create(['name' => 'exportar trazas', 'grupo' => 'trazas']);
+        Permission::create(['name' => 'carga manual de trazas', 'grupo' => 'trazas']);
 
         Role::create(['name' => 'administrador', 'active' => true])->syncPermissions(Permission::all());
-        Role::create(['name' => 'certificador', 'active' => true])->syncPermissions(Permission::where('name', 'like', '%certificados')->get());
+        Role::create(['name' => 'certificador', 'active' => true])->syncPermissions(Permission::where('name', 'like', '%licencias')->get());
         Role::create(['name' => 'fabricante', 'active' => true]);
     }
 }

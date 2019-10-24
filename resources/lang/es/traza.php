@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'licencia' => 'Licencia',
     'declaracion_jurada' => 'Declaración Jurada',
     'solicitud_autopartes' => 'Solicitud de Homologación de Autopartes y/o elementos de Seguridad',
     'wp29' => 'Certificado de homologación extranjera WP29',

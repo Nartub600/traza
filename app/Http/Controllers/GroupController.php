@@ -67,7 +67,7 @@ class GroupController extends Controller
     {
         $this->authorize('editar', Group::class);
 
-        $group = Group::findOrFail($id);
+        $group = Group::where('fixed', false)->findOrFail($id);
         $group->fill($request->validated());
 
         DB::transaction(function () use ($group) {
@@ -82,7 +82,7 @@ class GroupController extends Controller
     {
         $this->authorize('eliminar', Group::class);
 
-        $group = Group::findOrFail($id);
+        $group = Group::where('fixed', false)->findOrFail($id);
 
         DB::transaction(function () use ($group) {
             $group->users()->detach();

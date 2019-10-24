@@ -22,7 +22,7 @@ class ListarCertificadosTest extends TestCase
 
         $response = $this
             ->actingAs($administrador)
-            ->get('/certificados');
+            ->get('/licencias');
 
         $certificates = Certificate::all();
 
@@ -47,7 +47,7 @@ class ListarCertificadosTest extends TestCase
 
         $response = $this
             ->actingAs($certificador)
-            ->get('/certificados');
+            ->get('/licencias');
 
         $user_ids = $certificador->groups->flatMap->users->pluck('id');
         $certificates = Certificate::whereIn('user_id', $user_ids)->pluck('id');
@@ -71,7 +71,7 @@ class ListarCertificadosTest extends TestCase
 
         $response = $this
             ->actingAs($fabricante)
-            ->get('/certificados');
+            ->get('/licencias');
 
         $response->assertStatus(403);
     }

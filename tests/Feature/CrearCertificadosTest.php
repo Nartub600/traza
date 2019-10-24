@@ -7,6 +7,8 @@ use App\Certificate;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class CrearCertificadosTest extends TestCase
@@ -16,6 +18,8 @@ class CrearCertificadosTest extends TestCase
     /** @test */
     public function administradorPuedeCrearCertificados()
     {
+        Storage::fake('public');
+
         $this->withoutExceptionHandling();
 
         $administrador = factory(User::class)->state('administrador')->create();
@@ -27,20 +31,23 @@ class CrearCertificadosTest extends TestCase
         $data = [
             'number'    => $this->faker->randomNumber,
             'cuit'      => $this->faker->regexify('[0-9]{2}-[0-9]{6,8}-[0-9]'),
-            'autoparts' => $autoparts
+            'autoparts' => $autoparts,
+            'documents' => [
+                'licencia' => UploadedFile::fake()->create('licencia.pdf', 128)
+            ]
         ];
 
         $response = $this
             ->actingAs($administrador)
-            ->get('/certificados/crear');
+            ->get('/licencias/crear');
 
         $response->assertSuccessful();
 
         $response = $this
             ->actingAs($administrador)
-            ->post('/certificados', $data);
+            ->post('/licencias', $data);
 
-        $response->assertRedirect('/certificados');
+        $response->assertRedirect('/licencias');
 
         $certificate = Certificate::where('number', $data['number'])->first();
 
@@ -58,7 +65,7 @@ class CrearCertificadosTest extends TestCase
 
         $response = $this
             ->actingAs($fabricante)
-            ->get('/certificados/crear');
+            ->get('/licencias/crear');
 
         $response->assertStatus(403);
     }

@@ -20,3 +20,7 @@ El sistema corre sobre [php](https://www.php.net/) y [Apache](http://httpd.apach
 - - `yarn`
 - - `yarn prod`
 - - `php artisan horizon`
+
+# Comentarios
+
+"Certificados" y "Licencias" representan a la misma entidad.

@@ -30,9 +30,9 @@ class CreateCertificateRequest extends FormRequest
                 'required_without:certificates',
                 'regex:/[0-9]{2}-[0-9]{6,8}-[0-9]/'
             ],
+            'documents.licencia'        => 'required|file|mimetypes:application/pdf',
             'autoparts' => 'required_without:certificates|array',
             'autoparts.*.product_id'    => 'required_without:certificates',
-            // 'autoparts.*.name'          => 'required_without:certificates|string|max:255',
             'autoparts.*.description'   => 'required_without:certificates|max:255',
             'autoparts.*.ncm_id'        => 'required_without:certificates|max:255',
             'autoparts.*.manufacturer'  => 'required_without:certificates|max:255',
@@ -56,7 +56,6 @@ class CreateCertificateRequest extends FormRequest
             ],
             'certificates.*.autoparts' => 'required_without:autoparts|array',
             'certificates.*.autoparts.*.product_id'    => 'required_with:certificates',
-            // 'certificates.*.autoparts.*.name'          => 'required_with:certificates|string|max:255',
             'certificates.*.autoparts.*.description'   => 'required_with:certificates|max:255',
             'certificates.*.autoparts.*.ncm_id'        => 'required_with:certificates|max:255',
             'certificates.*.autoparts.*.manufacturer'  => 'required_with:certificates|max:255',

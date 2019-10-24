@@ -46,7 +46,7 @@ class TrazaController extends Controller
         $files = [];
 
         foreach($request->documents as $key => $field) {
-            if (is_array($field)) {
+            if (is_array($field)) { // puede haber varios archivos del mismo tipo: documents[foto][$i]
                 foreach($field as $file) {
                     $savedName = $file->store('documents/' . $uuid, 'public');
                     $fileData = [
@@ -60,7 +60,7 @@ class TrazaController extends Controller
                 $savedName = $field->store('documents/' . $uuid, 'public');
                 $fileData = [
                     'name' => $field->getClientOriginalName(),
-                    'field' => $savedName,
+                    'file' => $savedName,
                     'type' => $key
                 ];
                 array_push($files, $fileData);

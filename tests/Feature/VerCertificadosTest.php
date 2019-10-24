@@ -23,7 +23,7 @@ class VerCertificadosTest extends TestCase
 
         $response = $this
             ->actingAs($administrador)
-            ->get('/certificados/' . $certificate->id);
+            ->get('/licencias/' . $certificate->id);
 
         $response
             ->assertSuccessful()
