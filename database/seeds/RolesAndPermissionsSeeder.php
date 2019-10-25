@@ -15,6 +15,12 @@ class RolesAndPermissionsSeeder extends Seeder
     {
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
+        Schema::disableForeignKeyConstraints();
+
+        Permission::truncate();
+
+        Schema::enableForeignKeyConstraints();
+
         Permission::create(['name' => 'listar perfiles', 'grupo' => 'seguridad', 'subgrupo' => 'administrador de perfiles']);
         Permission::create(['name' => 'crear perfiles', 'grupo' => 'seguridad', 'subgrupo' => 'administrador de perfiles']);
         Permission::create(['name' => 'ver perfiles', 'grupo' => 'seguridad', 'subgrupo' => 'administrador de perfiles']);
@@ -65,7 +71,6 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::create(['name' => 'crear trazas', 'grupo' => 'trazas']);
         Permission::create(['name' => 'ver trazas', 'grupo' => 'trazas']);
         Permission::create(['name' => 'exportar trazas', 'grupo' => 'trazas']);
-        Permission::create(['name' => 'carga manual de trazas', 'grupo' => 'trazas']);
 
         Role::create(['name' => 'administrador', 'active' => true])->syncPermissions(Permission::all());
         Role::create(['name' => 'certificador', 'active' => true])->syncPermissions(Permission::where('name', 'like', '%licencias')->get());

@@ -43,4 +43,7 @@ Route::group([
     Route::post('/subir/imagenes', 'UploadController@store');
     Route::post('/importar/licencias', 'ImportController@certificates')->name('import.certificates');
     Route::post('/importar/autopartes', 'ImportController@autoparts')->name('import.autoparts');
+    // Route::post('/importar/licencias', 'CertificatesImportController')->name('import.certificates');
+    // Route::post('/importar/autopartes', 'AutopartsImportController')->name('import.autoparts');
+    Route::post('/importar/cape', 'CAPEImportController')->name('import.cape');
 });

@@ -42,7 +42,7 @@ class GroupController extends Controller
     {
         $this->authorize('editar', Group::class);
 
-        $group = Group::with('users')->findOrFail($id);
+        $group = Group::with('users')->where('fixed', false)->findOrFail($id);
 
         $users = User::all();
 

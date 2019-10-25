@@ -33,6 +33,9 @@ class CreateTrazaRequest extends FormRequest
             'validation' => 'required',
             'signature' => 'required',
             'auth_level' => 'required',
+            'documents.solicitud_cape' => 'required_if:type,cape',
+            'documents.autopartes' => 'required_if:type,cape',
+            'documents.foto' => 'required_if:type,cape',
         ];
     }
 }

@@ -34,11 +34,11 @@
       @if ($errors->any())
       <div class="alert alert-danger mx-3 mt-8">
         <h5 class="text-center">Se han producido errores</h5>
-        {{-- <ol>
+        <ol>
           @foreach ($errors->all() as $error)
             <li>{{ $error }}</li>
           @endforeach
-        </ol> --}}
+        </ol>
       </div>
       @endif
 
@@ -118,110 +118,117 @@
 
         @switch($type)
           @case('chas')
-            <div class="w-1/2 form-group item-form px-2 @error('documents[declaracion_jurada]') has-error @enderror">
+            <div class="w-1/2 form-group item-form px-2 @error('documents.declaracion_jurada') has-error @enderror">
               <label for="documents[declaracion_jurada]" class="mb-4">Anexo | Declaración Jurada <sup>*</sup></label>
               <input type="file" name="documents[declaracion_jurada]" class="form-control">
-              @error('documents[declaracion_jurada]')
+              @error('documents.declaracion_jurada')
                 <p class="help-block error">{{ $message }}</p>
               @enderror
             </div>
 
-            <div class="w-1/2 form-group item-form px-2 @error('documents[solicitud_autopartes]') has-error @enderror">
+            <div class="w-1/2 form-group item-form px-2 @error('documents.solicitud_autopartes') has-error @enderror">
               <label for="documents[solicitud_autopartes]" class="mb-4">Solicitud de Homologación de Autopartes y/o elementos de Seguridad <sup>*</sup></label>
               <input type="file" name="documents[solicitud_autopartes]" class="form-control">
-              @error('documents[solicitud_autopartes]')
+              @error('documents.solicitud_autopartes')
                 <p class="help-block error">{{ $message }}</p>
               @enderror
             </div>
 
-            <div class="w-1/2 form-group item-form px-2 @error('documents[wp29]') has-error @enderror">
+            <div class="w-1/2 form-group item-form px-2 @error('documents.wp29') has-error @enderror">
               <label for="documents[wp29]" class="mb-4">Certificado de homologación extranjera WP29 (Obligatorio si es Importador) <sup>*</sup></label>
-              <input type="file" name="documents[wp29]" class="form-control">
-              @error('documents[wp29]')
+              <input multiple type="file" name="documents[wp29][]" class="form-control">
+              @error('documents.wp29')
                 <p class="help-block error">{{ $message }}</p>
               @enderror
             </div>
 
-            <div class="w-1/2 form-group item-form px-2 @error('documents[certificado]') has-error @enderror">
+            <div class="w-1/2 form-group item-form px-2 @error('documents.certificado') has-error @enderror">
               <label for="documents[certificado]" class="mb-4">Certificado de autopartes (Certificadora nacional) <sup>*</sup></label>
-              <input type="file" name="documents[certificado]" class="form-control">
-              @error('documents[certificado]')
+              <input multiple type="file" name="documents[certificado][]" class="form-control">
+              @error('documents.certificado')
                 <p class="help-block error">{{ $message }}</p>
               @enderror
             </div>
 
-            <div class="w-1/2 form-group item-form px-2 @error('documents[foto]') has-error @enderror">
+            <div class="w-1/2 form-group item-form px-2 @error('documents.foto') has-error @enderror">
               <label for="documents[foto]" class="mb-4">Foto(s) de la(s) autoparte(s) y de/los envase(s) <sup>*</sup></label>
               <input multiple type="file" name="documents[foto][]" class="form-control">
-              @error('documents[foto]')
+              @error('documents.foto')
                 <p class="help-block error">{{ $message }}</p>
               @enderror
             </div>
 
-            <div class="w-1/2 form-group item-form px-2 @error('documents[catalogo]') has-error @enderror">
+            <div class="w-1/2 form-group item-form px-2 @error('documents.catalogo') has-error @enderror">
               <label for="documents[catalogo]" class="mb-4">Catálogo correspondiente <sup>*</sup></label>
               <input type="file" name="documents[catalogo]" class="form-control">
-              @error('documents[catalogo]')
+              @error('documents.catalogo')
                 <p class="help-block error">{{ $message }}</p>
               @enderror
             </div>
           @break
 
           @case('cape')
-            <div class="w-1/2 form-group item-form px-2 @error('documents[solicitud_cape]') has-error @enderror">
+            <div class="w-1/2 form-group item-form px-2 @error('documents.solicitud_cape') has-error @enderror">
               <label for="documents[solicitud_cape]" class="mb-4">Solicitud de CAPE <sup>*</sup></label>
               <input type="file" name="documents[solicitud_cape]" class="form-control">
-              @error('documents[solicitud_cape]')
+              @error('documents.solicitud_cape')
                 <p class="help-block error">{{ $message }}</p>
               @enderror
             </div>
 
-            <div class="w-1/2 form-group item-form px-2 @error('documents[descripcion]') has-error @enderror">
-              <label for="documents[descripcion]" class="mb-4">Descripción de los bienes (formato Excel versión) <sup>*</sup></label>
-              <input type="file" name="documents[descripcion]" class="form-control">
-              @error('documents[descripcion]')
+            <div class="w-1/2 form-group item-form px-2 @error('documents.autopartes') has-error @enderror">
+              <label for="documents[autopartes]" class="mb-4">Descripción de los bienes <sup>*</sup> (<a href="{{ asset('plantillas/cape.xlsx') }}">descargar plantilla</a>)</label>
+              {{-- <input type="file" name="documents[autopartes]" class="form-control" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"> --}}
+              <importer
+                name="documents[autopartes]"
+                accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                endpoint="{{ route('import.cape') }}"
+                @valid="valid = true"
+              >
+              </importer>
+              @error('documents.autopartes')
                 <p class="help-block error">{{ $message }}</p>
               @enderror
             </div>
 
-            <div class="w-1/2 form-group item-form px-2 @error('documents[folleto_autopartes]') has-error @enderror">
-              <label for="documents[folleto_autopartes]" class="mb-4">Folletería piezas autopartes <sup>*</sup></label>
-              <input type="file" name="documents[folleto_autopartes]" class="form-control">
-              @error('documents[folleto_autopartes]')
+            <div class="w-1/2 form-group item-form px-2 @error('documents.foto') has-error @enderror">
+              <label for="documents[foto]" class="mb-4">Folletería piezas autopartes <sup>*</sup></label>
+              <input multiple type="file" name="documents[foto][]" class="form-control" accept="image/*">
+              @error('documents.foto')
                 <p class="help-block error">{{ $message }}</p>
               @enderror
             </div>
           @break
 
           @case('excepcion-chas')
-            <div class="w-1/2 form-group item-form px-2 @error('documents[excepcion_chas]') has-error @enderror">
+            <div class="w-1/2 form-group item-form px-2 @error('documents.excepcion_chas') has-error @enderror">
               <label for="documents[excepcion_chas]" class="mb-4">Solicitud de Excepción de CHAS <sup>*</sup></label>
               <input type="file" name="documents[excepcion_chas]" class="form-control">
-              @error('documents[excepcion_chas]')
+              @error('documents.excepcion_chas')
                 <p class="help-block error">{{ $message }}</p>
               @enderror
             </div>
 
-            <div class="w-1/2 form-group item-form px-2 @error('documents[descripcion_bienes]') has-error @enderror">
+            <div class="w-1/2 form-group item-form px-2 @error('documents.descripcion_bienes') has-error @enderror">
               <label for="documents[descripcion_bienes]" class="mb-4">Descripción de los bienes (formato Excel) <sup>*</sup></label>
               <input type="file" name="documents[descripcion_bienes]" class="form-control">
-              @error('documents[descripcion_bienes]')
+              @error('documents.descripcion_bienes')
                 <p class="help-block error">{{ $message }}</p>
               @enderror
             </div>
 
-            <div class="w-1/2 form-group item-form px-2 @error('documents[folleto]') has-error @enderror">
+            <div class="w-1/2 form-group item-form px-2 @error('documents.folleto') has-error @enderror">
               <label for="documents[folleto_autopartes]" class="mb-4">Folletería piezas autopartes <sup>*</sup></label>
               <input type="file" name="documents[folleto]" class="form-control">
-              @error('documents[folleto]')
+              @error('documents.folleto')
                 <p class="help-block error">{{ $message }}</p>
               @enderror
             </div>
 
-            <div class="w-1/2 form-group item-form px-2 @error('documents[folleto_maquinaria]') has-error @enderror">
+            <div class="w-1/2 form-group item-form px-2 @error('documents.folleto_maquinaria') has-error @enderror">
               <label for="documents[folleto_maquinaria]" class="mb-4">Folletería Maquinaria <sup>*</sup></label>
               <input type="file" name="documents[folleto_maquinaria]" class="form-control">
-              @error('documents[folleto_maquinaria]')
+              @error('documents.folleto_maquinaria')
                 <p class="help-block error">{{ $message }}</p>
               @enderror
             </div>
@@ -234,7 +241,7 @@
           Volver
         </a>
 
-        <button class="btn btn-info uppercase mb-0" type="submit">
+        <button class="btn btn-info uppercase mb-0" type="submit" v-show="valid">
           Guardar
         </button>
       </div>

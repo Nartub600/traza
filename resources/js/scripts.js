@@ -12,6 +12,7 @@ require('datatables.net-dt')
 Vue.component('autopartes', require('./components/Autopartes.vue').default)
 Vue.component('autopartes-modal', require('./components/AutopartesModal.vue').default)
 Vue.component('permisos', require('./components/Permisos.vue').default)
+Vue.component('importer', require('./components/Importer.vue').default)
 
 const app = new Vue({
   name: 'App',
@@ -20,7 +21,8 @@ const app = new Vue({
 
   data () {
     return {
-      uploading: false
+      // uploading: false
+      valid: false
     }
   }
 })

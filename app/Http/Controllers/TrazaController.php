@@ -43,6 +43,8 @@ class TrazaController extends Controller
         $traza = new Traza($request->validated());
         $uuid = Str::uuid();
         $traza->uuid = $uuid;
+
+        // todo: mejorar esto
         $files = [];
 
         foreach($request->documents as $key => $field) {
@@ -68,6 +70,8 @@ class TrazaController extends Controller
         }
 
         $traza->files = $files;
+        // esto
+
         $traza->save();
 
         return redirect()->route('trazas.index');
