@@ -15,7 +15,7 @@
       @break
 
       @case ('cape')
-        Solicitud del Certificado de Autoparte Primer Equipo (C.A.P.E) - Excepción CHAS
+        Solicitud del Certificado de Autoparte Primer Equipo (C.A.P.E.) - Excepción CHAS
       @break
 
       @case ('excepcion-chas')

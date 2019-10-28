@@ -274,67 +274,67 @@ export default {
       const importData = new FormData()
       importData.append('excel', this.$refs.excel.files[0]);
       axios.post('/importar/licencias', importData)
-      .then(response => {
-        Swal.fire({
-          width: '64rem',
-          title: 'Confirmar importación',
-          html: this.parseCertificatesFeedback(response.data),
-          type: 'question',
-          showConfirmButton: response.data.certificates.valid.length > 0,
-          showCancelButton: true,
-          confirmButtonText: 'Importar',
-          cancelButtonText: 'Volver',
-          reverseButtons: true,
-          confirmButtonColor: '#0072BB',
-          showLoaderOnConfirm: true,
-          preConfirm: () => axios.post('/licencias', {
-            'certificates': response.data.certificates.valid
-          }, {
-            headers: {
-              'X-CSRF-TOKEN': Laravel.csrfToken,
-              'Accept': 'application/json',
+        .then(response => {
+          Swal.fire({
+            width: '64rem',
+            title: 'Confirmar importación',
+            html: this.parseCertificatesFeedback(response.data),
+            type: 'question',
+            showConfirmButton: response.data.certificates.valid.length > 0,
+            showCancelButton: true,
+            confirmButtonText: 'Importar',
+            cancelButtonText: 'Volver',
+            reverseButtons: true,
+            confirmButtonColor: '#0072BB',
+            showLoaderOnConfirm: true,
+            preConfirm: () => axios.post('/licencias', {
+              'certificates': response.data.certificates.valid
+            }, {
+              headers: {
+                'X-CSRF-TOKEN': Laravel.csrfToken,
+                'Accept': 'application/json',
+              }
+            })
+          }).then(result => {
+            if (result.value) {
+              location.reload()
             }
+          }).catch(error => {
+            console.log(error)
+            return false
           })
-        }).then(result => {
-          if (result.value) {
-            location.reload()
-          }
-        }).catch(error => {
-          console.log(error)
-          return false
         })
-      })
-      .catch(error => {
-        Swal.fire({
-          type: 'warning',
-          text: error.response.data.rows || 'Error inesperado'
+        .catch(error => {
+          Swal.fire({
+            type: 'warning',
+            text: error.response.data.rows || 'Error inesperado'
+          })
         })
-      })
     },
 
     handleAutopartsExcel () {
       const formData = new FormData()
       formData.append('excel', this.$refs.excel.files[0]);
       axios.post('/importar/autopartes', formData)
-      .then(response => {
-        this.destroyTable()
-        this.autopartes = response.data.autoparts
-        this.$nextTick(() => {
-          this.initTable()
-        })
+        .then(response => {
+          this.destroyTable()
+          this.autopartes = response.data.autoparts
+          this.$nextTick(() => {
+            this.initTable()
+          })
 
-        Swal.fire({
-          type: response.data.autoparts.length && !response.data.invalid.length ? 'success' : (response.data.autoparts.length && response.data.invalid.length ? 'warning' : 'error'),
-          title: 'Operación finalizada',
-          html: this.parseAutopartsFeedback(response.data)
+          Swal.fire({
+            type: response.data.autoparts.length && !response.data.invalid.length ? 'success' : (response.data.autoparts.length && response.data.invalid.length ? 'warning' : 'error'),
+            title: 'Operación finalizada',
+            html: this.parseAutopartsFeedback(response.data)
+          })
         })
-      })
-      .catch(error => {
-        Swal.fire({
-          type: 'warning',
-          text: error.response.data.rows || 'Error inesperado'
+        .catch(error => {
+          Swal.fire({
+            type: 'warning',
+            text: error.response.data.rows || 'Error inesperado'
+          })
         })
-      })
     }
   },
 

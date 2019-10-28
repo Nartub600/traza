@@ -12,7 +12,7 @@ return [
     'folleto_autopartes' => 'Folletería piezas autopartes',
     'folleto_maquinaria' => 'Folletería Maquinaria',
     'excepcion_chas' => 'Solicitud de Excepción de CHAS',
-    'descripcion_bienes' => 'Descripción de los bienes',
+    'autopartes' => 'Descripción de los bienes',
     'foto' => 'Fotografía',
     'chas' => 'CHAS',
     'cape' => 'CAPE',

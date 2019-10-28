@@ -33,11 +33,7 @@ class CAPEImport implements ToCollection, WithStartRow, WithMultipleSheets, With
             '*.description'   => 'required',
             '*.application'   => 'required',
             '*.size'          => 'required',
-        ]);
-
-        $validator->after(function () {
-
-        });
+        ], [], array_combine(range(0, 1000), range(2, 1002)));
 
         $this->validator = $validator;
     }
