@@ -24,4 +24,14 @@ class Traza extends Model
     protected $casts = [
         'files' => 'array'
     ];
+
+    public function lcms()
+    {
+        return $this->hasMany(LCM::class);
+    }
+
+    public function autoparts()
+    {
+        return $this->hasMany(Autopart::class);
+    }
 }

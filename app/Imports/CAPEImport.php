@@ -16,8 +16,6 @@ class CAPEImport implements ToCollection, WithStartRow, WithMultipleSheets, With
 {
     public function collection(Collection $rows)
     {
-        $imported = collect([]);
-
         $validator = Validator::make($rows->toArray(), [
             '*'               => [new MatchesLCM],
             '*.product'       => ['required', new IsProduct],

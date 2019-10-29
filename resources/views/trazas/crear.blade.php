@@ -126,10 +126,35 @@
               @enderror
             </div>
 
-            <div class="w-1/2 form-group item-form px-2 @error('documents.solicitud_autopartes') has-error @enderror">
-              <label for="documents[solicitud_autopartes]" class="mb-4">Solicitud de Homologación de Autopartes y/o elementos de Seguridad <sup>*</sup></label>
-              <input type="file" name="documents[solicitud_autopartes]" class="form-control">
-              @error('documents.solicitud_autopartes')
+            <div class="w-1/2 form-group item-form px-2 @error('documents.chas') has-error @enderror">
+              <label for="documents[chas]" class="mb-4">Solicitud de Homologación de Autopartes y/o elementos de Seguridad <sup>*</sup></label>
+              <div class="flex">
+                <div class="w-1/2 flex items-center pr-2">
+                  <label class="flex-none mr-2">
+                    <a href="{{ asset('plantillas/chas-nacional.xlsx') }}">Nacional</a>
+                  </label>
+                  <importer
+                    name="documents[chasNacional]"
+                    accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                    endpoint="{{ route('import.chas-nacional') }}"
+                    @valid="valid = true"
+                  >
+                  </importer>
+                </div>
+                <div class="w-1/2 flex items-center">
+                  <label class="flex-none mr-2">
+                    <a href="{{ asset('plantillas/chas-extranjera.xlsx') }}">Extranjera</a>
+                  </label>
+                  <importer
+                    name="documents[chasExtranjera]"
+                    accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                    endpoint="{{ route('import.chas-extranjera') }}"
+                    @valid="valid = true"
+                  >
+                  </importer>
+                </div>
+              </div>
+              @error('documents.chas')
                 <p class="help-block error">{{ $message }}</p>
               @enderror
             </div>
@@ -178,14 +203,18 @@
 
             <div class="w-1/2 form-group item-form px-2 @error('documents.autopartes') has-error @enderror">
               <label for="documents[autopartes]" class="mb-4">Descripción de los bienes <sup>*</sup> (<a href="{{ asset('plantillas/cape.xlsx') }}">descargar plantilla</a>)</label>
-              {{-- <input type="file" name="documents[autopartes]" class="form-control" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"> --}}
               <importer
                 name="documents[autopartes]"
                 accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
                 endpoint="{{ route('import.cape') }}"
-                @valid="valid = true"
+                @valid="data => (autopartes = data, valid = true)"
               >
               </importer>
+              <formalizer
+                :data="autopartes"
+                name="lcm"
+              >
+              </formalizer>
               @error('documents.autopartes')
                 <p class="help-block error">{{ $message }}</p>
               @enderror

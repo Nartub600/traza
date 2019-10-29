@@ -19,7 +19,6 @@ class LCMsSeeder extends Seeder
         \DB::table('lcms')->insert(array (
             0 =>
             array (
-                'id' => 152,
                 'user_id' => 1,
                 'type' => 'Actualización Administrativa',
                 'defeats' => 'IF-2017-31976393-APN-DNI#MP',
@@ -41,7 +40,6 @@ class LCMsSeeder extends Seeder
             ),
             1 =>
             array (
-                'id' => 153,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => 'IF-2017-31976393-APN-DNI#MP',
@@ -63,7 +61,6 @@ class LCMsSeeder extends Seeder
             ),
             2 =>
             array (
-                'id' => 154,
                 'user_id' => 1,
                 'type' => 'Actualización Administrativa',
                 'defeats' => 'PV -20 19-08685726-APN-DNI#MPYT ',
@@ -85,7 +82,6 @@ class LCMsSeeder extends Seeder
             ),
             3 =>
             array (
-                'id' => 155,
                 'user_id' => 1,
                 'type' => 'Actualización Administrativa',
                 'defeats' => 'PV -20 19-08660727-APN-DNI#MPYT',
@@ -107,7 +103,6 @@ class LCMsSeeder extends Seeder
             ),
             4 =>
             array (
-                'id' => 156,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -129,7 +124,6 @@ class LCMsSeeder extends Seeder
             ),
             5 =>
             array (
-                'id' => 157,
                 'user_id' => 1,
                 'type' => 'Actualización Técnica',
                 'defeats' => '39-9510/2016',
@@ -151,7 +145,6 @@ class LCMsSeeder extends Seeder
             ),
             6 =>
             array (
-                'id' => 158,
                 'user_id' => 1,
                 'type' => 'Actualización Administrativa',
                 'defeats' => 'IF-2017-15994587-APN-DNI#MP',
@@ -173,7 +166,6 @@ class LCMsSeeder extends Seeder
             ),
             7 =>
             array (
-                'id' => 159,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => 'IF-2017-15994587-APN-DNI#MP',
@@ -195,7 +187,6 @@ class LCMsSeeder extends Seeder
             ),
             8 =>
             array (
-                'id' => 160,
                 'user_id' => 1,
                 'type' => 'Actualización Técnica',
                 'defeats' => '-',
@@ -217,7 +208,6 @@ class LCMsSeeder extends Seeder
             ),
             9 =>
             array (
-                'id' => 161,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -239,7 +229,6 @@ class LCMsSeeder extends Seeder
             ),
             10 =>
             array (
-                'id' => 162,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -261,7 +250,6 @@ class LCMsSeeder extends Seeder
             ),
             11 =>
             array (
-                'id' => 163,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -283,7 +271,6 @@ class LCMsSeeder extends Seeder
             ),
             12 =>
             array (
-                'id' => 164,
                 'user_id' => 1,
                 'type' => 'Actualización Administrativa',
                 'defeats' => '-',
@@ -305,7 +292,6 @@ class LCMsSeeder extends Seeder
             ),
             13 =>
             array (
-                'id' => 165,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -327,7 +313,6 @@ class LCMsSeeder extends Seeder
             ),
             14 =>
             array (
-                'id' => 166,
                 'user_id' => 1,
                 'type' => 'Actualización Administrativa',
                 'defeats' => '-',
@@ -349,7 +334,6 @@ class LCMsSeeder extends Seeder
             ),
             15 =>
             array (
-                'id' => 167,
                 'user_id' => 1,
                 'type' => 'Extensión',
                 'defeats' => '39-9678/2017',
@@ -373,7 +357,6 @@ XL1200XS',
             ),
             16 =>
             array (
-                'id' => 168,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -395,7 +378,6 @@ XL1200XS',
             ),
             17 =>
             array (
-                'id' => 169,
                 'user_id' => 1,
                 'type' => 'Actualización Administrativa',
                 'defeats' => 'IF-2019-06233512-APN-DNI#MP',
@@ -417,7 +399,6 @@ XL1200XS',
             ),
             18 =>
             array (
-                'id' => 170,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -439,7 +420,6 @@ XL1200XS',
             ),
             19 =>
             array (
-                'id' => 171,
                 'user_id' => 1,
                 'type' => 'Actualización Técnica',
                 'defeats' => 'IF-2018-31297323-APN-DNI#MP',
@@ -461,7 +441,6 @@ XL1200XS',
             ),
             20 =>
             array (
-                'id' => 172,
                 'user_id' => 1,
                 'type' => 'Actualización Administrativa',
                 'defeats' => 'IF-2018-54052296-APN-DNI#MPYT',
@@ -483,7 +462,6 @@ XL1200XS',
             ),
             21 =>
             array (
-                'id' => 173,
                 'user_id' => 1,
                 'type' => 'Actualización Administrativa',
                 'defeats' => 'IF-2017-25109716-APN-DNI#MP',
@@ -505,7 +483,6 @@ XL1200XS',
             ),
             22 =>
             array (
-                'id' => 174,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -527,7 +504,6 @@ XL1200XS',
             ),
             23 =>
             array (
-                'id' => 175,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -549,7 +525,6 @@ XL1200XS',
             ),
             24 =>
             array (
-                'id' => 176,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -571,7 +546,6 @@ XL1200XS',
             ),
             25 =>
             array (
-                'id' => 177,
                 'user_id' => 1,
                 'type' => 'Actualización Administrativa',
                 'defeats' => '-',
@@ -593,7 +567,6 @@ XL1200XS',
             ),
             26 =>
             array (
-                'id' => 178,
                 'user_id' => 1,
                 'type' => 'Actualización Técnica',
                 'defeats' => '-',
@@ -615,7 +588,6 @@ XL1200XS',
             ),
             27 =>
             array (
-                'id' => 179,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -637,7 +609,6 @@ XL1200XS',
             ),
             28 =>
             array (
-                'id' => 180,
                 'user_id' => 1,
                 'type' => 'Actualización Técnica',
                 'defeats' => '-',
@@ -659,7 +630,6 @@ XL1200XS',
             ),
             29 =>
             array (
-                'id' => 181,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -681,7 +651,6 @@ XL1200XS',
             ),
             30 =>
             array (
-                'id' => 182,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -703,7 +672,6 @@ XL1200XS',
             ),
             31 =>
             array (
-                'id' => 183,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -725,7 +693,6 @@ XL1200XS',
             ),
             32 =>
             array (
-                'id' => 184,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -747,7 +714,6 @@ XL1200XS',
             ),
             33 =>
             array (
-                'id' => 185,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -769,7 +735,6 @@ XL1200XS',
             ),
             34 =>
             array (
-                'id' => 186,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -791,7 +756,6 @@ XL1200XS',
             ),
             35 =>
             array (
-                'id' => 187,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -813,7 +777,6 @@ XL1200XS',
             ),
             36 =>
             array (
-                'id' => 188,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -835,7 +798,6 @@ XL1200XS',
             ),
             37 =>
             array (
-                'id' => 189,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -857,7 +819,6 @@ XL1200XS',
             ),
             38 =>
             array (
-                'id' => 190,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -879,7 +840,6 @@ XL1200XS',
             ),
             39 =>
             array (
-                'id' => 191,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -901,7 +861,6 @@ XL1200XS',
             ),
             40 =>
             array (
-                'id' => 192,
                 'user_id' => 1,
                 'type' => 'Actualización Administrativa',
                 'defeats' => '-',
@@ -923,7 +882,6 @@ XL1200XS',
             ),
             41 =>
             array (
-                'id' => 193,
                 'user_id' => 1,
                 'type' => 'Actualización Administrativa',
                 'defeats' => '-',
@@ -945,7 +903,6 @@ XL1200XS',
             ),
             42 =>
             array (
-                'id' => 194,
                 'user_id' => 1,
                 'type' => 'Actualización Administrativa',
                 'defeats' => '-',
@@ -967,7 +924,6 @@ XL1200XS',
             ),
             43 =>
             array (
-                'id' => 195,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -989,7 +945,6 @@ XL1200XS',
             ),
             44 =>
             array (
-                'id' => 196,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -1011,7 +966,6 @@ XL1200XS',
             ),
             45 =>
             array (
-                'id' => 197,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -1033,7 +987,6 @@ XL1200XS',
             ),
             46 =>
             array (
-                'id' => 198,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -1055,7 +1008,6 @@ XL1200XS',
             ),
             47 =>
             array (
-                'id' => 199,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -1077,7 +1029,6 @@ XL1200XS',
             ),
             48 =>
             array (
-                'id' => 200,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -1099,7 +1050,6 @@ XL1200XS',
             ),
             49 =>
             array (
-                'id' => 201,
                 'user_id' => 1,
                 'type' => 'Actualización Técnica',
                 'defeats' => 'IF-2017-28713489-AMP-DNI#MP',
@@ -1121,7 +1071,6 @@ XL1200XS',
             ),
             50 =>
             array (
-                'id' => 202,
                 'user_id' => 1,
                 'type' => 'Actualización Técnica',
                 'defeats' => 'IF-2017-28713489-AMP-DNI#MP',
@@ -1143,7 +1092,6 @@ XL1200XS',
             ),
             51 =>
             array (
-                'id' => 203,
                 'user_id' => 1,
                 'type' => 'Actualización Técnica',
                 'defeats' => 'IF-2017-28713489-AMP-DNI#MP',
@@ -1165,7 +1113,6 @@ XL1200XS',
             ),
             52 =>
             array (
-                'id' => 204,
                 'user_id' => 1,
                 'type' => 'Actualización Técnica',
                 'defeats' => 'IF-2017-28713489-AMP-DNI#MP',
@@ -1187,7 +1134,6 @@ XL1200XS',
             ),
             53 =>
             array (
-                'id' => 205,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -1209,7 +1155,6 @@ XL1200XS',
             ),
             54 =>
             array (
-                'id' => 206,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -1231,7 +1176,6 @@ XL1200XS',
             ),
             55 =>
             array (
-                'id' => 207,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -1253,7 +1197,6 @@ XL1200XS',
             ),
             56 =>
             array (
-                'id' => 208,
                 'user_id' => 1,
                 'type' => 'Actualización Técnica',
                 'defeats' => '-',
@@ -1275,7 +1218,6 @@ XL1200XS',
             ),
             57 =>
             array (
-                'id' => 209,
                 'user_id' => 1,
                 'type' => 'Actualización Técnica',
                 'defeats' => '-',
@@ -1297,7 +1239,6 @@ XL1200XS',
             ),
             58 =>
             array (
-                'id' => 210,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -1319,7 +1260,6 @@ XL1200XS',
             ),
             59 =>
             array (
-                'id' => 211,
                 'user_id' => 1,
                 'type' => 'Actualización Técnica',
                 'defeats' => '-',
@@ -1341,7 +1281,6 @@ XL1200XS',
             ),
             60 =>
             array (
-                'id' => 212,
                 'user_id' => 1,
                 'type' => 'Actualización Administrativa',
                 'defeats' => '39-8960/2015 ',
@@ -1363,7 +1302,6 @@ XL1200XS',
             ),
             61 =>
             array (
-                'id' => 213,
                 'user_id' => 1,
                 'type' => 'Actualización Técnica',
                 'defeats' => '',
@@ -1385,7 +1323,6 @@ XL1200XS',
             ),
             62 =>
             array (
-                'id' => 214,
                 'user_id' => 1,
                 'type' => 'Actualización Técnica',
                 'defeats' => '39-8924/2015 ',
@@ -1407,7 +1344,6 @@ XL1200XS',
             ),
             63 =>
             array (
-                'id' => 215,
                 'user_id' => 1,
                 'type' => 'Actualización Técnica',
                 'defeats' => 'IF-2018-39071785-APN-DNI#MP',
@@ -1429,7 +1365,6 @@ XL1200XS',
             ),
             64 =>
             array (
-                'id' => 216,
                 'user_id' => 1,
                 'type' => 'Actualización Técnica',
                 'defeats' => '-',
@@ -1451,7 +1386,6 @@ XL1200XS',
             ),
             65 =>
             array (
-                'id' => 217,
                 'user_id' => 1,
                 'type' => 'Actualización Técnica',
                 'defeats' => '-',
@@ -1473,7 +1407,6 @@ XL1200XS',
             ),
             66 =>
             array (
-                'id' => 218,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -1495,7 +1428,6 @@ XL1200XS',
             ),
             67 =>
             array (
-                'id' => 219,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -1517,7 +1449,6 @@ XL1200XS',
             ),
             68 =>
             array (
-                'id' => 220,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -1539,7 +1470,6 @@ XL1200XS',
             ),
             69 =>
             array (
-                'id' => 221,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -1561,7 +1491,6 @@ XL1200XS',
             ),
             70 =>
             array (
-                'id' => 222,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -1583,7 +1512,6 @@ XL1200XS',
             ),
             71 =>
             array (
-                'id' => 223,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -1605,7 +1533,6 @@ XL1200XS',
             ),
             72 =>
             array (
-                'id' => 224,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -1627,7 +1554,6 @@ XL1200XS',
             ),
             73 =>
             array (
-                'id' => 225,
                 'user_id' => 1,
                 'type' => 'Actualización Administrativa',
                 'defeats' => '39-9484/2016 ',
@@ -1649,7 +1575,6 @@ XL1200XS',
             ),
             74 =>
             array (
-                'id' => 226,
                 'user_id' => 1,
                 'type' => 'Renovación',
                 'defeats' => '37-7729/2013',
@@ -1671,7 +1596,6 @@ XL1200XS',
             ),
             75 =>
             array (
-                'id' => 227,
                 'user_id' => 1,
                 'type' => 'Renovación',
                 'defeats' => '39-7476/2012',
@@ -1693,7 +1617,6 @@ XL1200XS',
             ),
             76 =>
             array (
-                'id' => 228,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -1715,7 +1638,6 @@ XL1200XS',
             ),
             77 =>
             array (
-                'id' => 229,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -1737,7 +1659,6 @@ XL1200XS',
             ),
             78 =>
             array (
-                'id' => 230,
                 'user_id' => 1,
                 'type' => 'Actualización Técnica',
                 'defeats' => '-',
@@ -1759,7 +1680,6 @@ XL1200XS',
             ),
             79 =>
             array (
-                'id' => 231,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -1781,7 +1701,6 @@ XL1200XS',
             ),
             80 =>
             array (
-                'id' => 232,
                 'user_id' => 1,
                 'type' => 'Actualización Administrativa',
                 'defeats' => '39-9500/2016',
@@ -1803,7 +1722,6 @@ XL1200XS',
             ),
             81 =>
             array (
-                'id' => 233,
                 'user_id' => 1,
                 'type' => 'Actualización Administrativa',
                 'defeats' => '39-9460/2016',
@@ -1825,7 +1743,6 @@ XL1200XS',
             ),
             82 =>
             array (
-                'id' => 234,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -1847,7 +1764,6 @@ XL1200XS',
             ),
             83 =>
             array (
-                'id' => 235,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -1869,7 +1785,6 @@ XL1200XS',
             ),
             84 =>
             array (
-                'id' => 236,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -1891,7 +1806,6 @@ XL1200XS',
             ),
             85 =>
             array (
-                'id' => 237,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -1913,7 +1827,6 @@ XL1200XS',
             ),
             86 =>
             array (
-                'id' => 238,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -1935,7 +1848,6 @@ XL1200XS',
             ),
             87 =>
             array (
-                'id' => 239,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -1957,7 +1869,6 @@ XL1200XS',
             ),
             88 =>
             array (
-                'id' => 240,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -1979,7 +1890,6 @@ XL1200XS',
             ),
             89 =>
             array (
-                'id' => 241,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -2001,7 +1911,6 @@ XL1200XS',
             ),
             90 =>
             array (
-                'id' => 242,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -2023,7 +1932,6 @@ XL1200XS',
             ),
             91 =>
             array (
-                'id' => 243,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -2045,7 +1953,6 @@ XL1200XS',
             ),
             92 =>
             array (
-                'id' => 244,
                 'user_id' => 1,
                 'type' => 'Actualización Administrativa',
                 'defeats' => 'IF-2018-12039551-APN-DNI#MP',
@@ -2067,7 +1974,6 @@ XL1200XS',
             ),
             93 =>
             array (
-                'id' => 245,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -2089,7 +1995,6 @@ XL1200XS',
             ),
             94 =>
             array (
-                'id' => 246,
                 'user_id' => 1,
                 'type' => 'Actualización Administrativa',
                 'defeats' => '',
@@ -2111,7 +2016,6 @@ XL1200XS',
             ),
             95 =>
             array (
-                'id' => 247,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -2133,7 +2037,6 @@ XL1200XS',
             ),
             96 =>
             array (
-                'id' => 248,
                 'user_id' => 1,
                 'type' => 'Actualización Técnica',
                 'defeats' => 'IF-2018-08579281-APN-DNI#MP ',
@@ -2155,7 +2058,6 @@ XL1200XS',
             ),
             97 =>
             array (
-                'id' => 249,
                 'user_id' => 1,
                 'type' => 'Extensión',
                 'defeats' => 'IF-2017-18498796-APN-DNI#MP ',
@@ -2177,7 +2079,6 @@ XL1200XS',
             ),
             98 =>
             array (
-                'id' => 250,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -2199,7 +2100,6 @@ XL1200XS',
             ),
             99 =>
             array (
-                'id' => 251,
                 'user_id' => 1,
                 'type' => 'Actualización Técnica',
                 'defeats' => '39-8721/2014',
@@ -2221,7 +2121,6 @@ XL1200XS',
             ),
             100 =>
             array (
-                'id' => 252,
                 'user_id' => 1,
                 'type' => 'Actualización Técnica',
                 'defeats' => '39-9777/2017',
@@ -2243,7 +2142,6 @@ XL1200XS',
             ),
             101 =>
             array (
-                'id' => 253,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -2265,7 +2163,6 @@ XL1200XS',
             ),
             102 =>
             array (
-                'id' => 254,
                 'user_id' => 1,
                 'type' => 'Actualización Técnica',
                 'defeats' => 'IF-2017-06293655-APN-DNI#MP ',
@@ -2287,7 +2184,6 @@ XL1200XS',
             ),
             103 =>
             array (
-                'id' => 255,
                 'user_id' => 1,
                 'type' => 'Actualización Técnica',
                 'defeats' => '39-9760/2017',
@@ -2309,7 +2205,6 @@ XL1200XS',
             ),
             104 =>
             array (
-                'id' => 256,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -2331,7 +2226,6 @@ XL1200XS',
             ),
             105 =>
             array (
-                'id' => 257,
                 'user_id' => 1,
                 'type' => 'Actualización Administrativa',
                 'defeats' => 'IF-2018-51380029-APN-DNI#MP ',
@@ -2353,7 +2247,6 @@ XL1200XS',
             ),
             106 =>
             array (
-                'id' => 258,
                 'user_id' => 1,
                 'type' => 'Actualización Técnica',
                 'defeats' => 'IF-2018-37393857-APN-DNI#MP',
@@ -2375,7 +2268,6 @@ XL1200XS',
             ),
             107 =>
             array (
-                'id' => 259,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -2397,7 +2289,6 @@ XL1200XS',
             ),
             108 =>
             array (
-                'id' => 260,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -2419,7 +2310,6 @@ XL1200XS',
             ),
             109 =>
             array (
-                'id' => 261,
                 'user_id' => 1,
                 'type' => 'Actualización Técnica',
                 'defeats' => '',
@@ -2441,7 +2331,6 @@ XL1200XS',
             ),
             110 =>
             array (
-                'id' => 262,
                 'user_id' => 1,
                 'type' => 'Actualización Técnica',
                 'defeats' => '',
@@ -2463,7 +2352,6 @@ XL1200XS',
             ),
             111 =>
             array (
-                'id' => 263,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -2485,7 +2373,6 @@ XL1200XS',
             ),
             112 =>
             array (
-                'id' => 264,
                 'user_id' => 1,
                 'type' => 'Actualización Técnica',
                 'defeats' => '-',
@@ -2507,7 +2394,6 @@ XL1200XS',
             ),
             113 =>
             array (
-                'id' => 265,
                 'user_id' => 1,
                 'type' => 'Actualización Administrativa',
                 'defeats' => '-',
@@ -2529,7 +2415,6 @@ XL1200XS',
             ),
             114 =>
             array (
-                'id' => 266,
                 'user_id' => 1,
                 'type' => 'Actualización Técnica',
                 'defeats' => '-',
@@ -2551,7 +2436,6 @@ XL1200XS',
             ),
             115 =>
             array (
-                'id' => 267,
                 'user_id' => 1,
                 'type' => 'Actualización Técnica',
                 'defeats' => '-',
@@ -2573,7 +2457,6 @@ XL1200XS',
             ),
             116 =>
             array (
-                'id' => 268,
                 'user_id' => 1,
                 'type' => 'Actualización Técnica',
                 'defeats' => '-',
@@ -2595,7 +2478,6 @@ XL1200XS',
             ),
             117 =>
             array (
-                'id' => 269,
                 'user_id' => 1,
                 'type' => 'Actualización Técnica',
                 'defeats' => '-',
@@ -2617,7 +2499,6 @@ XL1200XS',
             ),
             118 =>
             array (
-                'id' => 270,
                 'user_id' => 1,
                 'type' => 'Actualización Técnica',
                 'defeats' => 'IF-2018-05675811-APN-DNI#MPYT',
@@ -2639,7 +2520,6 @@ XL1200XS',
             ),
             119 =>
             array (
-                'id' => 271,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -2661,7 +2541,6 @@ XL1200XS',
             ),
             120 =>
             array (
-                'id' => 272,
                 'user_id' => 1,
                 'type' => 'Actualización Técnica',
                 'defeats' => '-',
@@ -2683,7 +2562,6 @@ XL1200XS',
             ),
             121 =>
             array (
-                'id' => 273,
                 'user_id' => 1,
                 'type' => 'Actualización Técnica',
                 'defeats' => '-',
@@ -2705,7 +2583,6 @@ XL1200XS',
             ),
             122 =>
             array (
-                'id' => 274,
                 'user_id' => 1,
                 'type' => 'Actualización Técnica',
                 'defeats' => '-',
@@ -2727,7 +2604,6 @@ XL1200XS',
             ),
             123 =>
             array (
-                'id' => 275,
                 'user_id' => 1,
                 'type' => 'Actualización Técnica',
                 'defeats' => '-',
@@ -2749,7 +2625,6 @@ XL1200XS',
             ),
             124 =>
             array (
-                'id' => 276,
                 'user_id' => 1,
                 'type' => 'Actualización Administrativa',
                 'defeats' => 'IF-2019-07237210-APN-DNI#MPYT',
@@ -2771,7 +2646,6 @@ XL1200XS',
             ),
             125 =>
             array (
-                'id' => 277,
                 'user_id' => 1,
                 'type' => 'Actualización Administrativa',
                 'defeats' => 'IF-2018-44599913-APN-DNI#MPYT',
@@ -2793,7 +2667,6 @@ XL1200XS',
             ),
             126 =>
             array (
-                'id' => 278,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -2815,7 +2688,6 @@ XL1200XS',
             ),
             127 =>
             array (
-                'id' => 279,
                 'user_id' => 1,
                 'type' => 'Actualización Técnica',
                 'defeats' => '-',
@@ -2837,7 +2709,6 @@ XL1200XS',
             ),
             128 =>
             array (
-                'id' => 280,
                 'user_id' => 1,
                 'type' => 'Actualización Administrativa',
                 'defeats' => 'IF-2019-12800882-APN-DNI#MPYT',
@@ -2859,7 +2730,6 @@ XL1200XS',
             ),
             129 =>
             array (
-                'id' => 281,
                 'user_id' => 1,
                 'type' => 'Actualización Administrativa',
                 'defeats' => 'IF-2018-27924694-APN-DNI#MP',
@@ -2881,7 +2751,6 @@ XL1200XS',
             ),
             130 =>
             array (
-                'id' => 282,
                 'user_id' => 1,
                 'type' => 'Actualización Técnica',
                 'defeats' => '-',
@@ -2903,7 +2772,6 @@ XL1200XS',
             ),
             131 =>
             array (
-                'id' => 283,
                 'user_id' => 1,
                 'type' => 'Actualización Técnica',
                 'defeats' => 'IF-2017-234161118-APN-DNI#MP',
@@ -2925,7 +2793,6 @@ XL1200XS',
             ),
             132 =>
             array (
-                'id' => 284,
                 'user_id' => 1,
                 'type' => 'Extensión',
                 'defeats' => '39-7307/2012',
@@ -2947,7 +2814,6 @@ XL1200XS',
             ),
             133 =>
             array (
-                'id' => 285,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -2969,7 +2835,6 @@ XL1200XS',
             ),
             134 =>
             array (
-                'id' => 286,
                 'user_id' => 1,
                 'type' => 'Actualización Administrativa',
                 'defeats' => '-',
@@ -2991,7 +2856,6 @@ XL1200XS',
             ),
             135 =>
             array (
-                'id' => 287,
                 'user_id' => 1,
                 'type' => 'Actualización Técnica',
                 'defeats' => '39-9126/2016',
@@ -3013,7 +2877,6 @@ XL1200XS',
             ),
             136 =>
             array (
-                'id' => 288,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -3035,7 +2898,6 @@ XL1200XS',
             ),
             137 =>
             array (
-                'id' => 289,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -3057,7 +2919,6 @@ XL1200XS',
             ),
             138 =>
             array (
-                'id' => 290,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -3079,7 +2940,6 @@ XL1200XS',
             ),
             139 =>
             array (
-                'id' => 291,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -3101,7 +2961,6 @@ XL1200XS',
             ),
             140 =>
             array (
-                'id' => 292,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',
@@ -3123,7 +2982,6 @@ XL1200XS',
             ),
             141 =>
             array (
-                'id' => 293,
                 'user_id' => 1,
                 'type' => 'Actualización Técnica',
                 'defeats' => 'IF-2019-05230821-APN-DNI#MPYT',
@@ -3145,7 +3003,6 @@ XL1200XS',
             ),
             142 =>
             array (
-                'id' => 294,
                 'user_id' => 1,
                 'type' => 'Nueva',
                 'defeats' => '-',

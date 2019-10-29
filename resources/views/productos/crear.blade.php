@@ -66,7 +66,7 @@
           Volver
         </a>
 
-        <button class="btn btn-info uppercase mb-0" type="submit" :disabled="uploading">
+        <button class="btn btn-info uppercase mb-0" type="submit">
           Guardar
         </button>
       </div>

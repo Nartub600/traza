@@ -17,4 +17,27 @@ class LCM extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function traza()
+    {
+        return $this->belongsTo(Traza::class);
+    }
+
+    public function generarCAPE($product)
+    {
+        $tipo = 'C';
+        $familia = str_pad($product, 2, '0', STR_PAD_LEFT);
+        $terminal = '000';
+        $anio = now()->format('y');
+        $mes = now()->format('m');
+        $codigo = str_pad($this->CAPEcountByYear(now()->format('Y')) + 1, 4, '0', STR_PAD_LEFT);
+        $verificador = rand(0, 9); // todo: guarda
+
+        $this->cape = "$tipo$familia$terminal$anio$mes$codigo$verificador";
+    }
+
+    private function CAPEcountByYear($year)
+    {
+        return $this->whereNotNull('cape')->whereYear('created_at', $year)->count();
+    }
 }

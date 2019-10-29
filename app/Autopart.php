@@ -33,6 +33,11 @@ class Autopart extends Model
         'certified_at' => 'date|Y-m-d'
     ];
 
+    public function traza()
+    {
+        return $this->belongsTo(Traza::class);
+    }
+
     public function ncm()
     {
         return $this->belongsTo(NCM::class, 'ncm_id');

@@ -46,4 +46,6 @@ Route::group([
     // Route::post('/importar/licencias', 'CertificatesImportController')->name('import.certificates');
     // Route::post('/importar/autopartes', 'AutopartsImportController')->name('import.autoparts');
     Route::post('/importar/cape', 'CAPEImportController')->name('import.cape');
+    Route::post('/importar/chas-nacional', 'CHASNacionalImportController')->name('import.chas-nacional');
+    Route::post('/importar/chas-extranjera', 'CHASExtranjeraImportController')->name('import.chas-extranjera');
 });

@@ -163,6 +163,7 @@ return [
         'documents.solicitud_cape' => 'solicitud de CAPE',
         'documents.autopartes'     => 'descripción de los bienes',
         'documents.foto'           => 'folletería',
+        'documents.chas'           => 'Solicitud de Homologación de Autopartes y/o elementos de Seguridad',
         'formulation'              => 'formulación',
         'importer'                 => 'importador',
         '*.importer'               => 'importador',

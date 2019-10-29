@@ -81,6 +81,26 @@
         </div>
     </div>
 
+    @switch($traza->type)
+      @case('cape')
+        @if($traza->lcms->isNotEmpty())
+          <h3>
+            Autopartes
+          </h3>
+          <div class="flex flex-wrap">
+            @foreach ($traza->lcms as $autoparte)
+            <div class="flex items-center justify-center w-1/2">
+              <span>
+                {{ "{$autoparte->brand} {$autoparte->model} {$autoparte->country} {$autoparte->cape}" }}
+              </span>
+              <img src="data:image/png;base64,{{ base64_encode(QrCode::format('png')->size(200)->generate($autoparte->cape)) }}">
+            </div>
+            @endforeach
+          </div>
+        @endif
+      @break
+    @endswitch
+
     <h3>
       Documentos
     </h3>

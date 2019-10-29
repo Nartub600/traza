@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateTrazaRequest;
+use App\LCM;
 use App\Traza;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -73,6 +74,24 @@ class TrazaController extends Controller
         // esto
 
         $traza->save();
+
+        switch ($request->type) {
+            case 'cape':
+                foreach($request->lcm as $lcm) {
+                    $matchedLcm = LCM::where('number', $lcm['lcm'])
+                        ->where('brand', $lcm['brand'])
+                        ->where('model', $lcm['model'])
+                        ->where('country', $lcm['country'])
+                        ->whereNull('cape')
+                        ->first();
+
+                    $matchedLcm->generarCAPE($lcm['product']);
+                    $matchedLcm->traza()->associate($traza);
+
+                    $matchedLcm->save();
+                }
+            break;
+        }
 
         return redirect()->route('trazas.index');
     }

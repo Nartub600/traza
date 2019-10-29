@@ -30,6 +30,7 @@ class MatchesLCM implements Rule
             ->where('brand', $value['brand'])
             ->where('model', $value['model'])
             ->where('country', $value['country'])
+            ->whereNull('cape')
             ->first();
 
         return !is_null($lcm);

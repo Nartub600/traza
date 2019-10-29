@@ -40,14 +40,12 @@ export default {
       data.append('excel', e.target.files[0])
 
       axios.post(this.endpoint, data).then(response => {
-        this.valid = response.data
-
         Swal.fire({
           type: 'success',
           title: 'El archivo es válido'
         })
 
-        this.$emit('valid')
+        this.$emit('valid', response.data)
       }).catch(error => {
         e.target.value = null
         Swal.fire({
