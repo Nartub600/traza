@@ -88,7 +88,7 @@
     <div class="flex flex-wrap -mx-4">
       @foreach($traza->files as $file)
         <div class="w-full px-4">
-          <a href="{{ url($file['file']) }}" download="{{ $file['name'] }}">
+          <a href="{{ asset($file['file']) }}" download="{{ $file['name'] }}">
             @lang('traza.' . $file['type'])
           </a>
         </div>
