@@ -93,7 +93,7 @@
               <span>
                 {{ "{$autoparte->brand} {$autoparte->model} {$autoparte->country} {$autoparte->cape}" }}
               </span>
-              <img src="data:image/png;base64,{{ base64_encode(QrCode::format('png')->size(200)->generate($autoparte->cape)) }}">
+              <img src="data:image/png;base64,{{ base64_encode(QrCode::format('png')->size(200)->generate(url($autoparte->cape))) }}">
             </div>
             @endforeach
           </div>
