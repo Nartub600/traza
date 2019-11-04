@@ -2,7 +2,12 @@
 
 namespace App\Imports;
 
+use App\Rules\IsNCM;
+use App\Rules\MatchesAutopart;
+use App\Rules\MatchesProduct;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use Maatwebsite\Excel\Concerns\ToCollection;
 
 class ExcepcionCHASImport implements ToCollection
