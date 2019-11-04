@@ -1,5 +1,8 @@
 <?php
 
+use App\Autopart;
+use App\LCM;
+
 Route::get('ingresar', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('ingresar', 'Auth\LoginController@login');
 Route::post('salir', 'Auth\LoginController@logout')->name('logout');
@@ -41,11 +44,24 @@ Route::group([
     Route::put('/contrasenia/cambiar/{usuario}', 'PasswordController@update')->name('cambiarpassword.update');
 
     Route::post('/subir/imagenes', 'UploadController@store');
-    Route::post('/importar/licencias', 'ImportController@certificates')->name('import.certificates');
+    // Route::post('/importar/licencias', 'ImportController@certificates')->name('import.certificates');
     Route::post('/importar/autopartes', 'ImportController@autoparts')->name('import.autoparts');
     // Route::post('/importar/licencias', 'CertificatesImportController')->name('import.certificates');
     // Route::post('/importar/autopartes', 'AutopartsImportController')->name('import.autoparts');
+
     Route::post('/importar/cape', 'CAPEImportController')->name('import.cape');
     Route::post('/importar/chas-nacional', 'CHASNacionalImportController')->name('import.chas-nacional');
     Route::post('/importar/chas-extranjera', 'CHASExtranjeraImportController')->name('import.chas-extranjera');
+    Route::post('/importar/excepcion-chas', 'ExcepcionCHASImportController')->name('import.excepcion-chas');
+});
+
+// esto provisoriamente acá
+Route::get('{qr}', function ($qr) {
+    $lcm = LCM::findByCAPE($qr);
+    if ($lcm) return $lcm;
+
+    $autopart = Autopart::findByCHAS($qr);
+    if ($autopart) return $autopart;
+
+    abort(404);
 });

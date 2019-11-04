@@ -2,18 +2,10 @@
 
 namespace App\Imports;
 
-use App\Rules\IsNCM;
-use App\Rules\IsProduct;
-use App\Rules\MatchesAutopart;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
 use Maatwebsite\Excel\Concerns\ToCollection;
-use Maatwebsite\Excel\Concerns\WithMapping;
-use Maatwebsite\Excel\Concerns\WithMultipleSheets;
-use Maatwebsite\Excel\Concerns\WithStartRow;
 
-class CHASNacionalImport implements ToCollection, WithStartRow, WithMultipleSheets, WithMapping
+class ExcepcionCHASImport implements ToCollection
 {
     public function collection(Collection $rows)
     {
@@ -28,12 +20,8 @@ class CHASNacionalImport implements ToCollection, WithStartRow, WithMultipleShee
             '*.brand'         => 'required',
             '*.model'         => 'required',
             '*.origin'        => ['required', Rule::in(['Argentina'])],
-            '*.description'   => 'required',
             '*.size'          => 'required',
-            '*.formulation'   => 'required',
-            '*.application'   => 'required',
-            '*.license'       => 'required',
-            '*.certified_at'  => 'required',
+            '*.description'   => 'required',
         ], [], array_combine(range(0, 1000), range(2, 1002)));
 
         $this->validator = $validator;
@@ -63,12 +51,8 @@ class CHASNacionalImport implements ToCollection, WithStartRow, WithMultipleShee
             'brand'         => $row[6],
             'model'         => $row[7],
             'origin'        => $row[8],
-            'description'   => $row[9],
-            'size'          => $row[10],
-            'formulation'   => $row[11],
-            'application'   => $row[12],
-            'license'       => $row[13],
-            'certified_at'  => $row[14]
+            'size'          => $row[9],
+            'description'   => $row[10],
         ];
     }
 }

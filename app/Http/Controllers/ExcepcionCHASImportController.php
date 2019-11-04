@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Imports\CHASNacionalImport;
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
 
-class CHASNacionalImportController extends Controller
+class ExcepcionCHASImportController extends Controller
 {
     /**
      * Handle the incoming request.
@@ -16,9 +14,9 @@ class CHASNacionalImportController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $chas = new CHASNacionalImport;
-        Excel::import($chas, $request->file('excel'));
+        $exchas = new ExcepcionCHASImport;
+        Excel::import($exchas, $request->file('excel'));
 
-        return $chas->validator->validate();
+        return $exchas->validator->validate();
     }
 }

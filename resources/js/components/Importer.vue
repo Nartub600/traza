@@ -1,20 +1,9 @@
 <template>
-  <!-- <div> -->
-    <input
-      type="file"
-      class="form-control"
-      @input="validateImport"
-    >
-    <!-- posible feature -->
-    <!-- <template v-for="(autopart, index) in valid">
-      <input
-        v-for="(value, key) in autopart"
-        :name="`nombre[${index}][${key}]`"
-        type="hidden"
-        :value="value"
-      >
-    </template> -->
-  <!-- </div> -->
+  <input
+    type="file"
+    class="form-control"
+    @input="validateImport"
+  >
 </template>
 
 <script>
@@ -51,7 +40,7 @@ export default {
         Swal.fire({
           type: 'warning',
           title: 'Hubo errores',
-          text: Object.values(error.response.data.errors).flat().join(', ')
+          text: error.response.data.errors ? Object.values(error.response.data.errors).flat().join(', ') : 'Falla general'
         })
       })
     }

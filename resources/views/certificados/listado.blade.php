@@ -14,7 +14,7 @@
     <h1 class="flex justify-between">
       Licencias
       <div>
-        <button type="button" class="btn btn-success uppercase mx-2" @click="beginCertificatesImport">
+        {{-- <button type="button" class="btn btn-success uppercase mx-2" @click="beginCertificatesImport">
           Cargar Desde Excel
         </button>
         <input
@@ -24,7 +24,7 @@
           ref="excel"
           @input="handleCertificatesExcel"
           accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
-        >
+        > --}}
 
         @can('crear licencias')
         <a href="{{ route('licencias.create') }}" class="uppercase btn btn-success">

@@ -127,31 +127,41 @@
             </div>
 
             <div class="w-1/2 form-group item-form px-2 @error('documents.chas') has-error @enderror">
-              <label for="documents[chas]" class="mb-4">Solicitud de Homologación de Autopartes y/o elementos de Seguridad <sup>*</sup></label>
+              <label class="mb-4">Solicitud de Homologación de Autopartes y/o elementos de Seguridad <sup>*</sup></label>
               <div class="flex">
                 <div class="w-1/2 flex items-center pr-2">
                   <label class="flex-none mr-2">
                     <a href="{{ asset('plantillas/chas-nacional.xlsx') }}">Nacional</a>
                   </label>
                   <importer
-                    name="documents[chasNacional]"
+                    name="documents[autopartesNacional]"
                     accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
                     endpoint="{{ route('import.chas-nacional') }}"
-                    @valid="valid = true"
+                    @valid="data => (nacional = data, valid = true)"
                   >
                   </importer>
+                  <formalizer
+                    :data="nacional"
+                    name="autopartes"
+                  >
+                  </formalizer>
                 </div>
                 <div class="w-1/2 flex items-center">
                   <label class="flex-none mr-2">
                     <a href="{{ asset('plantillas/chas-extranjera.xlsx') }}">Extranjera</a>
                   </label>
                   <importer
-                    name="documents[chasExtranjera]"
+                    name="documents[autopartesExtranjera]"
                     accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
                     endpoint="{{ route('import.chas-extranjera') }}"
-                    @valid="valid = true"
+                    @valid="data => (extranjera = data, valid = true)"
                   >
                   </importer>
+                  <formalizer
+                    :data="extranjera"
+                    name="autopartes"
+                  >
+                  </formalizer>
                 </div>
               </div>
               @error('documents.chas')
@@ -201,17 +211,17 @@
               @enderror
             </div>
 
-            <div class="w-1/2 form-group item-form px-2 @error('documents.autopartes') has-error @enderror">
-              <label for="documents[autopartes]" class="mb-4">Descripción de los bienes <sup>*</sup> (<a href="{{ asset('plantillas/cape.xlsx') }}">descargar plantilla</a>)</label>
+            <div class="w-1/2 form-group item-form px-2 @error('documents.lcms') has-error @enderror">
+              <label for="documents[lcms]" class="mb-4">Descripción de los bienes <sup>*</sup> (<a href="{{ asset('plantillas/cape.xlsx') }}">descargar plantilla</a>)</label>
               <importer
-                name="documents[autopartes]"
+                name="documents[lcms]"
                 accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
                 endpoint="{{ route('import.cape') }}"
-                @valid="data => (autopartes = data, valid = true)"
+                @valid="data => (lcms = data, valid = true)"
               >
               </importer>
               <formalizer
-                :data="autopartes"
+                :data="lcms"
                 name="lcm"
               >
               </formalizer>
@@ -238,17 +248,28 @@
               @enderror
             </div>
 
-            <div class="w-1/2 form-group item-form px-2 @error('documents.descripcion_bienes') has-error @enderror">
-              <label for="documents[descripcion_bienes]" class="mb-4">Descripción de los bienes (formato Excel) <sup>*</sup></label>
-              <input type="file" name="documents[descripcion_bienes]" class="form-control">
-              @error('documents.descripcion_bienes')
+            <div class="w-1/2 form-group item-form px-2 @error('documents.autopartes') has-error @enderror">
+              <label for="documents[autopartes]" class="mb-4">Descripción de los bienes <sup>*</sup> (<a href="{{ asset('plantillas/excepcion-chas.xlsx') }}">descargar plantilla</a>)</label>
+              <importer
+                name="documents[autopartes]"
+                accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                endpoint="{{ route('import.excepcion-chas') }}"
+                @valid="data => (excepcion = data, valid = true)"
+              >
+              </importer>
+              <formalizer
+                :data="excepcion"
+                name="autopartes"
+              >
+              </formalizer>
+              @error('documents.autopartes')
                 <p class="help-block error">{{ $message }}</p>
               @enderror
             </div>
 
             <div class="w-1/2 form-group item-form px-2 @error('documents.folleto') has-error @enderror">
               <label for="documents[folleto_autopartes]" class="mb-4">Folletería piezas autopartes <sup>*</sup></label>
-              <input type="file" name="documents[folleto]" class="form-control">
+              <input type="file" name="documents[foto][]" class="form-control">
               @error('documents.folleto')
                 <p class="help-block error">{{ $message }}</p>
               @enderror
@@ -256,7 +277,7 @@
 
             <div class="w-1/2 form-group item-form px-2 @error('documents.folleto_maquinaria') has-error @enderror">
               <label for="documents[folleto_maquinaria]" class="mb-4">Folletería Maquinaria <sup>*</sup></label>
-              <input type="file" name="documents[folleto_maquinaria]" class="form-control">
+              <input type="file" name="documents[foto][]" class="form-control">
               @error('documents.folleto_maquinaria')
                 <p class="help-block error">{{ $message }}</p>
               @enderror

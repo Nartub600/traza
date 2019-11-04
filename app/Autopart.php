@@ -57,4 +57,27 @@ class Autopart extends Model
     {
         return $this->ncm->human;
     }
+
+    public function generarCHAS()
+    {
+        $tipo = $this->origin === 'Argentina' ? 'F' : 'I';
+        $familia = str_pad(explode('.', $this->product)[0], 2, '0', STR_PAD_LEFT);
+        $organismo = '000'; // w29, ira, int
+        $anio = now()->format('y');
+        $mes = now()->format('m');
+        $codigo = str_pad($this->CHAScountByYear(now()->format('Y')) + 1, 4, '0', STR_PAD_LEFT);
+        $verificador = rand(0, 9); // todo: guarda
+
+        $this->chas = "$tipo$familia$terminal$anio$mes$codigo$verificador";
+    }
+
+    private function CHAScountByYear($year)
+    {
+        return $this->whereNotNull('chas')->whereYear('created_at', $year)->count();
+    }
+
+    public static function findByCHAS($chas)
+    {
+        return (new static)::where('chas', $chas)->first();
+    }
 }

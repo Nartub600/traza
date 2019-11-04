@@ -25,7 +25,10 @@ const app = new Vue({
     return {
       // uploading: false
       valid: false,
-      autopartes: []
+      lcms: [],
+      nacional: [],
+      extranjera: [],
+      excepcion: []
     }
   }
 })

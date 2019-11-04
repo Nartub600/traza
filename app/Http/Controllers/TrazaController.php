@@ -77,7 +77,7 @@ class TrazaController extends Controller
 
         switch ($request->type) {
             case 'cape':
-                foreach($request->lcm as $lcm) {
+                foreach ($request->lcm as $lcm) {
                     $matchedLcm = LCM::where('number', $lcm['lcm'])
                         ->where('brand', $lcm['brand'])
                         ->where('model', $lcm['model'])
@@ -89,6 +89,21 @@ class TrazaController extends Controller
                     $matchedLcm->traza()->associate($traza);
 
                     $matchedLcm->save();
+                }
+            break;
+            case 'chas':
+            case 'excepcion-chas':
+                foreach ($request->autoparts as $autopart) {
+                    $matchedAutopart = Autopart::where('brand', $value['brand'])
+                        ->where('model', $value['model'])
+                        ->where('origin', $value['origin'])
+                        ->whereNull('chas')
+                        ->first();
+
+                    $matchedAutopart->generarChas();
+                    $matchedAutopart->traza()->associate($traza);
+
+                    $matchedAutopart->save();
                 }
             break;
         }

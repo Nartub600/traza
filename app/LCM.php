@@ -40,4 +40,9 @@ class LCM extends Model
     {
         return $this->whereNotNull('cape')->whereYear('created_at', $year)->count();
     }
+
+    public static function findByCAPE($cape)
+    {
+        return (new static)::where('cape', $cape)->first();
+    }
 }

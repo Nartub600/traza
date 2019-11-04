@@ -33,9 +33,25 @@ class CreateTrazaRequest extends FormRequest
             'validation' => 'required',
             'signature' => 'required',
             'auth_level' => 'required',
+
+            'documents.declaracion_jurada' => 'required_if:type,chas',
+            'documents.autopartesNacional' => Rule::requiredIf(function () {
+                return request('type') === 'chas' && !request('documents')['autopartesExtranjera']
+            }),
+            'documents.autopartesExtranjera' => Rule::requiredIf(function () {
+                return request('type') === 'chas' && !request('documents')['autopartesNacional']
+            }),
+            'documents.wp29' => 'required_with:documents.autopartesExtranjera',
+            'documents.certificado' => 'required_if:type,chas',
+            'documents.catalogo' => 'required_if:type,chas',
+
             'documents.solicitud_cape' => 'required_if:type,cape',
-            'documents.autopartes' => 'required_if:type,cape',
-            'documents.foto' => 'required_if:type,cape',
+            'documents.lcms' => 'required_if:type,cape',
+
+            'documents.excepcion_chas' => 'required_if:type,excepcion-chas'
+            'documents.autopartesExcepcion' => 'required_if:type,excepcion-chas'
+
+            'documents.foto' => 'required',
         ];
     }
 }

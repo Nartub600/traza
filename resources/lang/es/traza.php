@@ -3,7 +3,10 @@
 return [
     'licencia' => 'Licencia',
     'declaracion_jurada' => 'Declaración Jurada',
-    'solicitud_autopartes' => 'Solicitud de Homologación de Autopartes y/o elementos de Seguridad',
+    'autopartesNacional' => 'Solicitud de Homologación de Autopartes y/o elementos de Seguridad',
+    'autopartesExtranjera' => 'Solicitud de Homologación de Autopartes y/o elementos de Seguridad',
+    'lcms' => 'Descripción de los bienes',
+    'autopartesExcepcion' => 'Descripción de los bienes',
     'wp29' => 'Certificado de homologación extranjera WP29',
     'certificado' => 'Certificado de autopartes',
     'catalogo' => 'Catálogo correspondiente',
@@ -16,5 +19,6 @@ return [
     'foto' => 'Fotografía',
     'chas' => 'CHAS',
     'cape' => 'CAPE',
-    'excepcion-chas' => 'EX-CHAS'
+    'excepcion-chas' => 'EX-CHAS',
+
 ];
