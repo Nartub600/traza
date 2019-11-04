@@ -1,5 +1,5 @@
 git pull
 php artisan migrate --force
-composer update
+php composer.phar update
 yarn
 yarn prod
