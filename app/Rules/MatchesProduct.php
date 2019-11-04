@@ -2,6 +2,7 @@
 
 namespace App\Rules;
 
+use App\Product;
 use Illuminate\Contracts\Validation\Rule;
 
 class MatchesProduct implements Rule
