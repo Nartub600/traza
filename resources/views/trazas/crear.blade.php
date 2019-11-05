@@ -137,7 +137,7 @@
                     name="documents[autopartesNacional]"
                     accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
                     endpoint="{{ route('import.chas-nacional') }}"
-                    @valid="data => (nacional = data, valid = true)"
+                    @valid="data => (nacional = data, excel = true)"
                   >
                   </importer>
                   <formalizer
@@ -154,7 +154,7 @@
                     name="documents[autopartesExtranjera]"
                     accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
                     endpoint="{{ route('import.chas-extranjera') }}"
-                    @valid="data => (extranjera = data, valid = true)"
+                    @valid="data => (extranjera = data, excel = true)"
                   >
                   </importer>
                   <formalizer
@@ -171,7 +171,7 @@
 
             <div class="w-1/2 form-group item-form px-2 @error('documents.wp29') has-error @enderror">
               <label for="documents[wp29]" class="mb-4">Certificado de homologación extranjera WP29 (Obligatorio si es Importador) <sup>*</sup></label>
-              <input multiple type="file" name="documents[wp29][]" class="form-control">
+              <input disabled="!excel" type="file" name="documents[wp29]" class="form-control">
               @error('documents.wp29')
                 <p class="help-block error">{{ $message }}</p>
               @enderror
@@ -179,7 +179,7 @@
 
             <div class="w-1/2 form-group item-form px-2 @error('documents.certificado') has-error @enderror">
               <label for="documents[certificado]" class="mb-4">Certificado de autopartes (Certificadora nacional) <sup>*</sup></label>
-              <input multiple type="file" name="documents[certificado][]" class="form-control">
+              <input type="file" name="documents[certificado]" class="form-control">
               @error('documents.certificado')
                 <p class="help-block error">{{ $message }}</p>
               @enderror
@@ -217,7 +217,7 @@
                 name="documents[lcms]"
                 accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
                 endpoint="{{ route('import.cape') }}"
-                @valid="data => (lcms = data, valid = true)"
+                @valid="data => (lcms = data, excel = true)"
               >
               </importer>
               <formalizer
@@ -254,7 +254,7 @@
                 name="documents[autopartes]"
                 accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
                 endpoint="{{ route('import.excepcion-chas') }}"
-                @valid="data => (excepcion = data, valid = true)"
+                @valid="data => (excepcion = data, excel = true)"
               >
               </importer>
               <formalizer
@@ -291,7 +291,7 @@
           Volver
         </a>
 
-        <button class="btn btn-info uppercase mb-0" type="submit" disabled="valid">
+        <button class="btn btn-info uppercase mb-0" type="submit" disabled="trazaIsValid">
           Guardar
         </button>
       </div>

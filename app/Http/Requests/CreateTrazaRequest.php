@@ -37,10 +37,10 @@ class CreateTrazaRequest extends FormRequest
 
             'documents.declaracion_jurada' => 'required_if:type,chas',
             'documents.autopartesNacional' => Rule::requiredIf(function () {
-                return request('type') === 'chas' && !request('documents')['autopartesExtranjera'];
+                return request('type') === 'chas' && !isset(request('documents')['autopartesExtranjera']);
             }),
             'documents.autopartesExtranjera' => Rule::requiredIf(function () {
-                return request('type') === 'chas' && !request('documents')['autopartesNacional'];
+                return request('type') === 'chas' && !isset(request('documents')['autopartesNacional']);
             }),
             'documents.wp29' => 'required_with:documents.autopartesExtranjera',
             'documents.certificado' => 'required_if:type,chas',

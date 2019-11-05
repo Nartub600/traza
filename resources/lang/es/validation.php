@@ -163,7 +163,7 @@ return [
         'division'                 => 'repartición',
         'documents.solicitud_cape' => 'solicitud de CAPE',
         'documents.autopartes'     => 'descripción de los bienes',
-        'documents.foto'           => 'folletería',
+        'documents.foto'           => 'fotos de las autopartes',
         'documents.chas'           => 'Solicitud de Homologación de Autopartes y/o elementos de Seguridad',
         'formulation'              => 'formulación',
         '*.formulation'            => 'formulación',

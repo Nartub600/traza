@@ -24,11 +24,18 @@ const app = new Vue({
   data () {
     return {
       // uploading: false
-      valid: false,
+      excel: false,
+      wp29: false,
       lcms: [],
       nacional: [],
       extranjera: [],
       excepcion: []
+    }
+  },
+
+  computed: {
+    trazaIsValid () {
+      return this.excel && (this.extranjera.length > 0 ? this.wp29 : true)
     }
   }
 })
