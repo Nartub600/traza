@@ -9,8 +9,11 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Maatwebsite\Excel\Concerns\ToCollection;
+use Maatwebsite\Excel\Concerns\WithMapping;
+use Maatwebsite\Excel\Concerns\WithMultipleSheets;
+use Maatwebsite\Excel\Concerns\WithStartRow;
 
-class ExcepcionCHASImport implements ToCollection
+class ExcepcionCHASImport implements ToCollection, WithStartRow, WithMultipleSheets, WithMapping
 {
     public function collection(Collection $rows)
     {
