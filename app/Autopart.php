@@ -87,7 +87,7 @@ class Autopart extends Model
         $codigo = str_pad($this->CHAScountByYear(now()->format('Y')) + 1, 4, '0', STR_PAD_LEFT);
         $verificador = rand(0, 9); // todo: guarda
 
-        $this->chas = "$tipo$producto$terminal$anio$mes$codigo$verificador";
+        $this->chas = "$tipo$producto$organismo$anio$mes$codigo$verificador";
     }
 
     private function CHAScountByYear($year)

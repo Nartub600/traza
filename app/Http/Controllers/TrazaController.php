@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Autopart;
 use App\Http\Requests\CreateTrazaRequest;
 use App\LCM;
 use App\Traza;
@@ -78,8 +79,8 @@ class TrazaController extends Controller
 
         switch ($request->type) {
             case 'cape':
-                DB::transaction(function () use ($request) {
-                    foreach ($request->lcm as $lcm) {
+                DB::transaction(function () use ($request, $traza) {
+                    foreach ($request->lcms as $lcm) {
                         $matchedLcm = LCM::where('number', $lcm['lcm'])
                             ->where('brand', $lcm['brand'])
                             ->where('model', $lcm['model'])
@@ -95,7 +96,7 @@ class TrazaController extends Controller
                 });
             break;
             case 'chas':
-                DB::transaction(function () use ($request) {
+                DB::transaction(function () use ($request, $traza) {
                     foreach ($request->autoparts as $autopart) {
                         $matchedAutopart = Autopart::where('brand', $autopart['brand'])
                             ->where('model', $autopart['model'])
@@ -111,7 +112,7 @@ class TrazaController extends Controller
                 });
             break;
             case 'excepcion-chas':
-                DB::transaction(function () use ($request) {
+                DB::transaction(function () use ($request, $traza) {
                     foreach ($request->autopart as $autopart) {
                         $newAutopart = new Autopart($autopart);
                         $newAutopart->traza()->associate($traza);

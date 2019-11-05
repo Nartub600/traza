@@ -35,6 +35,7 @@ class CreateTrazaRequest extends FormRequest
             'signature' => 'required',
             'auth_level' => 'required',
 
+            'autoparts' => 'required_if:type,chas|required_if:type,excepcion-chas',
             'documents.declaracion_jurada' => 'required_if:type,chas',
             'documents.autopartesNacional' => Rule::requiredIf(function () {
                 return request('type') === 'chas' && !isset(request('documents')['autopartesExtranjera']);
@@ -46,6 +47,7 @@ class CreateTrazaRequest extends FormRequest
             'documents.certificado' => 'required_if:type,chas',
             'documents.catalogo' => 'required_if:type,chas',
 
+            'lcms' => 'required_if:type,cape',
             'documents.solicitud_cape' => 'required_if:type,cape',
             'documents.lcms' => 'required_if:type,cape',
 

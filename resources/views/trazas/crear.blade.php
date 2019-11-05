@@ -142,7 +142,7 @@
                   </importer>
                   <formalizer
                     :data="nacional"
-                    name="autopartes"
+                    name="autoparts"
                   >
                   </formalizer>
                 </div>
@@ -159,7 +159,7 @@
                   </importer>
                   <formalizer
                     :data="extranjera"
-                    name="autopartes"
+                    name="autoparts"
                   >
                   </formalizer>
                 </div>
@@ -222,7 +222,7 @@
               </importer>
               <formalizer
                 :data="lcms"
-                name="lcm"
+                name="lcms"
               >
               </formalizer>
               @error('documents.autopartes')
@@ -259,7 +259,7 @@
               </importer>
               <formalizer
                 :data="excepcion"
-                name="autopartes"
+                name="autoparts"
               >
               </formalizer>
               @error('documents.autopartes')
@@ -269,7 +269,7 @@
 
             <div class="w-1/2 form-group item-form px-2 @error('documents.folleto') has-error @enderror">
               <label for="documents[folleto_autopartes]" class="mb-4">Folletería piezas autopartes <sup>*</sup></label>
-              <input type="file" name="documents[foto][]" class="form-control">
+              <input multiple type="file" name="documents[foto][]" class="form-control">
               @error('documents.folleto')
                 <p class="help-block error">{{ $message }}</p>
               @enderror
@@ -277,7 +277,7 @@
 
             <div class="w-1/2 form-group item-form px-2 @error('documents.folleto_maquinaria') has-error @enderror">
               <label for="documents[folleto_maquinaria]" class="mb-4">Folletería Maquinaria <sup>*</sup></label>
-              <input type="file" name="documents[foto][]" class="form-control">
+              <input multiple type="file" name="documents[foto][]" class="form-control">
               @error('documents.folleto_maquinaria')
                 <p class="help-block error">{{ $message }}</p>
               @enderror
