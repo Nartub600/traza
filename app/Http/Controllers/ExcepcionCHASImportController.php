@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\ExcepcionCHASImport;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ExcepcionCHASImportController extends Controller
 {
