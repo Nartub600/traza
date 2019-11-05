@@ -40,6 +40,13 @@ class TrazaPolicy
         return false;
     }
 
+    public function eliminar (User $user) {
+        if ($user->can('eliminar trazas')) {
+            return true;
+        }
+        return false;
+    }
+
     public function exportar (User $user) {
         if ($user->can('exportar trazas')) {
             return true;

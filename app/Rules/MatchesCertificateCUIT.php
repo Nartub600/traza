@@ -2,10 +2,9 @@
 
 namespace App\Rules;
 
-use App\NCM;
 use Illuminate\Contracts\Validation\Rule;
 
-class IsNCM implements Rule
+class MatchesCertificateCUIT implements Rule
 {
     /**
      * Create a new rule instance.
@@ -26,9 +25,13 @@ class IsNCM implements Rule
      */
     public function passes($attribute, $value)
     {
-        $ncm = NCM::findByCategory($value);
+        $autopart = Autopart::where('brand', $value['brand'])
+            ->where('model', $value['model'])
+            ->where('origin', $value['origin'])
+            ->whereNull('chas')
+            ->first();
 
-        return !is_null($ncm);
+        return $autopart->certificate->cuit === $value['cuit'];
     }
 
     /**
@@ -38,6 +41,6 @@ class IsNCM implements Rule
      */
     public function message()
     {
-        return 'No se reconoce la categoría NCM';
+        return 'No coincide el CUIT para la fila :attribute';
     }
 }

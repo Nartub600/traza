@@ -2,10 +2,10 @@
 
 namespace App\Rules;
 
-use App\NCM;
+use App\Certificate;
 use Illuminate\Contracts\Validation\Rule;
 
-class IsNCM implements Rule
+class MatchesCertificateNumber implements Rule
 {
     /**
      * Create a new rule instance.
@@ -26,9 +26,9 @@ class IsNCM implements Rule
      */
     public function passes($attribute, $value)
     {
-        $ncm = NCM::findByCategory($value);
+        $certificate = Certificate::where('number', $value['license'])->first();
 
-        return !is_null($ncm);
+        return !is_null($certificate);
     }
 
     /**
@@ -38,6 +38,6 @@ class IsNCM implements Rule
      */
     public function message()
     {
-        return 'No se reconoce la categoría NCM';
+        return 'No existe una licencia para la fila :attribute';
     }
 }

@@ -291,7 +291,7 @@
           Volver
         </a>
 
-        <button class="btn btn-info uppercase mb-0" type="submit" v-show="valid">
+        <button class="btn btn-info uppercase mb-0" type="submit" disabled="valid">
           Guardar
         </button>
       </div>

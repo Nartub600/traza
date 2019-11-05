@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CreateTrazaRequest extends FormRequest
 {
@@ -36,10 +37,10 @@ class CreateTrazaRequest extends FormRequest
 
             'documents.declaracion_jurada' => 'required_if:type,chas',
             'documents.autopartesNacional' => Rule::requiredIf(function () {
-                return request('type') === 'chas' && !request('documents')['autopartesExtranjera']
+                return request('type') === 'chas' && !request('documents')['autopartesExtranjera'];
             }),
             'documents.autopartesExtranjera' => Rule::requiredIf(function () {
-                return request('type') === 'chas' && !request('documents')['autopartesNacional']
+                return request('type') === 'chas' && !request('documents')['autopartesNacional'];
             }),
             'documents.wp29' => 'required_with:documents.autopartesExtranjera',
             'documents.certificado' => 'required_if:type,chas',
@@ -48,8 +49,8 @@ class CreateTrazaRequest extends FormRequest
             'documents.solicitud_cape' => 'required_if:type,cape',
             'documents.lcms' => 'required_if:type,cape',
 
-            'documents.excepcion_chas' => 'required_if:type,excepcion-chas'
-            'documents.autopartesExcepcion' => 'required_if:type,excepcion-chas'
+            'documents.excepcion_chas' => 'required_if:type,excepcion-chas',
+            'documents.autopartesExcepcion' => 'required_if:type,excepcion-chas',
 
             'documents.foto' => 'required',
         ];

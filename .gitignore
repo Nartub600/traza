@@ -6,6 +6,7 @@
 /public/mix-manifest.json
 /public/hot
 /public/storage
+/public/plantillas
 /storage/*.key
 /storage/debugbar
 /vendor

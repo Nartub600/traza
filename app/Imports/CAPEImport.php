@@ -17,19 +17,23 @@ class CAPEImport implements ToCollection, WithStartRow, WithMultipleSheets, With
 {
     public function collection(Collection $rows)
     {
-        $validator = Validator::make($rows->toArray(), [
-            '*'               => [new MatchesLCM, new MatchesProduct],
-            '*.product'       => '',
-            '*.family'        => '',
+        $sanitized = $rows->reject(function ($row) {
+            return $row->every(function ($field) {
+                return is_null($field);
+            });
+        });
+
+        $validator = Validator::make($sanitized->toArray(), [
+            '*'               => [
+                'bail',
+                new MatchesLCM,
+                new MatchesProduct
+            ],
             '*.cuit'          => ['required', 'regex:/[0-9]{2}-[0-9]{6,8}-[0-9]/'],
             '*.manufacturer'  => 'required',
             '*.importer'      => 'required',
             '*.business_name' => 'required',
-            '*.lcm'           => 'required',
             '*.ncm'           => ['required', new IsNCM],
-            '*.brand'         => 'required',
-            '*.model'         => 'required',
-            '*.country'       => 'required',
             '*.description'   => 'required',
             '*.application'   => 'required',
             '*.size'          => 'required',

@@ -14,17 +14,22 @@ class ExcepcionCHASImport implements ToCollection
 {
     public function collection(Collection $rows)
     {
-        $validator = Validator::make($rows->toArray(), [
-            '*'               => [new MatchesAutopart, new MatchesProduct],
-            '*.product'       => '',
-            '*.family'        => '',
+        $sanitized = $rows->reject(function ($row) {
+            return $row->every(function ($field) {
+                return is_null($field);
+            });
+        });
+
+        $validator = Validator::make($sanitized->toArray(), [
+            '*'               => [
+                'bail',
+                new MatchesAutopart,
+                new MatchesProduct,
+            ],
             '*.cuit'          => ['required', 'regex:/[0-9]{2}-[0-9]{6,8}-[0-9]/'],
             '*.manufacturer'  => 'required',
             '*.business_name' => 'required',
             '*.ncm'           => ['required', new IsNCM],
-            '*.brand'         => 'required',
-            '*.model'         => 'required',
-            '*.origin'        => ['required', Rule::in(['Argentina'])],
             '*.size'          => 'required',
             '*.description'   => 'required',
         ], [], array_combine(range(0, 1000), range(2, 1002)));

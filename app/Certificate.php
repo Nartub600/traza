@@ -35,6 +35,11 @@ class Certificate extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function traza()
+    {
+        return $this->belongsTo(Traza::class);
+    }
+
     public function autoparts()
     {
         return $this->hasMany(Autopart::class);

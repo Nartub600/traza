@@ -18,18 +18,24 @@ class CHASExtranjeraImport implements ToCollection, WithStartRow, WithMultipleSh
 {
     public function collection(Collection $rows)
     {
-        $validator = Validator::make($rows->toArray(), [
-            '*'               => [new MatchesAutopart, new MatchesProduct],
-            '*.product'       => '',
-            '*.family'        => '',
+        $sanitized = $rows->reject(function ($row) {
+            return $row->every(function ($field) {
+                return is_null($field);
+            });
+        });
+
+        $validator = Validator::make($sanitized->toArray(), [
+            '*'               => [
+                'bail',
+                new MatchesAutopart,
+                new MatchesProduct
+            ],
             '*.cuit'          => ['required', 'regex:/[0-9]{2}-[0-9]{6,8}-[0-9]/'],
             '*.manufacturer'  => 'required',
             '*.importer'      => 'required',
             '*.business_name' => 'required',
             '*.ncm'           => ['required', new IsNCM],
-            '*.brand'         => 'required',
-            '*.model'         => 'required',
-            '*.origin'        => ['required', Rule::notIn(['Argentina'])],
+            '*.origin'        => [Rule::notIn(['Argentina', 'argentina'])],
             '*.description'   => 'required',
             '*.size'          => 'required',
             '*.formulation'   => 'required',
@@ -71,7 +77,8 @@ class CHASExtranjeraImport implements ToCollection, WithStartRow, WithMultipleSh
             'formulation'   => $row[12],
             'application'   => $row[13],
             'license'       => $row[14],
-            'certified_at'  => $row[15]
+            'certified_at'  => $row[15],
+            'pictures'      => $row[16],
         ];
     }
 }

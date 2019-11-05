@@ -5,6 +5,9 @@ namespace App\Imports;
 use App\Rules\IsNCM;
 use App\Rules\IsProduct;
 use App\Rules\MatchesAutopart;
+use App\Rules\MatchesCertificateCUIT;
+use App\Rules\MatchesCertificateNumber;
+use App\Rules\MatchesCertifier;
 use App\Rules\MatchesProduct;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
@@ -18,17 +21,25 @@ class CHASNacionalImport implements ToCollection, WithStartRow, WithMultipleShee
 {
     public function collection(Collection $rows)
     {
-        $validator = Validator::make($rows->toArray(), [
-            '*'               => [new MatchesAutopart, new MatchesProduct],
-            '*.product'       => '',
-            '*.family'        => '',
-            '*.cuit'          => ['required', 'regex:/[0-9]{2}-[0-9]{6,8}-[0-9]/'],
+        $sanitized = $rows->reject(function ($row) {
+            return $row->every(function ($field) {
+                return is_null($field);
+            });
+        });
+
+        $validator = Validator::make($sanitized->toArray(), [
+            '*'               => [
+                'bail',
+                new MatchesCertificateNumber,
+                new MatchesAutopart,
+                new MatchesCertifier,
+                new MatchesCertificateCUIT,
+                new MatchesProduct,
+            ],
             '*.manufacturer'  => 'required',
             '*.business_name' => 'required',
             '*.ncm'           => ['required', new IsNCM],
-            '*.brand'         => 'required',
-            '*.model'         => 'required',
-            '*.origin'        => ['required', Rule::in(['Argentina'])],
+            '*.origin'        => ['required', Rule::in(['Argentina', 'argentina'])],
             '*.description'   => 'required',
             '*.size'          => 'required',
             '*.formulation'   => 'required',
@@ -69,7 +80,9 @@ class CHASNacionalImport implements ToCollection, WithStartRow, WithMultipleShee
             'formulation'   => $row[11],
             'application'   => $row[12],
             'license'       => $row[13],
-            'certified_at'  => $row[14]
+            'certified_at'  => $row[14],
+            'certifier'     => $row[15],
+            'pictures'      => $row[16],
         ];
     }
 }

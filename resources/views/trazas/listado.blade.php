@@ -74,6 +74,24 @@
               <i class="fa fa-eye"></i>
             </a>
           @endcan
+          @can('exportar trazas')
+            <button class="btn m-0 p-0 text-azul hover:text-black">
+              <i class="fa fa-download"></i>
+            </button>
+          @endcan
+          @can('eliminar trazas')
+            <a
+              class="btn my-0 p-0"
+              href="{{ route('trazas.destroy', $traza->id) }}"
+              onclick="confirmDelete(event, {{ $traza }})"
+            >
+                <i class="fa fa-times"></i>
+            </a>
+            <form id="delete-form-{{ $traza->id }}" action="{{ route('trazas.destroy', $traza->id) }}" method="POST" style="display: none;">
+                @csrf
+                @method('delete')
+            </form>
+          @endcan
         </td>
       </tr>
       @endforeach
@@ -95,6 +113,26 @@
     Swal.fire({
       type: 'info',
       text: 'En construcción'
+    })
+  }
+
+  function confirmDelete(event, traza)
+  {
+    event.preventDefault()
+    Swal.fire({
+      title: 'Confirmar eliminación',
+      html: `Desea eliminar <em>${traza.number}</em>?`,
+      type: 'question',
+      showConfirmButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Cancelar',
+      reverseButtons: true,
+      confirmButtonColor: '#0072BB'
+    }).then(result => {
+      if (result.value) {
+        document.getElementById(`delete-form-${traza.id}`).submit()
+      }
     })
   }
 </script>

@@ -71,6 +71,7 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::create(['name' => 'listar trazas', 'grupo' => 'trazas']);
         Permission::create(['name' => 'crear trazas', 'grupo' => 'trazas']);
         Permission::create(['name' => 'ver trazas', 'grupo' => 'trazas']);
+        Permission::create(['name' => 'eliminar trazas', 'grupo' => 'trazas']);
         Permission::create(['name' => 'exportar trazas', 'grupo' => 'trazas']);
 
         Role::create(['name' => 'administrador', 'active' => true])->syncPermissions(Permission::all());

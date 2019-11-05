@@ -34,4 +34,16 @@ class Traza extends Model
     {
         return $this->hasMany(Autopart::class);
     }
+
+    public function getApprovedAttribute()
+    {
+        if ($this->autoparts->every->hasCHAS()) return true;
+
+        return false;
+    }
+
+    private function hasCHAS($autopart)
+    {
+        return !is_null($autopart->chas);
+    }
 }

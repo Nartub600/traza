@@ -8,8 +8,42 @@
     <li class="active">Ver</li>
   </ol>
 
-  <h1>
-    Ver traza <em>{{ $traza->number }}</em>
+  <h1 class="flex justify-between">
+    <span>
+      Ver traza <em>{{ $traza->number }}</em>
+    </span>
+
+    @if ($traza->type === 'chas' && !$traza->approved)
+    <div class="dropdown">
+      <button
+        class="uppercase btn btn-success"
+        data-target="#"
+        data-toggle="dropdown"
+        role="button"
+      >
+        Aprobar licencias
+      </button>
+      <ul class="p-1 dropdown-menu left-auto right-0">
+        <li>
+          <label class="text-base">
+            Seleccionar archivo
+          </label>
+          <importer
+            name="documents[autopartesExtranjera]"
+            accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+            endpoint="{{ route('import.aprobar-extranjera') }}"
+            @valid="data => (extranjera = data, valid = true)"
+          >
+          </importer>
+          <formalizer
+            :data="extranjera"
+            name="autopartes"
+          >
+          </formalizer>
+        </li>
+      </ul>
+    </div>
+    @endif
   </h1>
 
   <hr class="my-4">
