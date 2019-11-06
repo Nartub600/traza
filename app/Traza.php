@@ -37,10 +37,14 @@ class Traza extends Model
 
     public function items()
     {
-        if ($this->lcms->isNotEmpty()) return $this->lcms;
-        if ($this->autoparts->isNotEmpty()) return $this->autoparts;
-
-        return [];
+        switch ($this->type) {
+            case 'chas':
+                return $this->autoparts();
+            break;
+            case 'cape':
+                return $this->lcms();
+            break;
+        }
     }
 
     public function getApprovedAttribute()
