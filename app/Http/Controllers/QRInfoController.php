@@ -20,7 +20,7 @@ class QRInfoController extends Controller
         if ($lcm) return $lcm;
 
         $autopart = Autopart::findByCHAS($qr);
-        if ($autopart) return $autopart;
+        if ($autopart) return view('autopart', compact('autopart'));
 
         abort(404);
     }
