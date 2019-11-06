@@ -73,11 +73,13 @@
               <i class="fa fa-eye"></i>
             </a>
           @endcan
-          @can('exportar trazas')
-            <a href="{{ route('trazas.export', $traza->id) }}" class="btn m-0 p-0 text-azul hover:text-black">
-              <i class="fa fa-download"></i>
-            </a>
-          @endcan
+          @if ($traza->items->isNotEmpty())
+            @can('exportar trazas')
+              <a href="{{ route('trazas.export', $traza->id) }}" class="btn m-0 p-0 text-azul hover:text-black">
+                <i class="fa fa-download"></i>
+              </a>
+            @endcan
+          @endif
           @can('eliminar trazas')
             <a
               class="btn my-0 p-0"

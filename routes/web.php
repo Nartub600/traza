@@ -56,13 +56,4 @@ Route::group([
     Route::post('/importar/aprobar-extranjera', 'AprobarExtranjeraController')->name('import.aprobar-extranjera');
 });
 
-// esto provisoriamente acá
-Route::get('{qr}', function ($qr) {
-    $lcm = LCM::findByCAPE($qr);
-    if ($lcm) return $lcm;
-
-    $autopart = Autopart::findByCHAS($qr);
-    if ($autopart) return $autopart;
-
-    abort(404);
-});
+Route::get('{qr}', 'QRInfoController');

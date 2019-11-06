@@ -139,17 +139,21 @@ class TrazaController extends Controller
 
         $traza = Traza::findOrFail($id);
 
-        if (file_exists("{$traza->number}.zip")) unlink("{$traza->number}.zip");
-        $zip = new \ZipArchive;
-        $zip->open("{$traza->number}.zip", \ZipArchive::CREATE);
+        if ($traza->items->isNotEmpty()) {
+            if (file_exists("{$traza->number}.zip")) unlink("{$traza->number}.zip");
+            $zip = new \ZipArchive;
+            $zip->open("{$traza->number}.zip", \ZipArchive::CREATE);
 
-        foreach ($traza->items as $item) {
-            $name = $item instanceof Autopart ? $item->chas : $item->cape;
-            $zip->addFromString("{$traza->number}/$name.png", $item->qr);
+            foreach ($traza->items as $item) {
+                $name = $item instanceof Autopart ? $item->chas : $item->cape;
+                $zip->addFromString("{$traza->number}/$name.png", $item->qr);
+            }
+
+            $zip->close();
+
+            return response()->download("{$traza->number}.zip");
         }
 
-        $zip->close();
-
-        return response()->download("{$traza->number}.zip");
+        abort(404);
     }
 }
