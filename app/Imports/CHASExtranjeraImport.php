@@ -28,7 +28,6 @@ class CHASExtranjeraImport implements ToCollection, WithStartRow, WithMultipleSh
         $validator = Validator::make($sanitized->toArray(), [
             '*'               => [
                 'bail',
-                new MatchesAutopart,
                 new MatchesProduct
             ],
             '*.cuit'          => ['required', 'regex:/[0-9]{2}-[0-9]{6,8}-[0-9]/'],
