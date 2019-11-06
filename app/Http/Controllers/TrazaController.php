@@ -103,9 +103,11 @@ class TrazaController extends Controller
                             ->first();
 
                         $matchedAutopart->generarChas();
-                        $matchedAutopart->certificate->traza()->associate($traza);
-
+                        $matchedAutopart->traza()->associate($traza);
                         $matchedAutopart->save();
+
+                        $matchedAutopart->certificate->traza()->associate($traza);
+                        $matchedAutopart->certificate->save();
                     }
                 break;
                 case 'excepcion-chas':
