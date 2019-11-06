@@ -70,7 +70,7 @@ class Autopart extends Model
         $producto = str_pad(explode('.', $this->product)[0], 2, '0', STR_PAD_LEFT);
         switch ($tipo) {
             case 'F':
-                $userGroups = $autopart->certificate->user->groups->map->name;
+                $userGroups = $this->certificate->user->groups->map->name;
                 if ($userGroups->contains('IRAM')) {
                     $organismo = 'IRA';
                 }
