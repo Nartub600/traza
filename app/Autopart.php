@@ -67,7 +67,7 @@ class Autopart extends Model
     public function generarCHAS()
     {
         $tipo = $this->origin === 'Argentina' ? 'F' : 'I';
-        $producto = str_pad($this->product->id, 2, '0', STR_PAD_LEFT);
+        $producto = str_pad(explode('.', $this->product->category)[0], 2, '0', STR_PAD_LEFT);
         switch ($tipo) {
             case 'F':
                 $userGroups = $this->certificate->user->groups->map->name;
