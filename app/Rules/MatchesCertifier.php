@@ -2,6 +2,7 @@
 
 namespace App\Rules;
 
+use App\Autopart;
 use Illuminate\Contracts\Validation\Rule;
 
 class MatchesCertifier implements Rule
@@ -31,7 +32,7 @@ class MatchesCertifier implements Rule
             ->whereNull('chas')
             ->first();
 
-        return $autopart->certificate->user->group->name === $value['certifier'];
+        return $autopart->certificate->user->groups->map->name->contains($value['certifier']);
     }
 
     /**

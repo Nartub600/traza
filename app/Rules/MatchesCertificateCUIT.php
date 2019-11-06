@@ -2,6 +2,7 @@
 
 namespace App\Rules;
 
+use App\Autopart;
 use Illuminate\Contracts\Validation\Rule;
 
 class MatchesCertificateCUIT implements Rule

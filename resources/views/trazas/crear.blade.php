@@ -126,10 +126,10 @@
               @enderror
             </div>
 
-            <div class="w-1/2 form-group item-form px-2 @error('documents.chas') has-error @enderror">
+            <div class="w-1/2 form-group item-form px-2">
               <label class="mb-4">Solicitud de Homologación de Autopartes y/o elementos de Seguridad <sup>*</sup></label>
               <div class="flex">
-                <div class="w-1/2 flex items-center pr-2">
+                <div class="w-1/2 flex items-center pr-2 @error('documents.autopartesNacional') has-error @enderror">
                   <label class="flex-none mr-2">
                     <a href="{{ asset('plantillas/chas-nacional.xlsx') }}">Nacional</a>
                   </label>
@@ -146,7 +146,7 @@
                   >
                   </formalizer>
                 </div>
-                <div class="w-1/2 flex items-center">
+                <div class="w-1/2 flex items-center @error('documents.autopartesExtranjera') has-error @enderror">
                   <label class="flex-none mr-2">
                     <a href="{{ asset('plantillas/chas-extranjera.xlsx') }}">Extranjera</a>
                   </label>
@@ -171,7 +171,7 @@
 
             <div class="w-1/2 form-group item-form px-2 @error('documents.wp29') has-error @enderror">
               <label for="documents[wp29]" class="mb-4">Certificado de homologación extranjera WP29 (Obligatorio si es Importador) <sup>*</sup></label>
-              <input disabled="!excel" type="file" name="documents[wp29]" class="form-control">
+              <input :disabled="extranjera.length === 0" type="file" name="documents[wp29]" class="form-control">
               @error('documents.wp29')
                 <p class="help-block error">{{ $message }}</p>
               @enderror
@@ -187,7 +187,15 @@
 
             <div class="w-1/2 form-group item-form px-2 @error('documents.foto') has-error @enderror">
               <label for="documents[foto]" class="mb-4">Foto(s) de la(s) autoparte(s) y de/los envase(s) <sup>*</sup></label>
-              <input multiple type="file" name="documents[foto][]" class="form-control">
+              <input
+                ref="fotosCHAS"
+                @input="parseLoadedFiles"
+                multiple
+                type="file"
+                name="documents[foto][]"
+                class="form-control"
+                accept="image/*"
+              >
               @error('documents.foto')
                 <p class="help-block error">{{ $message }}</p>
               @enderror
@@ -232,7 +240,16 @@
 
             <div class="w-1/2 form-group item-form px-2 @error('documents.foto') has-error @enderror">
               <label for="documents[foto]" class="mb-4">Folletería piezas autopartes <sup>*</sup></label>
-              <input multiple type="file" name="documents[foto][]" class="form-control" accept="image/*">
+              <input
+                :disabled="!excel"
+                ref="fotosCAPE"
+                @input="parseLoadedFiles"
+                multiple
+                type="file"
+                name="documents[foto][]"
+                class="form-control"
+                accept="image/*"
+              >
               @error('documents.foto')
                 <p class="help-block error">{{ $message }}</p>
               @enderror
@@ -269,7 +286,15 @@
 
             <div class="w-1/2 form-group item-form px-2 @error('documents.folleto') has-error @enderror">
               <label for="documents[folleto_autopartes]" class="mb-4">Folletería piezas autopartes <sup>*</sup></label>
-              <input multiple type="file" name="documents[foto][]" class="form-control">
+              <input
+                ref="fotosEX"
+                @input="parseLoadedFiles"
+                multiple
+                type="file"
+                name="documents[foto][]"
+                class="form-control"
+                accept="image/*"
+              >
               @error('documents.folleto')
                 <p class="help-block error">{{ $message }}</p>
               @enderror
@@ -291,7 +316,7 @@
           Volver
         </a>
 
-        <button class="btn btn-info uppercase mb-0" type="submit" disabled="trazaIsValid">
+        <button class="btn btn-info uppercase mb-0" type="submit" :disabled="!trazaIsValid">
           Guardar
         </button>
       </div>

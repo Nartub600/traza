@@ -44,7 +44,6 @@ class CHASNacionalImport implements ToCollection, WithStartRow, WithMultipleShee
             '*.size'          => 'required',
             '*.formulation'   => 'required',
             '*.application'   => 'required',
-            '*.license'       => 'required',
             '*.certified_at'  => 'required',
         ], [], array_combine(range(0, 1000), range(2, 1002)));
 
