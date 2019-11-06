@@ -143,16 +143,7 @@ class TrazaController extends Controller
         $zip = new \ZipArchive;
         $zip->open("{$traza->number}.zip", \ZipArchive::CREATE);
 
-        // todo: hacer un $traza->items
-        if ($traza->autoparts->isNotEmpty()) {
-            $items = $traza->autoparts;
-        }
-
-        if ($traza->lcms->isNotEmpty()) {
-            $items = $traza->lcms;
-        }
-
-        foreach ($items as $item) {
+        foreach ($traza->items as $item) {
             $name = $item instanceof Autopart ? $item->chas : $item->cape;
             $zip->addFromString("{$traza->number}/$name.png", $item->qr);
         }
