@@ -17,6 +17,8 @@ Vue.component('selector', require('./components/Selector.vue').default)
 Vue.component('formalizer', require('./components/Formalizer.vue').default)
 Vue.component('traza-form', require('./components/TrazaForm.vue').default)
 
+Vue.config.devtools = true
+
 const app = new Vue({
   name: 'App',
 
