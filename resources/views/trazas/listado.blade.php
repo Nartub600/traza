@@ -12,15 +12,14 @@
     <div class="flex">
       @can('crear trazas')
       <div class="dropdown">
-        <a
-          href="{{ route('trazas.create') }}"
+        <button
           class="uppercase btn btn-success"
           data-target="#"
           data-toggle="dropdown"
           role="button"
         >
           Nueva traza
-        </a>
+        </button>
         <ul class="p-1 dropdown-menu left-auto right-0">
           <li class="text-right">
             <a href="{{ url('/trazas/crear/chas') }}" class="uppercase">
@@ -40,11 +39,11 @@
         </ul>
       </div>
       @endcan
-      @can('exportar trazas')
+      {{-- @can('exportar trazas')
       <button type="button" class="btn btn-success uppercase mx-2" onclick="exportarTrazas()">
         Exportar Excel
       </button>
-      @endcan
+      @endcan --}}
     </div>
   </h1>
 
@@ -75,9 +74,9 @@
             </a>
           @endcan
           @can('exportar trazas')
-            <button class="btn m-0 p-0 text-azul hover:text-black">
+            <a href="{{ route('trazas.export', $traza->id) }}" class="btn m-0 p-0 text-azul hover:text-black">
               <i class="fa fa-download"></i>
-            </button>
+            </a>
           @endcan
           @can('eliminar trazas')
             <a
