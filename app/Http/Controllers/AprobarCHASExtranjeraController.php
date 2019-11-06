@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\AprobarCHASExtranjeraImport;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
-class AprobarExtranjeraController extends Controller
+class AprobarCHASExtranjeraController extends Controller
 {
     /**
      * Handle the incoming request.
@@ -14,7 +16,7 @@ class AprobarExtranjeraController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $chas = new CHASExtranjeraImport;
+        $chas = new AprobarCHASExtranjeraImport;
         Excel::import($chas, $request->file('excel'));
 
         if ($chas->validator->passes()) {

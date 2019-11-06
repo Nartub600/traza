@@ -53,7 +53,7 @@ Route::group([
     Route::post('/importar/chas-nacional', 'CHASNacionalImportController')->name('import.chas-nacional');
     Route::post('/importar/chas-extranjera', 'CHASExtranjeraImportController')->name('import.chas-extranjera');
     Route::post('/importar/excepcion-chas', 'ExcepcionCHASImportController')->name('import.excepcion-chas');
-    Route::post('/importar/aprobar-extranjera', 'AprobarExtranjeraController')->name('import.aprobar-extranjera');
+    Route::post('/importar/aprobar-chas-extranjera', 'AprobarCHASExtranjeraController')->name('import.aprobar-chas-extranjera');
 });
 
 Route::get('{qr}', 'QRInfoController');
