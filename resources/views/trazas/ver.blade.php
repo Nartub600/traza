@@ -117,17 +117,17 @@
 
     @switch($traza->type)
       @case('chas')
-        @if($traza->autopartes->isNotEmpty())
+        @if($traza->autoparts->isNotEmpty())
           <h3>
             Autopartes
           </h3>
           <div class="flex flex-wrap">
-            @foreach ($traza->autopartes as $autoparte)
+            @foreach ($traza->autoparts as $autopart)
             <div class="flex items-center justify-center w-1/2">
               <span>
-                {{ "{$autoparte->brand} {$autoparte->model} {$autoparte->origin} {$autoparte->chas}" }}
+                {{ "{$autopart->brand} {$autopart->model} {$autopart->origin} {$autopart->chas}" }}
               </span>
-              <img src="data:image/png;base64,{{ base64_encode($autoparte->qr) }}">
+              <img src="data:image/png;base64,{{ base64_encode($autopart->qr) }}">
             </div>
             @endforeach
           </div>

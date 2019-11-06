@@ -104,4 +104,9 @@ class Autopart extends Model
     {
         return QrCode::format('png')->size(200)->generate(url($this->chas));
     }
+
+    public function hasCHAS()
+    {
+        return !is_null($this->chas);
+    }
 }

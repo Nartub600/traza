@@ -41,9 +41,4 @@ class Traza extends Model
 
         return false;
     }
-
-    private function hasCHAS($autopart)
-    {
-        return !is_null($autopart->chas);
-    }
 }
