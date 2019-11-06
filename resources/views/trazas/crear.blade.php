@@ -172,7 +172,13 @@
 
               <div class="w-1/2 form-group item-form px-2 @error('documents.wp29') has-error @enderror">
                 <label for="documents[wp29]" class="mb-4">Certificado de homologación extranjera WP29 (Obligatorio si es Importador) <sup>*</sup></label>
-                <input :disabled="extranjera.length === 0" type="file" name="documents[wp29]" class="form-control">
+                <input
+                  :disabled="extranjera.length === 0"
+                  type="file"
+                  name="documents[wp29]"
+                  class="form-control"
+                  @input="wp29 = true"
+                >
                 @error('documents.wp29')
                   <p class="help-block error">{{ $message }}</p>
                 @enderror
