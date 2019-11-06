@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class LCM extends Model
 {
@@ -44,5 +45,10 @@ class LCM extends Model
     public static function findByCAPE($cape)
     {
         return (new static)::where('cape', $cape)->first();
+    }
+
+    public function getQrAttribute()
+    {
+        return QrCode::format('png')->size(200)->generate(url($this->cape));
     }
 }

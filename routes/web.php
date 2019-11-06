@@ -30,11 +30,11 @@ Route::group([
         'productos'    => 'ProductController',
         'licencias'    => 'CertificateController',
         'lcms'         => 'LCMController',
-        'trazas'       => 'TrazaController',
         'ncm'          => 'NCMController',
     ]);
 
     Route::get('/trazas/crear/{tipo}', 'TrazaController@create');
+    Route::get('/trazas/{id}/exportar', 'TrazaController@export')->name('trazas.export');
     Route::resource('trazas', 'TrazaController')->except(['create']);
 
     Route::get('/perfil', 'AccountController@index')->name('perfil.index');

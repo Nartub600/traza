@@ -116,18 +116,36 @@
     </div>
 
     @switch($traza->type)
+      @case('chas')
+        @if($traza->autopartes->isNotEmpty())
+          <h3>
+            Autopartes
+          </h3>
+          <div class="flex flex-wrap">
+            @foreach ($traza->autopartes as $autoparte)
+            <div class="flex items-center justify-center w-1/2">
+              <span>
+                {{ "{$autoparte->brand} {$autoparte->model} {$autoparte->origin} {$autoparte->chas}" }}
+              </span>
+              <img src="data:image/png;base64,{{ base64_encode($autoparte->qr) }}">
+            </div>
+            @endforeach
+          </div>
+        @endif
+      @break
+
       @case('cape')
         @if($traza->lcms->isNotEmpty())
           <h3>
             Autopartes
           </h3>
           <div class="flex flex-wrap">
-            @foreach ($traza->lcms as $autoparte)
+            @foreach ($traza->lcms as $lcm)
             <div class="flex items-center justify-center w-1/2">
               <span>
-                {{ "{$autoparte->brand} {$autoparte->model} {$autoparte->country} {$autoparte->cape}" }}
+                {{ "{$lcm->brand} {$lcm->model} {$lcm->country} {$lcm->cape}" }}
               </span>
-              <img src="data:image/png;base64,{{ base64_encode(QrCode::format('png')->size(200)->generate(url($autoparte->cape))) }}">
+              <img src="data:image/png;base64,{{ base64_encode($lcm->qr) }}">
             </div>
             @endforeach
           </div>

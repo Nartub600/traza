@@ -32,6 +32,8 @@ export default {
       if (this.nacional.length > 0 || this.extranjera.length > 0)  return this.$refs.fotosCHAS
       if (this.lcms.length > 0) return this.$refs.fotosCAPE
       if (this.excepcion.length > 0) return this.$refs.fotosEX
+
+      return null
     },
 
     expectedFiles () {
@@ -39,13 +41,13 @@ export default {
     },
 
     filesAreComplete () {
-      return this.loadedFiles.length > 0 && this.loadedFiles.every(f => this.expectedFiles.includes(f))
+      return this.loadedFiles.length > 0 && this.expectedFiles.every(f => this.loadedFiles.includes(f))
     }
   },
 
   methods: {
     parseLoadedFiles () {
-      this.loadedFiles = [...this.currentRef.files].map(f => f.name)
+      this.loadedFiles = this.currentRef ? [...this.currentRef.files].map(f => f.name) : []
     }
   },
 

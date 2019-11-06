@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class Autopart extends Model
 {
@@ -69,13 +70,12 @@ class Autopart extends Model
         $producto = str_pad(explode('.', $this->product)[0], 2, '0', STR_PAD_LEFT);
         switch ($tipo) {
             case 'F':
-                switch ($this->certificate->user->group->name) {
-                    case 'IRAM':
-                        $organismo = 'IRA';
-                    break;
-                    case 'INTI':
-                        $organismo = 'INT';
-                    break;
+                $userGroups = $autopart->certificate->user->groups->map->name;
+                if ($userGroups->contains('IRAM')) {
+                    $organismo = 'IRA';
+                }
+                if ($userGroups->contains('INTI')) {
+                    $organismo = 'INT';
                 }
             break;
             case 'I':
@@ -98,5 +98,10 @@ class Autopart extends Model
     public static function findByCHAS($chas)
     {
         return (new static)::where('chas', $chas)->first();
+    }
+
+    public function getQrAttribute()
+    {
+        return QrCode::format('png')->size(200)->generate(url($this->chas));
     }
 }
