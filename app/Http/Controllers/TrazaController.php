@@ -139,7 +139,7 @@ class TrazaController extends Controller
 
         $traza = Traza::findOrFail($id);
 
-        unlink("{$traza->number}.zip");
+        if (file_exists("{$traza->number}.zip")) unlink("{$traza->number}.zip");
         $zip = new \ZipArchive;
         $zip->open("{$traza->number}.zip", \ZipArchive::CREATE);
 
