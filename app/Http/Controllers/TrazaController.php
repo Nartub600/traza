@@ -75,11 +75,11 @@ class TrazaController extends Controller
         $traza->files = $files;
         // esto
 
-        $traza->save();
+        DB::transaction(function () use ($request, $traza) {
+            $traza->save();
 
-        switch ($request->type) {
-            case 'cape':
-                DB::transaction(function () use ($request, $traza) {
+            switch ($request->type) {
+                case 'cape':
                     foreach ($request->lcms as $lcm) {
                         $matchedLcm = LCM::where('number', $lcm['lcm'])
                             ->where('brand', $lcm['brand'])
@@ -93,10 +93,8 @@ class TrazaController extends Controller
 
                         $matchedLcm->save();
                     }
-                });
-            break;
-            case 'chas':
-                DB::transaction(function () use ($request, $traza) {
+                break;
+                case 'chas':
                     foreach ($request->autoparts as $autopart) {
                         $matchedAutopart = Autopart::where('brand', $autopart['brand'])
                             ->where('model', $autopart['model'])
@@ -109,19 +107,17 @@ class TrazaController extends Controller
 
                         $matchedAutopart->save();
                     }
-                });
-            break;
-            case 'excepcion-chas':
-                DB::transaction(function () use ($request, $traza) {
+                break;
+                case 'excepcion-chas':
                     foreach ($request->autopart as $autopart) {
                         $newAutopart = new Autopart($autopart);
                         $newAutopart->traza()->associate($traza);
 
                         $newAutopart->save();
                     }
-                });
-            break;
-        }
+                break;
+            }
+        });
 
         return redirect()->route('trazas.index');
     }
@@ -135,5 +131,14 @@ class TrazaController extends Controller
         $traza->delete();
 
         return redirect()->route('trazas.index');
+    }
+
+    public function export($id)
+    {
+        $this->authorize('exportar', Traza::class);
+
+        $traza = Traza::findOrFail($id);
+
+        return response()->download();
     }
 }
