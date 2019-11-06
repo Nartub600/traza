@@ -139,6 +139,25 @@ class TrazaController extends Controller
 
         $traza = Traza::findOrFail($id);
 
-        return response()->download();
+        $zip = new ZipArchive;
+        $zip->open("{$traza->number}.zip", ZipArchive::CREATE);
+
+        // todo: hacer un $traza->items
+        if ($traza->autoparts->isNotEmpty()) {
+            $items = $traza->autoparts;
+        }
+
+        if ($traza->lcms->isNotEmpty()) {
+            $items = $traza->lcms;
+        }
+
+        foreach ($items as $item) {
+            $name = $item instanceof Autopart ? $item->chas : $item->cape;
+            $zip->addFromString("$name.png", $item->qr);
+        }
+
+        $zip->close();
+
+        return response()->download($zip);
     }
 }
