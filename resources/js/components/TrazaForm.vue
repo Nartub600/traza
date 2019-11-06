@@ -16,7 +16,7 @@ export default {
 
   computed: {
     trazaIsValid () {
-      return this.excel && (this.extranjera.length > 0 ? this.wp29 : true) && this.filesAreComplete
+      return this.excel && (this.extranjera.length > 0 ? this.wp29 : true) && (this.excepcion.length > 0 ? true : this.filesAreComplete)
     },
 
     autopartes () {
