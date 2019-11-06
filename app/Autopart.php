@@ -23,6 +23,7 @@ class Autopart extends Model
         'application',
         'license',
         'certified_at',
+        'pictures',
     ];
 
     protected $appends = [
@@ -31,7 +32,8 @@ class Autopart extends Model
     ];
 
     protected $casts = [
-        'certified_at' => 'date|Y-m-d'
+        'certified_at' => 'date|Y-m-d',
+        'pictures' => 'array'
     ];
 
     public function certificate()

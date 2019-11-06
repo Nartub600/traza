@@ -95,19 +95,28 @@ class TrazaController extends Controller
                     }
                 break;
                 case 'chas':
-                    foreach ($request->autoparts as $autopart) {
-                        $matchedAutopart = Autopart::where('brand', $autopart['brand'])
-                            ->where('model', $autopart['model'])
-                            ->where('origin', $autopart['origin'])
-                            ->whereNull('chas')
-                            ->first();
+                    if (!empty($request->documents['wp29'])) {
+                        foreach ($request->autoparts as $autopart) {
+                            $newAutopart = new Autopart($autopart);
+                            $newAutopart->traza()->associate($traza);
+                            $newAutopart->save();
+                        }
+                    } else {
+                        foreach ($request->autoparts as $autopart) {
+                            $matchedAutopart = Autopart::where('brand', $autopart['brand'])
+                                ->where('model', $autopart['model'])
+                                ->where('origin', $autopart['origin'])
+                                ->whereNull('chas')
+                                ->first();
 
-                        $matchedAutopart->generarChas();
-                        $matchedAutopart->traza()->associate($traza);
-                        $matchedAutopart->save();
+                            $matchedAutopart->generarChas();
+                            $matchedAutopart->traza()->associate($traza);
+                            $matchedAutopart->pictures = explode(',', $autopart['pictures']);
+                            $matchedAutopart->save();
 
-                        $matchedAutopart->certificate->traza()->associate($traza);
-                        $matchedAutopart->certificate->save();
+                            $matchedAutopart->certificate->traza()->associate($traza);
+                            $matchedAutopart->certificate->save();
+                        }
                     }
                 break;
                 case 'excepcion-chas':
