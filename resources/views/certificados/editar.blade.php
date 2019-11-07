@@ -78,7 +78,7 @@
 
           <div class="w-1/3 form-group item-form px-2 @error('documents[licencia]') has-error @enderror">
             <label for="documents[licencia]" class="mb-4">Licencia <sup>*</sup></label>
-            @if($certificate->files[0]) {{-- todo: ver si es mejorable esto --}}
+            @if(isset($certificate->files[0])) {{-- todo: mejorar esto --}}
               <a href="{{ url($certificate->files[0]['file']) }}">Ver actual</a>
             @endif
             <input type="file" name="documents[licencia]" class="form-control" accept="application/pdf">

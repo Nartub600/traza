@@ -23,5 +23,6 @@ $factory->define(Autopart::class, function (Faker $faker) {
         'application' => $faker->bs,
         'license' => $faker->word,
         'certified_at' => $faker->date,
+        'pictures' => []
     ];
 });

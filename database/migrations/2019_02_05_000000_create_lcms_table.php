@@ -16,6 +16,7 @@ class CreateLcmsTable extends Migration
         Schema::create('lcms', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('traza_id')->nullable();
             $table->string('type');
             $table->string('defeats')->nullable();
             $table->string('number');
@@ -30,10 +31,12 @@ class CreateLcmsTable extends Migration
             $table->string('model');
             $table->string('category');
             $table->text('version');
+            $table->string('cape')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('traza_id')->references('id')->on('trazas');
         });
     }
 

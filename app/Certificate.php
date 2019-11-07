@@ -27,7 +27,7 @@ class Certificate extends Model
     protected $fillable = ['number', 'cuit'];
 
     protected $casts = [
-        'files' => 'json'
+        'files' => 'array'
     ];
 
     public function user()

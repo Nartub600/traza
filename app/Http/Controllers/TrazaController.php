@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Autopart;
 use App\Http\Requests\CreateTrazaRequest;
 use App\LCM;
+use App\Product;
 use App\Traza;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -115,6 +116,14 @@ class TrazaController extends Controller
                         foreach ($request->autoparts as $autopart) {
                             $newAutopart = new Autopart($autopart);
                             $newAutopart->traza()->associate($traza);
+
+                            $category = implode('.', array_filter([$autopart['product'], $autopart['family']]));
+                            $product = Product::findByCategory($category);
+                            $newAutopart->product()->associate($product);
+
+                            $ncm = NCM::findByCategory($autopart['ncm']);
+                            $newAutopart->ncm()->associate($ncm);
+
                             $newAutopart->save();
                         }
                     }

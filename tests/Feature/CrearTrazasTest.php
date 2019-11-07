@@ -49,7 +49,10 @@ class CrearTrazasTest extends TestCase
                 'catalogo' => UploadedFile::fake()->create('catalogo.pdf'),
                 'autopartesNacional' => UploadedFile::fake()->create('chas-nacional.xlsx'),
             ],
-            'autoparts' => $certificate->autoparts
+            'autoparts' => $certificate->autoparts->map(function ($autopart) {
+                $autopart->pictures = '';
+                return $autopart;
+            })
         ];
 
         $response = $this

@@ -32,7 +32,7 @@
 
         <div class="w-1/3 form-group item-form px-4">
           <label for="documents[licencia]" class="mb-4">Licencia <sup>*</sup></label>
-          @if($certificate->files[0])
+          @if(isset($certificate->files[0]))
             <a class="block" href="{{ url($certificate->files[0]['file']) }}">Ver actual</a>
           @else
             <p>Todavía no fue adjuntada</p>

@@ -16,26 +16,30 @@ class CreateAutopartsTable extends Migration
         Schema::create('autoparts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('certificate_id')->nullable();
-            $table->unsignedBigInteger('product_id'); // 02
-            $table->unsignedBigInteger('ncm_id'); // 03
-            $table->string('description'); // 11
-            $table->string('manufacturer'); // 04
-            $table->string('importer'); // 05
-            $table->string('business_name'); // 06
-            $table->string('part_number'); // 07
-            $table->string('brand'); // 08
-            $table->string('model'); // 09
-            $table->string('origin', 100); // 10
-            $table->string('size'); // 12
-            $table->string('formulation'); // 13
-            $table->string('application'); // 14
-            $table->string('license', 25); // 16
-            $table->date('certified_at'); // 15
+            $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('ncm_id');
+            $table->unsignedBigInteger('traza_id')->nullable();
+            $table->string('description');
+            $table->string('manufacturer');
+            $table->string('importer');
+            $table->string('business_name');
+            $table->string('part_number');
+            $table->string('brand');
+            $table->string('model');
+            $table->string('origin', 100);
+            $table->string('size');
+            $table->string('formulation');
+            $table->string('application');
+            $table->string('license', 25);
+            $table->date('certified_at');
+            $table->string('chas')->nullable();
+            $table->json('pictures');
             $table->timestamps();
 
             $table->foreign('certificate_id')->references('id')->on('certificates');
             $table->foreign('product_id')->references('id')->on('products');
             $table->foreign('ncm_id')->references('id')->on('ncm');
+            $table->foreign('traza_id')->references('id')->on('trazas');
         });
     }
 
