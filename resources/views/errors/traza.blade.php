@@ -11,7 +11,7 @@
   </head>
   <body class="antialiased">
     <div class="flex flex-col min-h-screen" id="traza" v-cloak>
-      @include('layouts.header')
+      @include('layouts.public-header')
 
       <main class="flex-1 flex flex-col items-center justify-center text-celeste">
         <div class="text-5xl">
