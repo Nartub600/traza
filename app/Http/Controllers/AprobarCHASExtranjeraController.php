@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Autopart;
 use App\Imports\AprobarCHASExtranjeraImport;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -21,8 +22,14 @@ class AprobarCHASExtranjeraController extends Controller
 
         if ($chas->validator->passes()) {
             foreach ($chas->validator->valid() as $autopart) {
-                $autopart->generarCHAS();
-                $autopart->save();
+                $matchedAutopart = Autopart::where('brand', $autopart['brand'])
+                    ->where('model', $autopart['model'])
+                    ->where('origin', $autopart['origin'])
+                    ->whereNull('chas')
+                    ->first();
+
+                $matchedAutopart->generarCHAS();
+                $matchedAutopart->save();
             }
 
             return;
