@@ -32,11 +32,11 @@
             name="documents[autopartesExtranjera]"
             accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
             endpoint="{{ route('import.aprobar-chas-extranjera') }}"
-            @valid="data => (extranjera = data, valid = true)"
+            @valid="data => (aprobar = data, valid = true)"
           >
           </importer>
           <formalizer
-            :data="extranjera"
+            :data="aprobar"
             name="autopartes"
           >
           </formalizer>

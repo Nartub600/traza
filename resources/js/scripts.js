@@ -23,4 +23,10 @@ const app = new Vue({
   name: 'App',
 
   el: '#traza',
+
+  data () {
+    return {
+      aprobar: []
+    }
+  }
 })
