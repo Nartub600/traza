@@ -124,9 +124,10 @@
           <div class="flex flex-wrap">
             @foreach ($traza->autoparts as $autopart)
             <div class="flex items-center justify-center w-1/2">
-              <span>
-                {{ "{$autopart->brand} {$autopart->model} {$autopart->origin} {$autopart->chas}" }}
-              </span>
+              <span>{{ $autopart->brand }}</span>
+              <span>{{ $autopart->model }}</span>
+              <span>{{ $autopart->origin }}</span>
+              <span class="text-verde font-bold">{{ $autopart->chas }}</span>
               <img src="data:image/png;base64,{{ base64_encode($autopart->qr) }}">
             </div>
             @endforeach
