@@ -43,8 +43,8 @@ class CreateTrazaRequest extends FormRequest
             'documents.autopartesExtranjera' => Rule::requiredIf(function () {
                 return request('type') === 'chas' && !isset(request('documents')['autopartesNacional']);
             }),
+            'documents.certificado' => 'required_with:documents.autopartesNacional',
             'documents.wp29' => 'required_with:documents.autopartesExtranjera',
-            'documents.certificado' => 'required_if:type,chas',
             'documents.catalogo' => 'required_if:type,chas',
 
             'lcms' => 'required_if:type,cape',
