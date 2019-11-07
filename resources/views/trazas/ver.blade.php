@@ -125,9 +125,9 @@
             @foreach ($traza->autoparts as $autopart)
             <div class="flex items-center justify-center w-1/2">
               <p>
-                {{ $autopart->brand }} {{ $autopart->model }} {{ $autopart->origin }} <span class="text-verde font-bold">{{ $autopart->chas }}</span>
+                {{ $autopart->brand }} {{ $autopart->model }} {{ $autopart->origin }} @if($autopart->chas)<span class="text-verde font-bold">{{ $autopart->chas }}</span>
               </p>
-              <img src="data:image/png;base64,{{ base64_encode($autopart->qr) }}">
+              <img src="data:image/png;base64,{{ base64_encode($autopart->qr) }}">@endif
             </div>
             @endforeach
           </div>
@@ -142,10 +142,10 @@
           <div class="flex flex-wrap">
             @foreach ($traza->lcms as $lcm)
             <div class="flex items-center justify-center w-1/2">
-              <span>
-                {{ "{$lcm->brand} {$lcm->model} {$lcm->country} {$lcm->cape}" }}
-              </span>
-              <img src="data:image/png;base64,{{ base64_encode($lcm->qr) }}">
+              <p>
+                {{ $lcm->brand }} {{$lcm->model}} {{$lcm->country}} @if($lcm->cape)<span class="text-verde font-bold">{{$lcm->cape}}</span>
+              </p>
+              <img src="data:image/png;base64,{{ base64_encode($lcm->qr) }}">@endif
             </div>
             @endforeach
           </div>
