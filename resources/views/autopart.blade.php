@@ -18,7 +18,7 @@
   @if ($autopart->pictures)
     <div class="flex flex-wrap">
       @foreach ($autopart->pictures as $picture)
-        <img src="{{ $picture }}">
+        <img src="{{ url($picture) }}">
       @endforeach
     </div>
   @endif
