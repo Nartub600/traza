@@ -65,8 +65,10 @@ class CertificateController extends Controller
         if ($request->has('certificates')) {
             // bulk import
             collect($request->certificates)->each(function ($certificate) {
-                $autoparts = collect($certificate['autoparts'])
-                    ->mapInto(Autopart::class);
+                $autoparts = collect($certificate['autoparts'])->map(function ($autopart) {
+                    $autopart['pictures'] = [];
+                    return $autopart;
+                })->mapInto(Autopart::class);
 
                 $certificate = new Certificate($certificate);
                 $certificate->user()->associate(request()->user());
@@ -87,8 +89,10 @@ class CertificateController extends Controller
             $uuid = Str::uuid();
             $certificate->uuid = $uuid;
 
-            $autoparts = collect($request->autoparts)
-                ->mapInto(Autopart::class);
+            $autoparts = collect($request->autoparts)->map(function ($autopart) {
+                $autopart['pictures'] = [];
+                return $autopart;
+            })->mapInto(Autopart::class);
 
             $licencia = $request->file('documents')['licencia'];
 
