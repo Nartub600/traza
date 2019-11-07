@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Autopart;
 use App\Http\Requests\CreateTrazaRequest;
 use App\LCM;
+use App\NCM;
 use App\Product;
 use App\Traza;
 use Illuminate\Http\Request;
