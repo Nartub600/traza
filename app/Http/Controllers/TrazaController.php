@@ -98,6 +98,7 @@ class TrazaController extends Controller
                 break;
                 case 'chas':
                     if (empty($request->documents['wp29'])) {
+                        // nacional
                         foreach ($request->autoparts as $autopart) {
                             $matchedAutopart = Autopart::where('brand', $autopart['brand'])
                                 ->where('model', $autopart['model'])
@@ -114,6 +115,7 @@ class TrazaController extends Controller
                             $matchedAutopart->certificate->save();
                         }
                     } else {
+                        // extranjero
                         foreach ($request->autoparts as $autopart) {
                             $newAutopart = new Autopart($autopart);
                             $newAutopart->traza()->associate($traza);

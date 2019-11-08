@@ -24,9 +24,9 @@ const app = new Vue({
 
   el: '#traza',
 
-  data () {
-    return {
-      aprobar: []
+  methods: {
+    reload () {
+      window.location.reload()
     }
   }
 })

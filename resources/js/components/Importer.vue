@@ -40,7 +40,7 @@ export default {
         Swal.fire({
           type: 'warning',
           title: 'Hubo errores',
-          text: error.response.data.errors ? Object.values(error.response.data.errors).flat().join(', ') : 'Falla general'
+          html: error.response.data.errors ? Object.values(error.response.data.errors).flat().join('<br>') : 'Falla general'
         })
       })
     }

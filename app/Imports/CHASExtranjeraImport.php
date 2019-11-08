@@ -26,7 +26,8 @@ class CHASExtranjeraImport implements ToCollection, WithStartRow, WithMultipleSh
         $validator = Validator::make($sanitized->toArray(), [
             '*'               => [
                 'bail',
-                new MatchesProduct
+                new MatchesProduct,
+                // new IsNewAutopart, // esto debería ser necesario
             ],
             '*.cuit'          => ['required', 'regex:/[0-9]{2}-[0-9]{6,8}-[0-9]/'],
             '*.manufacturer'  => 'required',
@@ -60,8 +61,8 @@ class CHASExtranjeraImport implements ToCollection, WithStartRow, WithMultipleSh
     public function map($row): array
     {
         return [
-            'product'       => $row[0],
-            'family'        => $row[1],
+            'product'       => (string) $row[0],
+            'family'        => (string) $row[1],
             'cuit'          => $row[2],
             'manufacturer'  => $row[3],
             'importer'      => $row[4],

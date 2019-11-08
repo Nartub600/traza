@@ -64,8 +64,8 @@ class CHASNacionalImport implements ToCollection, WithStartRow, WithMultipleShee
     public function map($row): array
     {
         return [
-            'product'       => $row[0],
-            'family'        => $row[1],
+            'product'       => (string) $row[0],
+            'family'        => (string) $row[1],
             'cuit'          => $row[2],
             'manufacturer'  => $row[3],
             'business_name' => $row[4],
