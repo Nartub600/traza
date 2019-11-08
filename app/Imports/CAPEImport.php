@@ -18,9 +18,7 @@ class CAPEImport implements ToCollection, WithStartRow, WithMultipleSheets, With
     public function collection(Collection $rows)
     {
         $sanitized = $rows->reject(function ($row) {
-            return $row->every(function ($field) {
-                return is_null($field);
-            });
+            return is_null($row['product']);
         });
 
         $validator = Validator::make($sanitized->toArray(), [
