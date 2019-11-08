@@ -1,7 +1,7 @@
 @extends('layouts.public')
 
 @section('content')
-<div class="flex flex-col items-center pt-4">
+<div class="flex flex-col items-center py-4">
   <img src="data:image/png;base64,{{ base64_encode($autopart->qr) }}">
 
   <h1>{{ $autopart->chas }}</h1>
@@ -17,8 +17,8 @@
 
   @if ($autopart->pictures)
     <div class="flex flex-wrap">
-      @foreach ($autopart->pictures as $picture)
-        <img src="{{ Storage::url($picture) }}">
+      @foreach ($autopart->physicalPictures as $picture)
+        <img class="w-64 mx-2" src="{{ Storage::url($picture['file']) }}">
       @endforeach
     </div>
   @endif

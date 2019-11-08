@@ -186,7 +186,13 @@
 
               <div class="w-1/2 form-group item-form px-2 @error('documents.certificado') has-error @enderror">
                 <label for="documents[certificado]" class="mb-4">Certificado de autopartes (Certificadora nacional) <sup>*</sup></label>
-                <input type="file" name="documents[certificado]" class="form-control">
+                <input
+                  :disabled="nacional.length === 0"
+                  type="file"
+                  name="documents[certificado]"
+                  class="form-control"
+                  @input="certificado = true"
+                >
                 @error('documents.certificado')
                   <p class="help-block error">{{ $message }}</p>
                 @enderror

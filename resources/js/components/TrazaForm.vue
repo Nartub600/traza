@@ -5,6 +5,7 @@ export default {
   data () {
     return {
       excel: false,
+      certificado: false,
       wp29: false,
       lcms: [],
       nacional: [],
@@ -16,7 +17,10 @@ export default {
 
   computed: {
     trazaIsValid () {
-      return this.excel && (this.extranjera.length > 0 ? this.wp29 : true) && (this.excepcion.length > 0 ? true : this.filesAreComplete)
+      return this.excel &&
+        (this.nacional.length > 0 ? this.certificado : true) &&
+        (this.extranjera.length > 0 ? this.wp29 : true) &&
+        (this.excepcion.length > 0 ? true : this.filesAreComplete)
     },
 
     autopartes () {

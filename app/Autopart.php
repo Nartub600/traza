@@ -107,6 +107,15 @@ class Autopart extends Model
         return QrCode::format('png')->size(200)->generate(url($this->chas));
     }
 
+    public function getPhysicalPicturesAttribute()
+    {
+        return collect($this->pictures)->map(function ($picture) {
+            return $this->traza->files[collect($this->traza->files)->search(function ($file) use ($picture) {
+                return $file['name'] === $picture;
+            })];
+        });
+    }
+
     public function hasCHAS()
     {
         return !is_null($this->chas);
