@@ -75,8 +75,8 @@ class CHASExtranjeraImport implements ToCollection, WithStartRow, WithMultipleSh
             'formulation'   => $row[12],
             'application'   => $row[13],
             'license'       => $row[14],
-            'certified_at'  => (new Carbon('1899/12/31'))->addDays($row[15])->format('Y-m-d'),
-            'pictures'      => $row[16],
+            'certified_at'  => $row[15] ? (new Carbon('1899/12/31'))->addDays($row[15])->format('Y-m-d') : null,
+            'pictures'      => $row[16] ? implode(',', array_map('trim', explode(',', $row[16]))) : null,
         ];
     }
 }

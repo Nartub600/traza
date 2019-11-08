@@ -78,9 +78,9 @@ class CHASNacionalImport implements ToCollection, WithStartRow, WithMultipleShee
             'formulation'   => $row[11],
             'application'   => $row[12],
             'license'       => $row[13],
-            'certified_at'  => (new Carbon('1899/12/31'))->addDays($row[14])->format('Y-m-d'),
+            'certified_at'  => $row[14] ? (new Carbon('1899/12/31'))->addDays($row[14])->format('Y-m-d') : null,
             'certifier'     => $row[15],
-            'pictures'      => $row[16],
+            'pictures'      => $row[16] ? implode(',', array_map('trim', explode(',', $row[16]))) : null,
         ];
     }
 }
