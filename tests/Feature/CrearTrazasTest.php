@@ -249,7 +249,7 @@ class CrearTrazasTest extends TestCase
 
         $response->assertSuccessful();
 
-        $autoparts = collect(factory(Autopart::class, 5)->create()->toArray());
+        $autoparts = collect(factory(Autopart::class, 5)->make()->toArray());
 
         $excelAutoparts = $autoparts->map(function ($autopart) {
             $autopart['pictures'] = '';

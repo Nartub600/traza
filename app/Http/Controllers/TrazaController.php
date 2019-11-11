@@ -136,17 +136,20 @@ class TrazaController extends Controller
                 break;
                 case 'excepcion-chas':
                     foreach ($request->autoparts as $autopart) {
-                        $matchedAutopart = Autopart::where('brand', $autopart['brand'])
-                            ->where('model', $autopart['model'])
-                            ->where('origin', $autopart['origin'])
-                            ->whereNull('chas')
-                            ->first();
+                        $newAutopart = new Autopart($autopart);
+                        $newAutopart->traza()->associate($traza);
+                        $newAutopart->pictures = explode(',', $autopart['pictures']);
 
-                        $matchedAutopart->traza()->associate($traza);
-                        $matchedAutopart->generarChas();
-                        $matchedAutopart->pictures = explode(',', $autopart['pictures']);
+                        $category = implode('.', array_filter([$autopart['product'], $autopart['family']]));
+                        $product = Product::findByCategory($category);
+                        $newAutopart->product()->associate($product);
 
-                        $matchedAutopart->save();
+                        $ncm = NCM::findByCategory($autopart['ncm']);
+                        $newAutopart->ncm()->associate($ncm);
+
+                        $newAutopart->generarChas();
+
+                        $newAutopart->save();
                     }
                 break;
             }
