@@ -5,6 +5,7 @@ return [
     'declaracion_jurada' => 'Declaración Jurada',
     'autopartesNacional' => 'Solicitud de Homologación de Autopartes y/o elementos de Seguridad',
     'autopartesExtranjera' => 'Solicitud de Homologación de Autopartes y/o elementos de Seguridad',
+    'autopartesExcepcion' => 'Descripción de los bienes',
     'lcms' => 'Descripción de los bienes',
     'autopartesExcepcion' => 'Descripción de los bienes',
     'wp29' => 'Certificado de homologación extranjera WP29',

@@ -278,10 +278,10 @@
                 @enderror
               </div>
 
-              <div class="w-1/2 form-group item-form px-2 @error('documents.autopartes') has-error @enderror">
-                <label for="documents[autopartes]" class="mb-4">Descripción de los bienes <sup>*</sup> (<a href="{{ asset('plantillas/excepcion-chas.xlsx') }}">descargar plantilla</a>)</label>
+              <div class="w-1/2 form-group item-form px-2 @error('documents.autopartesExcepcion') has-error @enderror">
+                <label for="documents[autopartesExcepcion]" class="mb-4">Descripción de los bienes <sup>*</sup> (<a href="{{ asset('plantillas/excepcion-chas.xlsx') }}">descargar plantilla</a>)</label>
                 <importer
-                  name="documents[autopartes]"
+                  name="documents[autopartesExcepcion]"
                   accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
                   endpoint="{{ route('import.excepcion-chas') }}"
                   @valid="data => (excepcion = data, excel = true, showFileIsValid())"
@@ -298,7 +298,7 @@
               </div>
 
               <div class="w-1/2 form-group item-form px-2 @error('documents.folleto') has-error @enderror">
-                <label for="documents[folleto_autopartes]" class="mb-4">Imágenes <sup>*</sup></label>
+                <label for="documents[foto][]" class="mb-4">Imágenes <sup>*</sup></label>
                 <input
                   :disabled="!excel"
                   ref="fotosEX"
