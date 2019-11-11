@@ -16,7 +16,7 @@
   <p>Número de parte: {{ $autopart->part_number }}</p>
 
   @if ($autopart->pictures)
-    <div class="flex flex-wrap">
+    <div class="flex flex-wrap items-center">
       @foreach ($autopart->physicalPictures as $picture)
         <img class="w-64 mx-2" src="{{ Storage::url($picture['file']) }}">
       @endforeach
