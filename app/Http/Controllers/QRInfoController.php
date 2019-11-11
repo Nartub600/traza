@@ -17,7 +17,7 @@ class QRInfoController extends Controller
     public function __invoke(Request $request, $qr)
     {
         $lcm = LCM::findByCAPE($qr);
-        if ($lcm) return $lcm;
+        if ($lcm) return view('lcm', compact('lcm'));
 
         $autopart = Autopart::findByCHAS($qr);
         if ($autopart) return view('autopart', compact('autopart'));
