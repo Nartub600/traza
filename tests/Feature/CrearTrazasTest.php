@@ -4,6 +4,8 @@ namespace Tests\Feature;
 
 use App\Autopart;
 use App\Certificate;
+use App\LCM;
+use App\Product;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -167,5 +169,67 @@ class CrearTrazasTest extends TestCase
         $this->assertNotNull($foundAutoparts[2]->chas);
         $this->assertNotNull($foundAutoparts[3]->chas);
         $this->assertNotNull($foundAutoparts[4]->chas);
+    }
+
+    /** @test */
+    public function administradorPuedeCrearTrazasCAPE()
+    {
+        // $this->withoutExceptionHandling();
+
+        // visitar la página
+        $administrador = factory(User::class)->state('administrador')->create();
+
+        $response = $this
+            ->actingAs($administrador)
+            ->get('/trazas/crear/cape');
+
+        $response->assertSuccessful();
+
+        $lcms = collect(factory(LCM::class, 5)->create()->toArray());
+        $excelLcms = $lcms->map(function ($lcm) {
+            $lcm['lcm'] = $lcm['number'];
+            $lcm['product'] = explode('.', Product::inRandomOrder()->first()->category)[0];
+            return $lcm;
+        });
+
+        $data = [
+            'type' => 'cape',
+            'number' => $this->faker->phoneNumber,
+            'user' => $this->faker->name,
+            'division' => $this->faker->bs,
+            'sector' => $this->faker->bs,
+            'tag' => $this->faker->bs,
+            'validation' => $this->faker->bs,
+            'signature' => $this->faker->bs,
+            'auth_level' => $this->faker->bs,
+            'documents' => [
+                'foto' => [
+                    UploadedFile::fake()->image('foto1.jpg')
+                ],
+                'solicitud_cape' => UploadedFile::fake()->create('solicitud.pdf'),
+                'lcms' => UploadedFile::fake()->create('lcms.xlsx'),
+            ],
+            'lcms' => $excelLcms
+        ];
+
+        $response = $this
+            ->actingAs($administrador)
+            ->post('/trazas', $data);
+
+        $response->assertRedirect('/trazas');
+
+        $lcms = collect($excelLcms)->map(function ($lcm) {
+            return LCM::where('number', $lcm['lcm'])
+                ->where('brand', $lcm['brand'])
+                ->where('model', $lcm['model'])
+                ->where('country', $lcm['country'])
+                ->first();
+        });
+
+        $this->assertNotNull($lcms[0]->cape);
+        $this->assertNotNull($lcms[1]->cape);
+        $this->assertNotNull($lcms[2]->cape);
+        $this->assertNotNull($lcms[3]->cape);
+        $this->assertNotNull($lcms[4]->cape);
     }
 }
