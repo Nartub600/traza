@@ -89,6 +89,7 @@ class CrearTrazasTest extends TestCase
 
         // voy a enviar cinco autopartes que no existen
         $autoparts = collect(factory(Autopart::class, 5)->make()->toArray());
+
         $excelAutoparts = $autoparts->map(function ($autopart) {
             $autopart['pictures'] = '';
             $autopart['product'] = $autopart['product']['category'];
@@ -258,6 +259,20 @@ class CrearTrazasTest extends TestCase
             $autopart['family'] = '';
             return $autopart;
         });
+
+        $nonExistentAutoparts = $autoparts->map(function ($autopart) {
+            return Autopart::where('brand', $autopart['brand'])
+                ->where('model', $autopart['model'])
+                ->where('origin', $autopart['origin'])
+                ->whereNull('chas')
+                ->first();
+        });
+
+        $this->assertNull($nonExistentAutoparts[0]);
+        $this->assertNull($nonExistentAutoparts[1]);
+        $this->assertNull($nonExistentAutoparts[2]);
+        $this->assertNull($nonExistentAutoparts[3]);
+        $this->assertNull($nonExistentAutoparts[4]);
 
         $data = [
             'type' => 'excepcion-chas',
