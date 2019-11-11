@@ -60,5 +60,112 @@ class CrearTrazasTest extends TestCase
             ->post('/trazas', $data);
 
         $response->assertRedirect('/trazas');
+
+        $certificate->refresh();
+
+        $this->assertNotNull($certificate->autoparts[0]->chas);
+        $this->assertNotNull($certificate->autoparts[1]->chas);
+        $this->assertNotNull($certificate->autoparts[2]->chas);
+        $this->assertNotNull($certificate->autoparts[3]->chas);
+        $this->assertNotNull($certificate->autoparts[4]->chas);
+    }
+
+    /** @test */
+    public function administradorPuedeCrearTrazasCHASExtranjero()
+    {
+        $this->withoutExceptionHandling();
+
+        // visitar la página
+        $administrador = factory(User::class)->state('administrador')->create();
+
+        $response = $this
+            ->actingAs($administrador)
+            ->get('/trazas/crear/chas');
+
+        $response->assertSuccessful();
+
+        // voy a enviar cinco autopartes que no existen
+        $autoparts = collect(factory(Autopart::class, 5)->make()->toArray());
+        $excelAutoparts = $autoparts->map(function ($autopart) {
+            $autopart['pictures'] = [];
+            $autopart['product'] = $autopart['product']['category'];
+            $autopart['ncm'] = $autopart['ncm']['category'];
+            $autopart['family'] = '';
+            return $autopart;
+        });
+
+        $nonExistentAutoparts = $autoparts->map(function ($autopart) {
+            return Autopart::where('brand', $autopart['brand'])
+                ->where('model', $autopart['model'])
+                ->where('origin', $autopart['origin'])
+                ->whereNull('chas')
+                ->first();
+        });
+
+        $this->assertNull($nonExistentAutoparts[0]);
+        $this->assertNull($nonExistentAutoparts[1]);
+        $this->assertNull($nonExistentAutoparts[2]);
+        $this->assertNull($nonExistentAutoparts[3]);
+        $this->assertNull($nonExistentAutoparts[4]);
+
+        $data = [
+            'type' => 'chas',
+            'number' => $this->faker->phoneNumber,
+            'user' => $this->faker->name,
+            'division' => $this->faker->bs,
+            'sector' => $this->faker->bs,
+            'tag' => $this->faker->bs,
+            'validation' => $this->faker->bs,
+            'signature' => $this->faker->bs,
+            'auth_level' => $this->faker->bs,
+            'documents' => [
+                'foto' => [
+                    UploadedFile::fake()->image('foto1.jpg')
+                ],
+                'declaracion_jurada' => UploadedFile::fake()->create('declaracion.pdf'),
+                'wp29' => UploadedFile::fake()->create('wp29.pdf'),
+                'catalogo' => UploadedFile::fake()->create('catalogo.pdf'),
+                'autopartesExtranjera' => UploadedFile::fake()->create('chas-extranjera.xlsx'),
+            ],
+            'autoparts' => $excelAutoparts
+        ];
+
+        $response = $this
+            ->actingAs($administrador)
+            ->post('/trazas', $data);
+
+        $response->assertRedirect('/trazas');
+
+        // verifico que existan luego de enviar el formulario
+        $foundAutoparts = $autoparts->map(function ($autopart) {
+            return Autopart::where('brand', $autopart['brand'])
+                ->where('model', $autopart['model'])
+                ->where('origin', $autopart['origin'])
+                ->whereNull('chas')
+                ->first();
+        });
+
+        $this->assertNotNull($foundAutoparts[0]);
+        $this->assertNotNull($foundAutoparts[1]);
+        $this->assertNotNull($foundAutoparts[2]);
+        $this->assertNotNull($foundAutoparts[3]);
+        $this->assertNotNull($foundAutoparts[4]);
+
+        $traza = $foundAutoparts[0]->traza;
+
+        // apruebo el trámite
+        $response = $this
+            ->actingAs($administrador)
+            ->patch("/trazas/{$traza->id}/aprobar", [
+                'autoparts' => $excelAutoparts
+            ]);
+
+        $foundAutoparts->each->refresh();
+
+        $this->assertNotNull($foundAutoparts[0]->chas);
+        $this->assertNotNull($foundAutoparts[1]->chas);
+        $this->assertNotNull($foundAutoparts[2]->chas);
+        $this->assertNotNull($foundAutoparts[3]->chas);
+        $this->assertNotNull($foundAutoparts[4]->chas);
     }
 }

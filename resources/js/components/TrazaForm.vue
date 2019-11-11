@@ -2,6 +2,8 @@
 export default {
   name: 'TrazaForm',
 
+  props: ['traza'],
+
   data () {
     return {
       excel: false,
@@ -11,6 +13,7 @@ export default {
       nacional: [],
       extranjera: [],
       excepcion: [],
+      aprobar: [],
       loadedFiles: []
     }
   },
@@ -21,6 +24,7 @@ export default {
         (this.nacional.length > 0 ? this.certificado : true) &&
         (this.extranjera.length > 0 ? this.wp29 : true) &&
         (this.excepcion.length > 0 ? true : this.filesAreComplete)
+
     },
 
     autopartes () {
@@ -52,11 +56,46 @@ export default {
   methods: {
     parseLoadedFiles () {
       this.loadedFiles = this.currentRef ? [...this.currentRef.files].map(f => f.name) : []
+    },
+
+    showFileIsValid () {
+      Swal.fire({
+        type: 'success',
+        title: 'El archivo es válido'
+      })
+    },
+
+    showApprovalConfirmation () {
+      Swal.fire({
+        type: 'question',
+        text: `Confirme la aprobación de ${this.aprobar.length} autopartes`,
+        showConfirmButton: true,
+        showCancelButton: true,
+        confirmButtonColor: '#0072BB',
+        confirmButtonText: '<span class="uppercase">Aprobar</span>',
+        cancelButtonText: '<span class="uppercase">Volver</span>',
+        reverseButtons: true,
+        preConfirm: () => axios.patch(`/trazas/${this.traza.id}/aprobar`, {
+          'autoparts': this.aprobar
+        }, {
+          headers: {
+            'X-CSRF-TOKEN': Laravel.csrfToken,
+            'Accept': 'application/json',
+          }
+        })
+      }).then(result => {
+        if (result.value) {
+          location.reload()
+        }
+      }).catch(error => {
+        console.log(error)
+        return false
+      })
     }
   },
 
   mounted () {
-    new SlimSelect({
+    this.$refs.selectSignature && new SlimSelect({
       select: this.$refs.selectSignature,
       placeholder: ' ',
       showSearch: false,

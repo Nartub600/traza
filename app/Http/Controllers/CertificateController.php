@@ -40,6 +40,7 @@ class CertificateController extends Controller
         $this->authorize('ver', Certificate::class);
 
         $certificate = Certificate::with('autoparts')->findOrFail($id);
+
         $products = Product::active()->doesntHave('parent')->get();
         $ncm = NCM::active()->get();
 

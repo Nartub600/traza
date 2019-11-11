@@ -20,21 +20,6 @@ class AprobarCHASExtranjeraController extends Controller
         $chas = new AprobarCHASExtranjeraImport;
         Excel::import($chas, $request->file('excel'));
 
-        if ($chas->validator->passes()) {
-            foreach ($chas->validator->valid() as $autopart) {
-                $matchedAutopart = Autopart::where('brand', $autopart['brand'])
-                    ->where('model', $autopart['model'])
-                    ->where('origin', $autopart['origin'])
-                    ->whereNull('chas')
-                    ->first();
-
-                $matchedAutopart->generarCHAS();
-                $matchedAutopart->save();
-            }
-
-            return;
-        }
-
         return $chas->validator->validate();
     }
 }

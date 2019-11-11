@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Autopart;
+use App\Http\Requests\AprobarTrazaRequest;
 use App\Http\Requests\CreateTrazaRequest;
 use App\LCM;
 use App\NCM;
@@ -178,5 +179,24 @@ class TrazaController extends Controller
         }
 
         abort(404);
+    }
+
+    // esto por ahora acá
+    public function aprobar(AprobarTrazaRequest $request, $id)
+    {
+        $this->authorize('crear', Traza::class);
+
+        $traza = Traza::findOrFail($id);
+
+        foreach ($request->autoparts as $autopart) {
+            $matchedAutopart = Autopart::where('brand', $autopart['brand'])
+                ->where('model', $autopart['model'])
+                ->where('origin', $autopart['origin'])
+                ->whereNull('chas')
+                ->first();
+
+            $matchedAutopart->generarCHAS();
+            $matchedAutopart->save();
+        }
     }
 }

@@ -138,7 +138,7 @@
                       name="documents[autopartesNacional]"
                       accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
                       endpoint="{{ route('import.chas-nacional') }}"
-                      @valid="data => (nacional = data, excel = true)"
+                      @valid="data => (nacional = data, excel = true, showFileIsValid())"
                     >
                     </importer>
                     <formalizer
@@ -155,7 +155,7 @@
                       name="documents[autopartesExtranjera]"
                       accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
                       endpoint="{{ route('import.chas-extranjera') }}"
-                      @valid="data => (extranjera = data, excel = true)"
+                      @valid="data => (extranjera = data, excel = true, showFileIsValid())"
                     >
                     </importer>
                     <formalizer
@@ -238,7 +238,7 @@
                   name="documents[lcms]"
                   accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
                   endpoint="{{ route('import.cape') }}"
-                  @valid="data => (lcms = data, excel = true)"
+                  @valid="data => (lcms = data, excel = true, showFileIsValid())"
                 >
                 </importer>
                 <formalizer
@@ -284,7 +284,7 @@
                   name="documents[autopartes]"
                   accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
                   endpoint="{{ route('import.excepcion-chas') }}"
-                  @valid="data => (excepcion = data, excel = true)"
+                  @valid="data => (excepcion = data, excel = true, showFileIsValid())"
                 >
                 </importer>
                 <formalizer
