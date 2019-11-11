@@ -32,6 +32,7 @@ class CreateLcmsTable extends Migration
             $table->string('category');
             $table->text('version');
             $table->string('cape')->nullable();
+            $table->json('pictures');
             $table->timestamps();
             $table->softDeletes();
 
