@@ -30,8 +30,8 @@ class LCMController extends Controller
         $this->authorize('crear', LCM::class);
 
         $lcm = new LCM($request->validated());
-
         $lcm->user()->associate($request->user());
+        $lcm->pictures = [];
 
         $lcm->save();
 

@@ -190,6 +190,7 @@ class CrearTrazasTest extends TestCase
         $excelLcms = $lcms->map(function ($lcm) {
             $lcm['lcm'] = $lcm['number'];
             $lcm['product'] = explode('.', Product::inRandomOrder()->first()->category)[0];
+            $lcm['pictures'] = '';
             return $lcm;
         });
 

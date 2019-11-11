@@ -12,7 +12,23 @@ class LCM extends Model
 
     protected $table = 'lcms';
 
-    protected $fillable = ['type', 'defeats', 'number', 'issued_at', 'business_name', 'address', 'cuit', 'country', 'manufacturing_place', 'commercial_name', 'brand', 'model', 'category', 'version'];
+    protected $fillable = [
+        'type',
+        'defeats',
+        'number',
+        'issued_at',
+        'business_name',
+        'address',
+        'cuit',
+        'country',
+        'manufacturing_place',
+        'commercial_name',
+        'brand',
+        'model',
+        'category',
+        'version',
+        'pictures'
+    ];
 
     protected $casts = [
         'pictures' => 'array'

@@ -21,5 +21,6 @@ $factory->define(LCM::class, function (Faker $faker) {
         'model'               => $faker->word,
         'category'            => $faker->word,
         'version'             => $faker->word,
+        'pictures'            => []
     ];
 });
