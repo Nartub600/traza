@@ -120,6 +120,7 @@ class TrazaController extends Controller
                         foreach ($request->autoparts as $autopart) {
                             $newAutopart = new Autopart($autopart);
                             $newAutopart->traza()->associate($traza);
+                            $newAutopart->pictures = explode(',', $autopart['pictures']);
 
                             $category = implode('.', array_filter([$autopart['product'], $autopart['family']]));
                             $product = Product::findByCategory($category);
