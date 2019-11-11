@@ -93,6 +93,7 @@ class TrazaController extends Controller
 
                         $matchedLcm->generarCAPE($lcm['product']);
                         $matchedLcm->traza()->associate($traza);
+                        $matchedLcm->pictures = explode(',', $lcm['pictures']);
 
                         $matchedLcm->save();
                     }
@@ -134,11 +135,18 @@ class TrazaController extends Controller
                     }
                 break;
                 case 'excepcion-chas':
-                    foreach ($request->autopart as $autopart) {
-                        $newAutopart = new Autopart($autopart);
-                        $newAutopart->traza()->associate($traza);
+                    foreach ($request->autoparts as $autopart) {
+                        $matchedAutopart = Autopart::where('brand', $autopart['brand'])
+                            ->where('model', $autopart['model'])
+                            ->where('origin', $autopart['origin'])
+                            ->whereNull('chas')
+                            ->first();
 
-                        $newAutopart->save();
+                        $matchedAutopart->traza()->associate($traza);
+                        $matchedAutopart->generarChas();
+                        $matchedAutopart->pictures = explode(',', $autopart['pictures']);
+
+                        $matchedAutopart->save();
                     }
                 break;
             }

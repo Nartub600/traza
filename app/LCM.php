@@ -14,6 +14,10 @@ class LCM extends Model
 
     protected $fillable = ['type', 'defeats', 'number', 'issued_at', 'business_name', 'address', 'cuit', 'country', 'manufacturing_place', 'commercial_name', 'brand', 'model', 'category', 'version'];
 
+    protected $casts = [
+        'pictures' => 'array'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -50,5 +54,14 @@ class LCM extends Model
     public function getQrAttribute()
     {
         return QrCode::format('png')->size(200)->generate(url($this->cape));
+    }
+
+    public function getPhysicalPicturesAttribute()
+    {
+        return collect($this->pictures)->map(function ($picture) {
+            return $this->traza->files[collect($this->traza->files)->search(function ($file) use ($picture) {
+                return $file['name'] === $picture;
+            })];
+        });
     }
 }

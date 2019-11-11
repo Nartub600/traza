@@ -23,7 +23,7 @@ export default {
       return this.excel &&
         (this.nacional.length > 0 ? this.certificado : true) &&
         (this.extranjera.length > 0 ? this.wp29 : true) &&
-        (this.excepcion.length > 0 ? true : this.filesAreComplete)
+        this.filesAreComplete
 
     },
 

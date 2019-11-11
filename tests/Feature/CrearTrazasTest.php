@@ -30,7 +30,11 @@ class CrearTrazasTest extends TestCase
         $response->assertSuccessful();
 
         $certificate = factory(Certificate::class)->create();
-        $certificate->autoparts()->saveMany(factory(Autopart::class, 5)->make());
+        $autoparts = collect($certificate->autoparts()->saveMany(factory(Autopart::class, 5)->make()));
+        $excelAutoparts = $certificate->autoparts->map(function ($autopart) {
+            $autopart['pictures'] = '';
+            return $autopart;
+        });
 
         $data = [
             'type' => 'chas',
@@ -51,10 +55,7 @@ class CrearTrazasTest extends TestCase
                 'catalogo' => UploadedFile::fake()->create('catalogo.pdf'),
                 'autopartesNacional' => UploadedFile::fake()->create('chas-nacional.xlsx'),
             ],
-            'autoparts' => $certificate->autoparts->map(function ($autopart) {
-                $autopart->pictures = '';
-                return $autopart;
-            })
+            'autoparts' => $excelAutoparts
         ];
 
         $response = $this
@@ -89,7 +90,7 @@ class CrearTrazasTest extends TestCase
         // voy a enviar cinco autopartes que no existen
         $autoparts = collect(factory(Autopart::class, 5)->make()->toArray());
         $excelAutoparts = $autoparts->map(function ($autopart) {
-            $autopart['pictures'] = [];
+            $autopart['pictures'] = '';
             $autopart['product'] = $autopart['product']['category'];
             $autopart['ncm'] = $autopart['ncm']['category'];
             $autopart['family'] = '';
@@ -174,7 +175,7 @@ class CrearTrazasTest extends TestCase
     /** @test */
     public function administradorPuedeCrearTrazasCAPE()
     {
-        // $this->withoutExceptionHandling();
+        $this->withoutExceptionHandling();
 
         // visitar la página
         $administrador = factory(User::class)->state('administrador')->create();
@@ -231,5 +232,69 @@ class CrearTrazasTest extends TestCase
         $this->assertNotNull($lcms[2]->cape);
         $this->assertNotNull($lcms[3]->cape);
         $this->assertNotNull($lcms[4]->cape);
+    }
+
+    /** @test */
+    public function administradorPuedeCrearTrazasExcepcionCHAS()
+    {
+        // $this->withoutExceptionHandling();
+
+        // visitar la página
+        $administrador = factory(User::class)->state('administrador')->create();
+
+        $response = $this
+            ->actingAs($administrador)
+            ->get('/trazas/crear/excepcion-chas');
+
+        $response->assertSuccessful();
+
+        $autoparts = collect(factory(Autopart::class, 5)->create()->toArray());
+
+        $excelAutoparts = $autoparts->map(function ($autopart) {
+            $autopart['pictures'] = '';
+            $autopart['product'] = $autopart['product']['category'];
+            $autopart['ncm'] = $autopart['ncm']['category'];
+            $autopart['family'] = '';
+            return $autopart;
+        });
+
+        $data = [
+            'type' => 'excepcion-chas',
+            'number' => $this->faker->phoneNumber,
+            'user' => $this->faker->name,
+            'division' => $this->faker->bs,
+            'sector' => $this->faker->bs,
+            'tag' => $this->faker->bs,
+            'validation' => $this->faker->bs,
+            'signature' => $this->faker->bs,
+            'auth_level' => $this->faker->bs,
+            'documents' => [
+                'foto' => [
+                    UploadedFile::fake()->image('foto1.jpg')
+                ],
+                'excepcion_chas' => UploadedFile::fake()->create('excepcion.pdf'),
+                'autopartesExcepcion' => UploadedFile::fake()->create('excepcion-chas.xlsx'),
+            ],
+            'autoparts' => $excelAutoparts
+        ];
+
+        $response = $this
+            ->actingAs($administrador)
+            ->json('post', '/trazas', $data);
+
+        $response->assertRedirect('/trazas');
+
+        $autoparts = collect($excelAutoparts)->map(function ($autopart) {
+            return Autopart::where('brand', $autopart['brand'])
+                ->where('model', $autopart['model'])
+                ->where('origin', $autopart['origin'])
+                ->first();
+        });
+
+        $this->assertNotNull($autoparts[0]->chas);
+        $this->assertNotNull($autoparts[1]->chas);
+        $this->assertNotNull($autoparts[2]->chas);
+        $this->assertNotNull($autoparts[3]->chas);
+        $this->assertNotNull($autoparts[4]->chas);
     }
 }

@@ -298,8 +298,9 @@
               </div>
 
               <div class="w-1/2 form-group item-form px-2 @error('documents.folleto') has-error @enderror">
-                <label for="documents[folleto_autopartes]" class="mb-4">Folletería piezas autopartes <sup>*</sup></label>
+                <label for="documents[folleto_autopartes]" class="mb-4">Imágenes <sup>*</sup></label>
                 <input
+                  :disabled="!excel"
                   ref="fotosEX"
                   @input="parseLoadedFiles"
                   multiple
@@ -313,13 +314,13 @@
                 @enderror
               </div>
 
-              <div class="w-1/2 form-group item-form px-2 @error('documents.folleto_maquinaria') has-error @enderror">
+              {{-- <div class="w-1/2 form-group item-form px-2 @error('documents.folleto_maquinaria') has-error @enderror">
                 <label for="documents[folleto_maquinaria]" class="mb-4">Folletería Maquinaria <sup>*</sup></label>
                 <input multiple type="file" name="documents[foto][]" class="form-control">
                 @error('documents.folleto_maquinaria')
                   <p class="help-block error">{{ $message }}</p>
                 @enderror
-              </div>
+              </div> --}}
             @break
           @endswitch
         </div>

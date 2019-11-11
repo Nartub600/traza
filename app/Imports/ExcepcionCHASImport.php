@@ -64,6 +64,7 @@ class ExcepcionCHASImport implements ToCollection, WithStartRow, WithMultipleShe
             'origin'        => $row[8],
             'size'          => $row[9],
             'description'   => $row[10],
+            'pictures'      => $row[11] ? implode(',', array_map('trim', explode(',', $row[11]))) : null,
         ];
     }
 }

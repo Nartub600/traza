@@ -69,6 +69,7 @@ class CAPEImport implements ToCollection, WithStartRow, WithMultipleSheets, With
             'description'   => $row[11],
             'application'   => $row[12],
             'size'          => $row[13],
+            'pictures'      => $row[14] ? implode(',', array_map('trim', explode(',', $row[14]))) : null,
         ];
     }
 }
