@@ -239,7 +239,7 @@ class CrearTrazasTest extends TestCase
     /** @test */
     public function administradorPuedeCrearTrazasExcepcionCHAS()
     {
-        // $this->withoutExceptionHandling();
+        $this->withoutExceptionHandling();
 
         // visitar la página
         $administrador = factory(User::class)->state('administrador')->create();
@@ -296,7 +296,7 @@ class CrearTrazasTest extends TestCase
 
         $response = $this
             ->actingAs($administrador)
-            ->json('post', '/trazas', $data);
+            ->post('/trazas', $data);
 
         $response->assertRedirect('/trazas');
 

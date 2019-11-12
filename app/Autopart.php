@@ -67,10 +67,20 @@ class Autopart extends Model
         return $this->ncm->human;
     }
 
-    public function generarCHAS()
+    public function generarCHAS($chas)
     {
-        $tipo = $this->origin === 'Argentina' ? 'F' : 'I';
+        switch ($chas) {
+            case 'nac':
+                $tipo = 'F';
+            break;
+            case 'ext':
+                $tipo = 'I';
+            break;
+        }
+
         $producto = str_pad(explode('.', $this->product->category)[0], 2, '0', STR_PAD_LEFT);
+
+        $organismo = ''; // todo: sacar esto
         switch ($tipo) {
             case 'F':
                 $user = $this->certificate ? $this->certificate->user : Auth::user();
@@ -86,9 +96,13 @@ class Autopart extends Model
                 $organismo = 'W29';
             break;
         }
+
         $anio = now()->format('y');
+
         $mes = now()->format('m');
+
         $codigo = str_pad($this->CHAScountByYear(now()->format('Y')) + 1, 4, '0', STR_PAD_LEFT);
+
         $verificador = rand(0, 9); // todo: guarda
 
         $this->chas = "$tipo$producto$organismo$anio$mes$codigo$verificador";

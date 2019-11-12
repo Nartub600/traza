@@ -108,7 +108,7 @@ class TrazaController extends Controller
                                 ->whereNull('chas')
                                 ->first();
 
-                            $matchedAutopart->generarChas();
+                            $matchedAutopart->generarChas('nac');
                             $matchedAutopart->traza()->associate($traza);
                             $matchedAutopart->pictures = explode(',', $autopart['pictures']);
                             $matchedAutopart->save();
@@ -147,7 +147,7 @@ class TrazaController extends Controller
                         $ncm = NCM::findByCategory($autopart['ncm']);
                         $newAutopart->ncm()->associate($ncm);
 
-                        $newAutopart->generarChas();
+                        $newAutopart->generarChas('nac');
 
                         $newAutopart->save();
                     }
@@ -207,7 +207,7 @@ class TrazaController extends Controller
                 ->whereNull('chas')
                 ->first();
 
-            $matchedAutopart->generarCHAS();
+            $matchedAutopart->generarCHAS('ext');
             $matchedAutopart->save();
         }
     }
