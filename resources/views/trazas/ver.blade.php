@@ -129,6 +129,7 @@
 
       @switch($traza->type)
         @case('chas')
+        @case('ex-chas')
           @if($traza->autoparts->isNotEmpty())
             <h3>
               Autopartes
