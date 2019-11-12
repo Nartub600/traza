@@ -2,7 +2,9 @@
 
 # Descripción
 
-Traza es un sistema para la homologación de autopartes. Está pensado para integrarse con el sistema GDE para la validación de los trámites iniciados desde el módulo TAD, aunque en esta primera iteración la carga de los trámites es manual.
+Traza es un sistema para la homologación de autopartes. Está pensado para integrarse con el sistema GDE para la validación de los trámites iniciados desde el módulo TAD.
+
+Esta primera versión del sistema se ha resuelto con una carga manual a través del administrador del sistema, dado que no se llegó a contar con los datos y servicios de conexión para su implementación en forma automatizada.
 
 # Instalación
 
@@ -16,11 +18,11 @@ El sistema operativo recomendado es Linux (preferentemente [Ubuntu](https://ubun
   - `git clone [dirección del repositorio]`
 
 - Crear una nueva base de datos en el servidor MySQL
- - Tener en cuenta que es posible que se requiera un nuevo usuario con los permisos correspondientes en el servidor de base de datos
+  - Tener en cuenta que es posible que se requiera un nuevo usuario con los permisos correspondientes en el servidor de base de datos
 
 
 - Descargar [composer](https://getcomposer.org/download/) en el directorio de la aplicación
- - Se deben correr unos comandos desde la consola, ver instrucciones en el sitio web de composer
+  - Se deben correr unos comandos desde la consola, ver instrucciones en el sitio web de composer
 
 - Configurar el archivo `.env` a partir del `.env.example`:
   - A priori sólo es necesario configurar las claves que comienzan con `APP`, `DB` y `MAIL`. Se puede configurar [Sentry](https://sentry.io/) para el reporte de errores en la clave `SENTRY_LARAVEL_DSN`
