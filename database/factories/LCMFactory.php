@@ -1,5 +1,6 @@
 <?php
 
+use App\Country;
 use App\LCM;
 use App\User;
 use Faker\Generator as Faker;
@@ -14,7 +15,7 @@ $factory->define(LCM::class, function (Faker $faker) {
         'business_name'       => $faker->word,
         'address'             => $faker->word,
         'cuit'                => $faker->word,
-        'country'             => $faker->word,
+        'origin'              => Country::inRandomOrder()->first()->name,
         'manufacturing_place' => $faker->word,
         'commercial_name'     => $faker->word,
         'brand'               => $faker->word,

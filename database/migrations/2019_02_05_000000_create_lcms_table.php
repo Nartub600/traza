@@ -24,7 +24,7 @@ class CreateLcmsTable extends Migration
             $table->string('business_name');
             $table->string('address');
             $table->string('cuit');
-            $table->string('country');
+            $table->string('origin');
             $table->string('manufacturing_place')->nullable();
             $table->string('commercial_name');
             $table->string('brand');

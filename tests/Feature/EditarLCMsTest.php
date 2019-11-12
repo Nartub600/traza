@@ -35,7 +35,7 @@ class EditarLCMsTest extends TestCase
             'business_name'       => $this->faker->word,
             'address'             => $this->faker->word,
             'cuit'                => $this->faker->word,
-            'country'             => $this->faker->word,
+            'origin'              => $this->faker->word,
             'manufacturing_place' => $this->faker->word,
             'commercial_name'     => $this->faker->word,
             'brand'               => $this->faker->word,
@@ -61,7 +61,7 @@ class EditarLCMsTest extends TestCase
         $this->assertEquals($lcm->business_name, $data['business_name']);
         $this->assertEquals($lcm->address, $data['address']);
         $this->assertEquals($lcm->cuit, $data['cuit']);
-        $this->assertEquals($lcm->country, $data['country']);
+        $this->assertEquals($lcm->origin, $data['origin']);
         $this->assertEquals($lcm->manufacturing_place, $data['manufacturing_place']);
         $this->assertEquals($lcm->commercial_name, $data['commercial_name']);
         $this->assertEquals($lcm->brand, $data['brand']);

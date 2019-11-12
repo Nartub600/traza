@@ -2,10 +2,9 @@
 
 namespace App\Rules;
 
-use App\Autopart;
 use Illuminate\Contracts\Validation\Rule;
 
-class MatchesCertifier implements Rule
+class MatchesCountry implements Rule
 {
     /**
      * Create a new rule instance.
@@ -26,15 +25,9 @@ class MatchesCertifier implements Rule
      */
     public function passes($attribute, $value)
     {
-        $autopart = Autopart::where('brand', $value['brand'])
-            ->where('model', $value['model'])
-            ->where('origin', $value['origin'])
-            ->whereNull('chas')
-            ->first();
+        $country = Country::where('name', $value['origin'])->first();
 
-        return $autopart->certificate->user->groups->map(function ($group) {
-            return strtolower($group->name);
-        })->contains(strtolower($value['certifier']));
+        return !is_null($country);
     }
 
     /**
@@ -44,6 +37,6 @@ class MatchesCertifier implements Rule
      */
     public function message()
     {
-        return 'No coincide el organismo certificador para la fila :attribute';
+        return 'No se encuentra el país de la fila :attribute';
     }
 }

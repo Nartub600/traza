@@ -4,6 +4,7 @@ namespace App\Imports;
 
 use App\Rules\IsNCM;
 use App\Rules\MatchesAutopart;
+use App\Rules\MatchesCountry;
 use App\Rules\MatchesProduct;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
@@ -22,9 +23,10 @@ class ExcepcionCHASImport implements ToCollection, WithStartRow, WithMultipleShe
         });
 
         $validator = Validator::make($sanitized->toArray(), [
-            '*'               => [
+            '*' => [
                 'bail',
                 new MatchesProduct,
+                new MatchesCountry
             ],
             '*.cuit'          => ['required', 'regex:/[0-9]{2}-[0-9]{6,8}-[0-9]/'],
             '*.manufacturer'  => 'required',

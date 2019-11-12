@@ -108,207 +108,16 @@
           @enderror
         </div>
 
-        <div class="w-1/2 form-group item-form px-4 relative @error('country') has-error @enderror">
-          <label for="country" class="mb-4">País de Origen <sup>*</sup></label>
-          <input type="text" name="country" class="form-control" required aria-required value="{{ old('country', $lcm->country) }}">
-          <select class="form-control" name="country" required aria-required id="select-country">
+        <div class="w-1/2 form-group item-form px-4 relative @error('origin') has-error @enderror">
+          <label for="origin" class="mb-4">País de Origen <sup>*</sup></label>
+          <input type="text" name="origin" class="form-control" required aria-required value="{{ old('origin', $lcm->origin) }}">
+          <select class="form-control" name="origin" required aria-required id="select-origin">
             <option data-placeholder="true"></option>
-            <option @if (old('country', $lcm->country) === "Afganistán") selected @endif>Afganistán</option>
-            <option @if (old('country', $lcm->country) === "Albania") selected @endif>Albania</option>
-            <option @if (old('country', $lcm->country) === "Alemania") selected @endif>Alemania</option>
-            <option @if (old('country', $lcm->country) === "Andorra") selected @endif>Andorra</option>
-            <option @if (old('country', $lcm->country) === "Angola") selected @endif>Angola</option>
-            <option @if (old('country', $lcm->country) === "Antigua y Barbuda") selected @endif>Antigua y Barbuda</option>
-            <option @if (old('country', $lcm->country) === "Arabia Saudita") selected @endif>Arabia Saudita</option>
-            <option @if (old('country', $lcm->country) === "Argelia") selected @endif>Argelia</option>
-            <option @if (old('country', $lcm->country) === "Argentina") selected @endif>Argentina</option>
-            <option @if (old('country', $lcm->country) === "Armenia") selected @endif>Armenia</option>
-            <option @if (old('country', $lcm->country) === "Australia") selected @endif>Australia</option>
-            <option @if (old('country', $lcm->country) === "Austria") selected @endif>Austria</option>
-            <option @if (old('country', $lcm->country) === "Azerbaiyán") selected @endif>Azerbaiyán</option>
-            <option @if (old('country', $lcm->country) === "Bahamas") selected @endif>Bahamas</option>
-            <option @if (old('country', $lcm->country) === "Bangladés") selected @endif>Bangladés</option>
-            <option @if (old('country', $lcm->country) === "Barbados") selected @endif>Barbados</option>
-            <option @if (old('country', $lcm->country) === "Baréin") selected @endif>Baréin</option>
-            <option @if (old('country', $lcm->country) === "Bélgica") selected @endif>Bélgica</option>
-            <option @if (old('country', $lcm->country) === "Belice") selected @endif>Belice</option>
-            <option @if (old('country', $lcm->country) === "Benín") selected @endif>Benín</option>
-            <option @if (old('country', $lcm->country) === "Bielorrusia") selected @endif>Bielorrusia</option>
-            <option @if (old('country', $lcm->country) === "Birmania") selected @endif>Birmania</option>
-            <option @if (old('country', $lcm->country) === "Bolivia") selected @endif>Bolivia</option>
-            <option @if (old('country', $lcm->country) === "Bosnia y Herzegovina") selected @endif>Bosnia y Herzegovina</option>
-            <option @if (old('country', $lcm->country) === "Botsuana") selected @endif>Botsuana</option>
-            <option @if (old('country', $lcm->country) === "Brasil") selected @endif>Brasil</option>
-            <option @if (old('country', $lcm->country) === "Brunéi") selected @endif>Brunéi</option>
-            <option @if (old('country', $lcm->country) === "Bulgaria") selected @endif>Bulgaria</option>
-            <option @if (old('country', $lcm->country) === "Burkina Faso") selected @endif>Burkina Faso</option>
-            <option @if (old('country', $lcm->country) === "Burundi") selected @endif>Burundi</option>
-            <option @if (old('country', $lcm->country) === "Bután") selected @endif>Bután</option>
-            <option @if (old('country', $lcm->country) === "Cabo Verde") selected @endif>Cabo Verde</option>
-            <option @if (old('country', $lcm->country) === "Camboya") selected @endif>Camboya</option>
-            <option @if (old('country', $lcm->country) === "Camerún") selected @endif>Camerún</option>
-            <option @if (old('country', $lcm->country) === "Canadá") selected @endif>Canadá</option>
-            <option @if (old('country', $lcm->country) === "Catar") selected @endif>Catar</option>
-            <option @if (old('country', $lcm->country) === "Chad") selected @endif>Chad</option>
-            <option @if (old('country', $lcm->country) === "Chile") selected @endif>Chile</option>
-            <option @if (old('country', $lcm->country) === "China") selected @endif>China</option>
-            <option @if (old('country', $lcm->country) === "Chipre") selected @endif>Chipre</option>
-            <option @if (old('country', $lcm->country) === "Ciudad del Vaticano") selected @endif>Ciudad del Vaticano</option>
-            <option @if (old('country', $lcm->country) === "Colombia") selected @endif>Colombia</option>
-            <option @if (old('country', $lcm->country) === "Comoras") selected @endif>Comoras</option>
-            <option @if (old('country', $lcm->country) === "Corea del Norte") selected @endif>Corea del Norte</option>
-            <option @if (old('country', $lcm->country) === "Corea del Sur") selected @endif>Corea del Sur</option>
-            <option @if (old('country', $lcm->country) === "Costa de Marfil") selected @endif>Costa de Marfil</option>
-            <option @if (old('country', $lcm->country) === "Costa Rica") selected @endif>Costa Rica</option>
-            <option @if (old('country', $lcm->country) === "Croacia") selected @endif>Croacia</option>
-            <option @if (old('country', $lcm->country) === "Cuba") selected @endif>Cuba</option>
-            <option @if (old('country', $lcm->country) === "Dinamarca") selected @endif>Dinamarca</option>
-            <option @if (old('country', $lcm->country) === "Dominica") selected @endif>Dominica</option>
-            <option @if (old('country', $lcm->country) === "Ecuador") selected @endif>Ecuador</option>
-            <option @if (old('country', $lcm->country) === "Egipto") selected @endif>Egipto</option>
-            <option @if (old('country', $lcm->country) === "El Salvador") selected @endif>El Salvador</option>
-            <option @if (old('country', $lcm->country) === "Emiratos Árabes Unidos") selected @endif>Emiratos Árabes Unidos</option>
-            <option @if (old('country', $lcm->country) === "Eritrea") selected @endif>Eritrea</option>
-            <option @if (old('country', $lcm->country) === "Eslovaquia") selected @endif>Eslovaquia</option>
-            <option @if (old('country', $lcm->country) === "Eslovenia") selected @endif>Eslovenia</option>
-            <option @if (old('country', $lcm->country) === "España") selected @endif>España</option>
-            <option @if (old('country', $lcm->country) === "Estados Unidos") selected @endif>Estados Unidos</option>
-            <option @if (old('country', $lcm->country) === "Estonia") selected @endif>Estonia</option>
-            <option @if (old('country', $lcm->country) === "Etiopía") selected @endif>Etiopía</option>
-            <option @if (old('country', $lcm->country) === "Filipinas") selected @endif>Filipinas</option>
-            <option @if (old('country', $lcm->country) === "Finlandia") selected @endif>Finlandia</option>
-            <option @if (old('country', $lcm->country) === "Fiyi") selected @endif>Fiyi</option>
-            <option @if (old('country', $lcm->country) === "Francia") selected @endif>Francia</option>
-            <option @if (old('country', $lcm->country) === "Gabón") selected @endif>Gabón</option>
-            <option @if (old('country', $lcm->country) === "Gambia") selected @endif>Gambia</option>
-            <option @if (old('country', $lcm->country) === "Georgia") selected @endif>Georgia</option>
-            <option @if (old('country', $lcm->country) === "Ghana") selected @endif>Ghana</option>
-            <option @if (old('country', $lcm->country) === "Granada") selected @endif>Granada</option>
-            <option @if (old('country', $lcm->country) === "Grecia") selected @endif>Grecia</option>
-            <option @if (old('country', $lcm->country) === "Guatemala") selected @endif>Guatemala</option>
-            <option @if (old('country', $lcm->country) === "Guyana") selected @endif>Guyana</option>
-            <option @if (old('country', $lcm->country) === "Guinea") selected @endif>Guinea</option>
-            <option @if (old('country', $lcm->country) === "Guinea-Bisáu") selected @endif>Guinea-Bisáu</option>
-            <option @if (old('country', $lcm->country) === "Guinea Ecuatorial") selected @endif>Guinea Ecuatorial</option>
-            <option @if (old('country', $lcm->country) === "Haití") selected @endif>Haití</option>
-            <option @if (old('country', $lcm->country) === "Honduras") selected @endif>Honduras</option>
-            <option @if (old('country', $lcm->country) === "Hungría") selected @endif>Hungría</option>
-            <option @if (old('country', $lcm->country) === "India") selected @endif>India</option>
-            <option @if (old('country', $lcm->country) === "Indonesia") selected @endif>Indonesia</option>
-            <option @if (old('country', $lcm->country) === "Irak") selected @endif>Irak</option>
-            <option @if (old('country', $lcm->country) === "Irán") selected @endif>Irán</option>
-            <option @if (old('country', $lcm->country) === "Irlanda") selected @endif>Irlanda</option>
-            <option @if (old('country', $lcm->country) === "Islandia") selected @endif>Islandia</option>
-            <option @if (old('country', $lcm->country) === "Islas Marshall") selected @endif>Islas Marshall</option>
-            <option @if (old('country', $lcm->country) === "Islas Salomón") selected @endif>Islas Salomón</option>
-            <option @if (old('country', $lcm->country) === "Israel") selected @endif>Israel</option>
-            <option @if (old('country', $lcm->country) === "Italia") selected @endif>Italia</option>
-            <option @if (old('country', $lcm->country) === "Jamaica") selected @endif>Jamaica</option>
-            <option @if (old('country', $lcm->country) === "Japón") selected @endif>Japón</option>
-            <option @if (old('country', $lcm->country) === "Jordania") selected @endif>Jordania</option>
-            <option @if (old('country', $lcm->country) === "Kazajistán") selected @endif>Kazajistán</option>
-            <option @if (old('country', $lcm->country) === "Kenia") selected @endif>Kenia</option>
-            <option @if (old('country', $lcm->country) === "Kirguistán") selected @endif>Kirguistán</option>
-            <option @if (old('country', $lcm->country) === "Kiribati") selected @endif>Kiribati</option>
-            <option @if (old('country', $lcm->country) === "Kuwait") selected @endif>Kuwait</option>
-            <option @if (old('country', $lcm->country) === "Laos") selected @endif>Laos</option>
-            <option @if (old('country', $lcm->country) === "Lesoto") selected @endif>Lesoto</option>
-            <option @if (old('country', $lcm->country) === "Letonia") selected @endif>Letonia</option>
-            <option @if (old('country', $lcm->country) === "Líbano") selected @endif>Líbano</option>
-            <option @if (old('country', $lcm->country) === "Liberia") selected @endif>Liberia</option>
-            <option @if (old('country', $lcm->country) === "Libia") selected @endif>Libia</option>
-            <option @if (old('country', $lcm->country) === "Liechtenstein") selected @endif>Liechtenstein</option>
-            <option @if (old('country', $lcm->country) === "Lituania") selected @endif>Lituania</option>
-            <option @if (old('country', $lcm->country) === "Luxemburgo") selected @endif>Luxemburgo</option>
-            <option @if (old('country', $lcm->country) === "Macedonia del Norte") selected @endif>Macedonia del Norte</option>
-            <option @if (old('country', $lcm->country) === "Madagascar") selected @endif>Madagascar</option>
-            <option @if (old('country', $lcm->country) === "Malasia") selected @endif>Malasia</option>
-            <option @if (old('country', $lcm->country) === "Malaui") selected @endif>Malaui</option>
-            <option @if (old('country', $lcm->country) === "Maldivas") selected @endif>Maldivas</option>
-            <option @if (old('country', $lcm->country) === "Malí") selected @endif>Malí</option>
-            <option @if (old('country', $lcm->country) === "Malta") selected @endif>Malta</option>
-            <option @if (old('country', $lcm->country) === "Marruecos") selected @endif>Marruecos</option>
-            <option @if (old('country', $lcm->country) === "Mauricio") selected @endif>Mauricio</option>
-            <option @if (old('country', $lcm->country) === "Mauritania") selected @endif>Mauritania</option>
-            <option @if (old('country', $lcm->country) === "México") selected @endif>México</option>
-            <option @if (old('country', $lcm->country) === "Micronesia") selected @endif>Micronesia</option>
-            <option @if (old('country', $lcm->country) === "Moldavia") selected @endif>Moldavia</option>
-            <option @if (old('country', $lcm->country) === "Mónaco") selected @endif>Mónaco</option>
-            <option @if (old('country', $lcm->country) === "Mongolia") selected @endif>Mongolia</option>
-            <option @if (old('country', $lcm->country) === "Montenegro") selected @endif>Montenegro</option>
-            <option @if (old('country', $lcm->country) === "Mozambique") selected @endif>Mozambique</option>
-            <option @if (old('country', $lcm->country) === "Namibia") selected @endif>Namibia</option>
-            <option @if (old('country', $lcm->country) === "Nauru") selected @endif>Nauru</option>
-            <option @if (old('country', $lcm->country) === "Nepal") selected @endif>Nepal</option>
-            <option @if (old('country', $lcm->country) === "Nicaragua") selected @endif>Nicaragua</option>
-            <option @if (old('country', $lcm->country) === "Níger") selected @endif>Níger</option>
-            <option @if (old('country', $lcm->country) === "Nigeria") selected @endif>Nigeria</option>
-            <option @if (old('country', $lcm->country) === "Noruega") selected @endif>Noruega</option>
-            <option @if (old('country', $lcm->country) === "Nueva Zelanda") selected @endif>Nueva Zelanda</option>
-            <option @if (old('country', $lcm->country) === "Omán") selected @endif>Omán</option>
-            <option @if (old('country', $lcm->country) === "Países Bajos") selected @endif>Países Bajos</option>
-            <option @if (old('country', $lcm->country) === "Pakistán") selected @endif>Pakistán</option>
-            <option @if (old('country', $lcm->country) === "Palaos") selected @endif>Palaos</option>
-            <option @if (old('country', $lcm->country) === "Panamá") selected @endif>Panamá</option>
-            <option @if (old('country', $lcm->country) === "Papúa Nueva Guinea") selected @endif>Papúa Nueva Guinea</option>
-            <option @if (old('country', $lcm->country) === "Paraguay") selected @endif>Paraguay</option>
-            <option @if (old('country', $lcm->country) === "Perú") selected @endif>Perú</option>
-            <option @if (old('country', $lcm->country) === "Polonia") selected @endif>Polonia</option>
-            <option @if (old('country', $lcm->country) === "Portugal") selected @endif>Portugal</option>
-            <option @if (old('country', $lcm->country) === "Reino Unido de Gran Bretaña e Irlanda del Norte") selected @endif>Reino Unido de Gran Bretaña e Irlanda del Norte</option>
-            <option @if (old('country', $lcm->country) === "República Centroafricana") selected @endif>República Centroafricana</option>
-            <option @if (old('country', $lcm->country) === "República Checa") selected @endif>República Checa</option>
-            <option @if (old('country', $lcm->country) === "República del Congo") selected @endif>República del Congo</option>
-            <option @if (old('country', $lcm->country) === "República Democrática del Congo") selected @endif>República Democrática del Congo</option>
-            <option @if (old('country', $lcm->country) === "República Dominicana") selected @endif>República Dominicana</option>
-            <option @if (old('country', $lcm->country) === "República Sudafricana") selected @endif>República Sudafricana</option>
-            <option @if (old('country', $lcm->country) === "Ruanda") selected @endif>Ruanda</option>
-            <option @if (old('country', $lcm->country) === "Rumanía") selected @endif>Rumanía</option>
-            <option @if (old('country', $lcm->country) === "Rusia") selected @endif>Rusia</option>
-            <option @if (old('country', $lcm->country) === "Samoa") selected @endif>Samoa</option>
-            <option @if (old('country', $lcm->country) === "San Cristóbal y Nieves") selected @endif>San Cristóbal y Nieves</option>
-            <option @if (old('country', $lcm->country) === "San Marino") selected @endif>San Marino</option>
-            <option @if (old('country', $lcm->country) === "San Vicente y las Granadinas") selected @endif>San Vicente y las Granadinas</option>
-            <option @if (old('country', $lcm->country) === "Santa Lucía") selected @endif>Santa Lucía</option>
-            <option @if (old('country', $lcm->country) === "Santo Tomé y Príncipe") selected @endif>Santo Tomé y Príncipe</option>
-            <option @if (old('country', $lcm->country) === "Senegal") selected @endif>Senegal</option>
-            <option @if (old('country', $lcm->country) === "Serbia") selected @endif>Serbia</option>
-            <option @if (old('country', $lcm->country) === "Seychelles") selected @endif>Seychelles</option>
-            <option @if (old('country', $lcm->country) === "Sierra Leona") selected @endif>Sierra Leona</option>
-            <option @if (old('country', $lcm->country) === "Singapur") selected @endif>Singapur</option>
-            <option @if (old('country', $lcm->country) === "Siria") selected @endif>Siria</option>
-            <option @if (old('country', $lcm->country) === "Somalia") selected @endif>Somalia</option>
-            <option @if (old('country', $lcm->country) === "Sri Lanka") selected @endif>Sri Lanka</option>
-            <option @if (old('country', $lcm->country) === "Suazilandia") selected @endif>Suazilandia</option>
-            <option @if (old('country', $lcm->country) === "Sudán") selected @endif>Sudán</option>
-            <option @if (old('country', $lcm->country) === "Sudán del Sur") selected @endif>Sudán del Sur</option>
-            <option @if (old('country', $lcm->country) === "Suecia") selected @endif>Suecia</option>
-            <option @if (old('country', $lcm->country) === "Suiza") selected @endif>Suiza</option>
-            <option @if (old('country', $lcm->country) === "Surinam") selected @endif>Surinam</option>
-            <option @if (old('country', $lcm->country) === "Tailandia") selected @endif>Tailandia</option>
-            <option @if (old('country', $lcm->country) === "Tanzania") selected @endif>Tanzania</option>
-            <option @if (old('country', $lcm->country) === "Tayikistán") selected @endif>Tayikistán</option>
-            <option @if (old('country', $lcm->country) === "Timor Oriental") selected @endif>Timor Oriental</option>
-            <option @if (old('country', $lcm->country) === "Togo") selected @endif>Togo</option>
-            <option @if (old('country', $lcm->country) === "Tonga") selected @endif>Tonga</option>
-            <option @if (old('country', $lcm->country) === "Trinidad y Tobago") selected @endif>Trinidad y Tobago</option>
-            <option @if (old('country', $lcm->country) === "Túnez") selected @endif>Túnez</option>
-            <option @if (old('country', $lcm->country) === "Turkmenistán") selected @endif>Turkmenistán</option>
-            <option @if (old('country', $lcm->country) === "Turquía") selected @endif>Turquía</option>
-            <option @if (old('country', $lcm->country) === "Tuvalu") selected @endif>Tuvalu</option>
-            <option @if (old('country', $lcm->country) === "Ucrania") selected @endif>Ucrania</option>
-            <option @if (old('country', $lcm->country) === "Uganda") selected @endif>Uganda</option>
-            <option @if (old('country', $lcm->country) === "Uruguay") selected @endif>Uruguay</option>
-            <option @if (old('country', $lcm->country) === "Uzbekistán") selected @endif>Uzbekistán</option>
-            <option @if (old('country', $lcm->country) === "Vanuatu") selected @endif>Vanuatu</option>
-            <option @if (old('country', $lcm->country) === "Venezuela") selected @endif>Venezuela</option>
-            <option @if (old('country', $lcm->country) === "Vietnam") selected @endif>Vietnam</option>
-            <option @if (old('country', $lcm->country) === "Yemen") selected @endif>Yemen</option>
-            <option @if (old('country', $lcm->country) === "Yibuti") selected @endif>Yibuti</option>
-            <option @if (old('country', $lcm->country) === "Zambia") selected @endif>Zambia</option>
-            <option @if (old('country', $lcm->country) === "Zimbabue") selected @endif>Zimbabue</option>
+            @foreach ($countries as $country)
+            <option @if (old('origin', $lcm->origin) === $country) selected @endif>{{ $country }}</option>
+            @endforeach
           </select>
-          @error('country')
+          @error('origin')
             <p class="help-block error">
               {{ $message }}
             </p>
@@ -406,7 +215,7 @@
   })
 
   new SlimSelect({
-    select: '#select-country',
+    select: '#select-origin',
     placeholder: 'Seleccione el origen',
     searchPlaceholder: 'Buscar',
   })

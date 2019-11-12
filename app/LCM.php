@@ -20,7 +20,7 @@ class LCM extends Model
         'business_name',
         'address',
         'cuit',
-        'country',
+        'origin',
         'manufacturing_place',
         'commercial_name',
         'brand',

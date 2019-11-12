@@ -8,6 +8,7 @@ use App\Rules\MatchesAutopart;
 use App\Rules\MatchesCertificateCUIT;
 use App\Rules\MatchesCertificateNumber;
 use App\Rules\MatchesCertifier;
+use App\Rules\MatchesCountry;
 use App\Rules\MatchesProduct;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
@@ -27,18 +28,18 @@ class CHASNacionalImport implements ToCollection, WithStartRow, WithMultipleShee
         });
 
         $validator = Validator::make($sanitized->toArray(), [
-            '*'               => [
+            '*' => [
                 'bail',
                 new MatchesCertificateNumber,
                 new MatchesAutopart,
                 new MatchesCertifier,
                 new MatchesCertificateCUIT,
                 new MatchesProduct,
+                new MatchesCountry
             ],
             '*.manufacturer'  => 'required',
             '*.business_name' => 'required',
             '*.ncm'           => ['required', new IsNCM],
-            '*.origin'        => ['required', Rule::in(['Argentina', 'argentina'])],
             '*.description'   => 'required',
             '*.size'          => 'required',
             '*.formulation'   => 'required',

@@ -225,7 +225,7 @@ class CrearTrazasTest extends TestCase
             return LCM::where('number', $lcm['lcm'])
                 ->where('brand', $lcm['brand'])
                 ->where('model', $lcm['model'])
-                ->where('country', $lcm['country'])
+                ->where('origin', $lcm['origin'])
                 ->first();
         });
 

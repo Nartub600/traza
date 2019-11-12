@@ -4,6 +4,7 @@ namespace App\Imports;
 
 use App\Rules\IsNCM;
 use App\Rules\IsProduct;
+use App\Rules\MatchesCountry;
 use App\Rules\MatchesLCM;
 use App\Rules\MatchesProduct;
 use Illuminate\Support\Collection;
@@ -22,10 +23,11 @@ class CAPEImport implements ToCollection, WithStartRow, WithMultipleSheets, With
         });
 
         $validator = Validator::make($sanitized->toArray(), [
-            '*'               => [
+            '*' => [
                 'bail',
                 new MatchesLCM,
-                new MatchesProduct
+                new MatchesProduct,
+                new MatchesCountry
             ],
             '*.cuit'          => ['required', 'regex:/[0-9]{2}-[0-9]{6,8}-[0-9]/'],
             '*.manufacturer'  => 'required',
@@ -65,7 +67,7 @@ class CAPEImport implements ToCollection, WithStartRow, WithMultipleSheets, With
             'ncm'           => $row[7],
             'brand'         => $row[8],
             'model'         => $row[9],
-            'country'       => $row[10],
+            'origin'        => $row[10],
             'description'   => $row[11],
             'application'   => $row[12],
             'size'          => $row[13],

@@ -31,7 +31,7 @@ class UpdateLCMRequest extends FormRequest
             'business_name'       => 'required',
             'address'             => 'required',
             'cuit'                => 'required',
-            'country'             => 'required',
+            'origin'              => 'required',
             'manufacturing_place' => 'nullable',
             'commercial_name'     => 'required',
             'brand'               => 'required',

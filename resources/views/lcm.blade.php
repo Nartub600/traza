@@ -8,7 +8,7 @@
 
   <p>Marca: {{ $lcm->brand }}</p>
   <p>Modelo: {{ $lcm->model }}</p>
-  <p>Origen: {{ $lcm->country }}</p>
+  <p>Origen: {{ $lcm->origin }}</p>
   <p>LCM: {{ $lcm->number }}</p>
   @if($lcm->defeats)
     <p>Reemplaza: {{ $lcm->defeats }}</p>

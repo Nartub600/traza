@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Country;
 use App\Http\Requests\CreateLCMRequest;
 use App\Http\Requests\UpdateLCMRequest;
 use App\LCM;
@@ -22,7 +23,9 @@ class LCMController extends Controller
     {
         $this->authorize('crear', LCM::class);
 
-        return view('lcms.crear');
+        $countries = Country::all();
+
+        return view('lcms.crear', compact('countries'));
     }
 
     public function store(CreateLCMRequest $request)
@@ -52,8 +55,9 @@ class LCMController extends Controller
         $this->authorize('crear', LCM::class);
 
         $lcm = LCM::findOrFail($id);
+        $countries = Country::all();
 
-        return view('lcms.editar', compact('lcm'));
+        return view('lcms.editar', compact('lcm', 'countries'));
     }
 
     public function update(UpdateLCMRequest $request, $id)

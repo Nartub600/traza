@@ -5,6 +5,7 @@ namespace App\Imports;
 use App\Rules\IsNCM;
 use App\Rules\IsProduct;
 use App\Rules\MatchesAutopart;
+use App\Rules\MatchesCountry;
 use App\Rules\MatchesProduct;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
@@ -24,9 +25,10 @@ class CHASExtranjeraImport implements ToCollection, WithStartRow, WithMultipleSh
         });
 
         $validator = Validator::make($sanitized->toArray(), [
-            '*'               => [
+            '*' => [
                 'bail',
                 new MatchesProduct,
+                new MatchesCountry
                 // new IsNewAutopart, // esto debería ser necesario
             ],
             '*.cuit'          => ['required', 'regex:/[0-9]{2}-[0-9]{6,8}-[0-9]/'],
@@ -34,7 +36,6 @@ class CHASExtranjeraImport implements ToCollection, WithStartRow, WithMultipleSh
             '*.importer'      => 'required',
             '*.business_name' => 'required',
             '*.ncm'           => ['required', new IsNCM],
-            '*.origin'        => [Rule::notIn(['Argentina', 'argentina'])],
             '*.description'   => 'required',
             '*.size'          => 'required',
             '*.formulation'   => 'required',

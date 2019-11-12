@@ -29,7 +29,7 @@ class MatchesLCM implements Rule
         $lcm = LCM::where('number', $value['lcm'])
             ->where('brand', $value['brand'])
             ->where('model', $value['model'])
-            ->where('country', $value['country'])
+            ->where('origin', $value['origin'])
             ->whereNull('cape')
             ->first();
 

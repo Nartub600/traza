@@ -168,6 +168,7 @@
         v-if="showModal"
         :products="flatProducts"
         :ncm="{{ $ncm }}"
+        :countries="{{ $countries }}"
         :editing="editing"
         v-model="autoparte"
         @done="addToIndex"

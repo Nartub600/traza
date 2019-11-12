@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Autopart;
 use App\Certificate;
+use App\Country;
 use App\Http\Requests\CreateCertificateRequest;
 use App\Http\Requests\UpdateCertificateRequest;
 use App\NCM;
@@ -31,8 +32,9 @@ class CertificateController extends Controller
 
         $products = Product::active()->doesntHave('parent')->get();
         $ncm = NCM::active()->get();
+        $countries = Country::all();
 
-        return view('certificados.crear', compact('products' , 'ncm'));
+        return view('certificados.crear', compact('products' , 'ncm', 'countries'));
     }
 
     public function show($id)
@@ -43,8 +45,9 @@ class CertificateController extends Controller
 
         $products = Product::active()->doesntHave('parent')->get();
         $ncm = NCM::active()->get();
+        $countries = Country::all();
 
-        return view('certificados.ver', compact('certificate', 'products', 'ncm'));
+        return view('certificados.ver', compact('certificate', 'products', 'ncm', 'countries'));
     }
 
     public function edit($id)
@@ -55,8 +58,9 @@ class CertificateController extends Controller
 
         $products = Product::active()->doesntHave('parent')->get();
         $ncm = NCM::active()->get();
+        $countries = Country::all();
 
-        return view('certificados.editar', compact('certificate', 'products', 'ncm'));
+        return view('certificados.editar', compact('certificate', 'products', 'ncm', 'countries'));
     }
 
     public function store(CreateCertificateRequest $request)

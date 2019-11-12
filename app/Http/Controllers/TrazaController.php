@@ -87,7 +87,7 @@ class TrazaController extends Controller
                         $matchedLcm = LCM::where('number', $lcm['lcm'])
                             ->where('brand', $lcm['brand'])
                             ->where('model', $lcm['model'])
-                            ->where('country', $lcm['country'])
+                            ->where('origin', $lcm['origin'])
                             ->whereNull('cape')
                             ->first();
 
