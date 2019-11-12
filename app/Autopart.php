@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class Autopart extends Model
@@ -72,7 +73,8 @@ class Autopart extends Model
         $producto = str_pad(explode('.', $this->product->category)[0], 2, '0', STR_PAD_LEFT);
         switch ($tipo) {
             case 'F':
-                $userGroups = $this->certificate->user->groups->map->name;
+                $user = $this->certificate ? $this->certificate->user : Auth::user();
+                $userGroups = $user->groups->map->name;
                 if ($userGroups->contains('IRAM')) {
                     $organismo = 'IRA';
                 }
