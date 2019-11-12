@@ -114,7 +114,7 @@
           <select class="form-control" name="origin" required aria-required id="select-origin">
             <option data-placeholder="true"></option>
             @foreach ($countries as $country)
-            <option @if (old('origin', $lcm->origin) === $country) selected @endif>{{ $country }}</option>
+            <option @if (old('origin', $lcm->origin) === $country->name) selected @endif>{{ $country->name }}</option>
             @endforeach
           </select>
           @error('origin')

@@ -112,7 +112,7 @@
           <select class="form-control" name="origin" required aria-required id="select-origin">
             <option data-placeholder="true"></option>
             @foreach ($countries as $country)
-            <option>{{ $country }}</option>
+            <option>{{ $country->name }}</option>
             @endforeach
           </select>
           @error('origin')

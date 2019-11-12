@@ -184,7 +184,7 @@
                   aria-required
                   ref="selectOrigin"
                 >
-                  <option v-for="country in countries">{{ country }}</option>
+                  <option v-for="country in countries">{{ country.name }}</option>
                 </select>
                 <input
                   v-else
