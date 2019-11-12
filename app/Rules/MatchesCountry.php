@@ -2,6 +2,7 @@
 
 namespace App\Rules;
 
+use App\Country;
 use Illuminate\Contracts\Validation\Rule;
 
 class MatchesCountry implements Rule
