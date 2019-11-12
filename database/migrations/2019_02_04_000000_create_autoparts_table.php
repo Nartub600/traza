@@ -26,7 +26,7 @@ class CreateAutopartsTable extends Migration
             $table->string('part_number')->nullable();
             $table->string('brand');
             $table->string('model');
-            $table->string('origin', 100);
+            $table->string('origin', 100)->nullable();
             $table->string('size');
             $table->string('formulation')->nullable();
             $table->string('application')->nullable();

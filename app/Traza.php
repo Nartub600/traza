@@ -39,6 +39,7 @@ class Traza extends Model
     {
         switch ($this->type) {
             case 'chas':
+            case 'excepcion-chas':
                 return $this->autoparts();
             break;
             case 'cape':
